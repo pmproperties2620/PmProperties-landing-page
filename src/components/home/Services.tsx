@@ -88,13 +88,13 @@ export default function Services() {
                       // Make the motion div full width in its container, and control the container.
                     }}
                     transition={{
-                      type: "spring",
-                      stiffness: 300,
-                      damping: 30,
+                      type: "tween",
+                      ease: "easeInOut",
+                      duration: 0.4,
                     }}
                     className={`
                       relative cursor-pointer bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden flex flex-col
-                      transition-all hover:shadow-md
+                      transition-shadow hover:shadow-md duration-500
                       w-full md:w-[220px] h-auto md:h-[320px]
                       ${isActive ? 'md:!w-[340px] md:!h-[360px]' : ''}
                       ${!isActive && service.yOffset > 0 ? `md:translate-y-[${service.yOffset}px]` : ''}
@@ -113,7 +113,7 @@ export default function Services() {
                       )}
                     </AnimatePresence>
 
-                    <div className={`p-6 sm:p-8 flex flex-col h-full transition-all duration-300 md:pl-8 ${isActive ? 'md:pl-10' : ''}`}>
+                    <div className={`p-6 sm:p-8 flex flex-col h-full transition-all duration-500 ease-out md:pl-8 ${isActive ? 'md:pl-10' : ''}`}>
                       {/* Top Icons */}
                       <div className="flex items-center justify-between mb-4 md:mb-auto">
                         <div className={`
@@ -145,10 +145,9 @@ export default function Services() {
 
                         {/* On mobile, always show description. On desktop, show on hover. */}
                         <div className={`
-                          flex flex-col gap-2 sm:gap-4
-                          md:overflow-hidden md:mt-4
-                          ${isActive ? 'md:h-auto md:opacity-100' : 'md:h-0 md:opacity-0'}
-                          transition-all duration-300
+                          flex flex-col gap-2 sm:gap-4 md:overflow-hidden
+                          ${isActive ? 'md:max-h-[200px] md:mt-4 md:opacity-100' : 'md:max-h-0 md:mt-0 md:opacity-0'}
+                          transition-all duration-500 ease-in-out
                         `}>
                           <p className="text-slate-600 text-sm leading-relaxed">
                             {service.description}

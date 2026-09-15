@@ -137,7 +137,7 @@ import { TracingBeam } from "@/components/ui/tracing-beam";
 
 export default function DualProcessTimeline() {
   const ProcessColumn = ({ title, steps }: { title: string, steps: Step[] }) => (
-    <div className="flex flex-col h-full bg-white rounded-3xl p-6 sm:p-10 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-slate-100">
+    <div className="flex flex-col h-fit bg-white rounded-3xl p-6 sm:p-10 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-slate-100">
       <h3 className="text-2xl sm:text-3xl font-bold text-center mb-10 text-[#0a1128]">{title}</h3>
       <div className="flex-1">
         <TracingBeam className="pl-6">

@@ -158,26 +158,32 @@ export default function ServicesPage() {
       <section className="py-16 sm:py-24 bg-slate-100">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 
-          <div className="flex flex-col gap-6 sm:gap-10 relative max-w-[900px] mx-auto">
+          <div className="flex flex-col gap-8 sm:gap-12 relative max-w-[1200px] w-full mx-auto">
+            {/* Center Line for visual timeline effect */}
+            <div className="hidden md:block absolute left-1/2 top-10 bottom-10 w-px bg-brand-100 -translate-x-1/2 z-0" />
+            
             {services.map((service, i) => {
               const Icon = service.icon;
               const isEven = i % 2 === 0;
               return (
-                <div
-                  key={service.title}
-                  className={`w-full max-w-[650px] bg-white rounded-2xl shadow-sm p-3 sm:p-4 flex flex-col sm:flex-row gap-5 sm:gap-8 items-center ${
-                    isEven ? "md:self-end" : "md:self-start"
-                  }`}
-                >
-                  <div className="w-full sm:w-[260px] shrink-0 aspect-[4/3] rounded-xl bg-brand-50 flex items-center justify-center">
-                    <Icon className="w-20 h-20 text-brand-600 opacity-80" strokeWidth={1} />
+                <div key={service.title} className={`relative flex w-full ${isEven ? 'md:justify-end' : 'md:justify-start'}`}>
+                  
+                  <div
+                    className={`w-full md:w-[calc(50%+156px)] bg-white rounded-3xl shadow-sm p-4 flex flex-col gap-5 sm:gap-8 items-center z-10 hover:shadow-md transition-shadow ${
+                      isEven ? "sm:flex-row" : "sm:flex-row-reverse"
+                    }`}
+                  >
+                    <div className="w-full sm:w-[280px] shrink-0 aspect-[4/3] rounded-2xl bg-brand-50 flex items-center justify-center border border-slate-50">
+                      <Icon className="w-20 h-20 text-brand-600 opacity-80" strokeWidth={1} />
+                    </div>
+                    <div className={`w-full sm:flex-1 py-4 text-center ${isEven ? 'sm:text-left sm:pr-8' : 'sm:text-left sm:pl-8'}`}>
+                      <h3 className="text-2xl sm:text-3xl font-bold text-slate-900 mb-4">{service.title}</h3>
+                      <p className="text-slate-500 text-base leading-relaxed">
+                        {service.description}
+                      </p>
+                    </div>
                   </div>
-                  <div className="w-full sm:flex-1 py-2 sm:py-4 sm:pr-6 text-center sm:text-left">
-                    <h3 className="text-xl sm:text-2xl font-semibold text-slate-900 mb-3">{service.title}</h3>
-                    <p className="text-slate-500 text-sm leading-relaxed">
-                      {service.description}
-                    </p>
-                  </div>
+                  
                 </div>
               );
             })}
