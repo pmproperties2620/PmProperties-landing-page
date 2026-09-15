@@ -8,12 +8,14 @@ import {
   Menu,
   X,
   Home,
+  Building2,
   Briefcase,
   Settings,
   Users,
   Phone,
 } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
+import { useConsultationModal } from "@/context/ConsultationModalContext";
 
 /* ─── Types ──────────────────────────────────── */
 interface NavItem {
@@ -25,6 +27,7 @@ interface NavItem {
 /* ─── Navigation Data ────────────────────────── */
 const NAV_ITEMS: NavItem[] = [
   { label: "Home", href: "/", icon: <Home className="w-4 h-4" /> },
+  { label: "Projects", href: "/projects", icon: <Building2 className="w-4 h-4" /> },
   { label: "Our Services", href: "/services", icon: <Briefcase className="w-4 h-4" /> },
   { label: "How We Work", href: "/how-we-work", icon: <Settings className="w-4 h-4" /> },
   { label: "About Us", href: "/about", icon: <Users className="w-4 h-4" /> },
@@ -33,9 +36,16 @@ const NAV_ITEMS: NavItem[] = [
 
 /* ─── Component ──────────────────────────────── */
 export default function Header() {
+  const { openModal } = useConsultationModal();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const pathname = usePathname();
+  const [prevPathname, setPrevPathname] = useState(pathname);
+
+  if (prevPathname !== pathname) {
+    setPrevPathname(pathname);
+    setMobileOpen(false);
+  }
 
   useEffect(() => {
     const handleScroll = () => {
@@ -50,11 +60,6 @@ export default function Header() {
     handleScroll(); // Initial check
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
-  /* Close mobile menu on route change */
-  useEffect(() => {
-    setMobileOpen(false);
-  }, [pathname]);
 
   /* Lock body scroll when mobile menu is open */
   useEffect(() => {
@@ -151,14 +156,13 @@ export default function Header() {
 
             {/* ── Desktop CTA ───────────────────── */}
             <div className="hidden md:flex items-center gap-1 bg-white rounded-full p-1.5 shadow-xl shrink-0">
-              <Link
-                href="https://wa.me/919029923246"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-6 py-2.5 rounded-full text-[14px] font-semibold bg-[#0a0a0a] text-white hover:bg-black shadow-md transition-all duration-200"
+              <button
+                type="button"
+                onClick={() => openModal()}
+                className="px-6 py-2.5 rounded-full text-[14px] font-semibold bg-[#0a0a0a] text-white hover:bg-black shadow-md transition-all duration-200 cursor-pointer"
               >
                 Book Consultation
-              </Link>
+              </button>
             </div>
 
             {/* ── Mobile Hamburger ──────────────── */}
@@ -272,15 +276,16 @@ export default function Header() {
 
                 {/* CTA */}
                 <div className="px-3 pb-4 pt-1 border-t border-white/[0.06]">
-                  <Link
-                    href="https://wa.me/919029923246"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={() => setMobileOpen(false)}
-                    className="block mt-3 text-center py-3.5 rounded-2xl text-sm font-semibold bg-[#0a0a0a] text-white hover:bg-black transition-all duration-200 shadow-md"
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setMobileOpen(false);
+                      openModal();
+                    }}
+                    className="w-full mt-3 text-center py-3.5 rounded-2xl text-sm font-semibold bg-[#0a0a0a] text-white hover:bg-black transition-all duration-200 shadow-md cursor-pointer"
                   >
                     Book Consultation
-                  </Link>
+                  </button>
                 </div>
               </div>
             </motion.div>

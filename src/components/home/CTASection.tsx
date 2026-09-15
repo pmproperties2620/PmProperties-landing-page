@@ -4,8 +4,11 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { Phone, Calendar } from "lucide-react";
 import AnimatedSection from "@/components/ui/AnimatedSection";
+import { useConsultationModal } from "@/context/ConsultationModalContext";
 
 export default function CTASection() {
+  const { openModal } = useConsultationModal();
+
   return (
     <section className="relative py-8 sm:py-12 bg-slate-50 overflow-hidden">
       <div className="absolute inset-0 bg-[url('/images/cta-bg.jpg')] bg-cover bg-center opacity-10" />
@@ -38,15 +41,14 @@ export default function CTASection() {
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.98 }}>
-                <a
-                  href="https://wa.me/919029923246?text=Hi!%20I'm%20interested%20in%20learning%20more%20about%20your%20properties."
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 bg-brand-600 text-white px-8 py-4 rounded-xl font-semibold text-lg hover:bg-brand-700 transition-all shadow-lg shadow-brand-600/25"
+                <button
+                  type="button"
+                  onClick={() => openModal()}
+                  className="inline-flex items-center justify-center gap-2 bg-brand-600 text-white px-8 py-4 rounded-xl font-semibold text-lg hover:bg-brand-700 transition-all shadow-lg shadow-brand-600/25 cursor-pointer"
                 >
                   <Calendar className="w-5 h-5" />
                   Book a Consultation
-                </a>
+                </button>
               </motion.div>
             </div>
           </div>

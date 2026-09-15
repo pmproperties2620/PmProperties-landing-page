@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import AnimatedSection from "@/components/ui/AnimatedSection";
 import DualProcessTimeline from "@/components/how-we-work/DualProcessTimeline";
+import BookConsultationButton from "@/components/ui/BookConsultationButton";
 
 export const metadata: Metadata = {
   title: "How We Work | PM Properties",
@@ -68,14 +69,9 @@ export default function HowWeWorkPage() {
             Whether you&apos;re buying, selling, or just exploring — your first consultation is
             always free and comes with zero obligations.
           </p>
-          <Link
-            href="https://wa.me/919029923246"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center justify-center gap-2 bg-white text-brand-600 px-8 py-4 rounded-xl font-semibold text-lg hover:bg-slate-50 transition-all shadow-lg"
-          >
+          <BookConsultationButton className="inline-flex items-center justify-center gap-2 bg-white text-brand-600 px-8 py-4 rounded-xl font-semibold text-lg hover:bg-slate-50 transition-all shadow-lg cursor-pointer">
             Book Your Free Consultation
-          </Link>
+          </BookConsultationButton>
         </div>
       </section>
     </>

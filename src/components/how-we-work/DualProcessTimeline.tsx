@@ -135,14 +135,14 @@ type Step = {
 
 import { TracingBeam } from "@/components/ui/tracing-beam";
 
-export default function DualProcessTimeline() {
-  const ProcessColumn = ({ title, steps }: { title: string, steps: Step[] }) => (
+function ProcessColumn({ title, steps }: { title: string; steps: Step[] }) {
+  return (
     <div className="flex flex-col h-fit bg-white rounded-3xl p-6 sm:p-10 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-slate-100">
       <h3 className="text-2xl sm:text-3xl font-bold text-center mb-10 text-[#0a1128]">{title}</h3>
       <div className="flex-1">
         <TracingBeam className="pl-6">
           <div className="flex flex-col gap-12 relative z-10 w-full pt-4 pb-8">
-            {steps.map((s, i) => {
+            {steps.map((s) => {
               const Icon = s.icon;
               return (
                 <div key={s.step} className="relative flex items-start text-left group">
@@ -175,7 +175,9 @@ export default function DualProcessTimeline() {
       </div>
     </div>
   );
+}
 
+export default function DualProcessTimeline() {
   return (
     <section className="py-16 md:py-24 bg-[#f8f9fc] overflow-hidden relative">
       <div className="max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-8">

@@ -4,6 +4,8 @@ import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import WhatsAppWidget from "@/components/ui/WhatsAppWidget";
+import { ConsultationModalProvider } from "@/context/ConsultationModalContext";
+import ConsultationModal from "@/components/ui/ConsultationModal";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -40,10 +42,13 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-        <Header />
-        <main className="flex-1">{children}</main>
-        <Footer />
-        <WhatsAppWidget />
+        <ConsultationModalProvider>
+          <Header />
+          <main className="flex-1">{children}</main>
+          <Footer />
+          <WhatsAppWidget />
+          <ConsultationModal />
+        </ConsultationModalProvider>
       </body>
     </html>
   );

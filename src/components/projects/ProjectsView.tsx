@@ -1,0 +1,313 @@
+"use client";
+
+import { useState, useMemo } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import {
+  Building2,
+  PhoneCall,
+  MessageCircle,
+  HelpCircle,
+  ArrowRight,
+  ShieldCheck,
+  Award,
+  Sparkles,
+  Users,
+} from "lucide-react";
+import Link from "next/link";
+import { projectsData, type Project } from "@/data/projects";
+import ProjectCard from "./ProjectCard";
+import ProjectFilters, { type FilterState } from "./ProjectFilters";
+import ProjectDetailModal from "./ProjectDetailModal";
+
+const initialFilters: FilterState = {
+  search: "",
+  category: "all",
+  city: "all",
+  config: "all",
+  budget: "all",
+  possession: "all",
+};
+
+export default function ProjectsView() {
+  const [filters, setFilters] = useState<FilterState>(initialFilters);
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+
+  const handleFilterChange = (newFilters: Partial<FilterState>) => {
+    setFilters((prev) => ({ ...prev, ...newFilters }));
+  };
+
+  const handleReset = () => {
+    setFilters(initialFilters);
+  };
+
+  const filteredProjects = useMemo(() => {
+    return projectsData.filter((project) => {
+      // Search filter
+      if (filters.search) {
+        const query = filters.search.toLowerCase();
+        const matchesName = project.title.toLowerCase().includes(query);
+        const matchesDev = project.developer.toLowerCase().includes(query);
+        const matchesLoc = project.location.locality.toLowerCase().includes(query);
+        const matchesCity = project.location.city.toLowerCase().includes(query);
+        if (!matchesName && !matchesDev && !matchesLoc && !matchesCity) {
+          return false;
+        }
+      }
+
+      // Category filter
+      if (filters.category !== "all") {
+        if (filters.category === "Buy" && project.listingType !== "Buy") {
+          return false;
+        }
+        if (filters.category === "Resale" && project.listingType !== "Resale") {
+          return false;
+        }
+        if (filters.category === "Commercial" && project.category !== "Commercial") {
+          return false;
+        }
+        if (
+          filters.category === "Rental" &&
+          project.listingType !== "Rental" &&
+          project.category !== "Industrial"
+        ) {
+          return false;
+        }
+      }
+
+      // City filter
+      if (filters.city !== "all" && project.location.city !== filters.city) {
+        return false;
+      }
+
+      // Configuration filter
+      if (filters.config !== "all") {
+        if (filters.config === "Commercial") {
+          if (project.category !== "Commercial" && project.category !== "Industrial") {
+            return false;
+          }
+        } else {
+          const hasConfig = project.configurations.some((c) =>
+            c.toLowerCase().includes(filters.config.toLowerCase())
+          );
+          if (!hasConfig) return false;
+        }
+      }
+
+      // Budget filter
+      if (filters.budget !== "all") {
+        const price = project.priceStarting;
+        if (filters.budget === "under-50l" && price >= 5000000) return false;
+        if (filters.budget === "50l-1cr" && (price < 5000000 || price > 10000000))
+          return false;
+        if (filters.budget === "1cr-2cr" && (price < 10000000 || price > 20000000))
+          return false;
+        if (filters.budget === "above-2cr" && price <= 20000000) return false;
+      }
+
+      // Possession filter
+      if (
+        filters.possession !== "all" &&
+        project.possession !== filters.possession
+      ) {
+        return false;
+      }
+
+      return true;
+    });
+  }, [filters]);
+
+  return (
+    <div className="bg-slate-50 min-h-screen pb-20">
+      {/* Editorial Page Header */}
+      <section className="relative pt-24 pb-16 sm:pt-32 sm:pb-20 bg-slate-900 text-white overflow-hidden">
+        {/* Decorative Grid Lines */}
+        <div
+          className="absolute inset-0 opacity-10 pointer-events-none"
+          style={{
+            backgroundImage:
+              "radial-gradient(#ffffff 1px, transparent 1px)",
+            backgroundSize: "32px 32px",
+          }}
+        />
+
+        {/* Ambient Gradient Glows */}
+        <div className="absolute top-0 right-1/4 w-96 h-96 bg-brand-600/20 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl pointer-events-none" />
+
+        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
+          {/* Tag Pill */}
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/10 text-xs font-semibold text-brand-400 mb-6">
+            <Sparkles className="w-3.5 h-3.5 text-brand-400" />
+            <span>Curated Real Estate Portfolio</span>
+          </div>
+
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white mb-6">
+            Featured Projects & Properties
+          </h1>
+
+          <p className="text-base sm:text-lg text-slate-300 max-w-3xl mx-auto leading-relaxed mb-10">
+            Discover verified residential townships, luxury apartments, resale
+            residences, and high-yield commercial assets across Kalyan,
+            Dombivli, Thane, and Badlapur.
+          </p>
+
+          {/* Quick Metrics Bar */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto pt-6 border-t border-slate-800 text-left">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-xl bg-brand-500/10 border border-brand-500/20 flex items-center justify-center shrink-0">
+                <ShieldCheck className="w-5 h-5 text-brand-400" />
+              </div>
+              <div>
+                <div className="text-lg font-bold text-white">100% RERA</div>
+                <div className="text-xs text-slate-400">Registered Projects</div>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center shrink-0">
+                <Sparkles className="w-5 h-5 text-emerald-400" />
+              </div>
+              <div>
+                <div className="text-lg font-bold text-white">0% Brokerage</div>
+                <div className="text-xs text-slate-400">On Direct Bookings</div>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center shrink-0">
+                <Award className="w-5 h-5 text-blue-400" />
+              </div>
+              <div>
+                <div className="text-lg font-bold text-white">10+ Years</div>
+                <div className="text-xs text-slate-400">Market Authority</div>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center shrink-0">
+                <Users className="w-5 h-5 text-purple-400" />
+              </div>
+              <div>
+                <div className="text-lg font-bold text-white">500+ Families</div>
+                <div className="text-xs text-slate-400">Happily Housed</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Main Content Area */}
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 -mt-6 relative z-20">
+        {/* Filters and Controls */}
+        <ProjectFilters
+          filters={filters}
+          onFilterChange={handleFilterChange}
+          onReset={handleReset}
+          totalCount={projectsData.length}
+          filteredCount={filteredProjects.length}
+        />
+
+        {/* Projects Grid */}
+        {filteredProjects.length > 0 ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+            <AnimatePresence>
+              {filteredProjects.map((project) => (
+                <motion.div
+                  key={project.id}
+                  layout
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, scale: 0.95 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <ProjectCard
+                    project={project}
+                    onQuickView={setSelectedProject}
+                  />
+                </motion.div>
+              ))}
+            </AnimatePresence>
+          </div>
+        ) : (
+          /* Empty State */
+          <div className="bg-white rounded-3xl border border-slate-200 p-12 text-center max-w-xl mx-auto shadow-sm">
+            <div className="w-16 h-16 rounded-2xl bg-slate-100 flex items-center justify-center mx-auto mb-4 text-slate-400">
+              <HelpCircle className="w-8 h-8" />
+            </div>
+            <h3 className="text-xl font-bold text-slate-900 mb-2">
+              No matching properties found
+            </h3>
+            <p className="text-sm text-slate-500 mb-6 leading-relaxed">
+              We couldn&apos;t find any properties matching your exact criteria. Try
+              loosening your budget or location filters, or contact our team for
+              unlisted upcoming inventory.
+            </p>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+              <button
+                type="button"
+                onClick={handleReset}
+                className="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-slate-900 text-white text-xs sm:text-sm font-semibold hover:bg-slate-800 transition-colors"
+              >
+                Reset All Filters
+              </button>
+              <a
+                href="https://wa.me/919029923246?text=Hi%20PM%20Properties,%20I%20am%20looking%20for%20a%20property%20with%20custom%20requirements.%20Please%20guide%20me."
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-brand-600 text-white text-xs sm:text-sm font-semibold hover:bg-brand-700 transition-colors"
+              >
+                <MessageCircle className="w-4 h-4" />
+                <span>Ask via WhatsApp</span>
+              </a>
+            </div>
+          </div>
+        )}
+
+        {/* Sell / List Your Property CTA Banner */}
+        <div className="mt-16 sm:mt-24 rounded-3xl bg-gradient-to-br from-slate-900 via-slate-850 to-slate-900 border border-slate-800 p-8 sm:p-12 text-white relative overflow-hidden shadow-xl">
+          <div className="absolute top-0 right-0 w-96 h-96 bg-brand-500/10 rounded-full blur-3xl pointer-events-none" />
+
+          <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-8">
+            <div className="max-w-2xl text-center lg:text-left">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-500/20 text-brand-400 text-xs font-semibold mb-4">
+                <Building2 className="w-3.5 h-3.5" />
+                <span>For Property Owners & Developers</span>
+              </div>
+              <h3 className="text-2xl sm:text-3xl font-extrabold text-white mb-3 tracking-tight">
+                Looking to Sell, Lease, or Partner with PM Properties?
+              </h3>
+              <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
+                Get your property listed before 10,000+ verified active buyers
+                and investors. Benefit from professional staging, legal
+                verification, and swift closing without hassle.
+              </p>
+            </div>
+
+            <div className="flex flex-col sm:flex-row items-center gap-3 w-full lg:w-auto shrink-0">
+              <Link
+                href="/contact"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-brand-600 hover:bg-brand-700 text-white text-sm font-semibold transition-all shadow-lg hover:shadow-xl"
+              >
+                <span>List Your Property</span>
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+              <a
+                href="tel:+919029923246"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl border border-slate-700 bg-slate-800/80 hover:bg-slate-800 text-white text-sm font-semibold transition-colors"
+              >
+                <PhoneCall className="w-4 h-4 text-brand-400" />
+                <span>Call Advisor</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Quick Details Modal */}
+      <ProjectDetailModal
+        project={selectedProject}
+        onClose={() => setSelectedProject(null)}
+      />
+    </div>
+  );
+}

@@ -49,6 +49,8 @@ export default function Footer() {
         <div className="flex flex-wrap justify-center items-center gap-y-4 gap-x-6 md:gap-x-10 text-sm font-semibold tracking-wider uppercase mb-10">
           <Link href="/" className="text-slate-700 hover:text-brand-600 transition-colors">Home</Link>
           <div className="w-px h-4 bg-slate-300 hidden md:block"></div>
+          <Link href="/projects" className="text-slate-700 hover:text-brand-600 transition-colors">Projects</Link>
+          <div className="w-px h-4 bg-slate-300 hidden md:block"></div>
           <Link href="/services" className="text-slate-700 hover:text-brand-600 transition-colors">Our Services</Link>
           <div className="w-px h-4 bg-slate-300 hidden md:block"></div>
           <Link href="/how-we-work" className="text-slate-700 hover:text-brand-600 transition-colors">How We Works</Link>

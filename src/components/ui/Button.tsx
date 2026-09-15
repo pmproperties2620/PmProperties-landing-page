@@ -1,13 +1,14 @@
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 
-interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+interface ButtonProps extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, "onClick"> {
   children: React.ReactNode;
   variant?: "primary" | "secondary" | "outline" | "ghost";
   size?: "sm" | "md" | "lg";
   href?: string;
   target?: string;
   rel?: string;
+  onClick?: (event: React.MouseEvent<HTMLElement>) => void;
 }
 
 export default function Button({
@@ -45,7 +46,7 @@ export default function Button({
 
   if (href) {
     return (
-      <Link href={href} className={classes} target={target} rel={rel} {...(props as any)}>
+      <Link href={href} className={classes} target={target} rel={rel} onClick={props.onClick}>
         {children}
       </Link>
     );

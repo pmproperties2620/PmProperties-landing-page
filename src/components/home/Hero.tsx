@@ -3,10 +3,12 @@
 import { motion } from "framer-motion";
 import { Search, ChevronDown } from "lucide-react";
 import { useState } from "react";
+import { useConsultationModal } from "@/context/ConsultationModalContext";
 
 const propertyTypes = ["Buy", "Rent", "Sell"];
 
 export default function Hero() {
+  const { openModal } = useConsultationModal();
   const [selectedType, setSelectedType] = useState("Buy");
   const [showTypeDropdown, setShowTypeDropdown] = useState(false);
 
@@ -45,15 +47,14 @@ export default function Hero() {
             transition={{ duration: 0.6, delay: 0.4 }}
             className="flex flex-col sm:flex-row items-start sm:items-center gap-6 sm:gap-8"
           >
-            <a
-            href="https://wa.me/919029923246"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="bg-white text-[#0a1128] px-8 py-4 rounded-full font-bold text-[15px] hover:bg-gray-100 transition-colors shadow-xl flex items-center gap-2"
-          >
-            Book Your Consultation
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-          </a>
+            <button
+              type="button"
+              onClick={() => openModal()}
+              className="bg-white text-[#0a1128] px-8 py-4 rounded-full font-bold text-[15px] hover:bg-gray-100 transition-colors shadow-xl flex items-center gap-2 cursor-pointer"
+            >
+              Book Your Consultation
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </button>
             
             <div className="inline-flex items-center gap-3 bg-white/10 backdrop-blur-md py-2 px-4 rounded-full shadow-lg border border-white/20">
               <div className="flex -space-x-3">

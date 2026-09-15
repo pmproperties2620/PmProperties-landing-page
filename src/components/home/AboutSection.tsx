@@ -35,7 +35,7 @@ export default function AboutSection() {
             <h3 className="text-xs font-medium text-gray-500 mb-2">Families Helped Find Their Dream Home</h3>
             <p className="text-4xl md:text-5xl font-bold text-[#0a1128] mb-2 md:mb-3 tracking-tight">500+</p>
             <p className="text-gray-600 text-xs md:text-sm leading-relaxed max-w-sm mb-2">
-              With over five years of trusted experience, we've guided 500+ families toward safe, transparent, and value-driven property investments.
+              With over five years of trusted experience, we&apos;ve guided 500+ families toward safe, transparent, and value-driven property investments.
             </p>
           </div>
 

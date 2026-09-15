@@ -179,7 +179,7 @@ export default function AboutTimeline() {
             <div className="inline-block p-1 rounded-2xl bg-gradient-to-r from-slate-200 via-slate-300 to-slate-200 mb-8">
               <div className="bg-white rounded-[14px] px-6 py-8">
                 <p className="text-lg md:text-xl font-medium text-slate-800 italic leading-relaxed mb-6">
-                  "To play a part in fulfilling someone's dream of a home is my privilege. I pray to God that this service continues uninterrupted."
+                  &ldquo;To play a part in fulfilling someone&apos;s dream of a home is my privilege. I pray to God that this service continues uninterrupted.&rdquo;
                 </p>
                 <div className="flex flex-col items-center justify-center">
                   <p className="text-sm text-slate-500 uppercase tracking-widest font-semibold mb-1">Yours sincerely,</p>
