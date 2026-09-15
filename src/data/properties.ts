@@ -330,7 +330,7 @@ export const teamMembers = [
 export const faqs = [
   {
     q: "What areas do you serve?",
-    a: "We currently operate primarily in Kalyan, Dombivli, and Thane. We have deep local expertise in these markets to help you find the perfect property.",
+    a: "We currently operate primarily in Kalyan, Dombivli, Thane, Ambernath, and Badlapur. We have deep local expertise in these markets to help you find the perfect property.",
   },
   {
     q: "Do you provide assistance with legal documentation and property verification?",
@@ -342,7 +342,7 @@ export const faqs = [
   },
   {
     q: "How are your fees structured?",
-    a: "For buyers, our services are typically free as the seller pays the commission. For sellers, our standard rate is 6% of the sale price, which covers marketing, staging consultation, photography, and negotiation.",
+    a: "Our fee structure is completely transparent with no hidden charges:\n\n• New Projects: Zero (0%) brokerage for buyers.\n• Resale Properties: 2% brokerage applicable for buyers.\n• Property Sellers: 2% brokerage applicable based on the agreement value.",
   },
   {
     q: "Do you help with selling my current home?",

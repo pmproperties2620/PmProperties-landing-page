@@ -92,7 +92,7 @@ export default function FAQSection() {
                         exit={{ height: 0, opacity: 0 }}
                         className="overflow-hidden"
                       >
-                        <div className="pb-5 pt-1 text-slate-500 leading-relaxed pr-12">
+                        <div className="pb-5 pt-1 text-slate-500 leading-relaxed pr-12 whitespace-pre-line">
                           {faq.a}
                         </div>
                       </motion.div>

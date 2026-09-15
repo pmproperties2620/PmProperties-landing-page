@@ -45,7 +45,7 @@ const timelineData = [
     title: "A New Identity",
     description:
       "Celebrating 5 years of trust, we took a monumental step forward. To secure a distinct and official identity, the company evolved into 'The PM Properties' with a registered trademark. Fulfilling your dream of a home remains my greatest privilege.",
-    image: "/images/timeline_5.png",
+    image: "/images/PM_propreties.jpeg",
   },
 ];
 

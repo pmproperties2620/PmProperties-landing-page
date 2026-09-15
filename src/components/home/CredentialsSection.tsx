@@ -16,7 +16,7 @@ const badges = [
     rating: 5,
   },
   {
-    title: "5+ Years of Trust",
+    title: "10+ Years of Trust",
     subtitle: "Proven Track Record",
     rating: 5,
   }
