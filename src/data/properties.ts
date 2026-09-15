@@ -330,11 +330,11 @@ export const teamMembers = [
 export const faqs = [
   {
     q: "What areas do you serve?",
-    a: "PM Properties operates across California, New York, Texas, Oregon, and Colorado. We also have partner agencies nationwide for clients relocating beyond our primary markets.",
+    a: "We currently operate primarily in Kalyan, Dombivli, and Thane. We have deep local expertise in these markets to help you find the perfect property.",
   },
   {
-    q: "How do I determine my budget?",
-    a: "We start with a free consultation to review your finances and connect you with trusted mortgage advisors. Generally, your budget should be 3-5x your annual household income with a 10-20% down payment.",
+    q: "Do you provide assistance with legal documentation and property verification?",
+    a: "Yes, we offer complete end-to-end support. Our team ensures thorough verification of property titles, RERA registrations, and handles all the necessary legal documentation to ensure a secure and hassle-free transaction.",
   },
   {
     q: "What's the typical timeline for buying?",

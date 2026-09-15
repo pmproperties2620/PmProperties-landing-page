@@ -215,7 +215,7 @@ export default function PropertyClient({ property }: { property: Property }) {
 
                     <div className="space-y-3 mb-6">
                       <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-                        <Button variant="primary" size="lg" href="/contact" className="w-full">
+                        <Button variant="primary" size="lg" href="https://wa.me/919029923246" target="_blank" rel="noopener noreferrer" className="w-full">
                           Schedule a Tour
                         </Button>
                       </motion.div>

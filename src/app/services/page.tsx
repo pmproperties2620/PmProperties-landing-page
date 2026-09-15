@@ -139,7 +139,7 @@ export default function ServicesPage() {
       <section className="relative min-h-[60vh] flex flex-col justify-center py-20 sm:py-32 overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image 
-            src="/images/hero_about.png" 
+            src="/images/hero-bg-new.png" 
             alt="Our Services" 
             fill 
             className="object-cover"
@@ -195,7 +195,9 @@ export default function ServicesPage() {
             perfect plan.
           </p>
           <Link
-            href="/contact"
+            href="https://wa.me/919029923246"
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex items-center justify-center gap-2 bg-brand-600 text-white px-8 py-4 rounded-xl font-semibold text-lg hover:bg-brand-700 transition-all shadow-lg"
           >
             Book a Free Consultation

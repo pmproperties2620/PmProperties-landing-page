@@ -43,10 +43,10 @@ export default function HowWeWorkSection() {
   }, []);
 
   return (
-    <section className="py-20 md:py-28 bg-[#f8f9fc] overflow-hidden relative">
+    <section className="py-8 md:py-12 bg-[#f8f9fc] overflow-hidden relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <AnimatedSection>
-          <div className="text-center mb-16 md:mb-24 flex flex-col items-center">
+          <div className="text-center mb-12 md:mb-16 flex flex-col items-center">
             <SectionDecoration className="mb-4" />
             <h2 className="text-sm font-bold tracking-widest text-[#0a1128] uppercase mb-3">
               Process

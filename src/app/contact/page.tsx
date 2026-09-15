@@ -37,7 +37,7 @@ export default function ContactPage() {
       <section className="relative min-h-[60vh] flex flex-col justify-center py-20 sm:py-32 overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image 
-            src="/images/hero_about.png" 
+            src="/images/hero-bg-new.png" 
             alt="Contact Us" 
             fill 
             className="object-cover"

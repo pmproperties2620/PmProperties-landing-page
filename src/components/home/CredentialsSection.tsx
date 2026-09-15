@@ -24,10 +24,10 @@ const badges = [
 
 export default function CredentialsSection() {
   return (
-    <section className="pt-20 pb-10 md:pt-28 md:pb-12 bg-white overflow-hidden relative border-t border-slate-100">
+    <section className="pt-12 pb-8 md:pt-16 md:pb-10 bg-white overflow-hidden relative border-t border-slate-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <AnimatedSection>
-          <div className="text-center mb-16 flex flex-col items-center">
+          <div className="text-center mb-10 flex flex-col items-center">
             <SectionDecoration className="mb-4" />
             <h2 className="text-sm font-bold tracking-widest text-[#0a1128] uppercase mb-3">
               Trust & Transparency

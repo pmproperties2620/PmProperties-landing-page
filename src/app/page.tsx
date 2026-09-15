@@ -1,5 +1,5 @@
 import Hero from "@/components/home/Hero";
-import TrustMarquee from "@/components/home/TrustMarquee";
+import LogoMarquee from "@/components/home/LogoMarquee";
 import Services from "@/components/home/Services";
 import Testimonials from "@/components/home/Testimonials";
 import CTASection from "@/components/home/CTASection";
@@ -12,7 +12,7 @@ export default function Home() {
   return (
     <>
       <Hero />
-      <TrustMarquee />
+      <LogoMarquee />
       <AboutSection />
       <CredentialsSection />
       <Services />

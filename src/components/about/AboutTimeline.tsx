@@ -2,7 +2,7 @@
 
 import { motion, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import AnimatedSection from "@/components/ui/AnimatedSection";
 
 const timelineData = [
@@ -11,28 +11,34 @@ const timelineData = [
     title: "Building the Foundation",
     description:
       "Graduating with Distinction in B.Com, I built a strong foundation through 8 years of experience in leadership roles at top MNCs like Sutherland, TinyOwl, and Wipro. Yet, deep down, I always nurtured a dream—to build an honest business that earns people's trust.",
-    image: "/images/timeline_1.png",
+    image: "/images/whatsapp-avatar.jpeg",
   },
   {
     year: "2020",
     title: "The Turning Point",
     description:
       "The 2020 pandemic became my catalyst. Seeing acquaintances face scams and poor guidance while buying homes, I found my calling. I decided to step up and ensure people get their rightful homes through transparent, secure, and guided transactions.",
-    image: "/images/timeline_2.png",
+    image: "/images/timeline_2_new.jpg",
   },
   {
     year: "September 1, 2020",
     title: "The Beginning",
     description:
       "Equipped with proper RERA training and licensing, I took the leap and founded 'Siddhivinayak Enterprise – Real Estate & Interior'. Despite early hurdles, my resolve was unbreakable—there was no turning back. With determination, the journey began.",
-    image: "/images/timeline_3.png",
+    image: "/images/timeline_3_new.jpeg",
   },
   {
     year: "2021 - 2024",
     title: "Growth & Partnerships",
     description:
       "The journey blossomed as I joined KDRA (Kalyan Dombivli Realtors Welfare Association) and collaborated with renowned developers like Regency Group, Lodha Group, and Runwal Group. To date, I've had the privilege of helping over 500 families find their perfect homes.",
-    image: "/images/timeline_4.png",
+    image: [
+      "/images/timeline_4_1.jpeg",
+      "/images/timeline_4_2.jpeg",
+      "/images/timeline_4_3.jpeg",
+      "/images/timeline_4_4.jpeg",
+      "/images/timeline_4_5.jpeg",
+    ],
   },
   {
     year: "Early 2025",
@@ -42,6 +48,36 @@ const timelineData = [
     image: "/images/timeline_5.png",
   },
 ];
+
+function ImageSlider({ images, fit }: { images: string[]; fit: boolean }) {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % images.length);
+    }, 2500);
+    return () => clearInterval(timer);
+  }, [images.length]);
+
+  return (
+    <div className="relative w-full h-full">
+      {images.map((img, idx) => (
+        <Image
+          key={img}
+          src={img}
+          alt={`Slider image ${idx + 1}`}
+          fill
+          className={`
+            ${fit ? "object-contain bg-slate-100 p-2" : "object-cover"} 
+            transition-all duration-1000 ease-in-out group-hover:scale-105
+            ${idx === currentIndex ? "opacity-100 z-10" : "opacity-0 z-0"}
+          `}
+          sizes="(max-width: 768px) 100vw, 45vw"
+        />
+      ))}
+    </div>
+  );
+}
 
 export default function AboutTimeline() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -118,14 +154,18 @@ export default function AboutTimeline() {
                 {/* Image Side */}
                 <div className={`w-full md:w-[45%] pl-16 md:pl-0 mt-6 md:mt-0 ${isEven ? "md:pr-10" : "md:pl-10"}`}>
                   <div className="relative w-full aspect-[16/10] rounded-3xl overflow-hidden shadow-lg group">
-                    <Image
-                      src={item.image}
-                      alt={item.title}
-                      fill
-                      className="object-cover transition-transform duration-700 group-hover:scale-105"
-                      sizes="(max-width: 768px) 100vw, 45vw"
-                    />
-                    <div className="absolute inset-0 bg-slate-900/10 group-hover:bg-transparent transition-colors duration-500" />
+                    {Array.isArray(item.image) ? (
+                      <ImageSlider images={item.image} fit={index <= 3} />
+                    ) : (
+                      <Image
+                        src={item.image}
+                        alt={item.title}
+                        fill
+                        className={`${index <= 3 ? "object-contain bg-slate-100 p-2" : "object-cover"} transition-transform duration-700 group-hover:scale-105`}
+                        sizes="(max-width: 768px) 100vw, 45vw"
+                      />
+                    )}
+                    <div className="absolute inset-0 bg-slate-900/10 group-hover:bg-transparent transition-colors duration-500 z-20 pointer-events-none" />
                   </div>
                 </div>
               </motion.div>

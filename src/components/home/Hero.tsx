@@ -14,9 +14,9 @@ export default function Hero() {
     <section className="relative min-h-screen w-full flex flex-col overflow-hidden">
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-[url('/images/hero-bg.png')] bg-cover bg-center bg-no-repeat" />
+        <div className="absolute inset-0 bg-[url('/images/hero-bg-new.png')] bg-cover bg-center bg-no-repeat" />
         <div className="absolute inset-0 bg-white/15" />
-        <div className="absolute inset-0 bg-gradient-to-r from-red-700/85 via-red-500/65 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#8E1200]/85 via-[#8E1200]/65 to-transparent" />
       </div>
 
       {/* Content */}
@@ -46,7 +46,9 @@ export default function Hero() {
             className="flex flex-col sm:flex-row items-start sm:items-center gap-6 sm:gap-8"
           >
             <a
-            href="/contact"
+            href="https://wa.me/919029923246"
+            target="_blank"
+            rel="noopener noreferrer"
             className="bg-white text-[#0a1128] px-8 py-4 rounded-full font-bold text-[15px] hover:bg-gray-100 transition-colors shadow-xl flex items-center gap-2"
           >
             Book Your Consultation
@@ -55,10 +57,10 @@ export default function Hero() {
             
             <div className="inline-flex items-center gap-3 bg-white/10 backdrop-blur-md py-2 px-4 rounded-full shadow-lg border border-white/20">
               <div className="flex -space-x-3">
-                <img className="w-10 h-10 rounded-full border-2 border-[#d32f2f] bg-slate-200" src="https://i.pravatar.cc/100?img=11" alt="Avatar 1" />
-                <img className="w-10 h-10 rounded-full border-2 border-[#d32f2f] bg-slate-200" src="https://i.pravatar.cc/100?img=12" alt="Avatar 2" />
-                <img className="w-10 h-10 rounded-full border-2 border-[#d32f2f] bg-slate-200" src="https://i.pravatar.cc/100?img=13" alt="Avatar 3" />
-                <div className="w-10 h-10 rounded-full border-2 border-[#d32f2f] bg-black flex items-center justify-center text-white text-sm font-bold">+</div>
+                <img className="w-10 h-10 rounded-full border-2 border-[#8E1200] bg-slate-200" src="https://i.pravatar.cc/100?img=11" alt="Avatar 1" />
+                <img className="w-10 h-10 rounded-full border-2 border-[#8E1200] bg-slate-200" src="https://i.pravatar.cc/100?img=12" alt="Avatar 2" />
+                <img className="w-10 h-10 rounded-full border-2 border-[#8E1200] bg-slate-200" src="https://i.pravatar.cc/100?img=13" alt="Avatar 3" />
+                <div className="w-10 h-10 rounded-full border-2 border-[#8E1200] bg-black flex items-center justify-center text-white text-sm font-bold">+</div>
               </div>
               <div className="flex flex-col items-start ml-1">
                 <div className="flex gap-2 items-center">
@@ -106,7 +108,7 @@ export default function Hero() {
                  <motion.svg
                    animate={{ rotate: 360 }}
                    transition={{ duration: 8, ease: "linear", repeat: Infinity }}
-                   className="w-6 h-6 sm:w-10 sm:h-10 text-[#d32f2f] fill-current"
+                   className="w-6 h-6 sm:w-10 sm:h-10 text-[#8E1200] fill-current"
                    viewBox="0 0 24 24"
                  >
                    <path d="M12 0C12 6.62742 17.3726 12 24 12C17.3726 12 12 17.3726 12 24C12 17.3726 6.62742 12 0 12C6.62742 12 12 6.62742 12 0Z" />

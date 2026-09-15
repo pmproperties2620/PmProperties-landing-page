@@ -40,7 +40,7 @@ export default function Services() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   return (
-    <section className="relative pt-10 pb-24 md:pt-16 md:pb-32 bg-white overflow-hidden">
+    <section className="relative pt-8 pb-16 md:pt-12 md:pb-20 bg-white overflow-hidden">
       {/* Background Dotted Pattern */}
       <div 
         className="absolute inset-0 pointer-events-none opacity-40"
@@ -53,7 +53,7 @@ export default function Services() {
       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         
         {/* Header Section */}
-        <div className="text-center mb-16 md:mb-24 flex flex-col items-center">
+        <div className="text-center mb-10 md:mb-16 flex flex-col items-center">
           <SectionDecoration className="mb-4" />
           <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-slate-900 mb-6">
             Our Services

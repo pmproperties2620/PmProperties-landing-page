@@ -100,14 +100,14 @@ export default function Header() {
             <Link
               href="/"
               aria-label="PM Properties — Go to homepage"
-              className="relative h-14 w-44 sm:h-20 sm:w-64 lg:h-24 lg:w-80 shrink-0 opacity-90 hover:opacity-100 transition-opacity"
+              className="relative h-20 w-64 sm:h-24 sm:w-80 lg:h-32 lg:w-96 shrink-0 opacity-90 hover:opacity-100 transition-opacity"
               prefetch={false}
             >
               <Image
                 src="/images/logo.png"
                 alt="PM Properties"
                 fill
-                sizes="(max-width: 640px) 176px, (max-width: 1024px) 256px, 320px"
+                sizes="(max-width: 640px) 256px, (max-width: 1024px) 320px, 384px"
                 className={`object-contain object-left transition-all duration-300 ${!isScrolled ? 'brightness-0 invert' : ''}`}
                 priority
               />
@@ -152,7 +152,9 @@ export default function Header() {
             {/* ── Desktop CTA ───────────────────── */}
             <div className="hidden md:flex items-center gap-1 bg-white rounded-full p-1.5 shadow-xl shrink-0">
               <Link
-                href="/contact"
+                href="https://wa.me/919029923246"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="px-6 py-2.5 rounded-full text-[14px] font-semibold bg-[#0a0a0a] text-white hover:bg-black shadow-md transition-all duration-200"
               >
                 Book Consultation
@@ -271,7 +273,9 @@ export default function Header() {
                 {/* CTA */}
                 <div className="px-3 pb-4 pt-1 border-t border-white/[0.06]">
                   <Link
-                    href="/contact"
+                    href="https://wa.me/919029923246"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     onClick={() => setMobileOpen(false)}
                     className="block mt-3 text-center py-3.5 rounded-2xl text-sm font-semibold bg-[#0a0a0a] text-white hover:bg-black transition-all duration-200 shadow-md"
                   >

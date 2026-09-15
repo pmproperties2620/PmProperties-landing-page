@@ -29,7 +29,7 @@ export default function TrustMarquee() {
   return (
     <section
       aria-label="Trust markers: RERA registered, 500 plus families settled, KDRA member, Regency Lodha Runwal partner, 5 years in Dombivli"
-      className="relative overflow-hidden bg-white mt-12 sm:mt-16"
+      className="relative overflow-hidden bg-white mt-0"
     >
       <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(167,4,2,0.08),transparent_32%,transparent_68%,rgba(167,4,2,0.08))]" />
 
