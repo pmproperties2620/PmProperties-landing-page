@@ -231,23 +231,23 @@ export default function ConsultationModal() {
                   <Check className="w-8 h-8 stroke-[2.5]" />
                 </motion.div>
 
-                <span className="text-xs font-semibold tracking-wider uppercase text-emerald-400 mb-2">
+                <span className="font-heading font-semibold text-xs sm:text-sm uppercase tracking-[0.05em] leading-none text-emerald-400 mb-2">
                   Request Confirmed
                 </span>
-                <h3 className="text-2xl sm:text-3xl font-bold tracking-tight text-white mb-3">
+                <h3 className="font-heading font-bold text-lg sm:text-xl leading-tight tracking-[-0.02em] text-white mb-3">
                   You&apos;re All Set, {fullName.split(" ")[0]}!
                 </h3>
-                <p className="text-zinc-400 text-sm sm:text-base leading-relaxed mb-8">
+                <p className="font-body font-normal text-xs sm:text-sm leading-[1.6] text-zinc-400 mb-8">
                   Your consultation request has been dispatched to our senior property advisors. We will contact you at{" "}
                   <span className="text-white font-medium">+91 {phone}</span> shortly.
                 </p>
 
                 {/* Choices recap card */}
                 <div className="w-full bg-white/[0.03] border border-white/[0.08] rounded-2xl p-4 sm:p-5 text-left mb-8 space-y-2.5">
-                  <div className="text-xs text-zinc-400 font-medium uppercase tracking-wider mb-2">
+                  <div className="font-heading text-xs font-semibold uppercase tracking-[0.05em] leading-none text-zinc-400 mb-2">
                     Consultation Summary
                   </div>
-                  <div className="grid grid-cols-2 gap-3 text-xs sm:text-sm">
+                  <div className="grid grid-cols-2 gap-3 font-body text-xs sm:text-sm leading-[1.6]">
                     <div>
                       <span className="text-zinc-400">Requirement: </span>
                       <span className="text-white font-medium">
@@ -276,14 +276,14 @@ export default function ConsultationModal() {
                     href={getWhatsAppUrl()}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex-1 inline-flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#20ba59] text-black font-semibold px-6 py-3.5 rounded-xl transition-all shadow-lg text-sm"
+                    className="flex-1 inline-flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#20ba59] text-black font-heading font-semibold text-sm lg:text-[15px] leading-none px-6 py-3.5 rounded-xl transition-all shadow-lg cursor-pointer"
                   >
                     <MessageSquare className="w-4 h-4 fill-black text-black" />
                     Instant WhatsApp Connect
                   </a>
                   <button
                     onClick={closeModal}
-                    className="px-6 py-3.5 rounded-xl bg-white/[0.06] hover:bg-white/[0.1] text-zinc-300 hover:text-white border border-white/[0.08] text-sm font-medium transition-all"
+                    className="px-6 py-3.5 rounded-xl bg-white/[0.06] hover:bg-white/[0.1] text-zinc-300 hover:text-white border border-white/[0.08] font-heading font-semibold text-sm lg:text-[15px] leading-none transition-all cursor-pointer"
                   >
                     Close Window
                   </button>
@@ -301,26 +301,26 @@ export default function ConsultationModal() {
                         <Building2 className="w-5 h-5 text-white" />
                       </div>
                       <div>
-                        <div className="text-xs uppercase tracking-widest text-zinc-400 font-semibold">
+                        <div className="font-heading text-xs uppercase tracking-[0.05em] leading-none text-zinc-400 font-semibold mb-1">
                           PM Properties
                         </div>
-                        <div className="text-sm font-medium text-white">Private Advisory</div>
+                        <div className="font-heading text-sm font-medium leading-none text-white">Private Advisory</div>
                       </div>
                     </div>
 
                     <h2
                       id="consultation-modal-title"
-                      className="text-2xl sm:text-3xl font-bold tracking-tight text-white mb-2.5"
+                      className="font-heading text-2xl sm:text-3xl lg:text-4xl font-bold tracking-[-0.02em] leading-[1.15] text-white mb-2.5"
                     >
                       Free Strategy Consultation
                     </h2>
 
-                    <p className="text-zinc-400 text-sm leading-relaxed mb-5">
+                    <p className="font-body font-normal text-sm sm:text-base leading-[1.6] text-zinc-400 mb-5">
                       Looking for the ideal property in Mumbai &amp; MMR? Speak directly with our verified experts.
                     </p>
 
                     {/* Cal.com style bullet list */}
-                    <ul className="space-y-2.5 text-sm text-zinc-300 mb-5">
+                    <ul className="space-y-2.5 font-body font-normal text-xs sm:text-sm leading-[1.6] text-zinc-300 mb-5">
                       <li className="flex items-start gap-2.5">
                         <span className="text-zinc-400 font-mono select-none">→</span>
                         <span>Your exact requirements &amp; timeline</span>
@@ -336,16 +336,16 @@ export default function ConsultationModal() {
                     </ul>
 
                     {/* Metadata Tags */}
-                    <div className="pt-4 border-t border-white/[0.08] space-y-2">
-                      <div className="flex items-center gap-2.5 text-xs text-zinc-400">
+                    <div className="pt-4 border-t border-white/[0.08] space-y-2 font-body font-normal text-xs leading-[1.6]">
+                      <div className="flex items-center gap-2.5 text-zinc-400">
                         <Clock className="w-4 h-4 text-zinc-400 shrink-0" />
                         <span>15 – 20 min dedicated session</span>
                       </div>
-                      <div className="flex items-center gap-2.5 text-xs text-zinc-400">
+                      <div className="flex items-center gap-2.5 text-zinc-400">
                         <Phone className="w-4 h-4 text-zinc-400 shrink-0" />
                         <span>Direct Phone Call or WhatsApp</span>
                       </div>
-                      <div className="flex items-center gap-2.5 text-xs text-zinc-400">
+                      <div className="flex items-center gap-2.5 text-zinc-400">
                         <MapPin className="w-4 h-4 text-zinc-400 shrink-0" />
                         <span>Mumbai &bull; Thane &bull; Navi Mumbai</span>
                       </div>
@@ -358,7 +358,7 @@ export default function ConsultationModal() {
                   <form onSubmit={handleSubmit} noValidate className="space-y-4">
                     {/* Header Label */}
                     <div>
-                      <h3 className="text-base sm:text-lg font-semibold text-white">Specify Your Preferences</h3>
+                      <h3 className="font-heading text-lg sm:text-xl font-bold leading-tight tracking-[-0.02em] text-white">Specify Your Preferences</h3>
                     </div>
 
                     {/* Inputs: Full Name & Phone Number */}
@@ -367,7 +367,7 @@ export default function ConsultationModal() {
                       <div>
                         <label
                           htmlFor={nameInputId}
-                          className="block text-xs font-medium text-zinc-300 mb-1"
+                          className="block font-heading text-xs font-semibold leading-none text-zinc-300 mb-1.5"
                         >
                           Full Name <span className="text-rose-400">*</span>
                         </label>
@@ -381,14 +381,14 @@ export default function ConsultationModal() {
                             if (errors.fullName) setErrors((prev) => ({ ...prev, fullName: undefined }));
                           }}
                           placeholder="e.g. Rahul Sharma"
-                          className={`w-full px-3 py-2 rounded-xl bg-white/[0.04] text-white placeholder:text-zinc-600 text-sm border transition-all duration-150 focus:outline-none ${
+                          className={`w-full px-3 py-2 rounded-xl bg-white/[0.04] text-white placeholder:text-zinc-600 font-body text-sm border transition-all duration-150 focus:outline-none ${
                             errors.fullName
                               ? "border-rose-500/80 focus:border-rose-500"
                               : "border-white/[0.1] focus:border-white/40 focus:ring-1 focus:ring-white/20"
                           }`}
                         />
                         {errors.fullName && (
-                          <p className="mt-1 text-xs text-rose-400">{errors.fullName}</p>
+                          <p className="mt-1 font-body text-xs text-rose-400">{errors.fullName}</p>
                         )}
                       </div>
 
@@ -396,12 +396,12 @@ export default function ConsultationModal() {
                       <div>
                         <label
                           htmlFor={phoneInputId}
-                          className="block text-xs font-medium text-zinc-300 mb-1"
+                          className="block font-heading text-xs font-semibold leading-none text-zinc-300 mb-1.5"
                         >
                           Phone Number <span className="text-rose-400">*</span>
                         </label>
                         <div className="relative flex items-center">
-                          <span className="absolute left-3 text-xs text-zinc-400 font-medium select-none pointer-events-none">
+                          <span className="absolute left-3 text-xs text-zinc-400 font-body font-medium select-none pointer-events-none">
                             +91
                           </span>
                           <input
@@ -415,7 +415,7 @@ export default function ConsultationModal() {
                               if (errors.phone) setErrors((prev) => ({ ...prev, phone: undefined }));
                             }}
                             placeholder="98765 43210"
-                            className={`w-full pl-11 pr-3 py-2 rounded-xl bg-white/[0.04] text-white placeholder:text-zinc-600 text-sm border transition-all duration-150 focus:outline-none ${
+                            className={`w-full pl-11 pr-3 py-2 rounded-xl bg-white/[0.04] text-white placeholder:text-zinc-600 font-body text-sm border transition-all duration-150 focus:outline-none ${
                               errors.phone
                                 ? "border-rose-500/80 focus:border-rose-500"
                                 : "border-white/[0.1] focus:border-white/40 focus:ring-1 focus:ring-white/20"
@@ -423,7 +423,7 @@ export default function ConsultationModal() {
                           />
                         </div>
                         {errors.phone && (
-                          <p className="mt-1 text-xs text-rose-400">{errors.phone}</p>
+                          <p className="mt-1 font-body text-xs text-rose-400">{errors.phone}</p>
                         )}
                       </div>
                     </div>
@@ -431,10 +431,10 @@ export default function ConsultationModal() {
                     {/* Requirement (BHK) */}
                     <div>
                       <div className="flex items-center justify-between mb-1.5">
-                        <label className="text-xs font-medium text-zinc-300">
+                        <label className="font-heading text-xs font-semibold leading-none text-zinc-300">
                           Requirements <span className="text-rose-400">*</span>
                         </label>
-                        <span className="text-[11px] text-zinc-400">Select configuration</span>
+                        <span className="font-body text-[11px] text-zinc-400">Select configuration</span>
                       </div>
                       <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
                         {REQUIREMENTS.map((item) => {
@@ -448,10 +448,10 @@ export default function ConsultationModal() {
                                 if (errors.requirement)
                                   setErrors((prev) => ({ ...prev, requirement: undefined }));
                               }}
-                              className={`py-2 px-2.5 rounded-xl text-xs font-medium border transition-all duration-150 flex items-center justify-center text-center cursor-pointer ${
+                              className={`py-2 px-2.5 rounded-xl font-heading text-xs leading-none border transition-all duration-150 flex items-center justify-center text-center cursor-pointer ${
                                 isSelected
                                   ? "bg-white text-zinc-950 border-white shadow-sm font-semibold"
-                                  : "bg-white/[0.03] text-zinc-300 border-white/[0.08] hover:bg-white/[0.07] hover:border-white/20 hover:text-white"
+                                  : "bg-white/[0.03] text-zinc-300 border-white/[0.08] hover:bg-white/[0.07] hover:border-white/20 hover:text-white font-medium"
                               }`}
                             >
                               {item.label}
@@ -460,17 +460,17 @@ export default function ConsultationModal() {
                         })}
                       </div>
                       {errors.requirement && (
-                        <p className="mt-1 text-xs text-rose-400">{errors.requirement}</p>
+                        <p className="mt-1 font-body text-xs text-rose-400">{errors.requirement}</p>
                       )}
                     </div>
 
                     {/* Price Range */}
                     <div>
                       <div className="flex items-center justify-between mb-1.5">
-                        <label className="text-xs font-medium text-zinc-300">
+                        <label className="font-heading text-xs font-semibold leading-none text-zinc-300">
                           Budget Range <span className="text-rose-400">*</span>
                         </label>
-                        <span className="text-[11px] text-zinc-400">Estimated budget</span>
+                        <span className="font-body text-[11px] text-zinc-400">Estimated budget</span>
                       </div>
                       <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
                         {PRICE_RANGES.map((item) => {
@@ -484,10 +484,10 @@ export default function ConsultationModal() {
                                 if (errors.price)
                                   setErrors((prev) => ({ ...prev, price: undefined }));
                               }}
-                              className={`py-2 px-2 rounded-xl text-xs font-medium border transition-all duration-150 flex items-center justify-center text-center cursor-pointer ${
+                              className={`py-2 px-2 rounded-xl font-heading text-xs leading-none border transition-all duration-150 flex items-center justify-center text-center cursor-pointer ${
                                 isSelected
                                   ? "bg-white text-zinc-950 border-white shadow-sm font-semibold"
-                                  : "bg-white/[0.03] text-zinc-300 border-white/[0.08] hover:bg-white/[0.07] hover:border-white/20 hover:text-white"
+                                  : "bg-white/[0.03] text-zinc-300 border-white/[0.08] hover:bg-white/[0.07] hover:border-white/20 hover:text-white font-medium"
                               }`}
                             >
                               {item.label}
@@ -496,17 +496,17 @@ export default function ConsultationModal() {
                         })}
                       </div>
                       {errors.price && (
-                        <p className="mt-1 text-xs text-rose-400">{errors.price}</p>
+                        <p className="mt-1 font-body text-xs text-rose-400">{errors.price}</p>
                       )}
                     </div>
 
                     {/* Property Stage */}
                     <div>
                       <div className="flex items-center justify-between mb-1.5">
-                        <label className="text-xs font-medium text-zinc-300">
+                        <label className="font-heading text-xs font-semibold leading-none text-zinc-300">
                           Property Stage <span className="text-rose-400">*</span>
                         </label>
-                        <span className="text-[11px] text-zinc-400">Select any one type</span>
+                        <span className="font-body text-[11px] text-zinc-400">Select any one type</span>
                       </div>
                       <div className="grid grid-cols-2 sm:grid-cols-2 gap-2">
                         {PROPERTY_STAGES.map((item) => {
@@ -527,14 +527,14 @@ export default function ConsultationModal() {
                               }`}
                             >
                               <span
-                                className={`text-xs font-semibold ${
+                                className={`font-heading text-xs font-semibold leading-tight ${
                                   isSelected ? "text-zinc-950" : "text-white"
                                 }`}
                               >
                                 {item.label}
                               </span>
                               <span
-                                className={`text-[11px] mt-0.5 ${
+                                className={`font-body text-[11px] mt-0.5 leading-snug ${
                                   isSelected ? "text-zinc-700" : "text-zinc-400"
                                 }`}
                               >
@@ -545,14 +545,14 @@ export default function ConsultationModal() {
                         })}
                       </div>
                       {errors.stage && (
-                        <p className="mt-1 text-xs text-rose-400">{errors.stage}</p>
+                        <p className="mt-1 font-body text-xs text-rose-400">{errors.stage}</p>
                       )}
                     </div>
 
                     {/* Submit Button */}
                     <div className="pt-1.5">
                       {submitError && (
-                        <div className="mb-3 p-2.5 rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-300 text-xs flex items-center gap-2">
+                        <div className="mb-3 p-2.5 rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-300 font-body text-xs flex items-center gap-2">
                           <span className="font-semibold">Error:</span>
                           <span>{submitError}</span>
                         </div>
@@ -560,7 +560,7 @@ export default function ConsultationModal() {
                       <button
                         type="submit"
                         disabled={isSubmitting}
-                        className="w-full group bg-white text-zinc-950 hover:bg-zinc-100 active:scale-[0.99] font-semibold py-3 px-6 rounded-xl transition-all duration-150 shadow-lg flex items-center justify-center gap-2 text-sm disabled:opacity-70 cursor-pointer"
+                        className="w-full group bg-white text-zinc-950 hover:bg-zinc-100 active:scale-[0.99] font-heading font-semibold py-3 px-6 rounded-xl transition-all duration-150 shadow-lg flex items-center justify-center gap-2 text-sm lg:text-[15px] leading-none disabled:opacity-70 cursor-pointer"
                       >
                         {isSubmitting ? (
                           <div className="flex items-center gap-2">
@@ -576,7 +576,7 @@ export default function ConsultationModal() {
                       </button>
 
                       {/* Cal.com reassurance footer */}
-                      <div className="mt-2.5 flex items-center justify-center gap-1.5 text-[11px] text-zinc-400">
+                      <div className="mt-2.5 flex items-center justify-center gap-1.5 font-body text-[11px] leading-[1.6] text-zinc-400">
                         <ShieldCheck className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
                         <span>100% Confidential &bull; Verified Advisor &bull; No Broker Spam</span>
                       </div>

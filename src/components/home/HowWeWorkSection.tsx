@@ -48,11 +48,11 @@ export default function HowWeWorkSection() {
         <AnimatedSection>
           <div className="text-center mb-12 md:mb-16 flex flex-col items-center">
             <SectionDecoration className="mb-4" />
-            <h2 className="text-sm font-bold tracking-widest text-[#0a1128] uppercase mb-3">
+            <p className="font-heading text-xs sm:text-sm font-semibold uppercase tracking-[0.05em] leading-none text-[#0a1128] mb-3">
               Process
-            </h2>
-            <h2 className="text-3xl md:text-5xl font-bold text-[#0a1128] mb-6">How We Work</h2>
-            <p className="text-slate-600 text-lg max-w-2xl mx-auto">
+            </p>
+            <h2 className="font-heading text-2xl md:text-4xl font-bold leading-[1.15] tracking-[-0.02em] text-[#0a1128] mb-6">How We Work</h2>
+            <p className="font-body font-normal text-sm sm:text-base leading-[1.6] text-slate-600 max-w-2xl mx-auto">
               A simple, transparent 4-step process designed to make your real estate journey smooth and stress-free.
             </p>
           </div>
@@ -91,7 +91,7 @@ export default function HowWeWorkSection() {
                           ${isCurrent ? "scale-110 shadow-xl shadow-brand-600/20" : ""}
                         `}
                       >
-                        <span className={`text-2xl md:text-3xl font-bold transition-colors duration-700 ${isActive ? "text-brand-600" : "text-[#0a1128]"}`}>
+                        <span className={`font-heading text-3xl md:text-4xl font-black leading-none transition-colors duration-700 ${isActive ? "text-brand-600" : "text-[#0a1128]"}`}>
                           {s.step}
                         </span>
                         {/* Subtle Icon Background */}
@@ -102,8 +102,8 @@ export default function HowWeWorkSection() {
                       
                       {/* Content */}
                       <div className="pt-2 md:pt-0">
-                        <h3 className={`text-xl font-bold transition-colors duration-700 mb-2 md:mb-3 ${isActive ? "text-brand-600" : "text-slate-900"}`}>{s.title}</h3>
-                        <p className="text-slate-600 leading-relaxed text-sm md:text-base">{s.description}</p>
+                        <h3 className={`font-heading text-lg lg:text-xl font-bold leading-tight tracking-[-0.02em] transition-colors duration-700 mb-2 md:mb-3 ${isActive ? "text-brand-600" : "text-slate-900"}`}>{s.title}</h3>
+                        <p className="font-body font-normal text-xs sm:text-sm leading-[1.6] text-slate-600">{s.description}</p>
                       </div>
                     </div>
                   </StaggerItem>

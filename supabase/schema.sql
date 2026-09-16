@@ -39,6 +39,9 @@ CREATE INDEX IF NOT EXISTS idx_leads_created_at ON public.leads (created_at DESC
 CREATE INDEX IF NOT EXISTS idx_leads_phone ON public.leads (phone);
 CREATE INDEX IF NOT EXISTS idx_leads_status ON public.leads (status);
 CREATE INDEX IF NOT EXISTS idx_leads_source ON public.leads (source);
+-- Composite indexes for optimal filter + newest sort performance
+CREATE INDEX IF NOT EXISTS idx_leads_status_created ON public.leads (status, created_at DESC);
+CREATE INDEX IF NOT EXISTS idx_leads_source_created ON public.leads (source, created_at DESC);
 
 -- 4. Automatically update the updated_at timestamp on row change
 CREATE OR REPLACE FUNCTION public.handle_updated_at()
@@ -78,3 +81,61 @@ CREATE POLICY "Allow service role full access"
 
 -- 6. Comment table for documentation
 COMMENT ON TABLE public.leads IS 'Stores real estate inquiry leads from the Book Consultation modal and Contact Us page.';
+
+-- 7. Admin Settings Table (Stores persistent admin configurations such as the admin passcode)
+CREATE TABLE IF NOT EXISTS public.admin_settings (
+    key TEXT PRIMARY KEY,
+    value TEXT NOT NULL,
+    updated_at TIMESTAMPTZ NOT NULL DEFAULT timezone('utc'::text, now())
+);
+
+ALTER TABLE public.admin_settings ENABLE ROW LEVEL SECURITY;
+
+-- Allow full access only to service_role (used securely by Next.js server route handlers)
+DROP POLICY IF EXISTS "Allow service role full access on admin_settings" ON public.admin_settings;
+CREATE POLICY "Allow service role full access on admin_settings"
+    ON public.admin_settings
+    FOR ALL
+    TO service_role
+    USING (true)
+    WITH CHECK (true);
+
+-- Disallow public anon access to admin_settings for maximum security
+DROP POLICY IF EXISTS "Disallow public access to admin_settings" ON public.admin_settings;
+CREATE POLICY "Disallow public access to admin_settings"
+    ON public.admin_settings
+    FOR ALL
+    TO anon
+    USING (false);
+
+COMMENT ON TABLE public.admin_settings IS 'Stores administrative configurations, security credentials, and system settings.';
+
+-- ==============================================================================
+-- 8. High-Performance Server Aggregation RPC Functions
+-- ==============================================================================
+-- Computes 30-day daily counts directly inside Postgres engine
+CREATE OR REPLACE FUNCTION public.get_leads_30day_trend()
+RETURNS TABLE (day DATE, count BIGINT) 
+LANGUAGE sql STABLE SECURITY DEFINER AS $$
+  SELECT 
+    d::DATE AS day,
+    COUNT(l.id) AS count
+  FROM generate_series(CURRENT_DATE - INTERVAL '29 days', CURRENT_DATE, '1 day'::interval) d
+  LEFT JOIN public.leads l 
+    ON DATE(l.created_at) = d::DATE
+  GROUP BY d::DATE
+  ORDER BY d::DATE ASC;
+$$;
+
+-- Computes requirement breakdown directly inside Postgres engine
+CREATE OR REPLACE FUNCTION public.get_leads_requirement_counts()
+RETURNS TABLE (requirement TEXT, count BIGINT)
+LANGUAGE sql STABLE SECURITY DEFINER AS $$
+  SELECT 
+    requirement,
+    COUNT(*) AS count
+  FROM public.leads
+  GROUP BY requirement
+  ORDER BY count DESC;
+$$;
+

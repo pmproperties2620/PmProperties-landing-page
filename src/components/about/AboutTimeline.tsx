@@ -94,13 +94,13 @@ export default function AboutTimeline() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <AnimatedSection>
           <div className="text-center mb-12">
-            <h2 className="text-xs font-bold tracking-widest text-[#0a1128] uppercase mb-2">
+            <h2 className="font-heading font-semibold text-xs sm:text-sm uppercase tracking-[0.05em] leading-none text-[#0a1128] mb-2">
               Our Journey
             </h2>
-            <h3 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
+            <h3 className="font-heading font-bold text-2xl sm:text-4xl text-slate-900 mb-4 leading-[1.15] tracking-[-0.02em]">
               The Story of PM Properties
             </h3>
-            <p className="text-lg text-slate-600 max-w-2xl mx-auto">
+            <p className="font-body font-normal text-sm sm:text-base text-slate-600 max-w-2xl mx-auto leading-[1.6]">
               A journey of determination, honesty, and a commitment to helping people find their
               rightful homes.
             </p>
@@ -143,11 +143,11 @@ export default function AboutTimeline() {
                 {/* Content Side */}
                 <div className={`w-full md:w-[45%] pl-16 md:pl-0 ${isEven ? "md:text-left" : "md:text-right"}`}>
                   <div className="bg-slate-50 p-6 rounded-3xl shadow-sm ring-1 ring-slate-100 hover:shadow-md transition-shadow">
-                    <span className="inline-block py-1 px-3 rounded-full bg-[#0a1128]/5 text-[#0a1128] font-semibold text-xs mb-3">
+                    <span className="inline-block py-1 px-3 rounded-full bg-[#0a1128]/5 text-[#0a1128] font-heading font-semibold text-xs mb-3">
                       {item.year}
                     </span>
-                    <h4 className="text-xl font-bold text-slate-900 mb-3">{item.title}</h4>
-                    <p className="text-sm text-slate-600 leading-relaxed">{item.description}</p>
+                    <h4 className="font-heading font-bold text-lg sm:text-xl text-slate-900 mb-3 leading-[1.2] tracking-[-0.02em]">{item.title}</h4>
+                    <p className="font-body font-normal text-xs sm:text-sm text-slate-600 leading-[1.6]">{item.description}</p>
                   </div>
                 </div>
 
@@ -178,13 +178,13 @@ export default function AboutTimeline() {
           <div className="mt-20 text-center max-w-3xl mx-auto">
             <div className="inline-block p-1 rounded-2xl bg-gradient-to-r from-slate-200 via-slate-300 to-slate-200 mb-8">
               <div className="bg-white rounded-[14px] px-6 py-8">
-                <p className="text-lg md:text-xl font-medium text-slate-800 italic leading-relaxed mb-6">
+                <p className="font-body font-medium text-base md:text-lg text-slate-800 italic leading-[1.6] mb-6">
                   &ldquo;To play a part in fulfilling someone&apos;s dream of a home is my privilege. I pray to God that this service continues uninterrupted.&rdquo;
                 </p>
                 <div className="flex flex-col items-center justify-center">
-                  <p className="text-sm text-slate-500 uppercase tracking-widest font-semibold mb-1">Yours sincerely,</p>
-                  <p className="text-xl font-bold text-[#0a1128]">Mr. Pritesh Pravin Mhamunkar</p>
-                  <p className="text-sm text-slate-600 mt-1">Founder, PM Properties</p>
+                  <p className="font-heading font-semibold text-xs uppercase tracking-[0.05em] text-slate-500 mb-1">Yours sincerely,</p>
+                  <p className="font-heading font-bold text-lg sm:text-xl text-[#0a1128]">Mr. Pritesh Pravin Mhamunkar</p>
+                  <p className="font-body font-normal text-xs sm:text-sm text-slate-600 mt-1">Founder, PM Properties</p>
                 </div>
               </div>
             </div>

@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import Image from "next/image";
 import AnimatedSection from "@/components/ui/AnimatedSection";
 import DualProcessTimeline from "@/components/how-we-work/DualProcessTimeline";
@@ -49,8 +48,8 @@ export default function HowWeWorkPage() {
         </div>
         <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center w-full">
           <AnimatedSection>
-            <h1 className="text-4xl sm:text-5xl font-bold text-white mb-4">How We Work</h1>
-            <p className="text-lg text-slate-300 max-w-2xl mx-auto">
+            <h1 className="font-heading font-black text-3xl sm:text-6xl text-white mb-4 leading-[1.15] tracking-[-0.02em]">How We Work</h1>
+            <p className="font-body font-normal text-sm sm:text-base text-slate-300 max-w-2xl mx-auto leading-[1.6]">
               A transparent, proven process designed to make your real estate journey smooth, predictable, and successful.
             </p>
           </AnimatedSection>
@@ -62,14 +61,14 @@ export default function HowWeWorkPage() {
 
       <section className="py-16 sm:py-20 bg-brand-600">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
+          <h2 className="font-heading font-bold text-2xl sm:text-4xl text-white mb-4 leading-[1.15] tracking-[-0.02em]">
             Ready to Get Started?
           </h2>
-          <p className="text-lg text-white/80 max-w-2xl mx-auto mb-8">
+          <p className="font-body font-normal text-sm sm:text-base text-white/80 max-w-2xl mx-auto mb-8 leading-[1.6]">
             Whether you&apos;re buying, selling, or just exploring — your first consultation is
             always free and comes with zero obligations.
           </p>
-          <BookConsultationButton className="inline-flex items-center justify-center gap-2 bg-white text-brand-600 px-8 py-4 rounded-xl font-semibold text-lg hover:bg-slate-50 transition-all shadow-lg cursor-pointer">
+          <BookConsultationButton className="inline-flex items-center justify-center gap-2 bg-white text-brand-600 px-8 py-4 rounded-xl font-heading font-semibold text-sm sm:text-base leading-none hover:bg-slate-50 transition-all shadow-lg cursor-pointer">
             Book Your Free Consultation
           </BookConsultationButton>
         </div>

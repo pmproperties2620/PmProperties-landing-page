@@ -1,5 +1,4 @@
-"use client";
-
+import Image from "next/image";
 import styles from "./LogoMarquee.module.css";
 
 const logos = [
@@ -16,14 +15,15 @@ function LogoGroup() {
     <div className={styles.group}>
       {logos.map((src, index) => (
         <div key={index} className={styles.item}>
-          <img 
+          <Image 
             src={src} 
             alt={`Partner Logo ${index + 1}`} 
+            width={140}
+            height={48}
             className={styles.image}
             style={{
               transform: src.includes('logo6') ? 'scale(2.2)' : src.includes('logo1') ? 'scale(1.8)' : undefined
             }}
-            loading="lazy" 
           />
         </div>
       ))}
@@ -37,7 +37,7 @@ export default function LogoMarquee() {
       <div className="absolute inset-0 bg-gradient-to-b from-slate-50/50 to-white pointer-events-none" />
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-8 text-center relative z-10">
-        <p className="text-sm font-bold text-slate-400 uppercase tracking-[0.2em]">
+        <p className="font-heading font-semibold text-xs sm:text-sm uppercase tracking-[0.05em] leading-none text-slate-400">
           Trusted By Industry Leaders
         </p>
       </div>

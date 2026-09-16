@@ -13,7 +13,7 @@ function MarkerGroup() {
     <div className={styles.group}>
       {trustMarkers.map((marker, index) => (
         <span key={index} className="inline-flex items-center gap-4 sm:gap-6">
-          <span className={`${styles.item} text-sm sm:text-base font-bold uppercase tracking-[0.2em] text-slate-700`}>
+          <span className={`${styles.item} font-heading text-xs sm:text-sm font-semibold uppercase tracking-[0.05em] leading-none text-slate-700`}>
             {marker}
           </span>
           <span aria-hidden="true" className="text-brand-600/80 text-lg sm:text-xl font-semibold">

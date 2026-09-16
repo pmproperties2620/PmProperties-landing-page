@@ -44,7 +44,7 @@ export default function PropertyClient({ property }: { property: Property }) {
           <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }}>
             <Link
               href="/properties"
-              className="inline-flex items-center gap-2 text-sm text-slate-600 hover:text-brand-600 transition-colors mb-4 group"
+              className="inline-flex items-center gap-2 font-heading font-medium text-sm leading-none text-slate-600 hover:text-brand-600 transition-colors mb-4 group"
             >
               <ArrowLeft className="w-4 h-4 transition-transform group-hover:-translate-x-1" />
               Back to Properties
@@ -128,10 +128,10 @@ export default function PropertyClient({ property }: { property: Property }) {
               <AnimatedSection delay={0.1}>
                 <div className="flex items-start justify-between gap-4">
                   <div>
-                    <h1 className="text-2xl sm:text-3xl font-bold text-slate-900 mb-2">
+                    <h1 className="font-heading font-black text-2xl sm:text-4xl text-slate-900 mb-2 leading-[1.15] tracking-[-0.02em]">
                       {property.title}
                     </h1>
-                    <div className="flex items-center gap-2 text-slate-600">
+                    <div className="flex items-center gap-2 font-body font-normal text-xs sm:text-sm text-slate-600">
                       <MapPin className="w-4 h-4 shrink-0" />
                       <span>
                         {property.address}, {property.city}, {property.state} {property.zip}
@@ -158,8 +158,8 @@ export default function PropertyClient({ property }: { property: Property }) {
                         <item.icon className="w-4 h-4 text-brand-600" />
                       </div>
                       <div>
-                        <p className="text-xs text-slate-500">{item.label}</p>
-                        <p className="font-semibold text-slate-900 text-sm">{item.value}</p>
+                        <p className="font-heading font-semibold text-xs uppercase tracking-[0.05em] text-slate-400">{item.label}</p>
+                        <p className="font-heading font-bold text-slate-900 text-sm">{item.value}</p>
                       </div>
                     </div>
                   ))}
@@ -168,14 +168,14 @@ export default function PropertyClient({ property }: { property: Property }) {
 
               <AnimatedSection delay={0.2}>
                 <div>
-                  <h2 className="text-xl font-semibold text-slate-900 mb-3">Description</h2>
-                  <p className="text-slate-600 leading-relaxed">{property.description}</p>
+                  <h2 className="font-heading font-bold text-xl text-slate-900 mb-3 leading-[1.2] tracking-[-0.02em]">Description</h2>
+                  <p className="font-body font-normal text-sm text-slate-600 leading-[1.6]">{property.description}</p>
                 </div>
               </AnimatedSection>
 
               <AnimatedSection delay={0.25}>
                 <div>
-                  <h2 className="text-xl font-semibold text-slate-900 mb-4">Features & Amenities</h2>
+                  <h2 className="font-heading font-bold text-xl text-slate-900 mb-4 leading-[1.2] tracking-[-0.02em]">Features &amp; Amenities</h2>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     {property.features.map((f, i) => (
                       <motion.div
@@ -188,7 +188,7 @@ export default function PropertyClient({ property }: { property: Property }) {
                         <div className="w-6 h-6 rounded-full bg-brand-100 flex items-center justify-center shrink-0">
                           <Check className="w-3.5 h-3.5 text-brand-600" />
                         </div>
-                        <span className="text-slate-700 text-sm">{f}</span>
+                        <span className="font-body font-medium text-sm text-slate-700">{f}</span>
                       </motion.div>
                     ))}
                   </div>
@@ -205,13 +205,13 @@ export default function PropertyClient({ property }: { property: Property }) {
                     transition={{ delay: 0.3 }}
                     className="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-sm"
                   >
-                    <p className="text-3xl font-bold text-brand-600 mb-1">
+                    <p className="font-heading font-black text-3xl text-brand-600 mb-1 tracking-[-0.02em]">
                       {formatPrice(property.price)}
                       {property.status === "For Rent" && (
-                        <span className="text-base font-normal text-slate-500">/mo</span>
+                        <span className="font-body text-base font-normal text-slate-500">/mo</span>
                       )}
                     </p>
-                    <p className="text-sm text-slate-500 mb-6">Year Built: {property.yearBuilt}</p>
+                    <p className="font-body text-sm text-slate-500 mb-6">Year Built: {property.yearBuilt}</p>
 
                     <div className="space-y-3 mb-6">
                       <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
@@ -227,15 +227,15 @@ export default function PropertyClient({ property }: { property: Property }) {
                     </div>
 
                     <div className="border-t border-slate-200 pt-6">
-                      <h4 className="font-semibold text-slate-900 mb-3">Listed by</h4>
+                      <h4 className="font-heading font-bold text-sm text-slate-900 mb-3">Listed by</h4>
                       <div className="flex items-center gap-3">
-                        <div className="w-12 h-12 rounded-full bg-gradient-to-br from-brand-200 to-brand-400 flex items-center justify-center text-white font-bold text-lg">
+                        <div className="w-12 h-12 rounded-full bg-gradient-to-br from-brand-200 to-brand-400 flex items-center justify-center text-white font-bold text-lg font-heading">
                           {property.agent.name.split(" ").map((n) => n[0]).join("")}
                         </div>
                         <div>
-                          <p className="font-semibold text-slate-900">{property.agent.name}</p>
-                          <p className="text-xs text-slate-600">{property.agent.email}</p>
-                          <p className="text-xs text-slate-600">{property.agent.phone}</p>
+                          <p className="font-heading font-bold text-sm text-slate-900">{property.agent.name}</p>
+                          <p className="font-body text-xs text-slate-600">{property.agent.email}</p>
+                          <p className="font-body text-xs text-slate-600">{property.agent.phone}</p>
                         </div>
                       </div>
                     </div>

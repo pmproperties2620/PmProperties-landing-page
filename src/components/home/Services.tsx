@@ -170,7 +170,7 @@ export default function Services() {
 
             {/* Content */}
             <div className="flex flex-col md:mt-8">
-              <h3 className="text-lg sm:text-xl font-bold text-slate-900 mb-2 md:mb-0">
+              <h3 className="font-heading text-lg lg:text-xl font-bold leading-tight tracking-[-0.02em] text-slate-900 mb-2 md:mb-0">
                 {service.title}
               </h3>
 
@@ -186,10 +186,10 @@ export default function Services() {
                 transition-all duration-500 ease-in-out
               `}
               >
-                <p className="text-slate-600 text-sm leading-relaxed">
+                <p className="font-body font-normal text-xs sm:text-sm leading-[1.6] text-slate-600">
                   {service.description}
                 </p>
-                <p className="text-brand-500 text-xs italic font-medium leading-relaxed">
+                <p className="font-body font-normal text-xs italic leading-[1.6] text-brand-500">
                   {service.examples}
                 </p>
               </div>
@@ -215,10 +215,10 @@ export default function Services() {
         {/* Header Section */}
         <div className="text-center mb-10 md:mb-16 flex flex-col items-center">
           <SectionDecoration className="mb-4" />
-          <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-slate-900 mb-6">
+          <h2 className="font-heading text-2xl md:text-4xl font-bold leading-[1.15] tracking-[-0.02em] text-slate-900 mb-6">
             Our Services
           </h2>
-          <p className="text-lg text-slate-600 max-w-2xl mx-auto">
+          <p className="font-body font-normal text-sm sm:text-base leading-[1.6] text-slate-600 max-w-2xl mx-auto">
             A clear approach to navigating the real estate market and property solutions.
           </p>
         </div>

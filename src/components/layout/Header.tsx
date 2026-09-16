@@ -90,6 +90,10 @@ export default function Header() {
     [pathname],
   );
 
+  if (pathname.startsWith("/admin")) {
+    return null;
+  }
+
   return (
     <>
       {/* ═══════════════════════════════════════════
@@ -115,6 +119,7 @@ export default function Header() {
                 sizes="(max-width: 640px) 256px, (max-width: 1024px) 320px, 384px"
                 className={`object-contain object-left transition-all duration-300 ${!isScrolled ? 'brightness-0 invert' : ''}`}
                 priority
+                loading="eager"
               />
             </Link>
 
@@ -131,8 +136,8 @@ export default function Header() {
                     href={item.href}
                     aria-current={active ? "page" : undefined}
                     className={`
-                      relative flex items-center px-5 py-2 rounded-full
-                      text-[14px] font-medium whitespace-nowrap
+                      relative flex items-center px-5 py-2.5 rounded-full
+                      font-heading text-[15px] lg:text-base font-semibold leading-none whitespace-nowrap
                       transition-colors duration-200 ease-out
                       ${
                         active
@@ -159,7 +164,7 @@ export default function Header() {
               <button
                 type="button"
                 onClick={() => openModal()}
-                className="px-6 py-2.5 rounded-full text-[14px] font-semibold bg-[#0a0a0a] text-white hover:bg-black shadow-md transition-all duration-200 cursor-pointer"
+                className="px-6 py-2.5 rounded-full font-heading text-[15px] lg:text-base font-bold leading-none bg-[#0a0a0a] text-white hover:bg-black shadow-md transition-all duration-200 cursor-pointer"
               >
                 Book Consultation
               </button>
@@ -248,7 +253,7 @@ export default function Header() {
                           aria-current={active ? "page" : undefined}
                           className={`
                             flex items-center gap-3 px-4 py-3.5 rounded-2xl
-                            text-sm font-medium transition-all duration-150 border
+                            font-heading text-base font-semibold leading-none transition-all duration-150 border
                             ${
                               active
                                 ? "bg-brand-50 border-brand-600 text-brand-600"
@@ -282,7 +287,7 @@ export default function Header() {
                       setMobileOpen(false);
                       openModal();
                     }}
-                    className="w-full mt-3 text-center py-3.5 rounded-2xl text-sm font-semibold bg-[#0a0a0a] text-white hover:bg-black transition-all duration-200 shadow-md cursor-pointer"
+                    className="w-full mt-3 text-center py-3.5 rounded-2xl font-heading text-base font-bold leading-none bg-[#0a0a0a] text-white hover:bg-black transition-all duration-200 shadow-md cursor-pointer"
                   >
                     Book Consultation
                   </button>

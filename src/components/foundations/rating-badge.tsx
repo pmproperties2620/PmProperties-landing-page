@@ -130,8 +130,8 @@ export const RatingBadge = ({ title = "Best Design Tool", subtitle = "2,000+ rev
             <div className="flex flex-col items-center gap-1">
                 <RatingStars rating={rating} className="gap-0.5" starClassName="size-4" />
                 <div className="text-center">
-                    <p className={cx("text-sm font-semibold", theme === "light" ? "text-white" : "text-slate-900")}>{title}</p>
-                    <p className={cx("text-xs font-medium", theme === "light" ? "text-white/80" : "text-slate-600")}>{subtitle}</p>
+                    <p className={cx("font-heading text-sm font-semibold leading-tight", theme === "light" ? "text-white" : "text-slate-900")}>{title}</p>
+                    <p className={cx("font-body text-xs font-normal leading-[1.6]", theme === "light" ? "text-white/80" : "text-slate-600")}>{subtitle}</p>
                 </div>
             </div>
             <Wreath className={cx("shrink-0 -scale-x-100", theme === "light" && "text-white")} />

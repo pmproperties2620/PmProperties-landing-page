@@ -18,20 +18,20 @@ export default function FeaturedProperties() {
         <AnimatedSection>
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-12">
             <div>
-              <p className="text-brand-600 font-semibold text-sm tracking-wide uppercase mb-3">
+              <p className="font-heading font-semibold text-xs sm:text-sm uppercase tracking-[0.05em] leading-none text-brand-600 mb-3">
                 Featured Listings
               </p>
-              <h2 className="text-3xl sm:text-4xl font-bold text-slate-900">
+              <h2 className="font-heading font-bold text-2xl sm:text-4xl text-slate-900 leading-[1.15] tracking-[-0.02em]">
                 Premium Properties
               </h2>
-              <p className="text-slate-600 mt-3 max-w-2xl">
+              <p className="font-body font-normal text-sm sm:text-base text-slate-600 mt-3 max-w-2xl leading-[1.6]">
                 Hand-picked selection of our finest listings. Each property meets our
                 stringent quality standards for location, design, and value.
               </p>
             </div>
             <Link
               href="/properties"
-              className="inline-flex items-center gap-2 text-brand-600 font-semibold hover:text-brand-700 transition-colors shrink-0 group"
+              className="inline-flex items-center gap-2 font-heading font-semibold text-sm lg:text-[15px] leading-none text-brand-600 hover:text-brand-700 transition-colors shrink-0 group"
             >
               View All{" "}
               <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />

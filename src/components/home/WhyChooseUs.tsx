@@ -49,13 +49,13 @@ export default function WhyChooseUs() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <AnimatedSection>
           <div className="text-center max-w-2xl mx-auto mb-16">
-            <p className="text-brand-600 font-semibold text-sm tracking-wide uppercase mb-3">
+            <p className="font-heading font-semibold text-xs sm:text-sm uppercase tracking-[0.05em] leading-none text-brand-600 mb-3">
               How We Work
             </p>
-            <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 mb-4">
+            <h2 className="font-heading font-bold text-2xl sm:text-4xl text-slate-900 mb-4 leading-[1.15] tracking-[-0.02em]">
               A Clear Process from First Call to Final Step
             </h2>
-            <p className="text-slate-600 text-lg">
+            <p className="font-body font-normal text-sm sm:text-base text-slate-600 leading-[1.6]">
               We keep every move intentional, transparent, and easy to follow so clients
               always know what is happening and why it matters.
             </p>
@@ -79,8 +79,8 @@ export default function WhyChooseUs() {
                     >
                       <Icon className="w-6 h-6 text-brand-600" />
                     </motion.div>
-                    <h3 className="text-lg font-semibold text-slate-900 mb-2">{step.title}</h3>
-                    <p className="text-slate-600 text-sm leading-relaxed">{step.description}</p>
+                    <h3 className="font-heading font-bold text-lg sm:text-xl text-slate-900 mb-2 leading-[1.2] tracking-[-0.02em]">{step.title}</h3>
+                    <p className="font-body font-normal text-xs sm:text-sm text-slate-600 leading-[1.6]">{step.description}</p>
                   </motion.div>
                 </StaggerItem>
               );

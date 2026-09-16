@@ -75,20 +75,20 @@ export default function ProjectCard({ project, onQuickView }: ProjectCardProps) 
         <div className="absolute top-3 left-3 right-3 flex items-center justify-between gap-2 z-10 pointer-events-none">
           <div className="flex items-center gap-1.5 flex-wrap">
             {project.zeroBrokerage && (
-              <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-bold tracking-tight bg-brand-600 text-white shadow-sm">
+              <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full font-heading font-bold text-xs bg-brand-600 text-white shadow-sm">
                 <Sparkles className="w-3 h-3" />
                 0% Brokerage
               </span>
             )}
             {project.featured && (
-              <span className="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold bg-white/90 backdrop-blur-md text-slate-800 shadow-sm">
+              <span className="inline-flex items-center px-2.5 py-1 rounded-full font-heading font-semibold text-xs bg-white/90 backdrop-blur-md text-slate-800 shadow-sm">
                 Featured
               </span>
             )}
           </div>
 
           <span
-            className={`inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold border backdrop-blur-md bg-white/95 shadow-sm ${statusBadge.className}`}
+            className={`inline-flex items-center px-2.5 py-1 rounded-full font-heading font-semibold text-xs border backdrop-blur-md bg-white/95 shadow-sm ${statusBadge.className}`}
           >
             {statusBadge.text}
           </span>
@@ -109,10 +109,10 @@ export default function ProjectCard({ project, onQuickView }: ProjectCardProps) 
       <div className="p-5 sm:p-6 flex flex-col flex-1">
         {/* Developer & Locality */}
         <div className="flex items-center justify-between gap-2 mb-1.5">
-          <span className="text-xs uppercase font-bold tracking-wider text-brand-600">
+          <span className="font-heading font-bold text-xs uppercase tracking-[0.05em] text-brand-600">
             {project.developer}
           </span>
-          <div className="flex items-center gap-1 text-xs text-slate-500 font-medium">
+          <div className="flex items-center gap-1 font-body font-medium text-xs text-slate-500">
             <MapPin className="w-3.5 h-3.5 text-slate-400 shrink-0" />
             <span>{project.location.city}</span>
           </div>
@@ -121,37 +121,37 @@ export default function ProjectCard({ project, onQuickView }: ProjectCardProps) 
         {/* Project Title */}
         <h3
           onClick={() => onQuickView(project)}
-          className="text-xl font-bold text-slate-900 group-hover:text-brand-600 transition-colors cursor-pointer mb-1"
+          className="font-heading font-bold text-lg sm:text-xl text-slate-900 mb-1 leading-[1.2] tracking-[-0.02em] group-hover:text-brand-600 transition-colors cursor-pointer"
         >
           {project.title}
         </h3>
 
         {/* Locality & Landmark */}
-        <p className="text-xs text-slate-500 line-clamp-1 mb-4">
+        <p className="font-body font-normal text-xs text-slate-500 line-clamp-1 mb-4 leading-[1.6]">
           {project.location.locality} &bull; {project.location.landmark}
         </p>
 
         {/* Key Specs Grid */}
-        <div className="grid grid-cols-2 gap-2.5 py-3 px-3.5 bg-slate-50 rounded-xl border border-slate-100 mb-5 text-xs text-slate-600">
-          <div className="flex items-center gap-2">
-            <Ruler className="w-3.5 h-3.5 text-slate-400 shrink-0" />
-            <div className="flex flex-col">
-              <span className="text-[10px] text-slate-400 uppercase font-semibold">
+        <div className="grid grid-cols-[1fr_1.35fr] gap-2 py-2.5 px-3 bg-slate-50 rounded-xl border border-slate-100 mb-5 text-xs text-slate-600 overflow-hidden">
+          <div className="flex items-start gap-2 min-w-0">
+            <Ruler className="w-3.5 h-3.5 text-slate-400 shrink-0 mt-0.5" />
+            <div className="flex flex-col min-w-0">
+              <span className="text-[10px] font-mono text-slate-400 uppercase font-semibold leading-none mb-1">
                 Area
               </span>
-              <span className="font-semibold text-slate-800 truncate">
+              <span className="font-heading font-semibold text-xs text-slate-800 leading-snug break-words">
                 {project.carpetArea}
               </span>
             </div>
           </div>
 
-          <div className="flex items-center gap-2">
-            <Calendar className="w-3.5 h-3.5 text-slate-400 shrink-0" />
-            <div className="flex flex-col">
-              <span className="text-[10px] text-slate-400 uppercase font-semibold">
+          <div className="flex items-start gap-2 min-w-0">
+            <Calendar className="w-3.5 h-3.5 text-slate-400 shrink-0 mt-0.5" />
+            <div className="flex flex-col min-w-0">
+              <span className="text-[10px] font-mono text-slate-400 uppercase font-semibold leading-none mb-1">
                 Possession
               </span>
-              <span className="font-semibold text-slate-800 truncate">
+              <span className="font-heading font-semibold text-xs text-slate-800 leading-snug break-words">
                 {project.possessionDate}
               </span>
             </div>
@@ -163,7 +163,7 @@ export default function ProjectCard({ project, onQuickView }: ProjectCardProps) 
           {project.configurations.map((config) => (
             <span
               key={config}
-              className="text-[11px] font-medium px-2.5 py-0.5 rounded-md bg-slate-100 text-slate-700 border border-slate-200/60"
+              className="font-heading font-medium text-[11px] px-2.5 py-0.5 rounded-md bg-slate-100 text-slate-700 border border-slate-200/60"
             >
               {config}
             </span>
@@ -173,10 +173,10 @@ export default function ProjectCard({ project, onQuickView }: ProjectCardProps) 
         {/* Price & Action Buttons */}
         <div className="mt-auto pt-4 border-t border-slate-100 flex items-center justify-between gap-3">
           <div>
-            <span className="block text-[10px] uppercase font-bold tracking-wider text-slate-400">
+            <span className="block font-heading font-bold text-[10px] uppercase tracking-[0.05em] text-slate-400">
               Pricing
             </span>
-            <div className="text-lg sm:text-xl font-extrabold text-slate-900 tracking-tight">
+            <div className="font-heading font-normal text-lg sm:text-xl text-slate-900 leading-tight">
               {project.priceDisplay}
             </div>
           </div>
@@ -185,7 +185,7 @@ export default function ProjectCard({ project, onQuickView }: ProjectCardProps) 
             <button
               type="button"
               onClick={() => onQuickView(project)}
-              className="inline-flex items-center justify-center gap-1.5 px-3 py-2 text-xs font-semibold text-slate-700 bg-slate-100 hover:bg-slate-200 rounded-xl transition-colors"
+              className="inline-flex items-center justify-center gap-1.5 px-3 py-2 font-heading font-semibold text-xs leading-none text-slate-700 bg-slate-100 hover:bg-slate-200 rounded-xl transition-colors"
               title="Quick Details"
             >
               <Eye className="w-3.5 h-3.5" />
@@ -196,7 +196,7 @@ export default function ProjectCard({ project, onQuickView }: ProjectCardProps) 
               href={getWhatsAppUrl()}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-1.5 px-3 py-2 text-xs font-semibold text-white bg-brand-600 hover:bg-brand-700 rounded-xl transition-all shadow-sm hover:shadow"
+              className="inline-flex items-center justify-center gap-1.5 px-3 py-2 font-heading font-semibold text-xs leading-none text-white bg-brand-600 hover:bg-brand-700 rounded-xl transition-all shadow-sm hover:shadow"
               title="Inquire via WhatsApp"
             >
               <MessageCircle className="w-3.5 h-3.5" />

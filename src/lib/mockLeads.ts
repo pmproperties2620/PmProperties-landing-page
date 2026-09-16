@@ -1,0 +1,227 @@
+import { Lead } from "./supabaseServer";
+
+// Generates dates within the last 30 days
+function getPastDate(daysAgo: number, hoursAgo = 0): string {
+  const d = new Date();
+  d.setDate(d.getDate() - daysAgo);
+  d.setHours(d.getHours() - hoursAgo);
+  return d.toISOString();
+}
+
+export const INITIAL_MOCK_LEADS: Lead[] = [
+  {
+    id: "lead-pm-01",
+    full_name: "Amit Deshmukh",
+    phone: "9820112233",
+    requirement: "2bhk",
+    price_range: "40-50",
+    property_stage: "under_construction",
+    source: "modal",
+    status: "new",
+    notes: "Interested in Khadakpada riverfront residential towers. Needs balcony facing sunset.",
+    created_at: getPastDate(0, 1),
+    updated_at: getPastDate(0, 1),
+  },
+  {
+    id: "lead-pm-02",
+    full_name: "Pooja Kulkarni",
+    phone: "9988776655",
+    requirement: "3bhk",
+    price_range: "60+",
+    property_stage: "rtmi",
+    source: "contact_page",
+    status: "contacted",
+    notes: "Site visit requested for this Saturday afternoon. Pre-approved loan from HDFC.",
+    created_at: getPastDate(1, 3),
+    updated_at: getPastDate(0, 2),
+  },
+  {
+    id: "lead-pm-03",
+    full_name: "Vikas Patil",
+    phone: "9167234567",
+    requirement: "Property Buying",
+    price_range: "50-60",
+    property_stage: "nearing_possession",
+    source: "website",
+    status: "qualified",
+    notes: "Looking for high-floor flat near Dombivli West station.",
+    created_at: getPastDate(2, 4),
+    updated_at: getPastDate(1, 6),
+  },
+  {
+    id: "lead-pm-04",
+    full_name: "Rajesh Soni",
+    phone: "9819882211",
+    requirement: "Commercial Buy/Sell",
+    price_range: "60+",
+    property_stage: "rtmi",
+    source: "contact_page",
+    status: "converted",
+    notes: "Closed commercial showroom deal at Gangeshwar Maya complex. Token amount received.",
+    created_at: getPastDate(3, 8),
+    updated_at: getPastDate(1, 2),
+  },
+  {
+    id: "lead-pm-05",
+    full_name: "Sneha Nair",
+    phone: "9867554433",
+    requirement: "Interior Design",
+    price_range: "30-40",
+    property_stage: "rtmi",
+    source: "modal",
+    status: "new",
+    notes: "Requires complete 2 BHK modular kitchen and living room false ceiling execution.",
+    created_at: getPastDate(4, 2),
+    updated_at: getPastDate(4, 2),
+  },
+  {
+    id: "lead-pm-06",
+    full_name: "Manoj Agarwal",
+    phone: "9702114455",
+    requirement: "Invisible Grills",
+    price_range: "30-40",
+    property_stage: "rtmi",
+    source: "website",
+    status: "contacted",
+    notes: "Balcony safety cabling requested for 14th floor apartment.",
+    created_at: getPastDate(6, 5),
+    updated_at: getPastDate(5, 1),
+  },
+  {
+    id: "lead-pm-07",
+    full_name: "Kavita Shinde",
+    phone: "9820993344",
+    requirement: "1bhk",
+    price_range: "30-40",
+    property_stage: "under_construction",
+    source: "modal",
+    status: "qualified",
+    notes: "First-time home buyer looking for PMAY subsidy eligible projects.",
+    created_at: getPastDate(8, 1),
+    updated_at: getPastDate(7, 3),
+  },
+  {
+    id: "lead-pm-08",
+    full_name: "Rameshwar Dubey",
+    phone: "9930445566",
+    requirement: "Commercial Rental",
+    price_range: "40-50",
+    property_stage: "rtmi",
+    source: "contact_page",
+    status: "converted",
+    notes: "Signed 3-year commercial lease for retail outlet.",
+    created_at: getPastDate(11, 4),
+    updated_at: getPastDate(9, 1),
+  },
+  {
+    id: "lead-pm-09",
+    full_name: "Deepak Choudhary",
+    phone: "9870119988",
+    requirement: "Property Selling",
+    price_range: "60+",
+    property_stage: "resell",
+    source: "website",
+    status: "closed",
+    notes: "Property listed on open market; seller withdrew listing due to family settlement.",
+    created_at: getPastDate(14, 6),
+    updated_at: getPastDate(12, 5),
+  },
+  {
+    id: "lead-pm-10",
+    full_name: "Sunil Gokhale",
+    phone: "9821223344",
+    requirement: "Property Consultation",
+    price_range: "50-60",
+    property_stage: "under_construction",
+    source: "modal",
+    status: "qualified",
+    notes: "Seeking portfolio advisory for rental yield investments in Kalyan-Dombivli belt.",
+    created_at: getPastDate(16, 2),
+    updated_at: getPastDate(15, 7),
+  },
+  {
+    id: "lead-pm-11",
+    full_name: "Ananya Iyer",
+    phone: "9833445566",
+    requirement: "2bhk",
+    price_range: "50-60",
+    property_stage: "nearing_possession",
+    source: "modal",
+    status: "converted",
+    notes: "Finalized flat booking in Palava downtown project.",
+    created_at: getPastDate(19, 4),
+    updated_at: getPastDate(17, 3),
+  },
+  {
+    id: "lead-pm-12",
+    full_name: "Harish Jadhav",
+    phone: "9892334455",
+    requirement: "Property Renting",
+    price_range: "30-40",
+    property_stage: "rtmi",
+    source: "contact_page",
+    status: "contacted",
+    notes: "Seeking 2 BHK rental near Nilje railway station for family.",
+    created_at: getPastDate(22, 6),
+    updated_at: getPastDate(20, 1),
+  },
+  {
+    id: "lead-pm-13",
+    full_name: "Priyanka Joshi",
+    phone: "9819228833",
+    requirement: "3bhk",
+    price_range: "60+",
+    property_stage: "under_construction",
+    source: "modal",
+    status: "new",
+    notes: "Inquired via Instagram promo. Looking for luxury gated society with clubhouse.",
+    created_at: getPastDate(24, 3),
+    updated_at: getPastDate(24, 3),
+  },
+  {
+    id: "lead-pm-14",
+    full_name: "Santosh Verma",
+    phone: "9920114477",
+    requirement: "Commercial Buy/Sell",
+    price_range: "60+",
+    property_stage: "rtmi",
+    source: "website",
+    status: "qualified",
+    notes: "Looking for 1500 sq ft office space on main Phule road.",
+    created_at: getPastDate(26, 7),
+    updated_at: getPastDate(25, 2),
+  },
+  {
+    id: "lead-pm-15",
+    full_name: "Gaurav Mehta",
+    phone: "9869443322",
+    requirement: "1bhk",
+    price_range: "30-40",
+    property_stage: "rtmi",
+    source: "modal",
+    status: "converted",
+    notes: "Completed registration and agreement for 1 BHK apartment.",
+    created_at: getPastDate(28, 5),
+    updated_at: getPastDate(27, 4),
+  },
+];
+
+// Global in-memory storage for preview/dev mode
+const currentMockLeads: Lead[] = [...INITIAL_MOCK_LEADS];
+
+export function getMockLeads(): Lead[] {
+  return currentMockLeads;
+}
+
+export function updateMockLead(id: string, updates: Partial<Lead>): Lead | null {
+  const index = currentMockLeads.findIndex((l) => l.id === id);
+  if (index === -1) return null;
+
+  currentMockLeads[index] = {
+    ...currentMockLeads[index],
+    ...updates,
+    updated_at: new Date().toISOString(),
+  };
+
+  return currentMockLeads[index];
+}

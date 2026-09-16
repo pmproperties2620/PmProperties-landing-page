@@ -1,8 +1,7 @@
 "use client";
 
-import Link from "next/link";
 import { motion } from "framer-motion";
-import { Phone, Calendar } from "lucide-react";
+import { Calendar } from "lucide-react";
 import AnimatedSection from "@/components/ui/AnimatedSection";
 import { useConsultationModal } from "@/context/ConsultationModalContext";
 
@@ -28,13 +27,13 @@ export default function CTASection() {
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <AnimatedSection>
           <div className="max-w-2xl mx-auto text-center">
-            <p className="text-brand-500 font-semibold text-sm tracking-wide uppercase mb-4">
+            <p className="font-heading font-semibold text-xs sm:text-sm uppercase tracking-[0.05em] leading-none text-brand-500 mb-4">
               Ready to Get Started?
             </p>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 mb-6 leading-tight">
+            <h2 className="font-heading font-bold text-2xl sm:text-4xl lg:text-5xl text-slate-900 mb-6 leading-[1.15] tracking-[-0.02em]">
               Your Dream Property Is Waiting
             </h2>
-            <p className="text-lg text-slate-600 mb-6 leading-relaxed">
+            <p className="font-body font-normal text-sm sm:text-base text-slate-600 mb-6 leading-[1.6]">
               Whether you&apos;re buying, selling, or just exploring, our team is ready
               to help you take the next step. No pressure, just expert guidance.
             </p>
@@ -44,7 +43,7 @@ export default function CTASection() {
                 <button
                   type="button"
                   onClick={() => openModal()}
-                  className="inline-flex items-center justify-center gap-2 bg-brand-600 text-white px-8 py-4 rounded-xl font-semibold text-lg hover:bg-brand-700 transition-all shadow-lg shadow-brand-600/25 cursor-pointer"
+                  className="inline-flex items-center justify-center gap-2 bg-brand-600 text-white px-8 py-4 rounded-xl font-heading font-semibold text-sm sm:text-base leading-none hover:bg-brand-700 transition-all shadow-lg shadow-brand-600/25 cursor-pointer"
                 >
                   <Calendar className="w-5 h-5" />
                   Book a Consultation

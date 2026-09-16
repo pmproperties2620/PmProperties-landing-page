@@ -136,16 +136,16 @@ export default function ProjectsView() {
 
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
           {/* Tag Pill */}
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/10 text-xs font-semibold text-brand-400 mb-6">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/10 font-heading font-semibold text-xs uppercase tracking-[0.05em] leading-none text-brand-400 mb-6">
             <Sparkles className="w-3.5 h-3.5 text-brand-400" />
             <span>Curated Real Estate Portfolio</span>
           </div>
 
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white mb-6">
-            Featured Projects & Properties
+          <h1 className="font-heading font-black text-3xl sm:text-6xl text-white mb-6 leading-[1.15] tracking-[-0.02em]">
+            Featured Projects &amp; Properties
           </h1>
 
-          <p className="text-base sm:text-lg text-slate-300 max-w-3xl mx-auto leading-relaxed mb-10">
+          <p className="font-body font-normal text-sm sm:text-base text-slate-300 max-w-3xl mx-auto leading-[1.6] mb-10">
             Discover verified residential townships, luxury apartments, resale
             residences, and high-yield commercial assets across Kalyan,
             Dombivli, Thane, and Badlapur.
@@ -158,8 +158,8 @@ export default function ProjectsView() {
                 <ShieldCheck className="w-5 h-5 text-brand-400" />
               </div>
               <div>
-                <div className="text-lg font-bold text-white">100% RERA</div>
-                <div className="text-xs text-slate-400">Registered Projects</div>
+                <div className="font-heading font-black text-lg sm:text-xl text-white leading-tight tracking-[-0.02em]">100% RERA</div>
+                <div className="font-body font-normal text-xs text-slate-400 leading-[1.4]">Registered Projects</div>
               </div>
             </div>
 
@@ -168,8 +168,8 @@ export default function ProjectsView() {
                 <Sparkles className="w-5 h-5 text-emerald-400" />
               </div>
               <div>
-                <div className="text-lg font-bold text-white">0% Brokerage</div>
-                <div className="text-xs text-slate-400">On Direct Bookings</div>
+                <div className="font-heading font-black text-lg sm:text-xl text-white leading-tight tracking-[-0.02em]">0% Brokerage</div>
+                <div className="font-body font-normal text-xs text-slate-400 leading-[1.4]">On Direct Bookings</div>
               </div>
             </div>
 
@@ -178,8 +178,8 @@ export default function ProjectsView() {
                 <Award className="w-5 h-5 text-blue-400" />
               </div>
               <div>
-                <div className="text-lg font-bold text-white">10+ Years</div>
-                <div className="text-xs text-slate-400">Market Authority</div>
+                <div className="font-heading font-black text-lg sm:text-xl text-white leading-tight tracking-[-0.02em]">10+ Years</div>
+                <div className="font-body font-normal text-xs text-slate-400 leading-[1.4]">Market Authority</div>
               </div>
             </div>
 
@@ -188,8 +188,8 @@ export default function ProjectsView() {
                 <Users className="w-5 h-5 text-purple-400" />
               </div>
               <div>
-                <div className="text-lg font-bold text-white">500+ Families</div>
-                <div className="text-xs text-slate-400">Happily Housed</div>
+                <div className="font-heading font-black text-lg sm:text-xl text-white leading-tight tracking-[-0.02em]">500+ Families</div>
+                <div className="font-body font-normal text-xs text-slate-400 leading-[1.4]">Happily Housed</div>
               </div>
             </div>
           </div>
@@ -234,10 +234,10 @@ export default function ProjectsView() {
             <div className="w-16 h-16 rounded-2xl bg-slate-100 flex items-center justify-center mx-auto mb-4 text-slate-400">
               <HelpCircle className="w-8 h-8" />
             </div>
-            <h3 className="text-xl font-bold text-slate-900 mb-2">
+            <h3 className="font-heading font-bold text-lg sm:text-xl text-slate-900 mb-2 leading-[1.2] tracking-[-0.02em]">
               No matching properties found
             </h3>
-            <p className="text-sm text-slate-500 mb-6 leading-relaxed">
+            <p className="font-body font-normal text-xs sm:text-sm text-slate-500 mb-6 leading-[1.6]">
               We couldn&apos;t find any properties matching your exact criteria. Try
               loosening your budget or location filters, or contact our team for
               unlisted upcoming inventory.
@@ -246,7 +246,7 @@ export default function ProjectsView() {
               <button
                 type="button"
                 onClick={handleReset}
-                className="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-slate-900 text-white text-xs sm:text-sm font-semibold hover:bg-slate-800 transition-colors"
+                className="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-slate-900 text-white font-heading font-semibold text-xs sm:text-sm leading-none hover:bg-slate-800 transition-colors"
               >
                 Reset All Filters
               </button>
@@ -254,7 +254,7 @@ export default function ProjectsView() {
                 href="https://wa.me/919029923246?text=Hi%20PM%20Properties,%20I%20am%20looking%20for%20a%20property%20with%20custom%20requirements.%20Please%20guide%20me."
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-brand-600 text-white text-xs sm:text-sm font-semibold hover:bg-brand-700 transition-colors"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-brand-600 text-white font-heading font-semibold text-xs sm:text-sm leading-none hover:bg-brand-700 transition-colors"
               >
                 <MessageCircle className="w-4 h-4" />
                 <span>Ask via WhatsApp</span>
@@ -269,14 +269,14 @@ export default function ProjectsView() {
 
           <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-8">
             <div className="max-w-2xl text-center lg:text-left">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-500/20 text-brand-400 text-xs font-semibold mb-4">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-500/20 text-brand-400 font-heading font-semibold text-xs uppercase tracking-[0.05em] leading-none mb-4">
                 <Building2 className="w-3.5 h-3.5" />
-                <span>For Property Owners & Developers</span>
+                <span>For Property Owners &amp; Developers</span>
               </div>
-              <h3 className="text-2xl sm:text-3xl font-extrabold text-white mb-3 tracking-tight">
+              <h3 className="font-heading font-bold text-2xl sm:text-3xl text-white mb-3 leading-[1.15] tracking-[-0.02em]">
                 Looking to Sell, Lease, or Partner with PM Properties?
               </h3>
-              <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
+              <p className="font-body font-normal text-xs sm:text-sm text-slate-300 leading-[1.6]">
                 Get your property listed before 10,000+ verified active buyers
                 and investors. Benefit from professional staging, legal
                 verification, and swift closing without hassle.
@@ -286,14 +286,14 @@ export default function ProjectsView() {
             <div className="flex flex-col sm:flex-row items-center gap-3 w-full lg:w-auto shrink-0">
               <Link
                 href="/contact"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-brand-600 hover:bg-brand-700 text-white text-sm font-semibold transition-all shadow-lg hover:shadow-xl"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-heading font-semibold text-sm leading-none transition-all shadow-lg hover:shadow-xl"
               >
                 <span>List Your Property</span>
                 <ArrowRight className="w-4 h-4" />
               </Link>
               <a
                 href="tel:+919029923246"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl border border-slate-700 bg-slate-800/80 hover:bg-slate-800 text-white text-sm font-semibold transition-colors"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl border border-slate-700 bg-slate-800/80 hover:bg-slate-800 text-white font-heading font-semibold text-sm leading-none transition-colors"
               >
                 <PhoneCall className="w-4 h-4 text-brand-400" />
                 <span>Call Advisor</span>

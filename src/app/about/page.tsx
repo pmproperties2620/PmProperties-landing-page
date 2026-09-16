@@ -5,7 +5,6 @@ import AnimatedSection from "@/components/ui/AnimatedSection";
 import AboutTimeline from "@/components/about/AboutTimeline";
 import CTASection from "@/components/home/CTASection";
 
-import { motion } from "framer-motion";
 
 export default function AboutPage() {
   return (
@@ -26,10 +25,10 @@ export default function AboutPage() {
         
         <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center w-full">
           <AnimatedSection>
-            <h1 className="text-4xl sm:text-5xl font-bold text-white mb-4">
+            <h1 className="font-heading font-black text-3xl sm:text-6xl text-white mb-4 leading-[1.15] tracking-[-0.02em]">
               About PM Properties
             </h1>
-            <p className="text-lg text-slate-300 max-w-2xl mx-auto">
+            <p className="font-body font-normal text-sm sm:text-base text-slate-300 max-w-2xl mx-auto leading-[1.6]">
               A boutique real estate agency built on trust, market expertise, and a genuine passion
               for helping people find their perfect place.
             </p>

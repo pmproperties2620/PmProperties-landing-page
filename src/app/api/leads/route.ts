@@ -4,6 +4,7 @@ import {
   isSupabaseConfigured,
   LeadSource,
 } from "@/lib/supabaseServer";
+import { invalidateAnalyticsCache } from "@/lib/analyticsCache";
 import {
   REQUIREMENTS,
   PRICE_RANGES,
@@ -128,6 +129,7 @@ export async function POST(request: Request) {
       );
     }
 
+    invalidateAnalyticsCache();
     return NextResponse.json(
       {
         success: true,

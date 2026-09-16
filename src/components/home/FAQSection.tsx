@@ -18,7 +18,7 @@ export default function FAQSection() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
-            className="text-4xl md:text-5xl font-bold tracking-tight text-slate-900 mb-4"
+            className="font-heading text-2xl md:text-4xl font-bold leading-[1.15] tracking-[-0.02em] text-slate-900 mb-4"
           >
             Frequently Asked Questions
           </motion.h2>
@@ -27,7 +27,7 @@ export default function FAQSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ delay: 0.1 }}
-            className="text-lg text-slate-500 max-w-lg mx-auto"
+            className="font-body font-normal text-sm sm:text-base leading-[1.6] text-slate-500 max-w-lg mx-auto"
           >
             Quick solutions to help you understand our real estate services better.
           </motion.p>
@@ -70,7 +70,7 @@ export default function FAQSection() {
                     className="flex items-center justify-between w-full py-4 text-left transition-colors"
                     aria-expanded={isOpen}
                   >
-                    <span className="font-semibold text-slate-800 pr-4 text-base sm:text-lg group-hover:text-brand-600 transition-colors">
+                    <span className="font-heading font-semibold text-slate-800 pr-4 text-[15px] sm:text-base leading-snug tracking-[-0.01em] group-hover:text-brand-600 transition-colors">
                       {faq.q}
                     </span>
                     <div 
@@ -92,7 +92,7 @@ export default function FAQSection() {
                         exit={{ height: 0, opacity: 0 }}
                         className="overflow-hidden"
                       >
-                        <div className="pb-5 pt-1 text-slate-500 leading-relaxed pr-12 whitespace-pre-line">
+                        <div className="pb-5 pt-1 font-body font-normal text-xs sm:text-sm leading-[1.6] text-slate-500 pr-12 whitespace-pre-line">
                           {faq.a}
                         </div>
                       </motion.div>

@@ -32,9 +32,9 @@ export default function AboutSection() {
           
           {/* Top Content */}
           <div className="p-4 md:p-5 pb-0 md:pb-0 flex-grow flex flex-col">
-            <h3 className="text-xs font-medium text-gray-500 mb-2">Families Helped Find Their Dream Home</h3>
-            <p className="text-4xl md:text-5xl font-bold text-[#0a1128] mb-2 md:mb-3 tracking-tight">500+</p>
-            <p className="text-gray-600 text-xs md:text-sm leading-relaxed max-w-sm mb-2">
+            <h3 className="font-body font-normal text-xs sm:text-sm leading-snug text-gray-500 mb-2">Families Helped Find Their Dream Home</h3>
+            <p className="font-heading text-3xl md:text-4xl font-black leading-tight tracking-[-0.02em] text-[#0a1128] mb-2 md:mb-3">500+</p>
+            <p className="font-body font-normal text-xs sm:text-sm leading-[1.6] text-gray-600 max-w-sm mb-2">
               With over five years of trusted experience, we&apos;ve guided 500+ families toward safe, transparent, and value-driven property investments.
             </p>
           </div>
@@ -58,20 +58,20 @@ export default function AboutSection() {
           {/* Bottom Content */}
           <div className="p-4 md:p-5 pt-0 md:pt-0 flex-grow flex flex-col items-start justify-end">
             <div className="mb-3 md:mb-4 mt-1 md:mt-2">
-              <h3 className="text-xs font-medium text-gray-800 mb-2 md:mb-3">Introduction</h3>
-              <h2 className="text-xl md:text-2xl font-semibold text-[#0a1128] leading-[1.2] mb-2">
+              <h3 className="font-heading text-xs sm:text-sm font-semibold uppercase tracking-[0.05em] leading-none text-gray-800 mb-2 md:mb-3">Introduction</h3>
+              <h2 className="font-heading text-2xl md:text-4xl font-bold leading-[1.15] tracking-[-0.02em] text-[#0a1128] mb-2">
                 A Journey Built on Trust.
               </h2>
-              <p className="text-slate-600 text-xs md:text-sm leading-relaxed mb-2">
+              <p className="font-body font-normal text-xs sm:text-sm leading-[1.6] text-slate-600 mb-2">
                 Founded by Pritesh Pravin Mhamunkar, The PM Properties is a RERA-Certified Real Estate Consultancy dedicated to honest, transparent, and stress-free property solutions.
               </p>
-              <p className="text-slate-600 text-xs md:text-sm leading-relaxed">
+              <p className="font-body font-normal text-xs sm:text-sm leading-[1.6] text-slate-600">
                 Since 2020, we have helped 500+ families find their ideal homes while partnering with trusted developers to deliver verified properties, expert guidance, and complete transparency.
               </p>
             </div>
             <Link 
               href="/about" 
-              className="inline-flex items-center justify-center bg-[#0a1128] text-white px-6 py-3 rounded-full text-xs font-medium hover:bg-gray-800 transition-all hover:scale-105 active:scale-95 mt-auto"
+              className="inline-flex items-center justify-center bg-[#0a1128] text-white px-6 py-3 rounded-full font-heading text-sm font-semibold leading-none hover:bg-gray-800 transition-all hover:scale-105 active:scale-95 mt-auto"
             >
               Learn More
             </Link>
@@ -83,7 +83,7 @@ export default function AboutSection() {
         <div className="lg:col-span-8 bg-[#f8f9fc] rounded-[2rem] md:rounded-[2.5rem] p-4 md:p-5 flex flex-col relative overflow-hidden">
           <div className="px-2 md:px-0 flex flex-col items-start mb-4">
              <SectionDecoration className="mb-4" />
-             <h2 className="text-4xl leading-[1.05] md:text-6xl lg:text-7xl font-bold text-[#0a1128] tracking-tighter">
+             <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black leading-[1.1] tracking-[-0.02em] text-[#0a1128]">
               About PM Properties
             </h2>
           </div>

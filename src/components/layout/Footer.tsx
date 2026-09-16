@@ -1,7 +1,15 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 
 export default function Footer() {
+  const pathname = usePathname();
+
+  if (pathname?.startsWith("/admin")) {
+    return null;
+  }
   return (
     <footer className="bg-slate-100 text-slate-900 pt-24 pb-8 border-t border-slate-200">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex flex-col items-center">
@@ -18,7 +26,7 @@ export default function Footer() {
         </Link>
         
         {/* Text */}
-        <p className="text-slate-600 text-center max-w-md md:max-w-lg text-[16px] leading-relaxed mb-8">
+        <p className="font-body font-normal text-xs sm:text-sm leading-[1.6] text-slate-600 text-center max-w-md md:max-w-lg mb-8">
           We take great pride in ensuring the satisfaction<br className="hidden sm:block"/>
           of our customers, delivering excellence in real estate.
         </p>
@@ -46,7 +54,7 @@ export default function Footer() {
         <div className="w-full border-t border-slate-300 mb-10"></div>
         
         {/* Bottom Nav Links */}
-        <div className="flex flex-wrap justify-center items-center gap-y-4 gap-x-6 md:gap-x-10 text-sm font-semibold tracking-wider uppercase mb-10">
+        <div className="flex flex-wrap justify-center items-center gap-y-4 gap-x-6 md:gap-x-10 font-heading text-sm lg:text-[15px] font-medium leading-none mb-10">
           <Link href="/" className="text-slate-700 hover:text-brand-600 transition-colors">Home</Link>
           <div className="w-px h-4 bg-slate-300 hidden md:block"></div>
           <Link href="/projects" className="text-slate-700 hover:text-brand-600 transition-colors">Projects</Link>
@@ -61,7 +69,7 @@ export default function Footer() {
         </div>
 
         {/* Copyright */}
-        <div className="text-center text-slate-500 text-sm">
+        <div className="text-center font-body text-xs sm:text-sm text-slate-500 leading-[1.6]">
           <p>&copy; {new Date().getFullYear()} PM Properties. All rights reserved.</p>
         </div>
         

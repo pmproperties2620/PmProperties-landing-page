@@ -194,13 +194,13 @@ export default function ContactPage() {
 
         <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center w-full">
           <AnimatedSection>
-            <span className="inline-block text-xs font-semibold uppercase tracking-widest text-white/80 bg-white/10 px-3.5 py-1.5 rounded-full mb-4 backdrop-blur-sm border border-white/20">
+            <span className="inline-block font-heading font-semibold text-xs uppercase tracking-[0.05em] leading-none text-white/80 bg-white/10 px-3.5 py-1.5 rounded-full mb-4 backdrop-blur-sm border border-white/20">
               Direct Advisory Channel
             </span>
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-4 tracking-tight">
+            <h1 className="font-heading font-black text-3xl sm:text-6xl text-white mb-4 leading-[1.15] tracking-[-0.02em]">
               Get in Touch
             </h1>
-            <p className="text-base sm:text-lg text-slate-200 max-w-2xl mx-auto leading-relaxed">
+            <p className="font-body font-normal text-sm sm:text-base text-slate-200 max-w-2xl mx-auto leading-[1.6]">
               Book your private consultation or connect directly with senior property advisors across Mumbai, Thane &amp; Navi Mumbai.
             </p>
           </AnimatedSection>
@@ -227,23 +227,23 @@ export default function ContactPage() {
                         <Check className="w-8 h-8 stroke-[2.5]" />
                       </motion.div>
 
-                      <span className="text-xs font-semibold tracking-wider uppercase text-emerald-400 mb-2">
+                      <span className="font-heading font-semibold text-xs uppercase tracking-[0.05em] text-emerald-400 mb-2">
                         Request Confirmed
                       </span>
-                      <h3 className="text-2xl sm:text-3xl font-bold tracking-tight text-white mb-3">
+                      <h3 className="font-heading font-bold text-2xl sm:text-3xl text-white mb-3 leading-[1.15] tracking-[-0.02em]">
                         You&apos;re All Set, {fullName.split(" ")[0]}!
                       </h3>
-                      <p className="text-zinc-400 text-sm sm:text-base leading-relaxed mb-6">
+                      <p className="font-body font-normal text-xs sm:text-sm text-zinc-400 leading-[1.6] mb-6">
                         Your consultation request has been dispatched to our senior property advisors. We will contact you at{" "}
                         <span className="text-white font-medium">+91 {phone}</span> shortly.
                       </p>
 
                       {/* Choices recap card */}
                       <div className="w-full bg-white/[0.03] border border-white/[0.08] rounded-2xl p-4 sm:p-5 text-left mb-6 space-y-2.5">
-                        <div className="text-xs text-zinc-400 font-medium uppercase tracking-wider mb-2">
+                        <div className="font-heading font-semibold text-xs text-zinc-400 uppercase tracking-[0.05em] mb-2">
                           Consultation Summary
                         </div>
-                        <div className="grid grid-cols-2 gap-3 text-xs sm:text-sm">
+                        <div className="grid grid-cols-2 gap-3 font-body font-normal text-xs sm:text-sm leading-[1.6]">
                           <div>
                             <span className="text-zinc-400">Requirement: </span>
                             <span className="text-white font-medium">
@@ -272,7 +272,7 @@ export default function ContactPage() {
                           href={getWhatsAppUrl()}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="flex-1 inline-flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#20ba59] text-black font-semibold px-6 py-3.5 rounded-xl transition-all shadow-lg text-sm"
+                          className="flex-1 inline-flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#20ba59] text-black font-heading font-semibold px-6 py-3.5 rounded-xl transition-all shadow-lg text-sm leading-none"
                         >
                           <MessageSquare className="w-4 h-4 fill-black text-black" />
                           Instant WhatsApp Connect
@@ -287,7 +287,7 @@ export default function ContactPage() {
                             setSelectedPrice("");
                             setSelectedStage("");
                           }}
-                          className="px-6 py-3.5 rounded-xl bg-white/[0.06] hover:bg-white/[0.1] text-zinc-300 hover:text-white border border-white/[0.08] text-sm font-medium transition-all cursor-pointer"
+                          className="px-6 py-3.5 rounded-xl bg-white/[0.06] hover:bg-white/[0.1] text-zinc-300 hover:text-white border border-white/[0.08] font-heading font-medium text-sm leading-none transition-all cursor-pointer"
                         >
                           Send Another
                         </button>
@@ -302,14 +302,14 @@ export default function ContactPage() {
                           <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-brand-600 to-black border border-white/20 flex items-center justify-center text-white shadow-sm">
                             <Building2 className="w-4 h-4 text-white" />
                           </div>
-                          <span className="text-xs uppercase tracking-widest text-zinc-400 font-semibold">
+                          <span className="font-heading font-semibold text-xs uppercase tracking-[0.05em] text-zinc-400">
                             PM Properties &bull; Private Advisory
                           </span>
                         </div>
-                        <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-white">
+                        <h2 className="font-heading font-bold text-2xl sm:text-3xl text-white leading-[1.15] tracking-[-0.02em]">
                           Specify Your Preferences
                         </h2>
-                        <p className="text-zinc-400 text-sm mt-1 leading-relaxed">
+                        <p className="font-body font-normal text-xs sm:text-sm text-zinc-400 mt-1 leading-[1.6]">
                           Fill out the form below to receive curated inventory with developer direct pricing.
                         </p>
                       </div>
@@ -321,7 +321,7 @@ export default function ContactPage() {
                           <div>
                             <label
                               htmlFor={nameInputId}
-                              className="block text-xs font-medium text-zinc-300 mb-1"
+                              className="block font-heading font-medium text-xs text-zinc-300 mb-1"
                             >
                               Full Name <span className="text-rose-400">*</span>
                             </label>
@@ -335,14 +335,14 @@ export default function ContactPage() {
                                   setErrors((prev) => ({ ...prev, fullName: undefined }));
                               }}
                               placeholder="e.g. Rahul Sharma"
-                              className={`w-full px-3 py-2.5 rounded-xl bg-white/[0.04] text-white placeholder:text-zinc-600 text-sm border transition-all duration-150 focus:outline-none ${
+                              className={`w-full px-3 py-2.5 rounded-xl bg-white/[0.04] text-white placeholder:text-zinc-600 font-body text-sm border transition-all duration-150 focus:outline-none ${
                                 errors.fullName
                                   ? "border-rose-500/80 focus:border-rose-500"
                                   : "border-white/[0.1] focus:border-white/40 focus:ring-1 focus:ring-white/20"
                               }`}
                             />
                             {errors.fullName && (
-                              <p className="mt-1 text-xs text-rose-400">{errors.fullName}</p>
+                              <p className="mt-1 font-body text-xs text-rose-400">{errors.fullName}</p>
                             )}
                           </div>
 
@@ -350,12 +350,12 @@ export default function ContactPage() {
                           <div>
                             <label
                               htmlFor={phoneInputId}
-                              className="block text-xs font-medium text-zinc-300 mb-1"
+                              className="block font-heading font-medium text-xs text-zinc-300 mb-1"
                             >
                               Phone Number <span className="text-rose-400">*</span>
                             </label>
                             <div className="relative flex items-center">
-                              <span className="absolute left-3 text-xs text-zinc-400 font-medium select-none pointer-events-none">
+                              <span className="absolute left-3 font-heading font-medium text-xs text-zinc-400 select-none pointer-events-none">
                                 +91
                               </span>
                               <input
@@ -370,7 +370,7 @@ export default function ContactPage() {
                                     setErrors((prev) => ({ ...prev, phone: undefined }));
                                 }}
                                 placeholder="98765 43210"
-                                className={`w-full pl-11 pr-3 py-2.5 rounded-xl bg-white/[0.04] text-white placeholder:text-zinc-600 text-sm border transition-all duration-150 focus:outline-none ${
+                                className={`w-full pl-11 pr-3 py-2.5 rounded-xl bg-white/[0.04] text-white placeholder:text-zinc-600 font-body text-sm border transition-all duration-150 focus:outline-none ${
                                   errors.phone
                                     ? "border-rose-500/80 focus:border-rose-500"
                                     : "border-white/[0.1] focus:border-white/40 focus:ring-1 focus:ring-white/20"
@@ -378,7 +378,7 @@ export default function ContactPage() {
                               />
                             </div>
                             {errors.phone && (
-                              <p className="mt-1 text-xs text-rose-400">{errors.phone}</p>
+                              <p className="mt-1 font-body text-xs text-rose-400">{errors.phone}</p>
                             )}
                           </div>
                         </div>
@@ -386,10 +386,10 @@ export default function ContactPage() {
                         {/* Requirements (BHK) */}
                         <div>
                           <div className="flex items-center justify-between mb-1.5">
-                            <label className="text-xs font-medium text-zinc-300">
+                            <label className="font-heading font-medium text-xs text-zinc-300">
                               Requirements <span className="text-rose-400">*</span>
                             </label>
-                            <span className="text-[11px] text-zinc-400">Select configuration</span>
+                            <span className="font-body text-[11px] text-zinc-400">Select configuration</span>
                           </div>
                           <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
                             {REQUIREMENTS.map((item) => {
@@ -403,7 +403,7 @@ export default function ContactPage() {
                                     if (errors.requirement)
                                       setErrors((prev) => ({ ...prev, requirement: undefined }));
                                   }}
-                                  className={`py-2 px-2.5 rounded-xl text-xs font-medium border transition-all duration-150 flex items-center justify-center text-center cursor-pointer ${
+                                  className={`py-2 px-2.5 rounded-xl font-heading font-medium text-xs border transition-all duration-150 flex items-center justify-center text-center cursor-pointer ${
                                     isSelected
                                       ? "bg-white text-zinc-950 border-white shadow-sm font-semibold"
                                       : "bg-white/[0.03] text-zinc-300 border-white/[0.08] hover:bg-white/[0.07] hover:border-white/20 hover:text-white"
@@ -415,17 +415,17 @@ export default function ContactPage() {
                             })}
                           </div>
                           {errors.requirement && (
-                            <p className="mt-1 text-xs text-rose-400">{errors.requirement}</p>
+                            <p className="mt-1 font-body text-xs text-rose-400">{errors.requirement}</p>
                           )}
                         </div>
 
                         {/* Budget Range */}
                         <div>
                           <div className="flex items-center justify-between mb-1.5">
-                            <label className="text-xs font-medium text-zinc-300">
+                            <label className="font-heading font-medium text-xs text-zinc-300">
                               Budget Range <span className="text-rose-400">*</span>
                             </label>
-                            <span className="text-[11px] text-zinc-400">Estimated budget</span>
+                            <span className="font-body text-[11px] text-zinc-400">Estimated budget</span>
                           </div>
                           <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
                             {PRICE_RANGES.map((item) => {
@@ -439,7 +439,7 @@ export default function ContactPage() {
                                     if (errors.price)
                                       setErrors((prev) => ({ ...prev, price: undefined }));
                                   }}
-                                  className={`py-2 px-2 rounded-xl text-xs font-medium border transition-all duration-150 flex items-center justify-center text-center cursor-pointer ${
+                                  className={`py-2 px-2 rounded-xl font-heading font-medium text-xs border transition-all duration-150 flex items-center justify-center text-center cursor-pointer ${
                                     isSelected
                                       ? "bg-white text-zinc-950 border-white shadow-sm font-semibold"
                                       : "bg-white/[0.03] text-zinc-300 border-white/[0.08] hover:bg-white/[0.07] hover:border-white/20 hover:text-white"
@@ -451,17 +451,17 @@ export default function ContactPage() {
                             })}
                           </div>
                           {errors.price && (
-                            <p className="mt-1 text-xs text-rose-400">{errors.price}</p>
+                            <p className="mt-1 font-body text-xs text-rose-400">{errors.price}</p>
                           )}
                         </div>
 
                         {/* Property Stage */}
                         <div>
                           <div className="flex items-center justify-between mb-1.5">
-                            <label className="text-xs font-medium text-zinc-300">
+                            <label className="font-heading font-medium text-xs text-zinc-300">
                               Property Stage <span className="text-rose-400">*</span>
                             </label>
-                            <span className="text-[11px] text-zinc-400">Select any one type</span>
+                            <span className="font-body text-[11px] text-zinc-400">Select any one type</span>
                           </div>
                           <div className="grid grid-cols-2 sm:grid-cols-2 gap-2">
                             {PROPERTY_STAGES.map((item) => {
@@ -482,14 +482,14 @@ export default function ContactPage() {
                                   }`}
                                 >
                                   <span
-                                    className={`text-xs font-semibold ${
+                                    className={`font-heading text-xs font-semibold ${
                                       isSelected ? "text-zinc-950" : "text-white"
                                     }`}
                                   >
                                     {item.label}
                                   </span>
                                   <span
-                                    className={`text-[11px] mt-0.5 ${
+                                    className={`font-body text-[11px] mt-0.5 ${
                                       isSelected ? "text-zinc-700" : "text-zinc-400"
                                     }`}
                                   >
@@ -500,14 +500,14 @@ export default function ContactPage() {
                             })}
                           </div>
                           {errors.stage && (
-                            <p className="mt-1 text-xs text-rose-400">{errors.stage}</p>
+                            <p className="mt-1 font-body text-xs text-rose-400">{errors.stage}</p>
                           )}
                         </div>
 
                         {/* Submit Button */}
                         <div className="pt-1.5">
                           {submitError && (
-                            <div className="mb-3 p-3 rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-300 text-xs flex items-center gap-2">
+                            <div className="mb-3 p-3 rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-300 text-xs flex items-center gap-2 font-body">
                               <span className="font-semibold">Error:</span>
                               <span>{submitError}</span>
                             </div>
@@ -515,7 +515,7 @@ export default function ContactPage() {
                           <button
                             type="submit"
                             disabled={isSubmitting}
-                            className="w-full group bg-white text-zinc-950 hover:bg-zinc-100 active:scale-[0.99] font-semibold py-3.5 px-6 rounded-xl transition-all duration-150 shadow-lg flex items-center justify-center gap-2 text-sm disabled:opacity-70 cursor-pointer"
+                            className="w-full group bg-white text-zinc-950 hover:bg-zinc-100 active:scale-[0.99] font-heading font-semibold py-3.5 px-6 rounded-xl transition-all duration-150 shadow-lg flex items-center justify-center gap-2 text-sm leading-none disabled:opacity-70 cursor-pointer"
                           >
                             {isSubmitting ? (
                               <div className="flex items-center gap-2">
@@ -531,7 +531,7 @@ export default function ContactPage() {
                           </button>
 
                           {/* Reassurance footer */}
-                          <div className="mt-3 flex items-center justify-center gap-1.5 text-[11px] text-zinc-400">
+                          <div className="mt-3 flex items-center justify-center gap-1.5 font-body text-[11px] text-zinc-400">
                             <ShieldCheck className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
                             <span>100% Confidential &bull; Verified Advisor &bull; No Broker Spam</span>
                           </div>
@@ -547,12 +547,12 @@ export default function ContactPage() {
             <div className="lg:col-span-5 space-y-6">
               <AnimatedSection delay={0.15}>
                 <div className="bg-white rounded-2xl md:rounded-3xl p-6 sm:p-7 border border-slate-200 shadow-sm">
-                  <div className="flex items-center gap-2 mb-2 text-brand-600 font-semibold text-xs uppercase tracking-wider">
+                  <div className="flex items-center gap-2 mb-2 font-heading font-semibold text-xs uppercase tracking-[0.05em] leading-none text-brand-600">
                     <Award className="w-4 h-4 text-brand-600" />
                     <span>Verified Real Estate Advisory</span>
                   </div>
-                  <h3 className="text-xl font-bold text-slate-900 mb-2">Direct Contact Information</h3>
-                  <p className="text-sm text-slate-600 mb-6 leading-relaxed">
+                  <h3 className="font-heading font-bold text-lg sm:text-xl text-slate-900 mb-2 leading-[1.2] tracking-[-0.02em]">Direct Contact Information</h3>
+                  <p className="font-body font-normal text-xs sm:text-sm text-slate-600 mb-6 leading-[1.6]">
                     Have an urgent inquiry or want to arrange an on-site property walkthrough? Reach our executive desk directly.
                   </p>
 
@@ -566,17 +566,17 @@ export default function ContactPage() {
                           </div>
                           <div className="flex-1 min-w-0">
                             <div className="flex items-center justify-between gap-2">
-                              <p className="text-xs font-semibold uppercase tracking-wider text-slate-500">
+                              <p className="font-heading font-semibold text-xs uppercase tracking-[0.05em] text-slate-500">
                                 {item.label}
                               </p>
                               {"href" in item && (
-                                <span className="text-[11px] text-brand-600 font-medium flex items-center gap-0.5">
+                                <span className="font-heading font-semibold text-[11px] text-brand-600 flex items-center gap-0.5">
                                   {item.actionLabel}
                                   <ExternalLink className="w-2.5 h-2.5" />
                                 </span>
                               )}
                             </div>
-                            <p className="text-slate-900 font-medium text-sm mt-0.5 whitespace-pre-line leading-snug">
+                            <p className="font-body font-medium text-xs sm:text-sm text-slate-900 mt-0.5 whitespace-pre-line leading-[1.6]">
                               {item.value}
                             </p>
                           </div>
@@ -605,7 +605,7 @@ export default function ContactPage() {
                       href="https://wa.me/919029923246?text=Hi%20PM%20Properties,%20I%20would%20like%20to%20inquire%20about%20available%20properties."
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="w-full inline-flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#20ba59] text-black font-semibold py-3 px-4 rounded-xl text-sm transition-all shadow-md"
+                      className="w-full inline-flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#20ba59] text-black font-heading font-semibold py-3 px-4 rounded-xl text-sm leading-none transition-all shadow-md"
                     >
                       <MessageSquare className="w-4 h-4 fill-black text-black" />
                       Chat on WhatsApp (+91 90299 23246)
@@ -621,8 +621,8 @@ export default function ContactPage() {
                     <ShieldCheck className="w-5 h-5 text-emerald-400" />
                   </div>
                   <div>
-                    <h4 className="text-sm font-semibold text-white mb-1">MahaRERA &amp; KDRA Certified</h4>
-                    <p className="text-xs text-zinc-400 leading-relaxed">
+                    <h4 className="font-heading font-bold text-sm text-white mb-1 leading-[1.2]">MahaRERA &amp; KDRA Certified</h4>
+                    <p className="font-body font-normal text-xs text-zinc-400 leading-[1.6]">
                       Every property presented by PM Properties undergoes complete legal due diligence, title verification, and RERA registration checks.
                     </p>
                   </div>

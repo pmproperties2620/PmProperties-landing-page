@@ -87,7 +87,7 @@ export default function ProjectFilters({
             <button
               key={cat.id}
               onClick={() => onFilterChange({ category: cat.id })}
-              className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold whitespace-nowrap transition-all ${
+              className={`px-4 py-2 rounded-xl font-heading font-semibold text-xs sm:text-sm leading-none whitespace-nowrap transition-all ${
                 isActive
                   ? "bg-brand-600 text-white shadow-sm"
                   : "bg-slate-100 text-slate-600 hover:bg-slate-200 hover:text-slate-900"
@@ -109,12 +109,12 @@ export default function ProjectFilters({
             value={filters.search}
             onChange={(e) => onFilterChange({ search: e.target.value })}
             placeholder="Search by project name, developer (e.g. Regency, Lodha, Runwal), or locality..."
-            className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500 placeholder:text-slate-400"
+            className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 font-body text-sm focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500 placeholder:text-slate-400"
           />
           {filters.search && (
             <button
               onClick={() => onFilterChange({ search: "" })}
-              className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-slate-400 hover:text-slate-600"
+              className="absolute right-3 top-1/2 -translate-y-1/2 font-heading font-medium text-xs text-slate-400 hover:text-slate-600"
             >
               Clear
             </button>
@@ -125,7 +125,7 @@ export default function ProjectFilters({
         <select
           value={filters.city}
           onChange={(e) => onFilterChange({ city: e.target.value })}
-          className="px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs sm:text-sm font-medium bg-white text-slate-700 focus:outline-none focus:ring-2 focus:ring-brand-500/20"
+          className="px-3.5 py-2.5 rounded-xl border border-slate-200 font-heading font-medium text-xs sm:text-sm bg-white text-slate-700 focus:outline-none focus:ring-2 focus:ring-brand-500/20"
         >
           {CITIES.map((c) => (
             <option key={c.id} value={c.id}>
@@ -138,7 +138,7 @@ export default function ProjectFilters({
         <select
           value={filters.budget}
           onChange={(e) => onFilterChange({ budget: e.target.value })}
-          className="px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs sm:text-sm font-medium bg-white text-slate-700 focus:outline-none focus:ring-2 focus:ring-brand-500/20"
+          className="px-3.5 py-2.5 rounded-xl border border-slate-200 font-heading font-medium text-xs sm:text-sm bg-white text-slate-700 focus:outline-none focus:ring-2 focus:ring-brand-500/20"
         >
           {BUDGETS.map((b) => (
             <option key={b.id} value={b.id}>
@@ -151,7 +151,7 @@ export default function ProjectFilters({
         <button
           type="button"
           onClick={() => setShowAdvanced(!showAdvanced)}
-          className={`inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl border text-xs sm:text-sm font-medium transition-colors ${
+          className={`inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl border font-heading font-medium text-xs sm:text-sm leading-none transition-colors ${
             showAdvanced || filters.config !== "all" || filters.possession !== "all"
               ? "border-brand-500 text-brand-600 bg-brand-50/50"
               : "border-slate-200 text-slate-700 bg-white hover:bg-slate-50"
@@ -166,7 +166,7 @@ export default function ProjectFilters({
           <button
             type="button"
             onClick={onReset}
-            className="inline-flex items-center justify-center gap-1 px-3 py-2.5 rounded-xl text-xs sm:text-sm font-medium text-rose-600 hover:bg-rose-50 transition-colors"
+            className="inline-flex items-center justify-center gap-1 px-3 py-2.5 rounded-xl font-heading font-medium text-xs sm:text-sm leading-none text-rose-600 hover:bg-rose-50 transition-colors"
           >
             <RotateCcw className="w-3.5 h-3.5" />
             <span>Reset</span>
@@ -179,7 +179,7 @@ export default function ProjectFilters({
         <div className="mt-4 pt-4 border-t border-slate-100 grid grid-cols-1 sm:grid-cols-2 gap-4">
           {/* Configuration filter */}
           <div>
-            <span className="block text-xs font-semibold text-slate-500 mb-2">
+            <span className="block font-heading font-semibold text-xs text-slate-500 mb-2">
               Unit Configuration
             </span>
             <div className="flex flex-wrap gap-1.5">
@@ -189,7 +189,7 @@ export default function ProjectFilters({
                   <button
                     key={cfg.id}
                     onClick={() => onFilterChange({ config: cfg.id })}
-                    className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-colors flex items-center gap-1 ${
+                    className={`px-3 py-1.5 rounded-lg font-heading font-medium text-xs transition-colors flex items-center gap-1 ${
                       isSelected
                         ? "bg-slate-900 text-white"
                         : "bg-slate-100 text-slate-700 hover:bg-slate-200"
@@ -205,7 +205,7 @@ export default function ProjectFilters({
 
           {/* Possession Status Filter */}
           <div>
-            <span className="block text-xs font-semibold text-slate-500 mb-2">
+            <span className="block font-heading font-semibold text-xs text-slate-500 mb-2">
               Possession Status
             </span>
             <div className="flex flex-wrap gap-1.5">
@@ -215,7 +215,7 @@ export default function ProjectFilters({
                   <button
                     key={pos.id}
                     onClick={() => onFilterChange({ possession: pos.id })}
-                    className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-colors flex items-center gap-1 ${
+                    className={`px-3 py-1.5 rounded-lg font-heading font-medium text-xs transition-colors flex items-center gap-1 ${
                       isSelected
                         ? "bg-slate-900 text-white"
                         : "bg-slate-100 text-slate-700 hover:bg-slate-200"
@@ -232,10 +232,10 @@ export default function ProjectFilters({
       )}
 
       {/* Result Count and Summary */}
-      <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
+      <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between font-body text-xs text-slate-500">
         <div>
-          Showing <span className="font-bold text-slate-900">{filteredCount}</span> of{" "}
-          <span className="font-bold text-slate-900">{totalCount}</span> curated properties
+          Showing <span className="font-heading font-bold text-slate-900">{filteredCount}</span> of{" "}
+          <span className="font-heading font-bold text-slate-900">{totalCount}</span> curated properties
         </div>
         <div className="hidden sm:flex items-center gap-2">
           <span className="inline-block w-2 h-2 rounded-full bg-emerald-500"></span>

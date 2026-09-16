@@ -135,23 +135,23 @@ export default function ProjectDetailModal({
               {/* Header Details Overlay */}
               <div className="absolute bottom-4 left-4 right-4 text-white">
                 <div className="flex items-center gap-2 mb-2 flex-wrap">
-                  <span className="px-2.5 py-0.5 rounded-full text-xs font-bold uppercase tracking-wider bg-brand-600 text-white">
+                  <span className="px-2.5 py-0.5 rounded-full font-heading font-bold text-xs uppercase tracking-[0.05em] bg-brand-600 text-white">
                     {project.developer}
                   </span>
                   {project.zeroBrokerage && (
-                    <span className="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-500/90 text-white flex items-center gap-1">
+                    <span className="px-2.5 py-0.5 rounded-full font-heading font-semibold text-xs bg-emerald-500/90 text-white flex items-center gap-1">
                       <Sparkles className="w-3 h-3" /> 0% Brokerage
                     </span>
                   )}
-                  <span className="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-white/20 backdrop-blur-md text-white">
+                  <span className="px-2.5 py-0.5 rounded-full font-heading font-semibold text-xs bg-white/20 backdrop-blur-md text-white">
                     {project.possession}
                   </span>
                 </div>
 
-                <h2 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+                <h2 className="font-heading font-bold text-2xl sm:text-3xl text-white tracking-[-0.02em] leading-[1.15]">
                   {project.title}
                 </h2>
-                <div className="flex items-center gap-1.5 text-xs sm:text-sm text-slate-300 mt-1">
+                <div className="flex items-center gap-1.5 font-body font-normal text-xs sm:text-sm text-slate-300 mt-1">
                   <MapPin className="w-4 h-4 text-brand-400 shrink-0" />
                   <span>
                     {project.location.locality}, {project.location.city} &bull;{" "}
@@ -190,61 +190,61 @@ export default function ProjectDetailModal({
               {/* Key Specs Bar */}
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 p-4 rounded-2xl bg-slate-50 border border-slate-200/80">
                 <div>
-                  <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">
+                  <span className="font-heading font-bold text-[10px] uppercase tracking-[0.05em] text-slate-400">
                     Price Guide
                   </span>
-                  <div className="text-lg sm:text-xl font-bold text-brand-600 mt-0.5">
+                  <div className="font-heading font-normal text-lg sm:text-xl text-brand-600 mt-0.5">
                     {project.priceDisplay}
                   </div>
                   {project.pricePerSqft && (
-                    <span className="text-[11px] text-slate-500">
+                    <span className="font-body font-normal text-[11px] text-slate-500">
                       {project.pricePerSqft}
                     </span>
                   )}
                 </div>
 
                 <div>
-                  <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">
+                  <span className="font-heading font-bold text-[10px] uppercase tracking-[0.05em] text-slate-400">
                     Configurations
                   </span>
-                  <div className="text-sm sm:text-base font-bold text-slate-800 mt-0.5">
+                  <div className="font-heading font-bold text-sm sm:text-base text-slate-800 mt-0.5">
                     {project.configurations.join(", ")}
                   </div>
-                  <span className="text-[11px] text-slate-500">
+                  <span className="font-body font-normal text-[11px] text-slate-500">
                     {project.category}
                   </span>
                 </div>
 
                 <div>
-                  <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">
+                  <span className="font-heading font-bold text-[10px] uppercase tracking-[0.05em] text-slate-400">
                     Carpet Area
                   </span>
-                  <div className="text-sm sm:text-base font-bold text-slate-800 mt-0.5">
+                  <div className="font-heading font-bold text-sm sm:text-base text-slate-800 mt-0.5">
                     {project.carpetArea}
                   </div>
-                  <span className="text-[11px] text-slate-500 flex items-center gap-1">
+                  <span className="font-body font-normal text-[11px] text-slate-500 flex items-center gap-1">
                     <Ruler className="w-3 h-3" /> RERA Usable
                   </span>
                 </div>
 
                 <div>
-                  <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">
+                  <span className="font-heading font-bold text-[10px] uppercase tracking-[0.05em] text-slate-400">
                     Possession
                   </span>
-                  <div className="text-sm sm:text-base font-bold text-slate-800 mt-0.5">
+                  <div className="font-heading font-bold text-sm sm:text-base text-slate-800 mt-0.5">
                     {project.possessionDate}
                   </div>
-                  <span className="text-[11px] text-slate-500 flex items-center gap-1">
+                  <span className="font-body font-normal text-[11px] text-slate-500 flex items-center gap-1">
                     <Calendar className="w-3 h-3" /> {project.possession}
                   </span>
                 </div>
               </div>
 
               {/* RERA Notice Strip */}
-              <div className="flex items-center gap-3 p-3.5 rounded-xl bg-emerald-50/70 border border-emerald-200/60 text-emerald-900 text-xs sm:text-sm font-medium">
+              <div className="flex items-center gap-3 p-3.5 rounded-xl bg-emerald-50/70 border border-emerald-200/60 font-body font-medium text-emerald-900 text-xs sm:text-sm">
                 <ShieldCheck className="w-5 h-5 text-emerald-600 shrink-0" />
                 <div>
-                  <span className="font-bold">MahaRERA Verified:</span>{" "}
+                  <span className="font-heading font-bold">MahaRERA Verified:</span>{" "}
                   <span className="font-mono">{project.reraId}</span> &bull;
                   Clear marketable title, legally vetted by PM Properties
                   experts.
@@ -253,24 +253,24 @@ export default function ProjectDetailModal({
 
               {/* About the Project */}
               <div>
-                <h3 className="text-lg font-bold text-slate-900 mb-2">
+                <h3 className="font-heading font-bold text-lg sm:text-xl text-slate-900 mb-2 leading-[1.2] tracking-[-0.02em]">
                   About {project.title}
                 </h3>
-                <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
+                <p className="font-body font-normal text-xs sm:text-sm text-slate-600 leading-[1.6]">
                   {project.description}
                 </p>
               </div>
 
               {/* Key Highlights */}
               <div>
-                <h3 className="text-lg font-bold text-slate-900 mb-3">
+                <h3 className="font-heading font-bold text-lg sm:text-xl text-slate-900 mb-3 leading-[1.2] tracking-[-0.02em]">
                   Key Project Highlights
                 </h3>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                   {project.highlights.map((highlight, i) => (
                     <div
                       key={i}
-                      className="flex items-start gap-2.5 text-sm text-slate-700 p-2.5 rounded-xl bg-slate-50/80 border border-slate-100"
+                      className="flex items-start gap-2.5 font-body font-normal text-xs sm:text-sm text-slate-700 p-2.5 rounded-xl bg-slate-50/80 border border-slate-100 leading-[1.6]"
                     >
                       <CheckCircle2 className="w-4 h-4 text-brand-600 mt-0.5 shrink-0" />
                       <span>{highlight}</span>
@@ -281,14 +281,14 @@ export default function ProjectDetailModal({
 
               {/* Amenities */}
               <div>
-                <h3 className="text-lg font-bold text-slate-900 mb-3">
+                <h3 className="font-heading font-bold text-lg sm:text-xl text-slate-900 mb-3 leading-[1.2] tracking-[-0.02em]">
                   World-Class Amenities
                 </h3>
                 <div className="flex flex-wrap gap-2">
                   {project.amenities.map((amenity, i) => (
                     <span
                       key={i}
-                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 text-slate-700 text-xs sm:text-sm font-medium"
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 text-slate-700 font-body font-medium text-xs sm:text-sm"
                     >
                       <Building2 className="w-3.5 h-3.5 text-brand-500" />
                       {amenity}
@@ -302,10 +302,10 @@ export default function ProjectDetailModal({
           {/* Modal Action Footer */}
           <div className="p-4 sm:p-6 bg-slate-50 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-3">
             <div className="text-center sm:text-left">
-              <span className="text-xs text-slate-500 block">
+              <span className="font-body text-xs text-slate-500 block">
                 Have questions about pricing or floor plans?
               </span>
-              <span className="text-sm font-bold text-slate-800">
+              <span className="font-heading font-bold text-sm text-slate-800">
                 Direct Consultation with PM Properties Expert
               </span>
             </div>
@@ -313,7 +313,7 @@ export default function ProjectDetailModal({
             <div className="flex items-center gap-2.5 w-full sm:w-auto">
               <a
                 href="tel:+919029923246"
-                className="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 px-4 py-3 rounded-xl border border-slate-300 bg-white hover:bg-slate-100 text-slate-800 text-sm font-semibold transition-colors"
+                className="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 px-4 py-3 rounded-xl border border-slate-300 bg-white hover:bg-slate-100 text-slate-800 font-heading font-semibold text-sm leading-none transition-colors"
               >
                 <Phone className="w-4 h-4 text-slate-600" />
                 <span>Call Now</span>
@@ -323,10 +323,10 @@ export default function ProjectDetailModal({
                 href={getWhatsAppMessage("request the official brochure")}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-brand-600 hover:bg-brand-700 text-white text-sm font-semibold transition-all shadow-md hover:shadow-lg"
+                className="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-heading font-semibold text-sm leading-none transition-all shadow-md hover:shadow-lg"
               >
                 <MessageCircle className="w-4 h-4" />
-                <span>Get Brochure & Site Visit</span>
+                <span>Get Brochure &amp; Site Visit</span>
               </a>
             </div>
           </div>

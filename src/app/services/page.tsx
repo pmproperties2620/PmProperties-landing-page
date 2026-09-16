@@ -13,7 +13,6 @@ import {
   ArrowUpRight,
   Sparkles,
   Compass,
-  Check,
   type LucideIcon,
 } from "lucide-react";
 import BookConsultationButton from "@/components/ui/BookConsultationButton";
@@ -358,8 +357,8 @@ export default function ServicesPage() {
           <div className="absolute inset-0 bg-gradient-to-r from-red-700/95 via-red-500/75 to-transparent" />
         </div>
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center z-10">
-          <h1 className="text-4xl sm:text-5xl font-bold text-white mb-4">Our Services</h1>
-          <p className="text-lg text-slate-300 max-w-2xl mx-auto">
+          <h1 className="font-heading font-black text-3xl sm:text-6xl text-white mb-4 leading-[1.15] tracking-[-0.02em]">Our Services</h1>
+          <p className="font-body font-normal text-sm sm:text-base text-slate-300 max-w-2xl mx-auto leading-[1.6]">
             Everything you need to buy, sell, or invest in real estate — all under one roof.
           </p>
         </div>
@@ -385,14 +384,14 @@ export default function ServicesPage() {
           <div>
             {/* Category Header */}
             <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold tracking-wider uppercase bg-[#FDE8E8] text-brand-600 border border-brand-200/70 shadow-xs mb-3.5">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full font-heading font-semibold text-xs uppercase tracking-[0.05em] leading-none bg-[#FDE8E8] text-brand-600 border border-brand-200/70 shadow-xs mb-3.5">
                 <Compass className="w-3.5 h-3.5 text-brand-600" />
                 <span>Primary Practice</span>
               </div>
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight mb-3">
+              <h2 className="font-heading font-bold text-2xl sm:text-4xl lg:text-5xl text-slate-900 tracking-[-0.02em] leading-[1.15] mb-3">
                 Residential Services
               </h2>
-              <p className="text-base sm:text-lg text-slate-600 font-normal">
+              <p className="font-body font-normal text-sm sm:text-base text-slate-600 leading-[1.6]">
                 Everything you need to buy, sell, or rent a home
               </p>
             </div>
@@ -426,7 +425,7 @@ export default function ServicesPage() {
                           <span className="block text-[11px] font-mono tracking-widest text-slate-400 uppercase font-semibold">
                             {service.code}
                           </span>
-                          <span className="inline-flex items-center px-2 py-0.5 rounded-md text-[10px] font-bold uppercase tracking-wider bg-white/90 text-brand-700 border border-brand-200/50 shadow-2xs mt-1">
+                          <span className="inline-flex items-center px-2 py-0.5 rounded-md font-heading font-bold text-[10px] uppercase tracking-wider bg-white/90 text-brand-700 border border-brand-200/50 shadow-2xs mt-1">
                             {service.categoryTag}
                           </span>
                         </div>
@@ -442,12 +441,12 @@ export default function ServicesPage() {
                     <div className="p-6 sm:p-7 flex-1 flex flex-col justify-between">
                       <div>
                         {/* Title */}
-                        <h3 className="text-xl sm:text-2xl font-bold text-slate-900 mb-2.5 tracking-tight group-hover:text-brand-600 transition-colors duration-200">
+                        <h3 className="font-heading font-bold text-lg sm:text-xl text-slate-900 mb-2.5 leading-[1.2] tracking-[-0.02em] group-hover:text-brand-600 transition-colors duration-200">
                           {service.title}
                         </h3>
 
                         {/* 2-line max description */}
-                        <p className="text-slate-600 text-sm sm:text-[15px] leading-relaxed line-clamp-2 mb-6">
+                        <p className="font-body font-normal text-xs sm:text-sm text-slate-600 leading-[1.6] line-clamp-2 mb-6">
                           {service.description}
                         </p>
                       </div>
@@ -459,7 +458,7 @@ export default function ServicesPage() {
                             <span className="block text-[10px] font-mono uppercase tracking-wider text-slate-400 font-semibold">
                               Scope
                             </span>
-                            <span className="font-medium text-slate-800 line-clamp-1">
+                            <span className="font-body font-medium text-xs text-slate-800 line-clamp-1">
                               {service.specs.scope}
                             </span>
                           </div>
@@ -467,7 +466,7 @@ export default function ServicesPage() {
                             <span className="block text-[10px] font-mono uppercase tracking-wider text-slate-400 font-semibold">
                               Timeline
                             </span>
-                            <span className="font-medium text-slate-800 line-clamp-1">
+                            <span className="font-body font-medium text-xs text-slate-800 line-clamp-1">
                               {service.specs.timeline}
                             </span>
                           </div>
@@ -475,7 +474,7 @@ export default function ServicesPage() {
                             <span className="block text-[10px] font-mono uppercase tracking-wider text-slate-400 font-semibold">
                               Deliverable
                             </span>
-                            <span className="font-medium text-brand-700 font-semibold line-clamp-1">
+                            <span className="font-body font-semibold text-xs text-brand-700 line-clamp-1">
                               {service.specs.deliverable}
                             </span>
                           </div>
@@ -483,11 +482,11 @@ export default function ServicesPage() {
                       </div>
 
                       {/* Card Bottom CTA Affordance */}
-                      <div className="pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-semibold">
-                        <span className="text-slate-500 group-hover:text-slate-900 transition-colors duration-200">
+                      <div className="pt-3 border-t border-slate-100 flex items-center justify-between text-xs">
+                        <span className="font-heading font-semibold text-xs text-slate-500 group-hover:text-slate-900 transition-colors duration-200">
                           Verified Brokerage Mandate
                         </span>
-                        <span className="inline-flex items-center gap-1.5 text-brand-600 font-bold uppercase tracking-wider text-[11px] group-hover:translate-x-0.5 transition-transform duration-200">
+                        <span className="inline-flex items-center gap-1.5 font-heading font-bold uppercase tracking-[0.05em] text-[11px] text-brand-600 group-hover:translate-x-0.5 transition-transform duration-200">
                           Consult on WhatsApp &rarr;
                         </span>
                       </div>
@@ -501,7 +500,7 @@ export default function ServicesPage() {
           {/* ════ Architectural Section Divider ════ */}
           <div className="my-16 sm:my-24 max-w-5xl mx-auto flex items-center gap-4">
             <div className="flex-1 h-px bg-gradient-to-r from-transparent via-slate-300 to-slate-200" />
-            <div className="flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-slate-200 shadow-xs text-xs font-semibold text-slate-600">
+            <div className="flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-slate-200 shadow-xs font-heading font-semibold text-xs text-slate-600">
               <span className="w-2 h-2 rounded-full bg-brand-500" />
               <span>Specialized &amp; Commercial Solutions</span>
             </div>
@@ -512,14 +511,14 @@ export default function ServicesPage() {
           <div>
             {/* Category Header */}
             <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold tracking-wider uppercase bg-[#FDE8E8] text-brand-600 border border-brand-200/70 shadow-xs mb-3.5">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full font-heading font-semibold text-xs uppercase tracking-[0.05em] leading-none bg-[#FDE8E8] text-brand-600 border border-brand-200/70 shadow-xs mb-3.5">
                 <Sparkles className="w-3.5 h-3.5 text-brand-600" />
                 <span>Specialized Practice</span>
               </div>
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight mb-3">
+              <h2 className="font-heading font-bold text-2xl sm:text-4xl lg:text-5xl text-slate-900 tracking-[-0.02em] leading-[1.15] mb-3">
                 Specialized &amp; Commercial Services
               </h2>
-              <p className="text-base sm:text-lg text-slate-600 font-normal">
+              <p className="font-body font-normal text-sm sm:text-base text-slate-600 leading-[1.6]">
                 Beyond the basics — design, safety, and commercial solutions.
               </p>
             </div>
@@ -552,7 +551,7 @@ export default function ServicesPage() {
                           <span className="block text-[10px] font-mono tracking-widest text-slate-400 uppercase font-semibold">
                             {service.code}
                           </span>
-                          <span className="inline-flex items-center px-1.5 py-0.5 rounded-md text-[9px] font-bold uppercase tracking-wider bg-white/90 text-brand-700 border border-brand-200/50 shadow-2xs mt-0.5">
+                          <span className="inline-flex items-center px-1.5 py-0.5 rounded-md font-heading font-bold text-[9px] uppercase tracking-wider bg-white/90 text-brand-700 border border-brand-200/50 shadow-2xs mt-0.5">
                             {service.categoryTag}
                           </span>
                         </div>
@@ -568,12 +567,12 @@ export default function ServicesPage() {
                     <div className="p-5 sm:p-6 flex-1 flex flex-col justify-between">
                       <div>
                         {/* Title */}
-                        <h3 className="text-lg sm:text-xl font-bold text-slate-900 mb-2 tracking-tight group-hover:text-brand-600 transition-colors duration-200">
+                        <h3 className="font-heading font-bold text-lg sm:text-xl text-slate-900 mb-2 leading-[1.2] tracking-[-0.02em] group-hover:text-brand-600 transition-colors duration-200">
                           {service.title}
                         </h3>
 
                         {/* 2-line max description */}
-                        <p className="text-slate-600 text-sm leading-relaxed line-clamp-2 mb-5">
+                        <p className="font-body font-normal text-xs sm:text-sm text-slate-600 leading-[1.6] line-clamp-2 mb-5">
                           {service.description}
                         </p>
                       </div>
@@ -584,7 +583,7 @@ export default function ServicesPage() {
                           <span className="text-[10px] font-mono uppercase text-slate-400 font-semibold">
                             Scope
                           </span>
-                          <span className="font-medium text-slate-800 line-clamp-1 text-right max-w-[65%]">
+                          <span className="font-body font-medium text-xs text-slate-800 line-clamp-1 text-right max-w-[65%]">
                             {service.specs.scope}
                           </span>
                         </div>
@@ -592,16 +591,16 @@ export default function ServicesPage() {
                           <span className="text-[10px] font-mono uppercase text-slate-400 font-semibold">
                             Key Benefit
                           </span>
-                          <span className="font-semibold text-brand-700 line-clamp-1 text-right max-w-[65%]">
+                          <span className="font-body font-semibold text-xs text-brand-700 line-clamp-1 text-right max-w-[65%]">
                             {service.specs.deliverable}
                           </span>
                         </div>
                       </div>
 
                       {/* Bottom Action Footer */}
-                      <div className="pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-semibold">
-                        <span className="text-slate-400 text-[11px]">Turnkey / Mandate</span>
-                        <span className="text-brand-600 text-[11px] font-bold uppercase tracking-wider group-hover:translate-x-0.5 transition-transform duration-200">
+                      <div className="pt-3 border-t border-slate-100 flex items-center justify-between text-xs">
+                        <span className="font-heading font-semibold text-slate-400 text-[11px]">Turnkey / Mandate</span>
+                        <span className="font-heading font-bold text-brand-600 text-[11px] uppercase tracking-[0.05em] group-hover:translate-x-0.5 transition-transform duration-200">
                           Inquire &rarr;
                         </span>
                       </div>
@@ -617,14 +616,14 @@ export default function ServicesPage() {
       {/* ─── Bottom Navy Band (Kept Unchanged) ────────────────────── */}
       <section className="py-16 sm:py-20 bg-slate-900">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
+          <h2 className="font-heading font-bold text-2xl sm:text-4xl text-white mb-4 leading-[1.15] tracking-[-0.02em]">
             Not Sure What You Need?
           </h2>
-          <p className="text-lg text-slate-300 max-w-2xl mx-auto mb-8">
+          <p className="font-body font-normal text-sm sm:text-base text-slate-300 max-w-2xl mx-auto mb-8 leading-[1.6]">
             Book a free no-obligation consultation. We&apos;ll listen to your goals and recommend the
             perfect plan.
           </p>
-          <BookConsultationButton className="inline-flex items-center justify-center gap-2 bg-brand-600 text-white px-8 py-4 rounded-xl font-semibold text-lg hover:bg-brand-700 transition-all shadow-lg cursor-pointer">
+          <BookConsultationButton className="inline-flex items-center justify-center gap-2 bg-brand-600 text-white px-8 py-4 rounded-xl font-heading font-semibold text-sm sm:text-base leading-none hover:bg-brand-700 transition-all shadow-lg cursor-pointer">
             Book a Free Consultation
           </BookConsultationButton>
         </div>

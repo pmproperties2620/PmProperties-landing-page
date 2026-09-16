@@ -29,11 +29,11 @@ export default function CredentialsSection() {
         <AnimatedSection>
           <div className="text-center mb-10 flex flex-col items-center">
             <SectionDecoration className="mb-4" />
-            <h2 className="text-sm font-bold tracking-widest text-[#0a1128] uppercase mb-3">
+            <p className="font-heading text-xs sm:text-sm font-semibold uppercase tracking-[0.05em] leading-none text-[#0a1128] mb-3">
               Trust & Transparency
-            </h2>
-            <h2 className="text-3xl md:text-5xl font-bold text-[#0a1128] mb-6">Our Credentials</h2>
-            <p className="text-slate-600 text-lg max-w-2xl mx-auto mb-4">
+            </p>
+            <h2 className="font-heading text-2xl md:text-4xl font-bold leading-[1.15] tracking-[-0.02em] text-[#0a1128] mb-6">Our Credentials</h2>
+            <p className="font-body font-normal text-sm sm:text-base leading-[1.6] text-slate-600 max-w-2xl mx-auto mb-4">
               We operate with strict adherence to industry regulations and ethical standards to ensure your investments are always safe.
             </p>
           </div>
@@ -41,7 +41,7 @@ export default function CredentialsSection() {
 
         <StaggerContainer>
           <div className="flex flex-col md:flex-row flex-wrap items-center justify-center gap-8 md:gap-16 max-w-6xl mx-auto">
-            {badges.map((badge, i) => (
+            {badges.map((badge) => (
               <StaggerItem key={badge.title}>
                 <div className="hover:scale-105 transition-transform duration-300">
                   <RatingBadge 

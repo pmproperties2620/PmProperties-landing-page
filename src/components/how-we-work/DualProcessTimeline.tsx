@@ -1,6 +1,5 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { 
   MoveRight, 
   Search,
@@ -12,7 +11,6 @@ import {
   Handshake,
   Camera 
 } from "lucide-react";
-import AnimatedSection, { StaggerContainer, StaggerItem } from "@/components/ui/AnimatedSection";
 
 const buyingSteps = [
   {
@@ -138,7 +136,7 @@ import { TracingBeam } from "@/components/ui/tracing-beam";
 function ProcessColumn({ title, steps }: { title: string; steps: Step[] }) {
   return (
     <div className="flex flex-col h-fit bg-white rounded-3xl p-6 sm:p-10 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-slate-100">
-      <h3 className="text-2xl sm:text-3xl font-bold text-center mb-10 text-[#0a1128]">{title}</h3>
+      <h3 className="font-heading font-bold text-2xl sm:text-3xl text-center mb-10 text-[#0a1128] leading-[1.15] tracking-[-0.02em]">{title}</h3>
       <div className="flex-1">
         <TracingBeam className="pl-6">
           <div className="flex flex-col gap-12 relative z-10 w-full pt-4 pb-8">
@@ -151,17 +149,17 @@ function ProcessColumn({ title, steps }: { title: string; steps: Step[] }) {
                       <div className="w-10 h-10 rounded-full bg-brand-50 flex items-center justify-center border border-brand-100 shrink-0">
                         <Icon className="w-5 h-5 text-brand-600" />
                       </div>
-                      <h4 className="text-lg sm:text-xl font-bold text-slate-900">{s.title}</h4>
+                      <h4 className="font-heading font-bold text-lg sm:text-xl text-slate-900 leading-[1.2] tracking-[-0.02em]">{s.title}</h4>
                     </div>
                     
-                    <p className="text-slate-600 leading-relaxed text-sm sm:text-base mb-4">{s.description}</p>
+                    <p className="font-body font-normal text-xs sm:text-sm text-slate-600 leading-[1.6] mb-4">{s.description}</p>
                     
                     {s.details && (
                       <div className="grid grid-cols-1 gap-2">
                         {s.details.map((d) => (
-                          <div key={d} className="flex items-start gap-2 text-sm text-slate-600">
+                          <div key={d} className="flex items-start gap-2 text-slate-600">
                             <MoveRight className="w-3.5 h-3.5 mt-0.5 shrink-0 text-brand-500" />
-                            <span className="text-slate-700">{d}</span>
+                            <span className="font-body font-normal text-xs sm:text-sm text-slate-700 leading-[1.6]">{d}</span>
                           </div>
                         ))}
                       </div>

@@ -11,7 +11,7 @@ interface BookConsultationButtonProps {
 
 export default function BookConsultationButton({
   children = "Book Consultation",
-  className = "inline-flex items-center justify-center gap-2 bg-brand-600 text-white px-8 py-4 rounded-xl font-semibold text-lg hover:bg-brand-700 transition-all shadow-lg cursor-pointer",
+  className = "inline-flex items-center justify-center gap-2 bg-brand-600 text-white px-8 py-4 rounded-xl font-heading font-semibold text-sm lg:text-[15px] leading-none hover:bg-brand-700 transition-all shadow-lg cursor-pointer",
   initialData,
 }: BookConsultationButtonProps) {
   const { openModal } = useConsultationModal();
