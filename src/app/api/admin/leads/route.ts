@@ -7,6 +7,7 @@ import {
 import { updateMockLead, getMockLeads } from "@/lib/mockLeads";
 import { authenticateAdminRequest } from "@/lib/adminAuth";
 import { invalidateAnalyticsCache } from "@/lib/analyticsCache";
+import { getUnreadLeadsCount } from "@/lib/pushNotifications";
 
 export async function GET(request: Request) {
   try {
@@ -69,6 +70,9 @@ export async function GET(request: Request) {
 
       const total = filtered.length;
       const paginatedLeads = filtered.slice(offset, offset + limit);
+      const unreadCount = filtered.filter(
+        (l) => l.is_read === false || (l.status === "new" && l.is_read !== true)
+      ).length;
 
       return NextResponse.json({
         success: true,
@@ -78,6 +82,7 @@ export async function GET(request: Request) {
         total,
         page,
         totalPages: Math.ceil(total / limit) || 1,
+        unreadCount,
       });
     }
 
@@ -117,7 +122,10 @@ export async function GET(request: Request) {
     // Apply pagination range
     query = query.range(offset, offset + limit - 1);
 
-    const { data, count, error } = await query;
+    const [{ data, count, error }, unreadCount] = await Promise.all([
+      query,
+      getUnreadLeadsCount(),
+    ]);
 
     if (error) {
       console.error("❌ [API /api/admin/leads] Supabase query error:", error);
@@ -135,6 +143,7 @@ export async function GET(request: Request) {
       total,
       page,
       totalPages: Math.ceil(total / limit) || 1,
+      unreadCount,
     });
   } catch (err: unknown) {
     console.error("❌ [API /api/admin/leads] Unexpected error:", err);
@@ -155,7 +164,7 @@ export async function PATCH(request: Request) {
     }
 
     const body = await request.json();
-    const { id, status, notes } = body;
+    const { id, status, notes, is_read } = body;
 
     if (!id || typeof id !== "string") {
       return NextResponse.json(
@@ -183,6 +192,7 @@ export async function PATCH(request: Request) {
       const updated = updateMockLead(id, {
         ...(status && { status }),
         ...(typeof notes === "string" && { notes }),
+        ...(typeof is_read === "boolean" && { is_read }),
       });
       invalidateAnalyticsCache();
       return NextResponse.json({ success: true, lead: updated, devMode: true });
@@ -192,6 +202,7 @@ export async function PATCH(request: Request) {
     const updatePayload: Record<string, unknown> = {};
     if (status) updatePayload.status = status;
     if (typeof notes === "string") updatePayload.notes = notes;
+    if (typeof is_read === "boolean") updatePayload.is_read = is_read;
 
     const { data, error } = await supabase
       .from("leads")

@@ -10,14 +10,71 @@ import {
   FileSpreadsheet,
   Lock,
   RotateCcw,
+  Bell,
+  BellRing,
+  Smartphone,
 } from "lucide-react";
 import { useAdminAuth } from "../AdminAuthContext";
+import { usePushNotifications } from "@/context/PushNotificationContext";
 import { Lead } from "@/lib/supabaseServer";
 
 export default function AdminSettingsPage() {
   const { logout, passcode, setPasscode } = useAdminAuth();
+  const {
+    isSupported,
+    isSubscribed,
+    permission,
+    subscribeToPush,
+    sendTestPush,
+  } = usePushNotifications();
   const [isExporting, setIsExporting] = useState(false);
   const [exportSuccess, setExportSuccess] = useState(false);
+
+  // Push Notification State
+  const [isSubscribing, setIsSubscribing] = useState(false);
+  const [isTestingPush, setIsTestingPush] = useState(false);
+  const [pushStatusMsg, setPushStatusMsg] = useState("");
+  const [pushErrorMsg, setPushErrorMsg] = useState("");
+
+  const handleEnablePush = async () => {
+    setPushErrorMsg("");
+    setPushStatusMsg("");
+    setIsSubscribing(true);
+    try {
+      const success = await subscribeToPush();
+      if (success) {
+        setPushStatusMsg("Push notifications enabled! You will receive live alerts when new leads arrive.");
+      } else {
+        if (typeof window !== "undefined" && window.Notification?.permission === "denied") {
+          setPushErrorMsg("Notifications are blocked by your browser. Please allow notifications in your browser's site settings.");
+        } else {
+          setPushErrorMsg("Could not enable notifications. Please confirm permissions.");
+        }
+      }
+    } catch {
+      setPushErrorMsg("An unexpected error occurred while subscribing.");
+    } finally {
+      setIsSubscribing(false);
+    }
+  };
+
+  const handleTestPush = async () => {
+    setPushErrorMsg("");
+    setPushStatusMsg("");
+    setIsTestingPush(true);
+    try {
+      const res = await sendTestPush();
+      if (res.success) {
+        setPushStatusMsg(res.message);
+      } else {
+        setPushErrorMsg(res.message);
+      }
+    } catch {
+      setPushErrorMsg("Failed to send test notification.");
+    } finally {
+      setIsTestingPush(false);
+    }
+  };
 
   // Change Passcode Form State
   const [currentCode, setCurrentCode] = useState("");
@@ -259,7 +316,97 @@ export default function AdminSettingsPage() {
         </form>
       </div>
 
-      {/* ─── 3. Data Export ─── */}
+      {/* ─── 3. Instant Push Notifications & Alerts ─── */}
+      <div className="bg-white rounded-2xl p-6 sm:p-7 shadow-sm ring-1 ring-slate-200/60 space-y-4">
+        <div className="flex items-start justify-between gap-4">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-xl bg-brand-50 flex items-center justify-center text-brand-600">
+              <BellRing className="w-5 h-5" />
+            </div>
+            <div>
+              <h2 className="font-heading font-bold text-base text-slate-900">
+                PWA Push Notifications & Instant Alerts
+              </h2>
+              <p className="font-body text-xs text-slate-500">
+                Get real-time alerts on your phone or computer the second a client requests a consultation.
+              </p>
+            </div>
+          </div>
+
+          <div className="shrink-0">
+            {isSubscribed ? (
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-heading font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">
+                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                Active & Subscribed
+              </span>
+            ) : !isSupported ? (
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-heading font-semibold bg-slate-100 text-slate-500">
+                Browser Unsupported
+              </span>
+            ) : permission === "denied" ? (
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-heading font-semibold bg-rose-50 text-rose-700 border border-rose-200">
+                Notifications Blocked
+              </span>
+            ) : (
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-heading font-semibold bg-amber-50 text-amber-700 border border-amber-200">
+                Not Subscribed
+              </span>
+            )}
+          </div>
+        </div>
+
+        <div className="pt-2 border-t border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div className="space-y-1">
+            <p className="text-xs font-body text-slate-600 max-w-md">
+              Push alerts display the client&apos;s name, property demand (1/2/3 BHK), and budget bracket with deep-links directly into the lead record.
+            </p>
+            <div className="flex items-center gap-2 text-[11px] text-slate-400">
+              <Smartphone className="w-3.5 h-3.5" />
+              <span>Supports Android, Windows, Mac, and iOS 16.4+ (when added to Home Screen).</span>
+            </div>
+          </div>
+
+          <div className="flex items-center gap-2.5 shrink-0 flex-wrap">
+            {!isSubscribed ? (
+              <button
+                type="button"
+                onClick={handleEnablePush}
+                disabled={isSubscribing || !isSupported}
+                className="inline-flex items-center gap-2 bg-brand-600 text-white px-4 py-2.5 rounded-xl font-heading font-semibold text-xs hover:bg-brand-700 transition-all shadow-sm cursor-pointer disabled:opacity-50"
+              >
+                <Bell className="w-4 h-4" />
+                <span>{isSubscribing ? "Enabling..." : "Enable Push Notifications"}</span>
+              </button>
+            ) : (
+              <button
+                type="button"
+                onClick={handleTestPush}
+                disabled={isTestingPush}
+                className="inline-flex items-center gap-2 bg-slate-900 text-white px-4 py-2.5 rounded-xl font-heading font-semibold text-xs hover:bg-slate-800 transition-all shadow-sm cursor-pointer disabled:opacity-50"
+              >
+                <BellRing className="w-4 h-4" />
+                <span>{isTestingPush ? "Sending..." : "Send Test Notification"}</span>
+              </button>
+            )}
+          </div>
+        </div>
+
+        {pushStatusMsg && (
+          <div className="p-3 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-heading font-semibold flex items-center gap-2">
+            <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+            <span>{pushStatusMsg}</span>
+          </div>
+        )}
+
+        {pushErrorMsg && (
+          <div className="p-3 rounded-xl bg-rose-50 border border-rose-200 text-rose-800 text-xs font-heading font-semibold flex items-center gap-2">
+            <AlertCircle className="w-4 h-4 text-rose-600 shrink-0" />
+            <span>{pushErrorMsg}</span>
+          </div>
+        )}
+      </div>
+
+      {/* ─── 4. Data Export ─── */}
       <div className="bg-white rounded-2xl p-6 sm:p-7 shadow-sm ring-1 ring-slate-200/60 space-y-4">
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 rounded-xl bg-emerald-50 flex items-center justify-center text-emerald-600">

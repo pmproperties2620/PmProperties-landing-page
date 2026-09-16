@@ -18,12 +18,14 @@ import {
   Download,
 } from "lucide-react";
 import { useAdminAuth } from "../AdminAuthContext";
+import { usePushNotifications } from "@/context/PushNotificationContext";
 import { Lead, LeadStatus } from "@/lib/supabaseServer";
 import { formatDate, formatRelativeTime } from "@/lib/utils";
 import StatusBadge from "@/components/admin/StatusBadge";
 
 function LeadsManagementContent() {
   const { passcode } = useAdminAuth();
+  const { refreshUnreadCount, setUnreadCount } = usePushNotifications();
   const router = useRouter();
   const searchParams = useSearchParams();
 
@@ -337,6 +339,26 @@ function LeadsManagementContent() {
     setSelectedLead(lead);
     setEditingNotes(lead.notes || "");
     setSaveSuccessMsg("");
+
+    // If lead is unread, automatically mark as read
+    if (lead.is_read === false || (lead.status === "new" && lead.is_read === undefined)) {
+      setLeads((prev) =>
+        prev.map((l) => (l.id === lead.id ? { ...l, is_read: true } : l))
+      );
+      setUnreadCount((prev) => Math.max(0, prev - 1));
+
+      const activePasscode = passcode || sessionStorage.getItem("pm_admin_passcode") || "";
+      fetch("/api/admin/leads", {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          "x-admin-passcode": activePasscode,
+        },
+        body: JSON.stringify({ id: lead.id, is_read: true }),
+      })
+        .then(() => refreshUnreadCount())
+        .catch(() => {});
+    }
   };
 
   const handleCloseDrawer = () => {
@@ -839,8 +861,15 @@ function LeadsManagementContent() {
                       className="hover:bg-slate-50/80 transition-colors cursor-pointer group"
                     >
                       <td className="py-4 px-5">
-                        <div className="font-heading font-semibold text-slate-900 text-sm group-hover:text-brand-600 transition-colors">
-                          {lead.full_name}
+                        <div className="flex items-center gap-2">
+                          <div className="font-heading font-semibold text-slate-900 text-sm group-hover:text-brand-600 transition-colors">
+                            {lead.full_name}
+                          </div>
+                          {(lead.is_read === false || (lead.status === "new" && lead.is_read === undefined)) && (
+                            <span className="inline-flex items-center px-1.5 py-0.5 rounded-full text-[10px] font-heading font-bold bg-rose-50 text-rose-600 ring-1 ring-rose-200/80">
+                              New
+                            </span>
+                          )}
                         </div>
                         <div className="text-slate-400 text-xs flex items-center gap-1 mt-0.5 font-mono">
                           <Phone className="w-3 h-3 text-slate-400" />
@@ -897,9 +926,16 @@ function LeadsManagementContent() {
                 >
                   <div className="flex items-start justify-between">
                     <div>
-                      <h4 className="font-heading font-semibold text-slate-900 text-base">
-                        {lead.full_name}
-                      </h4>
+                      <div className="flex items-center gap-2">
+                        <h4 className="font-heading font-semibold text-slate-900 text-base">
+                          {lead.full_name}
+                        </h4>
+                        {(lead.is_read === false || (lead.status === "new" && lead.is_read === undefined)) && (
+                          <span className="inline-flex items-center px-1.5 py-0.5 rounded-full text-[10px] font-heading font-bold bg-rose-50 text-rose-600 ring-1 ring-rose-200/80">
+                            New
+                          </span>
+                        )}
+                      </div>
                       <div className="text-slate-500 text-xs flex items-center gap-1.5 mt-0.5">
                         <Phone className="w-3.5 h-3.5 text-slate-400" />
                         <span>{lead.phone}</span>

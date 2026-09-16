@@ -207,7 +207,10 @@ export const INITIAL_MOCK_LEADS: Lead[] = [
 ];
 
 // Global in-memory storage for preview/dev mode
-const currentMockLeads: Lead[] = [...INITIAL_MOCK_LEADS];
+const currentMockLeads: Lead[] = INITIAL_MOCK_LEADS.map((l) => ({
+  ...l,
+  is_read: l.status !== "new",
+}));
 
 export function getMockLeads(): Lead[] {
   return currentMockLeads;

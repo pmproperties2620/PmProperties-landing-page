@@ -139,3 +139,43 @@ LANGUAGE sql STABLE SECURITY DEFINER AS $$
   ORDER BY count DESC;
 $$;
 
+-- 9. Add is_read Column and Indexes for Unread Tracking
+ALTER TABLE public.leads 
+    ADD COLUMN IF NOT EXISTS is_read BOOLEAN NOT NULL DEFAULT false;
+
+CREATE INDEX IF NOT EXISTS idx_leads_is_read ON public.leads (is_read);
+CREATE INDEX IF NOT EXISTS idx_leads_unread ON public.leads (is_read, created_at DESC);
+
+-- ==============================================================================
+-- 10. Web Push Subscriptions Table
+-- ==============================================================================
+CREATE TABLE IF NOT EXISTS public.push_subscriptions (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    endpoint TEXT UNIQUE NOT NULL,
+    keys_p256dh TEXT NOT NULL,
+    keys_auth TEXT NOT NULL,
+    user_agent TEXT,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT timezone('utc'::text, now())
+);
+
+ALTER TABLE public.push_subscriptions ENABLE ROW LEVEL SECURITY;
+
+-- Allow service_role full access (used securely by Next.js server route handlers)
+DROP POLICY IF EXISTS "Allow service role full access on push_subscriptions" ON public.push_subscriptions;
+CREATE POLICY "Allow service role full access on push_subscriptions"
+    ON public.push_subscriptions
+    FOR ALL
+    TO service_role
+    USING (true)
+    WITH CHECK (true);
+
+-- Disallow public anon access
+DROP POLICY IF EXISTS "Disallow public access to push_subscriptions" ON public.push_subscriptions;
+CREATE POLICY "Disallow public access to push_subscriptions"
+    ON public.push_subscriptions
+    FOR ALL
+    TO anon
+    USING (false);
+
+COMMENT ON TABLE public.push_subscriptions IS 'Stores Web Push notification subscriptions for real-time lead alerts.';
+

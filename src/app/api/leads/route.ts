@@ -5,6 +5,7 @@ import {
   LeadSource,
 } from "@/lib/supabaseServer";
 import { invalidateAnalyticsCache } from "@/lib/analyticsCache";
+import { sendPushToAllSubscribers, getUnreadLeadsCount } from "@/lib/pushNotifications";
 import {
   REQUIREMENTS,
   PRICE_RANGES,
@@ -79,6 +80,22 @@ export async function POST(request: Request) {
       console.warn(
         "⚠️ [API /api/leads]: Supabase is not configured yet in .env.local. Returning dev preview response."
       );
+      const devLeadId = "dev-lead-" + Date.now();
+
+      // Trigger test push notification in dev mode (non-blocking)
+      try {
+        await sendPushToAllSubscribers({
+          title: `New Lead: ${fullName.trim()}`,
+          body: `${requirement} • ₹${priceRange} Lakhs • ${sanitizedSource.replace("_", " ")}`,
+          url: `/admin/leads?id=${devLeadId}`,
+          leadId: devLeadId,
+          unreadCount: 1,
+          tag: `lead-${devLeadId}`,
+        });
+      } catch (pushErr) {
+        console.warn("⚠️ [Push] Push notification dispatch error (dev preview):", pushErr);
+      }
+
       return NextResponse.json(
         {
           success: true,
@@ -86,7 +103,7 @@ export async function POST(request: Request) {
           message:
             "Lead validated successfully! Add your Supabase credentials in .env.local to persist directly into PostgreSQL.",
           lead: {
-            id: "dev-lead-" + Date.now(),
+            id: devLeadId,
             full_name: fullName.trim(),
             phone: cleanPhone,
             requirement,
@@ -94,6 +111,7 @@ export async function POST(request: Request) {
             property_stage: propertyStage,
             source: sanitizedSource,
             status: "new",
+            is_read: false,
             created_at: new Date().toISOString(),
           },
         },
@@ -113,6 +131,7 @@ export async function POST(request: Request) {
         property_stage: propertyStage,
         source: sanitizedSource,
         status: "new",
+        is_read: false,
       })
       .select()
       .single();
@@ -130,6 +149,22 @@ export async function POST(request: Request) {
     }
 
     invalidateAnalyticsCache();
+
+    // Trigger PWA Web Push notification to broker devices (non-blocking)
+    try {
+      const unreadCount = await getUnreadLeadsCount();
+      await sendPushToAllSubscribers({
+        title: `New Lead: ${fullName.trim()}`,
+        body: `${requirement} • ₹${priceRange} Lakhs • ${sanitizedSource.replace("_", " ")}`,
+        url: `/admin/leads?id=${data.id}`,
+        leadId: data.id,
+        unreadCount,
+        tag: `lead-${data.id}`,
+      });
+    } catch (pushErr) {
+      console.warn("⚠️ [Push] Web push notification dispatch error (non-blocking):", pushErr);
+    }
+
     return NextResponse.json(
       {
         success: true,

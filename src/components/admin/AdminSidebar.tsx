@@ -14,6 +14,7 @@ import {
   LogOut,
 } from "lucide-react";
 import { useAdminAuth } from "@/app/admin/AdminAuthContext";
+import { usePushNotifications } from "@/context/PushNotificationContext";
 
 interface NavItem {
   label: string;
@@ -41,11 +42,12 @@ const NAV_ITEMS: NavItem[] = [
 
 interface NavContentProps {
   pathname: string;
+  unreadCount: number;
   onLogout: () => void;
   onItemClick?: () => void;
 }
 
-function NavContent({ pathname, onLogout, onItemClick }: NavContentProps) {
+function NavContent({ pathname, unreadCount, onLogout, onItemClick }: NavContentProps) {
   const isRouteActive = (href: string) => {
     if (href === "/admin") {
       return pathname === "/admin";
@@ -117,7 +119,12 @@ function NavContent({ pathname, onLogout, onItemClick }: NavContentProps) {
                     active ? "text-brand-600" : "text-slate-400 group-hover:text-slate-600"
                   }`}
                 />
-                <span>{item.label}</span>
+                <span className="flex-1 text-left">{item.label}</span>
+                {item.href === "/admin/leads" && unreadCount > 0 && (
+                  <span className="inline-flex items-center justify-center min-w-[20px] h-5 px-1.5 text-[10px] font-heading font-bold text-white bg-rose-600 rounded-full shadow-xs">
+                    {unreadCount > 99 ? "99+" : unreadCount}
+                  </span>
+                )}
               </Link>
             );
           })}
@@ -152,6 +159,7 @@ function NavContent({ pathname, onLogout, onItemClick }: NavContentProps) {
 export default function AdminSidebar() {
   const pathname = usePathname();
   const { logout } = useAdminAuth();
+  const { unreadCount } = usePushNotifications();
   const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
@@ -174,8 +182,11 @@ export default function AdminSidebar() {
             type="button"
             onClick={() => setMobileOpen(!mobileOpen)}
             aria-label="Toggle navigation menu"
-            className="p-2 rounded-xl text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-colors"
+            className="relative p-2 rounded-xl text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-colors"
           >
+            {unreadCount > 0 && (
+              <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-rose-600 rounded-full ring-2 ring-white" />
+            )}
             {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
         </div>
@@ -202,6 +213,7 @@ export default function AdminSidebar() {
             <div className="flex-1 overflow-y-auto">
               <NavContent
                 pathname={pathname}
+                unreadCount={unreadCount}
                 onLogout={logout}
                 onItemClick={() => setMobileOpen(false)}
               />
@@ -212,7 +224,7 @@ export default function AdminSidebar() {
 
       {/* Desktop Fixed Sidebar */}
       <aside className="hidden lg:block fixed top-0 bottom-0 left-0 w-64 border-r border-slate-200/80 bg-white z-30">
-        <NavContent pathname={pathname} onLogout={logout} />
+        <NavContent pathname={pathname} unreadCount={unreadCount} onLogout={logout} />
       </aside>
     </>
   );

@@ -13,6 +13,7 @@ export interface Lead {
   source: LeadSource;
   status: LeadStatus;
   notes?: string | null;
+  is_read?: boolean;
   created_at: string;
   updated_at: string;
 }
