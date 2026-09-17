@@ -54,8 +54,8 @@ const contactInfo = [
   {
     icon: Clock,
     label: "Advisory Hours",
-    value: "Mon–Fri: 9:00 AM – 7:00 PM\nSat: 10:00 AM – 5:00 PM\nSun: By Appointment",
-    actionLabel: "Available",
+    value: "Monday – Sunday\n10:00 AM – 10:00 PM (All 7 Days)",
+    actionLabel: "Open 7 Days",
   },
 ];
 
