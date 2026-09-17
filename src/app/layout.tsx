@@ -8,6 +8,7 @@ import WhatsAppWidget from "@/components/ui/WhatsAppWidget";
 import { ConsultationModalProvider } from "@/context/ConsultationModalContext";
 import ConsultationModal from "@/components/ui/ConsultationModal";
 import GoogleAnalytics from "@/components/analytics/GoogleAnalytics";
+import SmoothScroll from "@/components/ui/SmoothScroll";
 
 const satoshi = localFont({
   src: [
@@ -63,6 +64,7 @@ export default function RootLayout({
       className={`${satoshi.variable} ${inter.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
+        <SmoothScroll />
         <GoogleAnalytics />
         <ConsultationModalProvider>
           <Header />

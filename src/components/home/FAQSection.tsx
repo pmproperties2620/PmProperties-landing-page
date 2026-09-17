@@ -98,7 +98,16 @@ export default function FAQSection() {
                         className="overflow-hidden"
                       >
                         <div className="pb-5 pt-1 font-body font-normal text-xs sm:text-sm leading-[1.6] text-slate-500 pr-12 whitespace-pre-line">
-                          {faq.a}
+                          {faq.a.split("• New Projects: No brokerage for buyers.").map((part, index, arr) => (
+                            <span key={index}>
+                              {part}
+                              {index < arr.length - 1 && (
+                                <strong className="font-bold text-slate-900">
+                                  • New Projects: No brokerage for buyers.
+                                </strong>
+                              )}
+                            </span>
+                          ))}
                         </div>
                       </motion.div>
                     )}

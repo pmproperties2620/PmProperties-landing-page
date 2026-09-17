@@ -504,22 +504,18 @@ export default function ServicesPage() {
 
           {/* ════ Architectural Section Divider ════ */}
           <FadeInSection className="my-10 sm:my-16 max-w-5xl mx-auto flex items-center gap-4">
-            <div className="flex-1 h-px bg-gradient-to-r from-transparent via-slate-300 to-slate-200" />
-            <div className="flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-slate-200 shadow-xs font-heading font-semibold text-xs text-slate-600">
-              <span className="w-2 h-2 rounded-full bg-brand-500" />
+            <div className="flex-1 h-px bg-gradient-to-r from-transparent via-slate-200 to-slate-200/60" />
+            <div className="flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-50/90 border border-slate-200/70 shadow-2xs font-heading font-medium text-xs text-slate-500">
+              <span className="w-1.5 h-1.5 rounded-full bg-brand-300/80" />
               <span>Specialized &amp; Commercial Solutions</span>
             </div>
-            <div className="flex-1 h-px bg-gradient-to-r from-slate-200 via-slate-300 to-transparent" />
+            <div className="flex-1 h-px bg-gradient-to-r from-slate-200/60 via-slate-200 to-transparent" />
           </FadeInSection>
 
           {/* ════ Category 2: Specialized & Commercial Services (Secondary Tier) ════ */}
           <div>
             {/* Category Header */}
             <FadeInSection className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full font-heading font-semibold text-xs uppercase tracking-[0.05em] leading-none bg-[#FDE8E8] text-brand-600 border border-brand-200/70 shadow-xs mb-3.5">
-                <Sparkles className="w-3.5 h-3.5 text-brand-600" />
-                <span>Specialized Practice</span>
-              </div>
               <h2 className="font-heading font-bold text-2xl sm:text-4xl lg:text-5xl text-slate-900 tracking-[-0.02em] leading-[1.15] mb-3">
                 Specialized &amp; Commercial Services
               </h2>
@@ -607,7 +603,7 @@ export default function ServicesPage() {
                       <div className="pt-3 border-t border-slate-100 flex items-center justify-between text-xs">
                         <span className="font-heading font-semibold text-slate-400 text-[11px]">Turnkey / Mandate</span>
                         <span className="font-heading font-bold text-brand-600 text-[11px] uppercase tracking-[0.05em] group-hover:translate-x-0.5 transition-transform duration-200">
-                          Enquire &rarr;
+                          Enquiry &rarr;
                         </span>
                       </div>
                     </div>

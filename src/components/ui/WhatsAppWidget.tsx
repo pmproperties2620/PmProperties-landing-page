@@ -46,7 +46,7 @@ export default function WhatsAppWidget() {
                 </div>
                 <div>
                   <h3 className="text-white font-heading font-semibold text-base sm:text-lg leading-tight">PM Properties</h3>
-                  <p className="text-white/80 font-body font-normal text-xs leading-[1.6]">Typically replies within a day</p>
+                  <p className="text-white/80 font-body font-normal text-xs leading-[1.6]">Typically replies within an hour</p>
                 </div>
               </div>
               <button
