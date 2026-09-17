@@ -13,6 +13,10 @@ import {
   Bell,
   BellRing,
   Smartphone,
+  Share,
+  Plus,
+  Monitor,
+  Info,
 } from "lucide-react";
 import { useAdminAuth } from "../AdminAuthContext";
 import { usePushNotifications } from "@/context/PushNotificationContext";
@@ -35,6 +39,7 @@ export default function AdminSettingsPage() {
   const [isTestingPush, setIsTestingPush] = useState(false);
   const [pushStatusMsg, setPushStatusMsg] = useState("");
   const [pushErrorMsg, setPushErrorMsg] = useState("");
+  const [pwaGuideTab, setPwaGuideTab] = useState<"ios" | "android" | "desktop">("ios");
 
   const handleEnablePush = async () => {
     setPushErrorMsg("");
@@ -406,7 +411,274 @@ export default function AdminSettingsPage() {
         )}
       </div>
 
-      {/* ─── 4. Data Export ─── */}
+      {/* ─── PWA Mobile Installation Guide (iPhone & Android) ─── */}
+      <div className="bg-white rounded-2xl p-6 sm:p-7 shadow-sm ring-1 ring-slate-200/60 space-y-5">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-xl bg-blue-50 flex items-center justify-center text-blue-600 shrink-0">
+              <Smartphone className="w-5 h-5" />
+            </div>
+            <div>
+              <h2 className="font-heading font-bold text-base text-slate-900">
+                PWA Mobile App Setup Guide
+              </h2>
+              <p className="font-body text-xs text-slate-500">
+                Step-by-step instructions to install PM Admin on your home screen and enable lockscreen push alerts.
+              </p>
+            </div>
+          </div>
+
+          {/* Platform Tab Switcher */}
+          <div className="flex items-center gap-1 bg-slate-100 p-1 rounded-xl w-fit border border-slate-200/70 shrink-0">
+            <button
+              type="button"
+              onClick={() => setPwaGuideTab("ios")}
+              className={`px-3 py-1.5 rounded-lg text-xs font-heading font-semibold transition-all cursor-pointer ${
+                pwaGuideTab === "ios"
+                  ? "bg-white text-brand-600 shadow-xs"
+                  : "text-slate-600 hover:text-slate-900"
+              }`}
+            >
+              iPhone (iOS)
+            </button>
+            <button
+              type="button"
+              onClick={() => setPwaGuideTab("android")}
+              className={`px-3 py-1.5 rounded-lg text-xs font-heading font-semibold transition-all cursor-pointer ${
+                pwaGuideTab === "android"
+                  ? "bg-white text-brand-600 shadow-xs"
+                  : "text-slate-600 hover:text-slate-900"
+              }`}
+            >
+              Android
+            </button>
+            <button
+              type="button"
+              onClick={() => setPwaGuideTab("desktop")}
+              className={`px-3 py-1.5 rounded-lg text-xs font-heading font-semibold transition-all cursor-pointer ${
+                pwaGuideTab === "desktop"
+                  ? "bg-white text-brand-600 shadow-xs"
+                  : "text-slate-600 hover:text-slate-900"
+              }`}
+            >
+              Windows / Mac
+            </button>
+          </div>
+        </div>
+
+        {/* ── Tab: iPhone (iOS) ── */}
+        {pwaGuideTab === "ios" && (
+          <div className="space-y-4 pt-1">
+            <div className="p-3.5 rounded-xl bg-amber-50/80 border border-amber-200/70 text-amber-900 text-xs font-body flex items-start gap-2.5">
+              <Info className="w-4 h-4 text-amber-600 shrink-0 mt-0.5" />
+              <p>
+                <strong className="font-heading font-semibold">Important Apple iOS Requirement:</strong> Apple requires using <span className="font-semibold underline">Safari</span> to install PWAs. In addition, Apple iOS only allows Web Push notifications once the app has been added to your Home Screen (requires iOS 16.4 or newer).
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5">
+              {/* Step 1 */}
+              <div className="p-4 rounded-xl bg-slate-50 border border-slate-200/70 space-y-2 flex flex-col justify-between">
+                <div>
+                  <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-brand-50 text-brand-600 font-heading font-bold text-xs mb-2">
+                    1
+                  </span>
+                  <h4 className="font-heading font-bold text-xs text-slate-900">
+                    Open in Safari
+                  </h4>
+                  <p className="font-body text-[11px] text-slate-600 leading-relaxed mt-1">
+                    Open this admin portal in Apple <strong className="text-slate-800">Safari</strong> on your iPhone.
+                  </p>
+                </div>
+                <div className="text-[10px] text-slate-400 font-mono">browser: Safari</div>
+              </div>
+
+              {/* Step 2 */}
+              <div className="p-4 rounded-xl bg-slate-50 border border-slate-200/70 space-y-2 flex flex-col justify-between">
+                <div>
+                  <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-brand-50 text-brand-600 font-heading font-bold text-xs mb-2">
+                    2
+                  </span>
+                  <h4 className="font-heading font-bold text-xs text-slate-900 flex items-center gap-1.5">
+                    <span>Tap Share</span>
+                    <Share className="w-3.5 h-3.5 text-blue-600" />
+                  </h4>
+                  <p className="font-body text-[11px] text-slate-600 leading-relaxed mt-1">
+                    Tap the <strong className="text-slate-800">Share</strong> icon (the square with arrow pointing up) on the bottom toolbar.
+                  </p>
+                </div>
+                <div className="text-[10px] text-slate-400 font-mono">action: Share icon</div>
+              </div>
+
+              {/* Step 3 */}
+              <div className="p-4 rounded-xl bg-slate-50 border border-slate-200/70 space-y-2 flex flex-col justify-between">
+                <div>
+                  <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-brand-50 text-brand-600 font-heading font-bold text-xs mb-2">
+                    3
+                  </span>
+                  <h4 className="font-heading font-bold text-xs text-slate-900 flex items-center gap-1.5">
+                    <span>Add to Home Screen</span>
+                    <Plus className="w-3.5 h-3.5 text-slate-700" />
+                  </h4>
+                  <p className="font-body text-[11px] text-slate-600 leading-relaxed mt-1">
+                    Scroll down and select <strong className="text-slate-800">&quot;Add to Home Screen&quot;</strong>, then tap <strong className="text-slate-800">&quot;Add&quot;</strong> in the top right.
+                  </p>
+                </div>
+                <div className="text-[10px] text-slate-400 font-mono">installs app icon</div>
+              </div>
+
+              {/* Step 4 */}
+              <div className="p-4 rounded-xl bg-slate-50 border border-slate-200/70 space-y-2 flex flex-col justify-between">
+                <div>
+                  <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-brand-50 text-brand-600 font-heading font-bold text-xs mb-2">
+                    4
+                  </span>
+                  <h4 className="font-heading font-bold text-xs text-slate-900 flex items-center gap-1.5">
+                    <span>Open &amp; Enable Push</span>
+                    <Bell className="w-3.5 h-3.5 text-emerald-600" />
+                  </h4>
+                  <p className="font-body text-[11px] text-slate-600 leading-relaxed mt-1">
+                    Launch <strong className="text-slate-800">PM Admin</strong> from your iPhone home screen, go to Settings, and tap <strong className="text-slate-800">&quot;Enable Push Notifications&quot;</strong>.
+                  </p>
+                </div>
+                <div className="text-[10px] text-slate-400 font-mono">lockscreen alerts</div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* ── Tab: Android ── */}
+        {pwaGuideTab === "android" && (
+          <div className="space-y-4 pt-1">
+            <div className="p-3.5 rounded-xl bg-emerald-50/80 border border-emerald-200/70 text-emerald-900 text-xs font-body flex items-start gap-2.5">
+              <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+              <p>
+                <strong className="font-heading font-semibold">Native Android Support:</strong> Android fully supports PWA installation through Google Chrome, Samsung Internet, or Brave with instant lockscreen and status bar push alerts.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5">
+              {/* Step 1 */}
+              <div className="p-4 rounded-xl bg-slate-50 border border-slate-200/70 space-y-2 flex flex-col justify-between">
+                <div>
+                  <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-brand-50 text-brand-600 font-heading font-bold text-xs mb-2">
+                    1
+                  </span>
+                  <h4 className="font-heading font-bold text-xs text-slate-900">
+                    Open in Chrome
+                  </h4>
+                  <p className="font-body text-[11px] text-slate-600 leading-relaxed mt-1">
+                    Open this admin portal URL in <strong className="text-slate-800">Google Chrome</strong> on your Android phone.
+                  </p>
+                </div>
+                <div className="text-[10px] text-slate-400 font-mono">browser: Chrome</div>
+              </div>
+
+              {/* Step 2 */}
+              <div className="p-4 rounded-xl bg-slate-50 border border-slate-200/70 space-y-2 flex flex-col justify-between">
+                <div>
+                  <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-brand-50 text-brand-600 font-heading font-bold text-xs mb-2">
+                    2
+                  </span>
+                  <h4 className="font-heading font-bold text-xs text-slate-900">
+                    Tap Menu (⋮)
+                  </h4>
+                  <p className="font-body text-[11px] text-slate-600 leading-relaxed mt-1">
+                    Tap the <strong className="text-slate-800">three vertical dots (⋮)</strong> menu in the top right corner of Chrome.
+                  </p>
+                </div>
+                <div className="text-[10px] text-slate-400 font-mono">action: Browser menu</div>
+              </div>
+
+              {/* Step 3 */}
+              <div className="p-4 rounded-xl bg-slate-50 border border-slate-200/70 space-y-2 flex flex-col justify-between">
+                <div>
+                  <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-brand-50 text-brand-600 font-heading font-bold text-xs mb-2">
+                    3
+                  </span>
+                  <h4 className="font-heading font-bold text-xs text-slate-900 flex items-center gap-1.5">
+                    <span>Install App</span>
+                    <Download className="w-3.5 h-3.5 text-slate-700" />
+                  </h4>
+                  <p className="font-body text-[11px] text-slate-600 leading-relaxed mt-1">
+                    Select <strong className="text-slate-800">&quot;Install app&quot;</strong> or <strong className="text-slate-800">&quot;Add to Home screen&quot;</strong>, then confirm by tapping <strong className="text-slate-800">Install</strong>.
+                  </p>
+                </div>
+                <div className="text-[10px] text-slate-400 font-mono">adds to app drawer</div>
+              </div>
+
+              {/* Step 4 */}
+              <div className="p-4 rounded-xl bg-slate-50 border border-slate-200/70 space-y-2 flex flex-col justify-between">
+                <div>
+                  <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-brand-50 text-brand-600 font-heading font-bold text-xs mb-2">
+                    4
+                  </span>
+                  <h4 className="font-heading font-bold text-xs text-slate-900 flex items-center gap-1.5">
+                    <span>Allow Notifications</span>
+                    <Bell className="w-3.5 h-3.5 text-emerald-600" />
+                  </h4>
+                  <p className="font-body text-[11px] text-slate-600 leading-relaxed mt-1">
+                    Launch the app from your home screen. In Settings, click <strong className="text-slate-800">&quot;Enable Push Notifications&quot;</strong> and tap <strong className="text-slate-800">Allow</strong>.
+                  </p>
+                </div>
+                <div className="text-[10px] text-slate-400 font-mono">immediate push alerts</div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* ── Tab: Desktop (PC / Mac) ── */}
+        {pwaGuideTab === "desktop" && (
+          <div className="space-y-4 pt-1">
+            <div className="p-3.5 rounded-xl bg-slate-100 border border-slate-200 text-slate-800 text-xs font-body flex items-start gap-2.5">
+              <Monitor className="w-4 h-4 text-slate-700 shrink-0 mt-0.5" />
+              <p>
+                <strong className="font-heading font-semibold">Standalone Desktop App:</strong> Installing on Google Chrome, Microsoft Edge, or Safari creates a dedicated desktop application with native window controls and OS notifications.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5">
+              <div className="p-4 rounded-xl bg-slate-50 border border-slate-200/70 space-y-2">
+                <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-brand-50 text-brand-600 font-heading font-bold text-xs">
+                  1
+                </span>
+                <h4 className="font-heading font-bold text-xs text-slate-900">
+                  Address Bar Icon
+                </h4>
+                <p className="font-body text-[11px] text-slate-600 leading-relaxed">
+                  In Chrome or Edge, look for the <strong className="text-slate-800">Install icon</strong> (computer screen with down arrow) on the far right of the address bar.
+                </p>
+              </div>
+
+              <div className="p-4 rounded-xl bg-slate-50 border border-slate-200/70 space-y-2">
+                <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-brand-50 text-brand-600 font-heading font-bold text-xs">
+                  2
+                </span>
+                <h4 className="font-heading font-bold text-xs text-slate-900">
+                  Click Install
+                </h4>
+                <p className="font-body text-[11px] text-slate-600 leading-relaxed">
+                  Click <strong className="text-slate-800">&quot;Install&quot;</strong>. PM Admin will instantly pop out into its own standalone desktop window.
+                </p>
+              </div>
+
+              <div className="p-4 rounded-xl bg-slate-50 border border-slate-200/70 space-y-2">
+                <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-brand-50 text-brand-600 font-heading font-bold text-xs">
+                  3
+                </span>
+                <h4 className="font-heading font-bold text-xs text-slate-900">
+                  Enable Desktop Alerts
+                </h4>
+                <p className="font-body text-[11px] text-slate-600 leading-relaxed">
+                  Click <strong className="text-slate-800">&quot;Enable Push Notifications&quot;</strong> in Settings to receive Windows or macOS system notifications whenever a lead submits.
+                </p>
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
+
+      {/* ─── 5. Data Export ─── */}
       <div className="bg-white rounded-2xl p-6 sm:p-7 shadow-sm ring-1 ring-slate-200/60 space-y-4">
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 rounded-xl bg-emerald-50 flex items-center justify-center text-emerald-600">
