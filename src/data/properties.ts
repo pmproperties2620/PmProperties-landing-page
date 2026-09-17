@@ -342,7 +342,7 @@ export const faqs = [
   },
   {
     q: "How are your fees structured?",
-    a: "Our fee structure is completely transparent with no hidden charges:\n\n• New Projects: Zero (0%) brokerage for buyers.\n• Resale Properties: 2% brokerage applicable for buyers.\n• Property Sellers: 2% brokerage applicable based on the agreement value.",
+    a: "Our fee structure is completely transparent with no hidden charges:\n\n• New Projects: No brokerage for buyers.\n• Resale Properties: 2% brokerage applicable for buyers.\n• Property Sellers: 2% brokerage applicable based on the agreement value.",
   },
   {
     q: "Do you help with selling my current home?",
