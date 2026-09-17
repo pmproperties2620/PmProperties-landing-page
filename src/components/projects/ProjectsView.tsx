@@ -15,6 +15,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { projectsData, type Project } from "@/data/projects";
+import { FadeInSection, StaggerGrid, ScaleInBadge } from "@/components/ui/AnimatedSection";
 import ProjectCard from "./ProjectCard";
 import ProjectFilters, { type FilterState } from "./ProjectFilters";
 import ProjectDetailModal from "./ProjectDetailModal";
@@ -152,47 +153,55 @@ export default function ProjectsView() {
           </p>
 
           {/* Quick Metrics Bar */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto pt-6 border-t border-slate-800 text-left">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-brand-500/10 border border-brand-500/20 flex items-center justify-center shrink-0">
-                <ShieldCheck className="w-5 h-5 text-brand-400" />
+          <StaggerGrid className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto pt-6 border-t border-slate-800 text-left">
+            <ScaleInBadge>
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-xl bg-brand-500/10 border border-brand-500/20 flex items-center justify-center shrink-0">
+                  <ShieldCheck className="w-5 h-5 text-brand-400" />
+                </div>
+                <div>
+                  <div className="font-heading font-black text-lg sm:text-xl text-white leading-tight tracking-[-0.02em]">100% RERA</div>
+                  <div className="font-body font-normal text-xs text-slate-400 leading-[1.4]">Registered Projects</div>
+                </div>
               </div>
-              <div>
-                <div className="font-heading font-black text-lg sm:text-xl text-white leading-tight tracking-[-0.02em]">100% RERA</div>
-                <div className="font-body font-normal text-xs text-slate-400 leading-[1.4]">Registered Projects</div>
-              </div>
-            </div>
+            </ScaleInBadge>
 
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center shrink-0">
-                <Sparkles className="w-5 h-5 text-emerald-400" />
+            <ScaleInBadge>
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center shrink-0">
+                  <Sparkles className="w-5 h-5 text-emerald-400" />
+                </div>
+                <div>
+                  <div className="font-heading font-black text-lg sm:text-xl text-white leading-tight tracking-[-0.02em]">0% Brokerage</div>
+                  <div className="font-body font-normal text-xs text-slate-400 leading-[1.4]">On Direct Bookings</div>
+                </div>
               </div>
-              <div>
-                <div className="font-heading font-black text-lg sm:text-xl text-white leading-tight tracking-[-0.02em]">0% Brokerage</div>
-                <div className="font-body font-normal text-xs text-slate-400 leading-[1.4]">On Direct Bookings</div>
-              </div>
-            </div>
+            </ScaleInBadge>
 
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center shrink-0">
-                <Award className="w-5 h-5 text-blue-400" />
+            <ScaleInBadge>
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center shrink-0">
+                  <Award className="w-5 h-5 text-blue-400" />
+                </div>
+                <div>
+                  <div className="font-heading font-black text-lg sm:text-xl text-white leading-tight tracking-[-0.02em]">10+ Years</div>
+                  <div className="font-body font-normal text-xs text-slate-400 leading-[1.4]">Market Authority</div>
+                </div>
               </div>
-              <div>
-                <div className="font-heading font-black text-lg sm:text-xl text-white leading-tight tracking-[-0.02em]">10+ Years</div>
-                <div className="font-body font-normal text-xs text-slate-400 leading-[1.4]">Market Authority</div>
-              </div>
-            </div>
+            </ScaleInBadge>
 
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center shrink-0">
-                <Users className="w-5 h-5 text-purple-400" />
+            <ScaleInBadge>
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center shrink-0">
+                  <Users className="w-5 h-5 text-purple-400" />
+                </div>
+                <div>
+                  <div className="font-heading font-black text-lg sm:text-xl text-white leading-tight tracking-[-0.02em]">500+ Families</div>
+                  <div className="font-body font-normal text-xs text-slate-400 leading-[1.4]">Happily Housed</div>
+                </div>
               </div>
-              <div>
-                <div className="font-heading font-black text-lg sm:text-xl text-white leading-tight tracking-[-0.02em]">500+ Families</div>
-                <div className="font-body font-normal text-xs text-slate-400 leading-[1.4]">Happily Housed</div>
-              </div>
-            </div>
-          </div>
+            </ScaleInBadge>
+          </StaggerGrid>
         </div>
       </section>
 
@@ -264,43 +273,45 @@ export default function ProjectsView() {
         )}
 
         {/* Sell / List Your Property CTA Banner */}
-        <div className="mt-16 sm:mt-24 rounded-3xl bg-gradient-to-br from-slate-900 via-slate-850 to-slate-900 border border-slate-800 p-8 sm:p-12 text-white relative overflow-hidden shadow-xl">
-          <div className="absolute top-0 right-0 w-96 h-96 bg-brand-500/10 rounded-full blur-3xl pointer-events-none" />
+        <FadeInSection>
+          <div className="mt-16 sm:mt-24 rounded-3xl bg-gradient-to-br from-slate-900 via-slate-850 to-slate-900 border border-slate-800 p-8 sm:p-12 text-white relative overflow-hidden shadow-xl">
+            <div className="absolute top-0 right-0 w-96 h-96 bg-brand-500/10 rounded-full blur-3xl pointer-events-none" />
 
-          <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-8">
-            <div className="max-w-2xl text-center lg:text-left">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-500/20 text-brand-400 font-heading font-semibold text-xs uppercase tracking-[0.05em] leading-none mb-4">
-                <Building2 className="w-3.5 h-3.5" />
-                <span>For Property Owners &amp; Developers</span>
+            <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-8">
+              <div className="max-w-2xl text-center lg:text-left">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-500/20 text-brand-400 font-heading font-semibold text-xs uppercase tracking-[0.05em] leading-none mb-4">
+                  <Building2 className="w-3.5 h-3.5" />
+                  <span>For Property Owners &amp; Developers</span>
+                </div>
+                <h3 className="font-heading font-bold text-2xl sm:text-3xl text-white mb-3 leading-[1.15] tracking-[-0.02em]">
+                  Looking to Sell, Lease, or Partner with PM Properties?
+                </h3>
+                <p className="font-body font-normal text-xs sm:text-sm text-slate-300 leading-[1.6]">
+                  Get your property listed before 10,000+ verified active buyers
+                  and investors. Benefit from professional staging, legal
+                  verification, and swift closing without hassle.
+                </p>
               </div>
-              <h3 className="font-heading font-bold text-2xl sm:text-3xl text-white mb-3 leading-[1.15] tracking-[-0.02em]">
-                Looking to Sell, Lease, or Partner with PM Properties?
-              </h3>
-              <p className="font-body font-normal text-xs sm:text-sm text-slate-300 leading-[1.6]">
-                Get your property listed before 10,000+ verified active buyers
-                and investors. Benefit from professional staging, legal
-                verification, and swift closing without hassle.
-              </p>
-            </div>
 
-            <div className="flex flex-col sm:flex-row items-center gap-3 w-full lg:w-auto shrink-0">
-              <Link
-                href="/contact"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-heading font-semibold text-sm leading-none transition-all shadow-lg hover:shadow-xl"
-              >
-                <span>List Your Property</span>
-                <ArrowRight className="w-4 h-4" />
-              </Link>
-              <a
-                href="tel:+919029923246"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl border border-slate-700 bg-slate-800/80 hover:bg-slate-800 text-white font-heading font-semibold text-sm leading-none transition-colors"
-              >
-                <PhoneCall className="w-4 h-4 text-brand-400" />
-                <span>Call Advisor</span>
-              </a>
+              <div className="flex flex-col sm:flex-row items-center gap-3 w-full lg:w-auto shrink-0">
+                <Link
+                  href="/contact"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-heading font-semibold text-sm leading-none transition-all shadow-lg hover:shadow-xl"
+                >
+                  <span>List Your Property</span>
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
+                <a
+                  href="tel:+919029923246"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl border border-slate-700 bg-slate-800/80 hover:bg-slate-800 text-white font-heading font-semibold text-sm leading-none transition-colors"
+                >
+                  <PhoneCall className="w-4 h-4 text-brand-400" />
+                  <span>Call Advisor</span>
+                </a>
+              </div>
             </div>
           </div>
-        </div>
+        </FadeInSection>
       </div>
 
       {/* Quick Details Modal */}

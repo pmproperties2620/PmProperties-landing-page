@@ -45,6 +45,9 @@ export const TracingBeam = ({
     }
   );
 
+  const generatedId = React.useId();
+  const gradientId = `gradient-${generatedId.replace(/[^a-zA-Z0-9-_]/g, "")}`;
+
   return (
     <motion.div
       ref={ref}
@@ -97,7 +100,7 @@ export const TracingBeam = ({
           <motion.path
             d={`M 1 0V -36 l 18 24 V ${svgHeight * 0.8} l -18 24V ${svgHeight}`}
             fill="none"
-            stroke="url(#gradient)"
+            stroke={`url(#${gradientId})`}
             strokeWidth="1.25"
             className="motion-reduce:hidden"
             transition={{
@@ -106,7 +109,7 @@ export const TracingBeam = ({
           ></motion.path>
           <defs>
             <motion.linearGradient
-              id="gradient"
+              id={gradientId}
               gradientUnits="userSpaceOnUse"
               x1="0"
               x2="0"

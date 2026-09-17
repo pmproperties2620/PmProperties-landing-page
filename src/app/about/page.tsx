@@ -15,6 +15,7 @@ export default function AboutPage() {
             src="/images/hero-bg-new.png" 
             alt="About PM Properties" 
             fill 
+            sizes="100vw"
             className="object-cover"
             priority 
           />

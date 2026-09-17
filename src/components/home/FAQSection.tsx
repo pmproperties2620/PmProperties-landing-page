@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { faqs } from "@/data/properties";
 import { useState } from "react";
 import { Plus, Minus } from "lucide-react";
@@ -8,6 +8,7 @@ import SectionDecoration from "@/components/ui/SectionDecoration";
 
 export default function FAQSection() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
+  const shouldReduceMotion = useReducedMotion();
 
   return (
     <section className="py-12 md:py-16 bg-[#F8F9FA] relative">
@@ -15,18 +16,19 @@ export default function FAQSection() {
         <div className="text-center mb-10 flex flex-col items-center">
           <SectionDecoration className="mb-4" />
           <motion.h2 
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: shouldReduceMotion ? 0.01 : 0.5 }}
             className="font-heading text-2xl md:text-4xl font-bold leading-[1.15] tracking-[-0.02em] text-slate-900 mb-4"
           >
             Frequently Asked Questions
           </motion.h2>
           <motion.p 
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ delay: 0.1 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: shouldReduceMotion ? 0.01 : 0.5, delay: shouldReduceMotion ? 0 : 0.1 }}
             className="font-body font-normal text-sm sm:text-base leading-[1.6] text-slate-500 max-w-lg mx-auto"
           >
             Quick solutions to help you understand our real estate services better.
@@ -35,22 +37,21 @@ export default function FAQSection() {
 
         <motion.div 
           variants={{
-            hidden: { opacity: 0, y: 40, scale: 0.98 },
+            hidden: { opacity: 0, y: shouldReduceMotion ? 0 : 25 },
             visible: { 
               opacity: 1, 
               y: 0,
-              scale: 1,
               transition: { 
-                duration: 0.8, 
-                ease: [0.16, 1, 0.3, 1], // easeOutQuint
-                staggerChildren: 0.1,
-                delayChildren: 0.2
+                duration: shouldReduceMotion ? 0.01 : 0.6, 
+                ease: [0.16, 1, 0.3, 1],
+                staggerChildren: shouldReduceMotion ? 0 : 0.08,
+                delayChildren: shouldReduceMotion ? 0 : 0.1
               } 
             }
           }}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
+          viewport={{ once: true, amount: 0.15 }}
           className="bg-white rounded-[2rem] shadow-[0_8px_30px_rgb(0,0,0,0.04)] p-6 sm:p-10 md:p-12"
         >
           <div className="space-y-2">
@@ -67,16 +68,20 @@ export default function FAQSection() {
                 >
                   <button
                     onClick={() => setOpenIndex(isOpen ? null : i)}
-                    className="flex items-center justify-between w-full py-4 text-left transition-colors"
+                    className="flex items-center justify-between w-full py-4 text-left transition-colors cursor-pointer"
                     aria-expanded={isOpen}
                   >
-                    <span className="font-heading font-semibold text-slate-800 pr-4 text-[15px] sm:text-base leading-snug tracking-[-0.01em] group-hover:text-brand-600 transition-colors">
+                    <span
+                      className={`font-heading font-bold text-base sm:text-lg leading-snug tracking-[-0.01em] pr-4 transition-colors ${
+                        isOpen ? "text-brand-600" : "text-slate-900 group-hover:text-brand-600"
+                      }`}
+                    >
                       {faq.q}
                     </span>
                     <div 
                       className={`w-8 h-8 rounded-lg flex items-center justify-center shrink-0 transition-colors ${
                         isOpen 
-                          ? 'bg-slate-200 text-slate-800' 
+                          ? 'bg-brand-50 text-brand-600' 
                           : 'bg-[#F1F4F3] text-slate-600 group-hover:bg-[#E8ECEB]'
                       }`}
                     >

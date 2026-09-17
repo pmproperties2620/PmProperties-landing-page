@@ -1,42 +1,50 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
-import { useRef } from "react";
+import React from "react";
+import { motion, useReducedMotion } from "framer-motion";
 
-interface AnimatedSectionProps {
+/**
+ * Section-level entrance animation
+ * Subtle fade-in with 20px upward slide.
+ */
+interface FadeInSectionProps {
   children: React.ReactNode;
   className?: string;
   delay?: number;
   direction?: "up" | "down" | "left" | "right" | "none";
 }
 
-export default function AnimatedSection({
+export function FadeInSection({
   children,
   className,
   delay = 0,
   direction = "up",
-}: AnimatedSectionProps) {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+}: FadeInSectionProps) {
+  const shouldReduceMotion = useReducedMotion();
 
   const directionOffset = {
-    up: { y: 60 },
-    down: { y: -60 },
-    left: { x: 60 },
-    right: { x: -60 },
+    up: { y: 20, x: 0 },
+    down: { y: -20, x: 0 },
+    left: { x: 20, y: 0 },
+    right: { x: -20, y: 0 },
     none: { x: 0, y: 0 },
   };
 
+  if (shouldReduceMotion) {
+    return <div className={className}>{children}</div>;
+  }
+
+  const offset = directionOffset[direction];
+
   return (
     <motion.div
-      ref={ref}
-      initial={{ opacity: 0, ...directionOffset[direction] }}
-      animate={isInView ? { opacity: 1, x: 0, y: 0 } : {}}
+      initial={{ opacity: 0, x: offset.x, y: offset.y }}
+      whileInView={{ opacity: 1, x: 0, y: 0 }}
+      viewport={{ once: true, amount: 0.15 }}
       transition={{
-        duration: 0.7,
+        duration: 0.5,
         delay,
-        ease: [0.25, 0.1, 0.25, 1],
+        ease: "easeOut",
       }}
       className={className}
     >
@@ -45,28 +53,38 @@ export default function AnimatedSection({
   );
 }
 
-export function StaggerContainer({
-  children,
-  className,
-  delay = 0,
-}: {
+/**
+ * Parent container that staggers entrance of its child items
+ */
+interface StaggerGridProps {
   children: React.ReactNode;
   className?: string;
   delay?: number;
-}) {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-50px" });
+  staggerDelay?: number;
+}
+
+export function StaggerGrid({
+  children,
+  className,
+  delay = 0,
+  staggerDelay = 0.1,
+}: StaggerGridProps) {
+  const shouldReduceMotion = useReducedMotion();
+
+  if (shouldReduceMotion) {
+    return <div className={className}>{children}</div>;
+  }
 
   return (
     <motion.div
-      ref={ref}
       initial="hidden"
-      animate={isInView ? "visible" : "hidden"}
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.1 }}
       variants={{
         hidden: {},
         visible: {
           transition: {
-            staggerChildren: 0.1,
+            staggerChildren: staggerDelay,
             delayChildren: delay,
           },
         },
@@ -78,21 +96,34 @@ export function StaggerContainer({
   );
 }
 
-export function StaggerItem({
-  children,
-  className,
-}: {
+/**
+ * Individual card/box element inside a StaggerGrid
+ */
+interface FadeInCardProps {
   children: React.ReactNode;
   className?: string;
-}) {
+  yOffset?: number;
+}
+
+export function FadeInCard({
+  children,
+  className,
+  yOffset = 15,
+}: FadeInCardProps) {
+  const shouldReduceMotion = useReducedMotion();
+
+  if (shouldReduceMotion) {
+    return <div className={className}>{children}</div>;
+  }
+
   return (
     <motion.div
       variants={{
-        hidden: { opacity: 0, y: 30 },
+        hidden: { opacity: 0, y: yOffset },
         visible: {
           opacity: 1,
           y: 0,
-          transition: { duration: 0.6, ease: [0.25, 0.1, 0.25, 1] },
+          transition: { duration: 0.45, ease: "easeOut" },
         },
       }}
       className={className}
@@ -100,4 +131,56 @@ export function StaggerItem({
       {children}
     </motion.div>
   );
+}
+
+/**
+ * Pop-in scale animation for metric numbers, credentials, and stat badges
+ */
+interface ScaleInBadgeProps {
+  children: React.ReactNode;
+  className?: string;
+  delay?: number;
+}
+
+export function ScaleInBadge({
+  children,
+  className,
+  delay = 0,
+}: ScaleInBadgeProps) {
+  const shouldReduceMotion = useReducedMotion();
+
+  if (shouldReduceMotion) {
+    return <div className={className}>{children}</div>;
+  }
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, scale: 0.88 }}
+      whileInView={{ opacity: 1, scale: 1 }}
+      viewport={{ once: true, amount: 0.2 }}
+      transition={{
+        duration: 0.4,
+        delay,
+        ease: "easeOut",
+      }}
+      className={className}
+    >
+      {children}
+    </motion.div>
+  );
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Backward Compatibility Aliases for Existing Imports
+// ─────────────────────────────────────────────────────────────────────────────
+export default function AnimatedSection(props: FadeInSectionProps) {
+  return <FadeInSection {...props} />;
+}
+
+export function StaggerContainer(props: StaggerGridProps) {
+  return <StaggerGrid {...props} />;
+}
+
+export function StaggerItem(props: FadeInCardProps) {
+  return <FadeInCard {...props} />;
 }

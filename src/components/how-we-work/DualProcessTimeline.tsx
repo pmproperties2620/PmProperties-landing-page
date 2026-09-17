@@ -132,6 +132,7 @@ type Step = {
 };
 
 import { TracingBeam } from "@/components/ui/tracing-beam";
+import { StaggerGrid, FadeInCard } from "@/components/ui/AnimatedSection";
 
 function ProcessColumn({ title, steps }: { title: string; steps: Step[] }) {
   return (
@@ -179,10 +180,14 @@ export default function DualProcessTimeline() {
   return (
     <section className="py-16 md:py-24 bg-[#f8f9fc] overflow-hidden relative">
       <div className="max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start">
-          <ProcessColumn title="For Buyers" steps={buyingSteps} />
-          <ProcessColumn title="For Sellers" steps={sellingSteps} />
-        </div>
+        <StaggerGrid className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start" staggerDelay={0.15}>
+          <FadeInCard>
+            <ProcessColumn title="For Buyers" steps={buyingSteps} />
+          </FadeInCard>
+          <FadeInCard>
+            <ProcessColumn title="For Sellers" steps={sellingSteps} />
+          </FadeInCard>
+        </StaggerGrid>
       </div>
     </section>
   );

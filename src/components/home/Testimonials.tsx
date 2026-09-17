@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import SectionDecoration from "@/components/ui/SectionDecoration";
+import { FadeInSection } from "@/components/ui/AnimatedSection";
 
 const testimonialImages = [
   "/images/testimonials/testimonial-1.jpeg",
@@ -26,6 +27,7 @@ const ImageTestimonialCard = ({ src, index }: { src: string; index: number }) =>
         alt={`Happy Client ${index + 1}`} 
         width={320}
         height={320}
+        style={{ width: "auto" }}
         className="h-[180px] sm:h-[240px] md:h-[320px] w-auto object-contain transition-transform duration-700 group-hover:scale-105"
       />
       {/* Subtle overlay for better blending */}
@@ -69,7 +71,7 @@ export default function Testimonials() {
         </div>
       </div>
 
-      <div className="relative z-10 w-full">
+      <FadeInSection delay={0.15} className="relative z-10 w-full">
         
         {/* MOBILE SLIDER (Native Scroll) */}
         <div className="md:hidden w-full relative pt-4 pb-10">
@@ -117,7 +119,7 @@ export default function Testimonials() {
           </motion.div>
           
         </div>
-      </div>
+      </FadeInSection>
     </section>
   );
 }

@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
+import { FadeInSection } from "@/components/ui/AnimatedSection";
 
 export default function Footer() {
   const pathname = usePathname();
@@ -12,7 +13,7 @@ export default function Footer() {
   }
   return (
     <footer className="bg-slate-100 text-slate-900 pt-24 pb-8 border-t border-slate-200">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex flex-col items-center">
+      <FadeInSection className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex flex-col items-center">
         
         {/* Logo */}
         <Link href="/" className="block relative h-20 w-56 sm:h-32 sm:w-[22rem] lg:h-48 lg:w-[32rem] mb-8 max-w-[90vw]">
@@ -32,19 +33,40 @@ export default function Footer() {
         </p>
         
         {/* Social Icons */}
-        <div className="flex gap-6 mb-16">
-          <a href="https://www.facebook.com/the.pm.properties?mibextid=wwXIfr&mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" className="text-slate-500 hover:text-[#1877F2] transition-colors" aria-label="Facebook">
-            <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
-              <path d="M14 13.5h2.5l1-4H14v-2c0-1.03 0-2 2-2h1.5V2.14c-.326-.043-1.557-.14-2.857-.14C11.928 2 10 3.657 10 6.7v2.8H7v4h3V22h4v-8.5z"/>
+        <div className="flex items-center justify-center gap-6 sm:gap-8 mb-16">
+          <a
+            href="https://www.instagram.com/the.pmproperties/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group flex items-center justify-center p-3 rounded-2xl text-slate-500 hover:text-[#E1306C] hover:bg-slate-200/50 transition-all duration-200"
+            aria-label="Instagram"
+          >
+            <svg
+              viewBox="0 0 24 24"
+              className="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 transition-transform duration-200 group-hover:scale-110"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.75"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
             </svg>
           </a>
-          <a href="https://www.instagram.com/the.pmproperties?igsh=ODJ0bWZpMmV4cXE%3D&utm_source=qr" target="_blank" rel="noopener noreferrer" className="text-slate-500 hover:text-[#E1306C] transition-colors" aria-label="Instagram">
-            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-            </svg>
-          </a>
-          <a href="https://www.youtube.com/@ThePMProperties4u" target="_blank" rel="noopener noreferrer" className="text-slate-500 hover:text-[#FF0000] transition-colors" aria-label="YouTube">
-            <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+          <a
+            href="https://www.youtube.com/@ThePMProperties"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group flex items-center justify-center p-3 rounded-2xl text-slate-500 hover:text-[#FF0000] hover:bg-slate-200/50 transition-all duration-200"
+            aria-label="YouTube"
+          >
+            <svg
+              viewBox="0 0 24 24"
+              className="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 transition-transform duration-200 group-hover:scale-110"
+              fill="currentColor"
+            >
               <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
             </svg>
           </a>
@@ -61,7 +83,7 @@ export default function Footer() {
           <div className="w-px h-4 bg-slate-300 hidden md:block"></div>
           <Link href="/services" className="text-slate-700 hover:text-brand-600 transition-colors">Our Services</Link>
           <div className="w-px h-4 bg-slate-300 hidden md:block"></div>
-          <Link href="/how-we-work" className="text-slate-700 hover:text-brand-600 transition-colors">How We Works</Link>
+          <Link href="/how-we-work" className="text-slate-700 hover:text-brand-600 transition-colors">How We Work</Link>
           <div className="w-px h-4 bg-slate-300 hidden md:block"></div>
           <Link href="/about" className="text-slate-700 hover:text-brand-600 transition-colors">About Us</Link>
           <div className="w-px h-4 bg-slate-300 hidden md:block"></div>
@@ -73,7 +95,7 @@ export default function Footer() {
           <p>&copy; {new Date().getFullYear()} PM Properties. All rights reserved.</p>
         </div>
         
-      </div>
+      </FadeInSection>
     </footer>
   );
 }

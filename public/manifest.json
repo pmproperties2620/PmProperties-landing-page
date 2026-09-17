@@ -1,13 +1,14 @@
 {
-  "name": "PM Properties Admin",
-  "short_name": "PM Admin",
-  "description": "PM Properties Broker & Admin Lead Management Console",
-  "start_url": "/admin",
-  "scope": "/admin",
+  "name": "PM Properties",
+  "short_name": "PM Properties",
+  "description": "Find verified luxury residential & commercial properties in Kalyan, Dombivli, and Thane with PM Properties.",
+  "start_url": "/",
+  "scope": "/",
   "display": "standalone",
   "orientation": "portrait-primary",
   "background_color": "#ffffff",
   "theme_color": "#491612",
+  "categories": ["business", "real estate", "lifestyle"],
   "icons": [
     {
       "src": "/icons/icon-192x192.png",
@@ -26,6 +27,29 @@
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Explore Projects",
+      "short_name": "Projects",
+      "description": "Browse verified residential and commercial projects",
+      "url": "/projects",
+      "icons": [{ "src": "/icons/icon-192x192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Book Consultation",
+      "short_name": "Consult",
+      "description": "Book a free private real estate consultation",
+      "url": "/contact",
+      "icons": [{ "src": "/icons/icon-192x192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Admin Portal",
+      "short_name": "Admin",
+      "description": "Lead management and executive dashboard",
+      "url": "/admin",
+      "icons": [{ "src": "/icons/icon-192x192.png", "sizes": "192x192" }]
     }
   ]
 }

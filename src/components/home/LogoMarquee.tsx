@@ -1,5 +1,8 @@
+"use client";
+
 import Image from "next/image";
 import styles from "./LogoMarquee.module.css";
+import { FadeInSection } from "@/components/ui/AnimatedSection";
 
 const logos = [
   "/logos/logo1.png",
@@ -36,11 +39,11 @@ export default function LogoMarquee() {
     <section className="relative overflow-hidden bg-white py-12 sm:py-16 border-b border-slate-100">
       <div className="absolute inset-0 bg-gradient-to-b from-slate-50/50 to-white pointer-events-none" />
       
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-8 text-center relative z-10">
+      <FadeInSection className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-8 text-center relative z-10">
         <p className="font-heading font-semibold text-xs sm:text-sm uppercase tracking-[0.05em] leading-none text-slate-400">
           Trusted By Industry Leaders
         </p>
-      </div>
+      </FadeInSection>
 
       <div className={`relative ${styles.viewport} z-10`}>
         {/* Fading edges for the marquee */}

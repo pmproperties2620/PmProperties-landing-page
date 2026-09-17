@@ -164,32 +164,11 @@ export default function ContactPage() {
             src="/images/hero-bg-new.png"
             alt="Contact Us"
             fill
+            sizes="100vw"
             className="object-cover"
             priority
           />
           <div className="absolute inset-0 bg-gradient-to-r from-red-700/95 via-red-500/80 to-transparent" />
-        </div>
-
-        {/* Left Blueprint Graphic */}
-        <div className="absolute bottom-0 left-0 w-[300px] h-[300px] md:w-[450px] md:h-[450px] opacity-20 mix-blend-screen pointer-events-none -translate-x-12 translate-y-16">
-          <Image
-            src="/images/blueprint_left.png"
-            alt=""
-            fill
-            className="object-contain object-left-bottom"
-            priority
-          />
-        </div>
-
-        {/* Right Blueprint Graphic */}
-        <div className="absolute bottom-0 right-0 w-[400px] h-[400px] md:w-[550px] md:h-[550px] opacity-20 mix-blend-screen pointer-events-none translate-x-16 translate-y-24">
-          <Image
-            src="/images/blueprint_right.png"
-            alt=""
-            fill
-            className="object-contain object-right-bottom"
-            priority
-          />
         </div>
 
         <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center w-full">

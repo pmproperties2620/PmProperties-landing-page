@@ -15,6 +15,7 @@ import {
 } from "lucide-react";
 import { useState } from "react";
 import SectionDecoration from "@/components/ui/SectionDecoration";
+import { FadeInSection, StaggerGrid } from "@/components/ui/AnimatedSection";
 
 interface ServiceItem {
   id: string;
@@ -213,7 +214,7 @@ export default function Services() {
 
       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Header Section */}
-        <div className="text-center mb-10 md:mb-16 flex flex-col items-center">
+        <FadeInSection className="text-center mb-10 md:mb-16 flex flex-col items-center">
           <SectionDecoration className="mb-4" />
           <h2 className="font-heading text-2xl md:text-4xl font-bold leading-[1.15] tracking-[-0.02em] text-slate-900 mb-6">
             Our Services
@@ -221,19 +222,19 @@ export default function Services() {
           <p className="font-body font-normal text-sm sm:text-base leading-[1.6] text-slate-600 max-w-2xl mx-auto">
             A clear approach to navigating the real estate market and property solutions.
           </p>
-        </div>
+        </FadeInSection>
 
         {/* Outer Container */}
         <div className="bg-slate-50/50 border border-slate-200 rounded-3xl p-4 sm:p-8 md:p-12 shadow-sm flex flex-col items-center justify-center overflow-x-auto pb-10 md:pb-24 gap-8 md:gap-16">
           {/* Row 1: Core Property Services */}
-          <div className="flex flex-col md:flex-row items-stretch md:items-start justify-center gap-4 md:gap-4 mx-auto w-full md:min-w-max">
+          <StaggerGrid className="flex flex-col md:flex-row items-stretch md:items-start justify-center gap-4 md:gap-4 mx-auto w-full md:min-w-max">
             {primaryServices.map(renderServiceCard)}
-          </div>
+          </StaggerGrid>
 
           {/* Row 2: Specialized & Commercial Services */}
-          <div className="flex flex-col md:flex-row items-stretch md:items-start justify-center gap-4 md:gap-4 mx-auto w-full md:min-w-max">
+          <StaggerGrid delay={0.15} className="flex flex-col md:flex-row items-stretch md:items-start justify-center gap-4 md:gap-4 mx-auto w-full md:min-w-max">
             {specializedServices.map(renderServiceCard)}
-          </div>
+          </StaggerGrid>
         </div>
       </div>
     </section>

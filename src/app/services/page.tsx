@@ -16,6 +16,7 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import BookConsultationButton from "@/components/ui/BookConsultationButton";
+import { FadeInSection, StaggerGrid, FadeInCard } from "@/components/ui/AnimatedSection";
 
 export const metadata: Metadata = {
   title: "Our Services | PM Properties",
@@ -351,6 +352,7 @@ export default function ServicesPage() {
             src="/images/hero-bg-new.png"
             alt="Our Services"
             fill
+            sizes="100vw"
             className="object-cover"
             priority
           />
@@ -383,7 +385,7 @@ export default function ServicesPage() {
           {/* ════ Category 1: Residential Services (Featured Tier) ════ */}
           <div>
             {/* Category Header */}
-            <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
+            <FadeInSection className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full font-heading font-semibold text-xs uppercase tracking-[0.05em] leading-none bg-[#FDE8E8] text-brand-600 border border-brand-200/70 shadow-xs mb-3.5">
                 <Compass className="w-3.5 h-3.5 text-brand-600" />
                 <span>Primary Practice</span>
@@ -394,20 +396,20 @@ export default function ServicesPage() {
               <p className="font-body font-normal text-sm sm:text-base text-slate-600 leading-[1.6]">
                 Everything you need to buy, sell, or rent a home
               </p>
-            </div>
+            </FadeInSection>
 
             {/* 2x2 Grid (Desktop 2 cols, Mobile 1 col) */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-7 lg:gap-8 max-w-5xl mx-auto">
+            <StaggerGrid className="grid grid-cols-1 md:grid-cols-2 gap-7 lg:gap-8 max-w-5xl mx-auto">
               {residentialServices.map((service) => {
                 const Icon = service.icon;
                 return (
-                  <Link
-                    key={service.id}
-                    href={`https://wa.me/919029923246?text=${encodeURIComponent(service.inquiryMessage)}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group relative bg-white/95 backdrop-blur-sm rounded-3xl border border-slate-200/90 shadow-[0_4px_24px_-4px_rgba(0,0,0,0.05)] hover:shadow-[0_24px_50px_-12px_rgba(73,22,18,0.16)] hover:border-brand-300 transition-all duration-300 ease-out hover:-translate-y-1.5 flex flex-col justify-between overflow-hidden"
-                  >
+                  <FadeInCard key={service.id} className="h-full flex flex-col">
+                    <Link
+                      href={`https://wa.me/919029923246?text=${encodeURIComponent(service.inquiryMessage)}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group relative bg-white/95 backdrop-blur-sm rounded-3xl border border-slate-200/90 shadow-[0_4px_24px_-4px_rgba(0,0,0,0.05)] hover:shadow-[0_24px_50px_-12px_rgba(73,22,18,0.16)] hover:border-brand-300 transition-all duration-300 ease-out hover:-translate-y-1.5 flex flex-col justify-between overflow-hidden h-full"
+                    >
                     {/* Top Architectural Blueprint Visor Bar */}
                     <div className="relative h-28 sm:h-32 bg-gradient-to-b from-[#F7F2F0] to-[#FAF6F4] border-b border-slate-200/70 p-4 sm:p-5 flex items-center justify-between overflow-hidden">
                       {/* Blueprint Graphic Inset */}
@@ -492,25 +494,26 @@ export default function ServicesPage() {
                       </div>
                     </div>
                   </Link>
+                </FadeInCard>
                 );
               })}
-            </div>
+            </StaggerGrid>
           </div>
 
           {/* ════ Architectural Section Divider ════ */}
-          <div className="my-16 sm:my-24 max-w-5xl mx-auto flex items-center gap-4">
+          <FadeInSection className="my-16 sm:my-24 max-w-5xl mx-auto flex items-center gap-4">
             <div className="flex-1 h-px bg-gradient-to-r from-transparent via-slate-300 to-slate-200" />
             <div className="flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-slate-200 shadow-xs font-heading font-semibold text-xs text-slate-600">
               <span className="w-2 h-2 rounded-full bg-brand-500" />
               <span>Specialized &amp; Commercial Solutions</span>
             </div>
             <div className="flex-1 h-px bg-gradient-to-r from-slate-200 via-slate-300 to-transparent" />
-          </div>
+          </FadeInSection>
 
           {/* ════ Category 2: Specialized & Commercial Services (Secondary Tier) ════ */}
           <div>
             {/* Category Header */}
-            <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
+            <FadeInSection className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full font-heading font-semibold text-xs uppercase tracking-[0.05em] leading-none bg-[#FDE8E8] text-brand-600 border border-brand-200/70 shadow-xs mb-3.5">
                 <Sparkles className="w-3.5 h-3.5 text-brand-600" />
                 <span>Specialized Practice</span>
@@ -521,20 +524,20 @@ export default function ServicesPage() {
               <p className="font-body font-normal text-sm sm:text-base text-slate-600 leading-[1.6]">
                 Beyond the basics — design, safety, and commercial solutions.
               </p>
-            </div>
+            </FadeInSection>
 
             {/* 3-Column Desktop Grid (Wraps to 2 on Tablet, 1 on Mobile) */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+            <StaggerGrid className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
               {specializedServices.map((service) => {
                 const Icon = service.icon;
                 return (
-                  <Link
-                    key={service.id}
-                    href={`https://wa.me/919029923246?text=${encodeURIComponent(service.inquiryMessage)}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group relative bg-white/95 backdrop-blur-sm rounded-3xl border border-slate-200/90 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.04)] hover:shadow-[0_20px_40px_-12px_rgba(73,22,18,0.15)] hover:border-brand-300 transition-all duration-300 ease-out hover:-translate-y-1.5 flex flex-col justify-between overflow-hidden"
-                  >
+                  <FadeInCard key={service.id} className="h-full flex flex-col">
+                    <Link
+                      href={`https://wa.me/919029923246?text=${encodeURIComponent(service.inquiryMessage)}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group relative bg-white/95 backdrop-blur-sm rounded-3xl border border-slate-200/90 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.04)] hover:shadow-[0_20px_40px_-12px_rgba(73,22,18,0.15)] hover:border-brand-300 transition-all duration-300 ease-out hover:-translate-y-1.5 flex flex-col justify-between overflow-hidden h-full"
+                    >
                     {/* Top Blueprint Inset Visor Bar */}
                     <div className="relative h-24 sm:h-26 bg-gradient-to-b from-[#F7F2F0] to-[#FAF6F4] border-b border-slate-200/70 p-4 flex items-center justify-between overflow-hidden">
                       {/* Blueprint Graphic */}
@@ -606,16 +609,17 @@ export default function ServicesPage() {
                       </div>
                     </div>
                   </Link>
+                </FadeInCard>
                 );
               })}
-            </div>
+            </StaggerGrid>
           </div>
         </div>
       </section>
 
-      {/* ─── Bottom Navy Band (Kept Unchanged) ────────────────────── */}
+      {/* ─── Bottom Navy Band ────────────────────── */}
       <section className="py-16 sm:py-20 bg-slate-900">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
+        <FadeInSection className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="font-heading font-bold text-2xl sm:text-4xl text-white mb-4 leading-[1.15] tracking-[-0.02em]">
             Not Sure What You Need?
           </h2>
@@ -626,7 +630,7 @@ export default function ServicesPage() {
           <BookConsultationButton className="inline-flex items-center justify-center gap-2 bg-brand-600 text-white px-8 py-4 rounded-xl font-heading font-semibold text-sm sm:text-base leading-none hover:bg-brand-700 transition-all shadow-lg cursor-pointer">
             Book a Free Consultation
           </BookConsultationButton>
-        </div>
+        </FadeInSection>
       </section>
     </>
   );
