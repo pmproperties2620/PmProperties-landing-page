@@ -122,7 +122,7 @@ export default function ProjectsView({ initialProjects }: ProjectsViewProps = {}
 
       return true;
     });
-  }, [filters]);
+  }, [projectsList, filters]);
 
   return (
     <div className="bg-slate-50 min-h-screen pb-20">

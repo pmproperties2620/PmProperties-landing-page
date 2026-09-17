@@ -30,7 +30,6 @@ export function isGtagAvailable(): boolean {
  */
 function logDebug(eventName: string, params?: Record<string, unknown>): void {
   if (process.env.NODE_ENV === "development") {
-    // eslint-disable-next-line no-console
     console.log(
       `%c[GA4] %c${eventName}`,
       "color: #8E1200; font-weight: bold;",
@@ -56,7 +55,6 @@ export function safeGtag(
       window.gtag!(command, targetOrEvent);
     }
   } catch (err) {
-    // eslint-disable-next-line no-console
     console.error("[GA4] Execution error:", err);
   }
 }

@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import Image from "next/image";
 import {
   Search,
@@ -11,7 +10,6 @@ import {
   Building2,
   Warehouse,
   ArrowUpRight,
-  Sparkles,
   Compass,
   type LucideIcon,
 } from "lucide-react";

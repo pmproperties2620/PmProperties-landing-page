@@ -10,22 +10,16 @@ import {
   Edit,
   Trash2,
   Eye,
-  EyeOff,
   Star,
-  ExternalLink,
   Upload,
   X,
   Check,
   AlertCircle,
   CheckCircle2,
-  Layers,
   MapPin,
   Tag,
   ShieldCheck,
-  Phone,
-  FileText,
   Sparkles,
-  ArrowUpDown,
 } from "lucide-react";
 import { useAdminAuth } from "../AdminAuthContext";
 import { ProjectRow, ProjectDbCategory, ProjectDbStatus } from "@/lib/supabaseServer";
@@ -137,7 +131,6 @@ export default function AdminProjectsPage() {
   // Fetch projects list
   const fetchProjects = useCallback(async () => {
     try {
-      setIsLoading(true);
       const res = await fetch("/api/admin/projects", {
         headers: {
           "x-admin-passcode": passcode,
@@ -160,10 +153,40 @@ export default function AdminProjectsPage() {
   }, [passcode, showToast]);
 
   useEffect(() => {
-    if (passcode) {
-      fetchProjects();
-    }
-  }, [passcode, fetchProjects]);
+    if (!passcode) return;
+    let ignore = false;
+
+    fetch("/api/admin/projects", {
+      headers: {
+        "x-admin-passcode": passcode,
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (ignore) return;
+        if (data && data.success) {
+          setProjects(data.projects || []);
+          setIsTableMissing(Boolean(data.tableMissing));
+        } else {
+          showToast("error", (data && data.error) || "Failed to load projects.");
+        }
+      })
+      .catch((err) => {
+        if (ignore) return;
+        console.error("Failed to load projects:", err);
+        showToast("error", "Error contacting projects server.");
+      })
+      .finally(() => {
+        if (!ignore) {
+          setIsLoading(false);
+          setIsRefreshing(false);
+        }
+      });
+
+    return () => {
+      ignore = true;
+    };
+  }, [passcode, showToast]);
 
   // Open Add Project Modal
   const handleOpenAdd = () => {
@@ -1313,7 +1336,7 @@ export default function AdminProjectsPage() {
                         className="w-4 h-4 rounded text-brand-600 focus:ring-brand-500"
                       />
                       <span className="text-xs font-heading font-semibold text-slate-700">
-                        Display "100% MahaRERA Verified" Trust Badge
+                        Display &quot;100% MahaRERA Verified&quot; Trust Badge
                       </span>
                     </label>
                   </div>
