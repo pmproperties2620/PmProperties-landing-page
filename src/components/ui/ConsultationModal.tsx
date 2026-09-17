@@ -23,6 +23,7 @@ import {
   PROPERTY_STAGES,
   createConsultationWhatsAppUrl,
 } from "@/data/consultation";
+import { trackLeadSubmission, trackContactClick } from "@/lib/analytics";
 
 export default function ConsultationModal() {
   const { isOpen, closeModal, initialData } = useConsultationModal();
@@ -157,6 +158,15 @@ export default function ConsultationModal() {
       const data = await res.json();
 
       if (!res.ok || !data.success) {
+        trackLeadSubmission({
+          formName: "consultation_modal",
+          status: "error",
+          requirement: selectedRequirement || undefined,
+          priceRange: selectedPrice || undefined,
+          propertyStage: selectedStage || undefined,
+          errorMessage: data.error || "Validation error",
+          source: "modal",
+        });
         if (data.errors) {
           setErrors(data.errors);
         } else {
@@ -165,9 +175,27 @@ export default function ConsultationModal() {
         return;
       }
 
+      trackLeadSubmission({
+        formName: "consultation_modal",
+        status: "success",
+        requirement: selectedRequirement || undefined,
+        priceRange: selectedPrice || undefined,
+        propertyStage: selectedStage || undefined,
+        source: "modal",
+      });
+
       setIsSubmitted(true);
     } catch (err) {
       console.error("Lead submission error:", err);
+      trackLeadSubmission({
+        formName: "consultation_modal",
+        status: "error",
+        requirement: selectedRequirement || undefined,
+        priceRange: selectedPrice || undefined,
+        propertyStage: selectedStage || undefined,
+        errorMessage: "Network error",
+        source: "modal",
+      });
       setSubmitError("Unable to connect to server. Please check your internet connection.");
     } finally {
       setIsSubmitting(false);
@@ -276,6 +304,14 @@ export default function ConsultationModal() {
                     href={getWhatsAppUrl()}
                     target="_blank"
                     rel="noopener noreferrer"
+                    onClick={() => {
+                      trackContactClick({
+                        method: "whatsapp",
+                        location: "consultation_modal_success",
+                        destination: getWhatsAppUrl(),
+                        label: fullName,
+                      });
+                    }}
                     className="flex-1 inline-flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#20ba59] text-black font-heading font-semibold text-sm lg:text-[15px] leading-none px-6 py-3.5 rounded-xl transition-all shadow-lg cursor-pointer"
                   >
                     <MessageSquare className="w-4 h-4 fill-black text-black" />

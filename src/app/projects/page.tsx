@@ -1,5 +1,9 @@
 import type { Metadata } from "next";
 import ProjectsView from "@/components/projects/ProjectsView";
+import { getPublishedProjectsServer } from "@/lib/supabaseServer";
+import { projectsData } from "@/data/projects";
+
+export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Real Estate Projects & Properties | PM Properties",
@@ -24,6 +28,10 @@ export const metadata: Metadata = {
   },
 };
 
-export default function ProjectsPage() {
-  return <ProjectsView />;
+export default async function ProjectsPage() {
+  const dbProjects = await getPublishedProjectsServer();
+  const initialProjects = dbProjects.length > 0 ? dbProjects : projectsData;
+
+  return <ProjectsView initialProjects={initialProjects} />;
 }
+

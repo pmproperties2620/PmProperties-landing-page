@@ -45,7 +45,13 @@ const timelineData = [
     title: "A New Identity",
     description:
       "Celebrating 5 years of trust, we took a monumental step forward. To secure a distinct and official identity, the company evolved into 'The PM Properties' with a registered trademark. Fulfilling your dream of a home remains my greatest privilege.",
-    image: "/images/PM_propreties.jpeg",
+    image: [
+      "/images/PM_propreties.jpeg",
+      "/images/pm.jpeg",
+      "/images/pm3.jpeg",
+      "/images/pm1.jpeg",
+      "/images/pm2.jpeg",
+    ],
   },
 ];
 
@@ -55,7 +61,7 @@ function ImageSlider({ images, fit }: { images: string[]; fit: boolean }) {
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % images.length);
-    }, 2500);
+    }, 2800);
     return () => clearInterval(timer);
   }, [images.length]);
 
@@ -75,6 +81,23 @@ function ImageSlider({ images, fit }: { images: string[]; fit: boolean }) {
           sizes="(max-width: 768px) 100vw, 45vw"
         />
       ))}
+      {images.length > 1 && (
+        <div className="absolute bottom-3 left-1/2 -translate-x-1/2 z-30 flex items-center gap-1.5 bg-black/50 backdrop-blur-md px-3 py-1 rounded-full pointer-events-auto shadow-sm">
+          {images.map((_, i) => (
+            <button
+              key={i}
+              type="button"
+              onClick={() => setCurrentIndex(i)}
+              className={`transition-all duration-300 rounded-full cursor-pointer ${
+                i === currentIndex
+                  ? "w-4 h-1.5 bg-white shadow-sm"
+                  : "w-1.5 h-1.5 bg-white/50 hover:bg-white/90"
+              }`}
+              aria-label={`Go to slide ${i + 1}`}
+            />
+          ))}
+        </div>
+      )}
     </div>
   );
 }

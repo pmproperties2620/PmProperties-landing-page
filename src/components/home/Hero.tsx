@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { useConsultationModal } from "@/context/ConsultationModalContext";
+import { trackCtaClick } from "@/lib/analytics";
 
 export default function Hero() {
   const { openModal } = useConsultationModal();
@@ -44,7 +45,13 @@ export default function Hero() {
           >
             <button
               type="button"
-              onClick={() => openModal()}
+              onClick={() => {
+                trackCtaClick({
+                  ctaName: "Book Your Consultation",
+                  ctaLocation: "hero_banner",
+                });
+                openModal();
+              }}
               className="bg-white text-[#0a1128] px-8 py-4 rounded-full font-bold text-[15px] hover:bg-gray-100 transition-colors shadow-xl flex items-center gap-2 cursor-pointer"
             >
               Book Your Consultation

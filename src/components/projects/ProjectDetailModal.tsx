@@ -18,6 +18,7 @@ import {
   ChevronRight,
 } from "lucide-react";
 import type { Project } from "@/data/projects";
+import { trackProjectClick, trackContactClick } from "@/lib/analytics";
 
 interface ProjectDetailModalProps {
   project: Project | null;
@@ -36,10 +37,19 @@ export default function ProjectDetailModal({
     setActiveImageIndex(0);
   }
 
-  // Lock body scroll when modal is open
+  // Lock body scroll when modal is open and track view
   useEffect(() => {
     if (project) {
       document.body.style.overflow = "hidden";
+      trackProjectClick({
+        projectId: project.id,
+        projectTitle: project.title,
+        developer: project.developer,
+        locality: project.location.locality,
+        city: project.location.city,
+        price: project.priceDisplay,
+        action: "modal_open",
+      });
     } else {
       document.body.style.overflow = "unset";
     }
@@ -98,7 +108,7 @@ export default function ProjectDetailModal({
             {/* Visual Header / Image Carousel */}
             <div className="relative aspect-[16/9] sm:aspect-[21/9] w-full bg-slate-900 overflow-hidden">
               <Image
-                src={project.images[activeImageIndex] || project.images[0]}
+                src={project.images?.[activeImageIndex] || project.images?.[0] || "/images/modern_building.png"}
                 alt={project.title}
                 fill
                 priority
@@ -313,6 +323,14 @@ export default function ProjectDetailModal({
             <div className="flex items-center gap-2.5 w-full sm:w-auto">
               <a
                 href="tel:+919029923246"
+                onClick={() => {
+                  trackContactClick({
+                    method: "phone",
+                    location: "project_modal",
+                    destination: "tel:+919029923246",
+                    label: project.title,
+                  });
+                }}
                 className="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 px-4 py-3 rounded-xl border border-slate-300 bg-white hover:bg-slate-100 text-slate-800 font-heading font-semibold text-sm leading-none transition-colors"
               >
                 <Phone className="w-4 h-4 text-slate-600" />
@@ -323,6 +341,23 @@ export default function ProjectDetailModal({
                 href={getWhatsAppMessage("request the official brochure")}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => {
+                  trackProjectClick({
+                    projectId: project.id,
+                    projectTitle: project.title,
+                    developer: project.developer,
+                    locality: project.location.locality,
+                    city: project.location.city,
+                    price: project.priceDisplay,
+                    action: "whatsapp_inquire",
+                  });
+                  trackContactClick({
+                    method: "whatsapp",
+                    location: "project_modal",
+                    destination: getWhatsAppMessage("request the official brochure"),
+                    label: `${project.title} Brochure`,
+                  });
+                }}
                 className="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-heading font-semibold text-sm leading-none transition-all shadow-md hover:shadow-lg"
               >
                 <MessageCircle className="w-4 h-4" />

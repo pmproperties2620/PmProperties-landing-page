@@ -179,3 +179,89 @@ CREATE POLICY "Disallow public access to push_subscriptions"
 
 COMMENT ON TABLE public.push_subscriptions IS 'Stores Web Push notification subscriptions for real-time lead alerts.';
 
+-- ==============================================================================
+-- 11. Projects CMS Table & Storage
+-- ==============================================================================
+CREATE TABLE IF NOT EXISTS public.projects (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    developer_name TEXT NOT NULL,
+    project_name TEXT NOT NULL,
+    location TEXT NOT NULL,
+    address TEXT NOT NULL,
+    category TEXT NOT NULL, -- 'buy_new' | 'verified_resale' | 'commercial' | 'industrial_rental'
+    status TEXT NOT NULL,   -- 'ready_to_move' | 'under_construction'
+    brokerage_label TEXT DEFAULT '0% Brokerage',
+    is_featured BOOLEAN DEFAULT false,
+    rera_number TEXT,
+    rera_verified BOOLEAN DEFAULT false,
+    price_min NUMERIC,
+    price_max NUMERIC,
+    price_unit TEXT DEFAULT 'Lakhs', -- 'Lakhs' | 'Cr'
+    price_per_sqft NUMERIC,
+    configurations TEXT[] DEFAULT '{}', -- e.g. ['1 BHK','2 BHK','3 BHK']
+    property_type TEXT DEFAULT 'Residential',
+    carpet_area_min NUMERIC,
+    carpet_area_max NUMERIC,
+    rera_usable BOOLEAN DEFAULT true,
+    possession_text TEXT, -- e.g. "Immediate Possession", "Dec 2026"
+    possession_status_tag TEXT, -- e.g. "Ready to Move", "Ready & Nearing Possession"
+    description TEXT,
+    highlights TEXT[] DEFAULT '{}', -- Key Project Highlights list
+    amenities TEXT[] DEFAULT '{}',  -- World-Class Amenities list
+    cover_image_url TEXT,
+    gallery_image_urls TEXT[] DEFAULT '{}',
+    brochure_url TEXT,
+    contact_phone TEXT DEFAULT '919029923246',
+    is_published BOOLEAN DEFAULT true,
+    display_order INTEGER DEFAULT 0,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT timezone('utc'::text, now()),
+    updated_at TIMESTAMPTZ NOT NULL DEFAULT timezone('utc'::text, now())
+);
+
+CREATE INDEX IF NOT EXISTS idx_projects_category ON public.projects (category);
+CREATE INDEX IF NOT EXISTS idx_projects_published_order ON public.projects (is_published, display_order);
+CREATE INDEX IF NOT EXISTS idx_projects_location ON public.projects (location);
+
+-- Trigger for auto-updating updated_at on projects
+DROP TRIGGER IF EXISTS set_projects_updated_at ON public.projects;
+CREATE TRIGGER set_projects_updated_at
+    BEFORE UPDATE ON public.projects
+    FOR EACH ROW
+    EXECUTE FUNCTION public.handle_updated_at();
+
+ALTER TABLE public.projects ENABLE ROW LEVEL SECURITY;
+
+DROP POLICY IF EXISTS "Public can view published projects" ON public.projects;
+CREATE POLICY "Public can view published projects"
+    ON public.projects FOR SELECT
+    TO anon, authenticated
+    USING (is_published = true);
+
+DROP POLICY IF EXISTS "Service role full access on projects" ON public.projects;
+CREATE POLICY "Service role full access on projects"
+    ON public.projects FOR ALL
+    TO service_role
+    USING (true) WITH CHECK (true);
+
+COMMENT ON TABLE public.projects IS 'Stores dynamic real estate projects managed via the Admin CMS.';
+
+-- Storage bucket setup for project-images
+INSERT INTO storage.buckets (id, name, public)
+VALUES ('project-images', 'project-images', true)
+ON CONFLICT (id) DO NOTHING;
+
+-- Public can read images from project-images bucket
+DROP POLICY IF EXISTS "Public can view project images" ON storage.objects;
+CREATE POLICY "Public can view project images"
+    ON storage.objects FOR SELECT
+    TO anon, authenticated
+    USING (bucket_id = 'project-images');
+
+-- Service role full access to project-images bucket
+DROP POLICY IF EXISTS "Service role full access to project images" ON storage.objects;
+CREATE POLICY "Service role full access to project images"
+    ON storage.objects FOR ALL
+    TO service_role
+    USING (bucket_id = 'project-images')
+    WITH CHECK (bucket_id = 'project-images');
+

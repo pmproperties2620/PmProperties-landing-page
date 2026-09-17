@@ -16,6 +16,7 @@ import {
 import { useState } from "react";
 import SectionDecoration from "@/components/ui/SectionDecoration";
 import { FadeInSection, StaggerGrid } from "@/components/ui/AnimatedSection";
+import { trackServiceClick } from "@/lib/analytics";
 
 interface ServiceItem {
   id: string;
@@ -108,6 +109,14 @@ export default function Services() {
         key={service.id}
         onMouseEnter={() => setHoveredId(service.id)}
         onMouseLeave={() => setHoveredId(null)}
+        onClick={() => {
+          setHoveredId(service.id);
+          trackServiceClick({
+            serviceId: service.id,
+            serviceTitle: service.title,
+            action: "card_click",
+          });
+        }}
         className="w-full md:w-auto"
       >
         <motion.div

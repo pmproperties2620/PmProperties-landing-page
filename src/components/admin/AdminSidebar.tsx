@@ -7,6 +7,7 @@ import { usePathname } from "next/navigation";
 import {
   LayoutDashboard,
   Users,
+  Building2,
   Settings,
   ArrowLeft,
   Menu,
@@ -32,6 +33,11 @@ const NAV_ITEMS: NavItem[] = [
     label: "Leads",
     href: "/admin/leads",
     icon: Users,
+  },
+  {
+    label: "Projects",
+    href: "/admin/projects",
+    icon: Building2,
   },
   {
     label: "Settings",

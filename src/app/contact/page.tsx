@@ -27,6 +27,7 @@ import {
   PROPERTY_STAGES,
   createConsultationWhatsAppUrl,
 } from "@/data/consultation";
+import { trackLeadSubmission, trackContactClick } from "@/lib/analytics";
 
 const contactInfo = [
   {
@@ -128,6 +129,15 @@ export default function ContactPage() {
       const data = await res.json();
 
       if (!res.ok || !data.success) {
+        trackLeadSubmission({
+          formName: "contact_page_form",
+          status: "error",
+          requirement: selectedRequirement || undefined,
+          priceRange: selectedPrice || undefined,
+          propertyStage: selectedStage || undefined,
+          errorMessage: data.error || "Validation error",
+          source: "contact_page",
+        });
         if (data.errors) {
           setErrors(data.errors);
         } else {
@@ -136,9 +146,27 @@ export default function ContactPage() {
         return;
       }
 
+      trackLeadSubmission({
+        formName: "contact_page_form",
+        status: "success",
+        requirement: selectedRequirement || undefined,
+        priceRange: selectedPrice || undefined,
+        propertyStage: selectedStage || undefined,
+        source: "contact_page",
+      });
+
       setIsSubmitted(true);
     } catch (err) {
       console.error("Lead submission error:", err);
+      trackLeadSubmission({
+        formName: "contact_page_form",
+        status: "error",
+        requirement: selectedRequirement || undefined,
+        priceRange: selectedPrice || undefined,
+        propertyStage: selectedStage || undefined,
+        errorMessage: "Network error",
+        source: "contact_page",
+      });
       setSubmitError("Unable to connect to server. Please check your internet connection.");
     } finally {
       setIsSubmitting(false);
@@ -251,6 +279,14 @@ export default function ContactPage() {
                           href={getWhatsAppUrl()}
                           target="_blank"
                           rel="noopener noreferrer"
+                          onClick={() => {
+                            trackContactClick({
+                              method: "whatsapp",
+                              location: "contact_page_success",
+                              destination: getWhatsAppUrl(),
+                              label: fullName,
+                            });
+                          }}
                           className="flex-1 inline-flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#20ba59] text-black font-heading font-semibold px-6 py-3.5 rounded-xl transition-all shadow-lg text-sm leading-none"
                         >
                           <MessageSquare className="w-4 h-4 fill-black text-black" />
@@ -581,9 +617,16 @@ export default function ContactPage() {
                   {/* Instant WhatsApp Quick Button */}
                   <div className="mt-6 pt-5 border-t border-slate-100">
                     <a
-                      href="https://wa.me/919029923246?text=Hi%20PM%20Properties,%20I%20would%20like%20to%20inquire%20about%20available%20properties."
+                      href="https://wa.me/919029923246?text=Hi%20PM%20Properties,%20I%20would%20like%20to%20enquire%20about%20available%20properties."
                       target="_blank"
                       rel="noopener noreferrer"
+                      onClick={() => {
+                        trackContactClick({
+                          method: "whatsapp",
+                          location: "contact_page_sidebar",
+                          destination: "https://wa.me/919029923246?text=Hi%20PM%20Properties,%20I%20would%20like%20to%20enquire%20about%20available%20properties.",
+                        });
+                      }}
                       className="w-full inline-flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#20ba59] text-black font-heading font-semibold py-3 px-4 rounded-xl text-sm leading-none transition-all shadow-md"
                     >
                       <MessageSquare className="w-4 h-4 fill-black text-black" />

@@ -11,6 +11,7 @@ import {
   MessageCircle,
 } from "lucide-react";
 import type { Project } from "@/data/projects";
+import { trackProjectClick, trackContactClick } from "@/lib/analytics";
 
 interface ProjectCardProps {
   project: Project;
@@ -120,7 +121,18 @@ export default function ProjectCard({ project, onQuickView }: ProjectCardProps) 
 
         {/* Project Title */}
         <h3
-          onClick={() => onQuickView(project)}
+          onClick={() => {
+            trackProjectClick({
+              projectId: project.id,
+              projectTitle: project.title,
+              developer: project.developer,
+              locality: project.location.locality,
+              city: project.location.city,
+              price: project.priceDisplay,
+              action: "title_click",
+            });
+            onQuickView(project);
+          }}
           className="font-heading font-bold text-lg sm:text-xl text-slate-900 mb-1 leading-[1.2] tracking-[-0.02em] group-hover:text-brand-600 transition-colors cursor-pointer"
         >
           {project.title}
@@ -184,7 +196,18 @@ export default function ProjectCard({ project, onQuickView }: ProjectCardProps) 
           <div className="flex items-center gap-2">
             <button
               type="button"
-              onClick={() => onQuickView(project)}
+              onClick={() => {
+                trackProjectClick({
+                  projectId: project.id,
+                  projectTitle: project.title,
+                  developer: project.developer,
+                  locality: project.location.locality,
+                  city: project.location.city,
+                  price: project.priceDisplay,
+                  action: "details_button",
+                });
+                onQuickView(project);
+              }}
               className="inline-flex items-center justify-center gap-1.5 px-3 py-2 font-heading font-semibold text-xs leading-none text-slate-700 bg-slate-100 hover:bg-slate-200 rounded-xl transition-colors"
               title="Quick Details"
             >
@@ -196,6 +219,23 @@ export default function ProjectCard({ project, onQuickView }: ProjectCardProps) 
               href={getWhatsAppUrl()}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => {
+                trackProjectClick({
+                  projectId: project.id,
+                  projectTitle: project.title,
+                  developer: project.developer,
+                  locality: project.location.locality,
+                  city: project.location.city,
+                  price: project.priceDisplay,
+                  action: "whatsapp_inquire",
+                });
+                trackContactClick({
+                  method: "whatsapp",
+                  location: "project_card",
+                  destination: getWhatsAppUrl(),
+                  label: project.title,
+                });
+              }}
               className="inline-flex items-center justify-center gap-1.5 px-3 py-2 font-heading font-semibold text-xs leading-none text-white bg-brand-600 hover:bg-brand-700 rounded-xl transition-all shadow-sm hover:shadow"
               title="Inquire via WhatsApp"
             >

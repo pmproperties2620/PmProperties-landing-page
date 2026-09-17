@@ -29,9 +29,16 @@ const initialFilters: FilterState = {
   possession: "all",
 };
 
-export default function ProjectsView() {
+interface ProjectsViewProps {
+  initialProjects?: Project[];
+}
+
+export default function ProjectsView({ initialProjects }: ProjectsViewProps = {}) {
   const [filters, setFilters] = useState<FilterState>(initialFilters);
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+
+  const projectsList =
+    initialProjects && initialProjects.length > 0 ? initialProjects : projectsData;
 
   const handleFilterChange = (newFilters: Partial<FilterState>) => {
     setFilters((prev) => ({ ...prev, ...newFilters }));
@@ -42,7 +49,7 @@ export default function ProjectsView() {
   };
 
   const filteredProjects = useMemo(() => {
-    return projectsData.filter((project) => {
+    return projectsList.filter((project) => {
       // Search filter
       if (filters.search) {
         const query = filters.search.toLowerCase();
@@ -212,7 +219,7 @@ export default function ProjectsView() {
           filters={filters}
           onFilterChange={handleFilterChange}
           onReset={handleReset}
-          totalCount={projectsData.length}
+          totalCount={projectsList.length}
           filteredCount={filteredProjects.length}
         />
 

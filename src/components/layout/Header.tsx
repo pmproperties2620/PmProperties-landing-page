@@ -16,6 +16,7 @@ import {
 } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useConsultationModal } from "@/context/ConsultationModalContext";
+import { trackCtaClick } from "@/lib/analytics";
 
 /* ─── Types ──────────────────────────────────── */
 interface NavItem {
@@ -163,7 +164,13 @@ export default function Header() {
             <div className="hidden md:flex items-center gap-1 bg-white rounded-full p-1.5 shadow-xl shrink-0">
               <button
                 type="button"
-                onClick={() => openModal()}
+                onClick={() => {
+                  trackCtaClick({
+                    ctaName: "Book Consultation",
+                    ctaLocation: "header_desktop",
+                  });
+                  openModal();
+                }}
                 className="px-6 py-2.5 rounded-full font-heading text-[15px] lg:text-base font-bold leading-none bg-[#0a0a0a] text-white hover:bg-black shadow-md transition-all duration-200 cursor-pointer"
               >
                 Book Consultation
@@ -284,6 +291,10 @@ export default function Header() {
                   <button
                     type="button"
                     onClick={() => {
+                      trackCtaClick({
+                        ctaName: "Book Consultation",
+                        ctaLocation: "header_mobile",
+                      });
                       setMobileOpen(false);
                       openModal();
                     }}

@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { Calendar } from "lucide-react";
 import AnimatedSection from "@/components/ui/AnimatedSection";
 import { useConsultationModal } from "@/context/ConsultationModalContext";
+import { trackCtaClick } from "@/lib/analytics";
 
 export default function CTASection() {
   const { openModal } = useConsultationModal();
@@ -42,7 +43,13 @@ export default function CTASection() {
               <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.98 }}>
                 <button
                   type="button"
-                  onClick={() => openModal()}
+                  onClick={() => {
+                    trackCtaClick({
+                      ctaName: "Book a Consultation",
+                      ctaLocation: "bottom_cta_section",
+                    });
+                    openModal();
+                  }}
                   className="inline-flex items-center justify-center gap-2 bg-brand-600 text-white px-8 py-4 rounded-xl font-heading font-semibold text-sm sm:text-base leading-none hover:bg-brand-700 transition-all shadow-lg shadow-brand-600/25 cursor-pointer"
                 >
                   <Calendar className="w-5 h-5" />

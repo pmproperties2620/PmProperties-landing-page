@@ -16,6 +16,7 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import BookConsultationButton from "@/components/ui/BookConsultationButton";
+import ServiceCardLink from "@/components/services/ServiceCardLink";
 import { FadeInSection, StaggerGrid, FadeInCard } from "@/components/ui/AnimatedSection";
 
 export const metadata: Metadata = {
@@ -65,7 +66,7 @@ const residentialServices: ServiceItem[] = [
       deliverable: "Title Clearance & Deal Closing",
     },
     schematicType: "floorplan",
-    inquiryMessage: "Hi PM Properties, I would like to inquire about Property Buying services.",
+    inquiryMessage: "Hi PM Properties, I would like to enquire about Property Buying services.",
   },
   {
     id: "selling",
@@ -81,7 +82,7 @@ const residentialServices: ServiceItem[] = [
       deliverable: "Max Valuation & Closing Support",
     },
     schematicType: "elevation",
-    inquiryMessage: "Hi PM Properties, I would like to inquire about Property Selling services.",
+    inquiryMessage: "Hi PM Properties, I would like to enquire about Property Selling services.",
   },
   {
     id: "renting",
@@ -97,7 +98,7 @@ const residentialServices: ServiceItem[] = [
       deliverable: "Vetted Tenants & Registered Lease",
     },
     schematicType: "lease",
-    inquiryMessage: "Hi PM Properties, I would like to inquire about Property Renting services.",
+    inquiryMessage: "Hi PM Properties, I would like to enquire about Property Renting services.",
   },
   {
     id: "consultation",
@@ -113,7 +114,7 @@ const residentialServices: ServiceItem[] = [
       deliverable: "Custom Market & ROI Roadmap",
     },
     schematicType: "strategy",
-    inquiryMessage: "Hi PM Properties, I would like to inquire about Property Consultation services.",
+    inquiryMessage: "Hi PM Properties, I would like to enquire about Property Consultation services.",
   },
 ];
 
@@ -132,7 +133,7 @@ const specializedServices: ServiceItem[] = [
       deliverable: "3D Visuals & Turnkey Finish",
     },
     schematicType: "interior",
-    inquiryMessage: "Hi PM Properties, I would like to inquire about Interior Design services.",
+    inquiryMessage: "Hi PM Properties, I would like to enquire about Interior Design services.",
   },
   {
     id: "invisible-grills",
@@ -148,7 +149,7 @@ const specializedServices: ServiceItem[] = [
       deliverable: "Grade-316 Steel Warranty",
     },
     schematicType: "grill",
-    inquiryMessage: "Hi PM Properties, I would like to inquire about Invisible Grills installation.",
+    inquiryMessage: "Hi PM Properties, I would like to enquire about Invisible Grills installation.",
   },
   {
     id: "commercial-buy-sell",
@@ -164,7 +165,7 @@ const specializedServices: ServiceItem[] = [
       deliverable: "Institutional Yield Advisory",
     },
     schematicType: "commercial",
-    inquiryMessage: "Hi PM Properties, I would like to inquire about Commercial Property (Buy/Sell) services.",
+    inquiryMessage: "Hi PM Properties, I would like to enquire about Commercial Property (Buy/Sell) services.",
   },
   {
     id: "commercial-industrial-rental",
@@ -180,7 +181,7 @@ const specializedServices: ServiceItem[] = [
       deliverable: "Compliant Long-Term Leases",
     },
     schematicType: "warehouse",
-    inquiryMessage: "Hi PM Properties, I would like to inquire about Commercial & Industrial Rental spaces.",
+    inquiryMessage: "Hi PM Properties, I would like to enquire about Commercial & Industrial Rental spaces.",
   },
 ];
 
@@ -398,85 +399,86 @@ export default function ServicesPage() {
               </p>
             </FadeInSection>
 
-            {/* 2x2 Grid (Desktop 2 cols, Mobile 1 col) */}
-            <StaggerGrid className="grid grid-cols-1 md:grid-cols-2 gap-7 lg:gap-8 max-w-5xl mx-auto">
+            {/* 2x2 Grid (Desktop 2 cols, Mobile 1 col) - Compact height & reduced gap */}
+            <StaggerGrid className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5 max-w-5xl mx-auto">
               {residentialServices.map((service) => {
                 const Icon = service.icon;
                 return (
                   <FadeInCard key={service.id} className="h-full flex flex-col">
-                    <Link
+                    <ServiceCardLink
                       href={`https://wa.me/919029923246?text=${encodeURIComponent(service.inquiryMessage)}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="group relative bg-white/95 backdrop-blur-sm rounded-3xl border border-slate-200/90 shadow-[0_4px_24px_-4px_rgba(0,0,0,0.05)] hover:shadow-[0_24px_50px_-12px_rgba(73,22,18,0.16)] hover:border-brand-300 transition-all duration-300 ease-out hover:-translate-y-1.5 flex flex-col justify-between overflow-hidden h-full"
+                      serviceId={service.id}
+                      serviceTitle={service.title}
+                      category={service.categoryTag}
+                      className="group relative bg-white/95 backdrop-blur-sm rounded-2xl sm:rounded-3xl border border-slate-200/90 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.04)] hover:shadow-[0_20px_40px_-12px_rgba(73,22,18,0.15)] hover:border-brand-300 transition-all duration-300 ease-out hover:-translate-y-1 flex flex-col justify-between overflow-hidden h-full"
                     >
-                    {/* Top Architectural Blueprint Visor Bar */}
-                    <div className="relative h-28 sm:h-32 bg-gradient-to-b from-[#F7F2F0] to-[#FAF6F4] border-b border-slate-200/70 p-4 sm:p-5 flex items-center justify-between overflow-hidden">
+                    {/* Top Architectural Blueprint Visor Bar - Compact */}
+                    <div className="relative h-20 sm:h-22 bg-gradient-to-b from-[#F7F2F0] to-[#FAF6F4] border-b border-slate-200/70 p-3.5 sm:p-4 flex items-center justify-between overflow-hidden">
                       {/* Blueprint Graphic Inset */}
-                      <div className="absolute right-3 top-2 bottom-2 w-48 text-brand-900/15 group-hover:text-brand-700/25 transition-colors duration-300 pointer-events-none">
+                      <div className="absolute right-3 top-2 bottom-2 w-40 text-brand-900/15 group-hover:text-brand-700/25 transition-colors duration-300 pointer-events-none">
                         <SchematicGraphic type={service.schematicType} />
                       </div>
 
                       {/* Left: Code Spec & Icon */}
-                      <div className="relative z-10 flex items-center gap-3.5">
+                      <div className="relative z-10 flex items-center gap-3">
                         {/* Soft Pink Rounded-XL Icon Box */}
-                        <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-[#FDE8E8] border border-brand-200/60 flex items-center justify-center text-brand-600 shadow-xs transition-all duration-300 group-hover:scale-105 group-hover:bg-[#FCD8D8]">
-                          <Icon className="w-7 h-7 sm:w-8 sm:h-8" strokeWidth={1.8} />
+                        <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-[#FDE8E8] border border-brand-200/60 flex items-center justify-center text-brand-600 shadow-xs transition-all duration-300 group-hover:scale-105 group-hover:bg-[#FCD8D8]">
+                          <Icon className="w-5 h-5 sm:w-6 sm:h-6" strokeWidth={1.8} />
                         </div>
                         <div>
-                          <span className="block text-[11px] font-mono tracking-widest text-slate-400 uppercase font-semibold">
+                          <span className="block text-[10px] font-mono tracking-widest text-slate-400 uppercase font-semibold">
                             {service.code}
                           </span>
-                          <span className="inline-flex items-center px-2 py-0.5 rounded-md font-heading font-bold text-[10px] uppercase tracking-wider bg-white/90 text-brand-700 border border-brand-200/50 shadow-2xs mt-1">
+                          <span className="inline-flex items-center px-1.5 py-0.5 rounded-md font-heading font-bold text-[9px] uppercase tracking-wider bg-white/90 text-brand-700 border border-brand-200/50 shadow-2xs mt-0.5">
                             {service.categoryTag}
                           </span>
                         </div>
                       </div>
 
                       {/* Top Right Action Arrow Badge */}
-                      <div className="relative z-10 w-9 h-9 rounded-full bg-white/90 border border-slate-200/70 flex items-center justify-center text-slate-400 group-hover:bg-brand-600 group-hover:text-white group-hover:border-brand-600 transition-all duration-300 shadow-2xs">
-                        <ArrowUpRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                      <div className="relative z-10 w-7.5 h-7.5 sm:w-8 sm:h-8 rounded-full bg-white/90 border border-slate-200/70 flex items-center justify-center text-slate-400 group-hover:bg-brand-600 group-hover:text-white group-hover:border-brand-600 transition-all duration-300 shadow-2xs">
+                        <ArrowUpRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                       </div>
                     </div>
 
-                    {/* Middle Content Area */}
-                    <div className="p-6 sm:p-7 flex-1 flex flex-col justify-between">
+                    {/* Middle Content Area - Compact Padding */}
+                    <div className="p-4 sm:p-5 flex-1 flex flex-col justify-between">
                       <div>
                         {/* Title */}
-                        <h3 className="font-heading font-bold text-lg sm:text-xl text-slate-900 mb-2.5 leading-[1.2] tracking-[-0.02em] group-hover:text-brand-600 transition-colors duration-200">
+                        <h3 className="font-heading font-bold text-base sm:text-lg lg:text-xl text-slate-900 mb-1.5 leading-[1.2] tracking-[-0.02em] group-hover:text-brand-600 transition-colors duration-200">
                           {service.title}
                         </h3>
 
                         {/* 2-line max description */}
-                        <p className="font-body font-normal text-xs sm:text-sm text-slate-600 leading-[1.6] line-clamp-2 mb-6">
+                        <p className="font-body font-normal text-xs sm:text-sm text-slate-600 leading-[1.6] line-clamp-2 mb-3.5">
                           {service.description}
                         </p>
                       </div>
 
-                      {/* Architectural Service Specification Table */}
-                      <div className="bg-[#FAF7F6] rounded-2xl p-3.5 sm:p-4 border border-slate-200/70 space-y-2 mb-5">
+                      {/* Architectural Service Specification Table - Compact */}
+                      <div className="bg-[#FAF7F6] rounded-xl p-2.5 sm:p-3 border border-slate-200/70 space-y-1.5 mb-3.5">
                         <div className="grid grid-cols-3 gap-2 text-xs">
                           <div>
-                            <span className="block text-[10px] font-mono uppercase tracking-wider text-slate-400 font-semibold">
+                            <span className="block text-[9px] sm:text-[10px] font-mono uppercase tracking-wider text-slate-400 font-semibold">
                               Scope
                             </span>
-                            <span className="font-body font-medium text-xs text-slate-800 line-clamp-1">
+                            <span className="font-body font-medium text-[11px] sm:text-xs text-slate-800 line-clamp-1">
                               {service.specs.scope}
                             </span>
                           </div>
                           <div>
-                            <span className="block text-[10px] font-mono uppercase tracking-wider text-slate-400 font-semibold">
+                            <span className="block text-[9px] sm:text-[10px] font-mono uppercase tracking-wider text-slate-400 font-semibold">
                               Timeline
                             </span>
-                            <span className="font-body font-medium text-xs text-slate-800 line-clamp-1">
+                            <span className="font-body font-medium text-[11px] sm:text-xs text-slate-800 line-clamp-1">
                               {service.specs.timeline}
                             </span>
                           </div>
                           <div>
-                            <span className="block text-[10px] font-mono uppercase tracking-wider text-slate-400 font-semibold">
+                            <span className="block text-[9px] sm:text-[10px] font-mono uppercase tracking-wider text-slate-400 font-semibold">
                               Deliverable
                             </span>
-                            <span className="font-body font-semibold text-xs text-brand-700 line-clamp-1">
+                            <span className="font-body font-semibold text-[11px] sm:text-xs text-brand-700 line-clamp-1">
                               {service.specs.deliverable}
                             </span>
                           </div>
@@ -484,16 +486,16 @@ export default function ServicesPage() {
                       </div>
 
                       {/* Card Bottom CTA Affordance */}
-                      <div className="pt-3 border-t border-slate-100 flex items-center justify-between text-xs">
-                        <span className="font-heading font-semibold text-xs text-slate-500 group-hover:text-slate-900 transition-colors duration-200">
+                      <div className="pt-2.5 border-t border-slate-100 flex items-center justify-between text-xs">
+                        <span className="font-heading font-semibold text-[11px] sm:text-xs text-slate-500 group-hover:text-slate-900 transition-colors duration-200">
                           Verified Brokerage Mandate
                         </span>
-                        <span className="inline-flex items-center gap-1.5 font-heading font-bold uppercase tracking-[0.05em] text-[11px] text-brand-600 group-hover:translate-x-0.5 transition-transform duration-200">
+                        <span className="inline-flex items-center gap-1.5 font-heading font-bold uppercase tracking-[0.05em] text-[10px] sm:text-[11px] text-brand-600 group-hover:translate-x-0.5 transition-transform duration-200">
                           Consult on WhatsApp &rarr;
                         </span>
                       </div>
                     </div>
-                  </Link>
+                  </ServiceCardLink>
                 </FadeInCard>
                 );
               })}
@@ -501,7 +503,7 @@ export default function ServicesPage() {
           </div>
 
           {/* ════ Architectural Section Divider ════ */}
-          <FadeInSection className="my-16 sm:my-24 max-w-5xl mx-auto flex items-center gap-4">
+          <FadeInSection className="my-10 sm:my-16 max-w-5xl mx-auto flex items-center gap-4">
             <div className="flex-1 h-px bg-gradient-to-r from-transparent via-slate-300 to-slate-200" />
             <div className="flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-slate-200 shadow-xs font-heading font-semibold text-xs text-slate-600">
               <span className="w-2 h-2 rounded-full bg-brand-500" />
@@ -532,10 +534,11 @@ export default function ServicesPage() {
                 const Icon = service.icon;
                 return (
                   <FadeInCard key={service.id} className="h-full flex flex-col">
-                    <Link
+                    <ServiceCardLink
                       href={`https://wa.me/919029923246?text=${encodeURIComponent(service.inquiryMessage)}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
+                      serviceId={service.id}
+                      serviceTitle={service.title}
+                      category={service.categoryTag}
                       className="group relative bg-white/95 backdrop-blur-sm rounded-3xl border border-slate-200/90 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.04)] hover:shadow-[0_20px_40px_-12px_rgba(73,22,18,0.15)] hover:border-brand-300 transition-all duration-300 ease-out hover:-translate-y-1.5 flex flex-col justify-between overflow-hidden h-full"
                     >
                     {/* Top Blueprint Inset Visor Bar */}
@@ -604,11 +607,11 @@ export default function ServicesPage() {
                       <div className="pt-3 border-t border-slate-100 flex items-center justify-between text-xs">
                         <span className="font-heading font-semibold text-slate-400 text-[11px]">Turnkey / Mandate</span>
                         <span className="font-heading font-bold text-brand-600 text-[11px] uppercase tracking-[0.05em] group-hover:translate-x-0.5 transition-transform duration-200">
-                          Inquire &rarr;
+                          Enquire &rarr;
                         </span>
                       </div>
                     </div>
-                  </Link>
+                  </ServiceCardLink>
                 </FadeInCard>
                 );
               })}
