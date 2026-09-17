@@ -16,6 +16,7 @@ import {
 import BookConsultationButton from "@/components/ui/BookConsultationButton";
 import ServiceCardLink from "@/components/services/ServiceCardLink";
 import { FadeInSection, StaggerGrid, FadeInCard } from "@/components/ui/AnimatedSection";
+import { getPageBanner } from "@/lib/contentQueries";
 
 export const metadata: Metadata = {
   title: "Our Services | PM Properties",
@@ -341,14 +342,16 @@ function SchematicGraphic({ type }: { type: ServiceItem["schematicType"] }) {
   }
 }
 
-export default function ServicesPage() {
+export default async function ServicesPage() {
+  const bannerUrl = await getPageBanner("services");
+
   return (
     <>
       {/* ─── Hero Section (Kept Unchanged) ─────────────────────────── */}
       <section className="relative min-h-[60vh] flex flex-col justify-center py-20 sm:py-32 overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
-            src="/images/hero-bg-new.png"
+            src={bannerUrl}
             alt="Our Services"
             fill
             sizes="100vw"

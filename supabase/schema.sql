@@ -265,3 +265,178 @@ CREATE POLICY "Service role full access to project images"
     USING (bucket_id = 'project-images')
     WITH CHECK (bucket_id = 'project-images');
 
+-- ==============================================================================
+-- PM Properties - Content CMS Schema (Testimonials, Partners, About, Banners)
+-- ==============================================================================
+
+-- 1. Testimonials Table
+CREATE TABLE IF NOT EXISTS public.testimonials (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    client_name TEXT,
+    image_url TEXT NOT NULL,
+    is_published BOOLEAN DEFAULT true,
+    display_order INTEGER DEFAULT 0,
+    created_at TIMESTAMPTZ DEFAULT now()
+);
+
+CREATE INDEX IF NOT EXISTS idx_testimonials_published_order ON public.testimonials (is_published, display_order);
+
+ALTER TABLE public.testimonials ENABLE ROW LEVEL SECURITY;
+
+DROP POLICY IF EXISTS "Public can view published testimonials" ON public.testimonials;
+CREATE POLICY "Public can view published testimonials"
+    ON public.testimonials FOR SELECT
+    TO anon, authenticated
+    USING (is_published = true);
+
+DROP POLICY IF EXISTS "Service role full access to testimonials" ON public.testimonials;
+CREATE POLICY "Service role full access to testimonials"
+    ON public.testimonials FOR ALL
+    TO service_role
+    USING (true) WITH CHECK (true);
+
+COMMENT ON TABLE public.testimonials IS 'Dynamic client testimonial photos and reviews managed via Admin CMS.';
+
+-- 2. Trusted Partners / Developer Logos Table
+CREATE TABLE IF NOT EXISTS public.trusted_partners (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    company_name TEXT,
+    logo_url TEXT NOT NULL,
+    is_published BOOLEAN DEFAULT true,
+    display_order INTEGER DEFAULT 0,
+    created_at TIMESTAMPTZ DEFAULT now()
+);
+
+CREATE INDEX IF NOT EXISTS idx_partners_published_order ON public.trusted_partners (is_published, display_order);
+
+ALTER TABLE public.trusted_partners ENABLE ROW LEVEL SECURITY;
+
+DROP POLICY IF EXISTS "Public can view published partners" ON public.trusted_partners;
+CREATE POLICY "Public can view published partners"
+    ON public.trusted_partners FOR SELECT
+    TO anon, authenticated
+    USING (is_published = true);
+
+DROP POLICY IF EXISTS "Service role full access to partners" ON public.trusted_partners;
+CREATE POLICY "Service role full access to partners"
+    ON public.trusted_partners FOR ALL
+    TO service_role
+    USING (true) WITH CHECK (true);
+
+COMMENT ON TABLE public.trusted_partners IS 'Developer and institutional partner logos shown in Homepage marquee.';
+
+-- 3. About Bento Showcase Table
+CREATE TABLE IF NOT EXISTS public.about_showcase (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    image_url TEXT NOT NULL,
+    display_order INTEGER DEFAULT 0,
+    is_published BOOLEAN DEFAULT true,
+    created_at TIMESTAMPTZ DEFAULT now()
+);
+
+CREATE INDEX IF NOT EXISTS idx_about_showcase_published_order ON public.about_showcase (is_published, display_order);
+
+ALTER TABLE public.about_showcase ENABLE ROW LEVEL SECURITY;
+
+DROP POLICY IF EXISTS "Public can view published about showcase" ON public.about_showcase;
+CREATE POLICY "Public can view published about showcase"
+    ON public.about_showcase FOR SELECT
+    TO anon, authenticated
+    USING (is_published = true);
+
+DROP POLICY IF EXISTS "Service role full access to about showcase" ON public.about_showcase;
+CREATE POLICY "Service role full access to about showcase"
+    ON public.about_showcase FOR ALL
+    TO service_role
+    USING (true) WITH CHECK (true);
+
+COMMENT ON TABLE public.about_showcase IS 'Rotating property photography displayed in the Homepage About Bento card.';
+
+-- 4. About Timeline Milestones Table
+CREATE TABLE IF NOT EXISTS public.timeline_milestones (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    year_label TEXT NOT NULL,
+    title TEXT NOT NULL,
+    description TEXT,
+    image_urls TEXT[] NOT NULL DEFAULT '{}',
+    display_order INTEGER DEFAULT 0,
+    is_published BOOLEAN DEFAULT true,
+    created_at TIMESTAMPTZ DEFAULT now()
+);
+
+CREATE INDEX IF NOT EXISTS idx_timeline_published_order ON public.timeline_milestones (is_published, display_order);
+
+ALTER TABLE public.timeline_milestones ENABLE ROW LEVEL SECURITY;
+
+DROP POLICY IF EXISTS "Public can view published timeline milestones" ON public.timeline_milestones;
+CREATE POLICY "Public can view published timeline milestones"
+    ON public.timeline_milestones FOR SELECT
+    TO anon, authenticated
+    USING (is_published = true);
+
+DROP POLICY IF EXISTS "Service role full access to timeline milestones" ON public.timeline_milestones;
+CREATE POLICY "Service role full access to timeline milestones"
+    ON public.timeline_milestones FOR ALL
+    TO service_role
+    USING (true) WITH CHECK (true);
+
+COMMENT ON TABLE public.timeline_milestones IS 'Company journey milestones and nested multi-image sliders on About page.';
+
+-- 5. Page Banners Table (Unified for Hero, About, How We Work, Services, Contact)
+CREATE TABLE IF NOT EXISTS public.page_banners (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    page_key TEXT NOT NULL UNIQUE,
+    label TEXT NOT NULL,
+    image_url TEXT NOT NULL,
+    updated_at TIMESTAMPTZ DEFAULT now()
+);
+
+ALTER TABLE public.page_banners ENABLE ROW LEVEL SECURITY;
+
+DROP POLICY IF EXISTS "Public can view page banners" ON public.page_banners;
+CREATE POLICY "Public can view page banners"
+    ON public.page_banners FOR SELECT
+    TO anon, authenticated
+    USING (true);
+
+DROP POLICY IF EXISTS "Service role full access to page banners" ON public.page_banners;
+CREATE POLICY "Service role full access to page banners"
+    ON public.page_banners FOR ALL
+    TO service_role
+    USING (true) WITH CHECK (true);
+
+COMMENT ON TABLE public.page_banners IS 'Unified hero banner background images keyed by page route.';
+
+-- 6. Hero Showcase Card Table (Right card on Homepage Hero)
+CREATE TABLE IF NOT EXISTS public.hero_showcase (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    image_url TEXT NOT NULL,
+    updated_at TIMESTAMPTZ DEFAULT now()
+);
+
+ALTER TABLE public.hero_showcase ENABLE ROW LEVEL SECURITY;
+
+DROP POLICY IF EXISTS "Public can view hero showcase" ON public.hero_showcase;
+CREATE POLICY "Public can view hero showcase"
+    ON public.hero_showcase FOR SELECT
+    TO anon, authenticated
+    USING (true);
+
+DROP POLICY IF EXISTS "Service role full access to hero showcase" ON public.hero_showcase;
+CREATE POLICY "Service role full access to hero showcase"
+    ON public.hero_showcase FOR ALL
+    TO service_role
+    USING (true) WITH CHECK (true);
+
+COMMENT ON TABLE public.hero_showcase IS 'Primary hero card image showcased on Homepage right fold.';
+
+-- Default Seed Rows for Page Banners
+INSERT INTO public.page_banners (page_key, label, image_url) VALUES
+    ('home_hero', 'Homepage Hero Banner Backdrop', '/images/hero-bg-new.png'),
+    ('about', 'About Us Page Hero Banner', '/images/hero-bg-new.png'),
+    ('how_we_work', 'How We Work Page Hero Banner', '/images/hero-bg-new.png'),
+    ('services', 'Services Page Hero Banner', '/images/hero-bg-new.png'),
+    ('contact', 'Contact Us Page Hero Banner', '/images/hero-bg-new.png')
+ON CONFLICT (page_key) DO NOTHING;
+
+

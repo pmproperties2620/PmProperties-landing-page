@@ -7,17 +7,38 @@ import FAQSection from "@/components/home/FAQSection";
 import AboutSection from "@/components/home/AboutSection";
 import HowWeWorkSection from "@/components/home/HowWeWorkSection";
 import CredentialsSection from "@/components/home/CredentialsSection";
+import {
+  getTestimonials,
+  getTrustedPartners,
+  getAboutShowcase,
+  getPageBanner,
+  getHeroShowcase,
+} from "@/lib/contentQueries";
 
-export default function Home() {
+export default async function Home() {
+  const [
+    testimonials,
+    trustedPartners,
+    aboutShowcase,
+    heroBannerUrl,
+    heroShowcaseUrl,
+  ] = await Promise.all([
+    getTestimonials(),
+    getTrustedPartners(),
+    getAboutShowcase(),
+    getPageBanner("home_hero"),
+    getHeroShowcase(),
+  ]);
+
   return (
     <>
-      <Hero />
-      <LogoMarquee />
-      <AboutSection />
+      <Hero heroBannerUrl={heroBannerUrl} heroShowcaseUrl={heroShowcaseUrl} />
+      <LogoMarquee initialLogos={trustedPartners} />
+      <AboutSection initialImages={aboutShowcase} />
       <CredentialsSection />
       <Services />
       <HowWeWorkSection />
-      <Testimonials />
+      <Testimonials initialTestimonials={testimonials} />
       <FAQSection />
       <CTASection />
     </>

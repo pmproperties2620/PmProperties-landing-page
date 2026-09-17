@@ -4,61 +4,13 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
 import { useRef, useState, useEffect } from "react";
 import AnimatedSection from "@/components/ui/AnimatedSection";
-
-const timelineData = [
-  {
-    year: "Pre-2020",
-    title: "Building the Foundation",
-    description:
-      "Graduating with Distinction in B.Com, I built a strong foundation through 8 years of experience in leadership roles at top MNCs like Sutherland, TinyOwl, and Wipro. Yet, deep down, I always nurtured a dream—to build an honest business that earns people's trust.",
-    image: "/images/whatsapp-avatar.jpeg",
-  },
-  {
-    year: "2020",
-    title: "The Turning Point",
-    description:
-      "The 2020 pandemic became my catalyst. Seeing acquaintances face scams and poor guidance while buying homes, I found my calling. I decided to step up and ensure people get their rightful homes through transparent, secure, and guided transactions.",
-    image: "/images/timeline_2_new.jpg",
-  },
-  {
-    year: "September 1, 2020",
-    title: "The Beginning",
-    description:
-      "Equipped with proper RERA training and licensing, I took the leap and founded 'Siddhivinayak Enterprise – Real Estate & Interior'. Despite early hurdles, my resolve was unbreakable—there was no turning back. With determination, the journey began.",
-    image: "/images/timeline_3_new.jpeg",
-  },
-  {
-    year: "2021 - 2024",
-    title: "Growth & Partnerships",
-    description:
-      "The journey blossomed as I joined KDRA (Kalyan Dombivli Realtors Welfare Association) and collaborated with renowned developers like Regency Group, Lodha Group, and Runwal Group. To date, I've had the privilege of helping over 500 families find their perfect homes.",
-    image: [
-      "/images/timeline_4_1.jpeg",
-      "/images/timeline_4_2.jpeg",
-      "/images/timeline_4_3.jpeg",
-      "/images/timeline_4_4.jpeg",
-      "/images/timeline_4_5.jpeg",
-    ],
-  },
-  {
-    year: "Early 2025",
-    title: "A New Identity",
-    description:
-      "Celebrating 5 years of trust, we took a monumental step forward. To secure a distinct and official identity, the company evolved into 'The PM Properties' with a registered trademark. Fulfilling your dream of a home remains my greatest privilege.",
-    image: [
-      "/images/PM_propreties.jpeg",
-      "/images/pm.jpeg",
-      "/images/pm3.jpeg",
-      "/images/pm1.jpeg",
-      "/images/pm2.jpeg",
-    ],
-  },
-];
+import { TimelineMilestoneItem, FALLBACK_TIMELINE } from "@/lib/contentQueries";
 
 function ImageSlider({ images, fit }: { images: string[]; fit: boolean }) {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
+    if (images.length <= 1) return;
     const timer = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % images.length);
     }, 2800);
@@ -102,7 +54,16 @@ function ImageSlider({ images, fit }: { images: string[]; fit: boolean }) {
   );
 }
 
-export default function AboutTimeline() {
+interface AboutTimelineProps {
+  initialMilestones?: TimelineMilestoneItem[];
+}
+
+export default function AboutTimeline({ initialMilestones }: AboutTimelineProps = {}) {
+  const milestones =
+    initialMilestones && initialMilestones.length > 0
+      ? initialMilestones
+      : FALLBACK_TIMELINE;
+
   const containerRef = useRef<HTMLDivElement>(null);
   
   const { scrollYProgress } = useScroll({
@@ -140,12 +101,14 @@ export default function AboutTimeline() {
             className="absolute left-8 md:left-1/2 top-0 w-1 bg-brand-600 transform md:-translate-x-1/2 origin-top rounded-full z-0"
           />
 
-          {timelineData.map((item, index) => {
+          {milestones.map((item, index) => {
             const isEven = index % 2 === 0;
+            const images = item.image_urls || [];
+            const year = item.year_label;
 
             return (
               <motion.div
-                key={index}
+                key={item.id || index}
                 initial={{ opacity: 0, x: isEven ? -50 : 50 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, margin: "-20%" }}
@@ -167,7 +130,7 @@ export default function AboutTimeline() {
                 <div className={`w-full md:w-[45%] pl-16 md:pl-0 ${isEven ? "md:text-left" : "md:text-right"}`}>
                   <div className="bg-slate-50 p-6 rounded-3xl shadow-sm ring-1 ring-slate-100 hover:shadow-md transition-shadow">
                     <span className="inline-block py-1 px-3 rounded-full bg-[#0a1128]/5 text-[#0a1128] font-heading font-semibold text-xs mb-3">
-                      {item.year}
+                      {year}
                     </span>
                     <h4 className="font-heading font-bold text-lg sm:text-xl text-slate-900 mb-3 leading-[1.2] tracking-[-0.02em]">{item.title}</h4>
                     <p className="font-body font-normal text-xs sm:text-sm text-slate-600 leading-[1.6]">{item.description}</p>
@@ -177,16 +140,20 @@ export default function AboutTimeline() {
                 {/* Image Side */}
                 <div className={`w-full md:w-[45%] pl-16 md:pl-0 mt-6 md:mt-0 ${isEven ? "md:pr-10" : "md:pl-10"}`}>
                   <div className="relative w-full aspect-[16/10] rounded-3xl overflow-hidden shadow-lg group">
-                    {Array.isArray(item.image) ? (
-                      <ImageSlider images={item.image} fit={index <= 3} />
-                    ) : (
+                    {images.length > 1 ? (
+                      <ImageSlider images={images} fit={index <= 3} />
+                    ) : images.length === 1 ? (
                       <Image
-                        src={item.image}
+                        src={images[0]}
                         alt={item.title}
                         fill
                         className={`${index <= 3 ? "object-contain bg-slate-100 p-2" : "object-cover"} transition-transform duration-700 group-hover:scale-105`}
                         sizes="(max-width: 768px) 100vw, 45vw"
                       />
+                    ) : (
+                      <div className="w-full h-full bg-slate-100 flex items-center justify-center text-slate-400 text-xs font-heading">
+                        PM Properties
+                      </div>
                     )}
                     <div className="absolute inset-0 bg-slate-900/10 group-hover:bg-transparent transition-colors duration-500 z-20 pointer-events-none" />
                   </div>

@@ -13,6 +13,10 @@ import {
   Menu,
   X,
   LogOut,
+  MessageSquareQuote,
+  Handshake,
+  FileText,
+  Layers,
 } from "lucide-react";
 import { useAdminAuth } from "@/app/admin/AdminAuthContext";
 import { usePushNotifications } from "@/context/PushNotificationContext";
@@ -23,7 +27,7 @@ interface NavItem {
   icon: React.ComponentType<{ className?: string }>;
 }
 
-const NAV_ITEMS: NavItem[] = [
+const MAIN_NAV_ITEMS: NavItem[] = [
   {
     label: "Dashboard",
     href: "/admin",
@@ -39,6 +43,32 @@ const NAV_ITEMS: NavItem[] = [
     href: "/admin/projects",
     icon: Building2,
   },
+];
+
+const CONTENT_NAV_ITEMS: NavItem[] = [
+  {
+    label: "Testimonials",
+    href: "/admin/testimonials",
+    icon: MessageSquareQuote,
+  },
+  {
+    label: "Partner Logos",
+    href: "/admin/partners",
+    icon: Handshake,
+  },
+  {
+    label: "About Page",
+    href: "/admin/about",
+    icon: FileText,
+  },
+  {
+    label: "Page Banners",
+    href: "/admin/banners",
+    icon: Layers,
+  },
+];
+
+const SYSTEM_NAV_ITEMS: NavItem[] = [
   {
     label: "Settings",
     href: "/admin/settings",
@@ -100,8 +130,11 @@ function NavContent({ pathname, unreadCount, onLogout, onItemClick }: NavContent
         <div className="border-b border-slate-200/80 mx-4" />
 
         {/* ─── MIDDLE ZONE: Navigation ─── */}
-        <nav className="p-4 space-y-1.5 mt-2">
-          {NAV_ITEMS.map((item) => {
+        <nav className="p-4 space-y-1 mt-2">
+          <p className="px-3.5 py-1 text-[10px] font-heading font-bold uppercase tracking-wider text-slate-400">
+            Overview
+          </p>
+          {MAIN_NAV_ITEMS.map((item) => {
             const active = isRouteActive(item.href);
             const Icon = item.icon;
 
@@ -110,15 +143,14 @@ function NavContent({ pathname, unreadCount, onLogout, onItemClick }: NavContent
                 key={item.href}
                 href={item.href}
                 onClick={onItemClick}
-                className={`group relative flex items-center gap-3 px-3.5 py-3 rounded-xl font-heading text-sm font-semibold transition-all duration-200 ${
+                className={`group relative flex items-center gap-3 px-3.5 py-2.5 rounded-xl font-heading text-sm font-semibold transition-all duration-200 ${
                   active
                     ? "bg-brand-50 text-brand-600 shadow-xs"
                     : "text-slate-600 hover:text-slate-900 hover:bg-slate-100/70"
                 }`}
               >
-                {/* Active Left Accent Bar */}
                 {active && (
-                  <span className="absolute left-0 top-1/2 -translate-y-1/2 w-1.5 h-6 bg-brand-600 rounded-r-md" />
+                  <span className="absolute left-0 top-1/2 -translate-y-1/2 w-1.5 h-5 bg-brand-600 rounded-r-md" />
                 )}
                 <Icon
                   className={`w-4 h-4 transition-transform group-hover:scale-105 ${
@@ -131,6 +163,72 @@ function NavContent({ pathname, unreadCount, onLogout, onItemClick }: NavContent
                     {unreadCount > 99 ? "99+" : unreadCount}
                   </span>
                 )}
+              </Link>
+            );
+          })}
+
+          <div className="pt-3 pb-1">
+            <p className="px-3.5 py-1 text-[10px] font-heading font-bold uppercase tracking-wider text-slate-400">
+              Content CMS
+            </p>
+          </div>
+          {CONTENT_NAV_ITEMS.map((item) => {
+            const active = isRouteActive(item.href);
+            const Icon = item.icon;
+
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                onClick={onItemClick}
+                className={`group relative flex items-center gap-3 px-3.5 py-2.5 rounded-xl font-heading text-sm font-semibold transition-all duration-200 ${
+                  active
+                    ? "bg-brand-50 text-brand-600 shadow-xs"
+                    : "text-slate-600 hover:text-slate-900 hover:bg-slate-100/70"
+                }`}
+              >
+                {active && (
+                  <span className="absolute left-0 top-1/2 -translate-y-1/2 w-1.5 h-5 bg-brand-600 rounded-r-md" />
+                )}
+                <Icon
+                  className={`w-4 h-4 transition-transform group-hover:scale-105 ${
+                    active ? "text-brand-600" : "text-slate-400 group-hover:text-slate-600"
+                  }`}
+                />
+                <span className="flex-1 text-left">{item.label}</span>
+              </Link>
+            );
+          })}
+
+          <div className="pt-3 pb-1">
+            <p className="px-3.5 py-1 text-[10px] font-heading font-bold uppercase tracking-wider text-slate-400">
+              System
+            </p>
+          </div>
+          {SYSTEM_NAV_ITEMS.map((item) => {
+            const active = isRouteActive(item.href);
+            const Icon = item.icon;
+
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                onClick={onItemClick}
+                className={`group relative flex items-center gap-3 px-3.5 py-2.5 rounded-xl font-heading text-sm font-semibold transition-all duration-200 ${
+                  active
+                    ? "bg-brand-50 text-brand-600 shadow-xs"
+                    : "text-slate-600 hover:text-slate-900 hover:bg-slate-100/70"
+                }`}
+              >
+                {active && (
+                  <span className="absolute left-0 top-1/2 -translate-y-1/2 w-1.5 h-5 bg-brand-600 rounded-r-md" />
+                )}
+                <Icon
+                  className={`w-4 h-4 transition-transform group-hover:scale-105 ${
+                    active ? "text-brand-600" : "text-slate-400 group-hover:text-slate-600"
+                  }`}
+                />
+                <span className="flex-1 text-left">{item.label}</span>
               </Link>
             );
           })}

@@ -4,27 +4,23 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import SectionDecoration from "@/components/ui/SectionDecoration";
 import { FadeInSection } from "@/components/ui/AnimatedSection";
+import { TestimonialItem, FALLBACK_TESTIMONIALS } from "@/lib/contentQueries";
 
-const testimonialImages = [
-  "/images/testimonials/testimonial-1.jpeg",
-  "/images/testimonials/testimonial-2.jpeg",
-  "/images/testimonials/testimonial-3.jpeg",
-  "/images/testimonials/testimonial-4.jpeg",
-  "/images/testimonials/testimonial-5.jpeg",
-  "/images/testimonials/testimonial-6.jpeg",
-  "/images/testimonials/testimonial-7.jpeg",
-  "/images/testimonials/testimonial-8.jpeg",
-  "/images/testimonials/testimonial-9.jpg",
-  "/images/testimonials/testimonial-10.jpg",
-];
-
-const ImageTestimonialCard = ({ src, index }: { src: string; index: number }) => (
+const ImageTestimonialCard = ({
+  src,
+  alt,
+  index,
+}: {
+  src: string;
+  alt?: string;
+  index: number;
+}) => (
   <div className="shrink-0 bg-white rounded-[1.25rem] sm:rounded-[1.5rem] p-1.5 sm:p-2 border border-slate-200/80 transition-all hover:border-brand-500/40 group shadow-md sm:shadow-lg shadow-slate-200/40 hover:shadow-xl hover:shadow-brand-500/10 hover:-translate-y-1.5 duration-500 relative">
     <div className="relative rounded-xl overflow-hidden bg-slate-50 flex items-center justify-center">
       {/* Adjusted size: smaller images for a more elegant UI on mobile */}
       <Image 
         src={src} 
-        alt={`Happy Client ${index + 1}`} 
+        alt={alt || `Happy Client ${index + 1}`} 
         width={320}
         height={320}
         style={{ width: "auto" }}
@@ -36,8 +32,20 @@ const ImageTestimonialCard = ({ src, index }: { src: string; index: number }) =>
   </div>
 );
 
-export default function Testimonials() {
-  const allImages = testimonialImages;
+interface TestimonialsProps {
+  initialTestimonials?: TestimonialItem[];
+}
+
+export default function Testimonials({ initialTestimonials }: TestimonialsProps = {}) {
+  const items =
+    initialTestimonials && initialTestimonials.length > 0
+      ? initialTestimonials
+      : FALLBACK_TESTIMONIALS;
+
+  const allImages = items.map((t, idx) => ({
+    src: t.image_url,
+    alt: t.client_name || `Happy Client ${idx + 1}`,
+  }));
   
   // Duplicate a few times to ensure smooth infinite scrolling even on large screens
   const duplicatedImages = [...allImages, ...allImages, ...allImages];
@@ -79,9 +87,9 @@ export default function Testimonials() {
             className="flex overflow-x-auto px-6 gap-4 sm:gap-6 snap-x snap-mandatory [&::-webkit-scrollbar]:hidden"
             style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
           >
-            {testimonialImages.map((src, index) => (
+            {allImages.map((item, index) => (
               <div key={`mobile-${index}`} className="snap-center shrink-0">
-                <ImageTestimonialCard src={src} index={index} />
+                <ImageTestimonialCard src={item.src} alt={item.alt} index={index} />
               </div>
             ))}
           </div>
@@ -113,8 +121,8 @@ export default function Testimonials() {
               repeat: Infinity,
             }}
           >
-            {duplicatedImages.map((src, index) => (
-              <ImageTestimonialCard key={`desktop-${index}`} src={src} index={index} />
+            {duplicatedImages.map((item, index) => (
+              <ImageTestimonialCard key={`desktop-${index}`} src={item.src} alt={item.alt} index={index} />
             ))}
           </motion.div>
           

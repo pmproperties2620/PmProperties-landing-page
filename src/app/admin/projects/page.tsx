@@ -23,6 +23,7 @@ import {
 } from "lucide-react";
 import { useAdminAuth } from "../AdminAuthContext";
 import { ProjectRow, ProjectDbCategory, ProjectDbStatus } from "@/lib/supabaseServer";
+import { compressImage } from "@/lib/compressImage";
 
 const POPULAR_AMENITIES = [
   "Infinity Swimming Pool",
@@ -417,8 +418,9 @@ export default function AdminProjectsPage() {
       if (type === "cover") setIsUploadingCover(true);
       else setIsUploadingGallery(true);
 
+      const optimizedFile = await compressImage(file);
       const uploadData = new FormData();
-      uploadData.append("file", file);
+      uploadData.append("file", optimizedFile);
 
       const res = await fetch("/api/admin/projects/upload", {
         method: "POST",

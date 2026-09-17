@@ -5,14 +5,25 @@ import Image from "next/image";
 import { useConsultationModal } from "@/context/ConsultationModalContext";
 import { trackCtaClick } from "@/lib/analytics";
 
-export default function Hero() {
+interface HeroProps {
+  heroBannerUrl?: string;
+  heroShowcaseUrl?: string;
+}
+
+export default function Hero({
+  heroBannerUrl = "/images/hero-bg-new.png",
+  heroShowcaseUrl = "/images/hero_img_right.png",
+}: HeroProps = {}) {
   const { openModal } = useConsultationModal();
 
   return (
     <section className="relative min-h-screen w-full flex flex-col overflow-hidden">
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-[url('/images/hero-bg-new.png')] bg-cover bg-center bg-no-repeat" />
+        <div
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{ backgroundImage: `url('${heroBannerUrl}')` }}
+        />
         <div className="absolute inset-0 bg-white/15" />
         <div className="absolute inset-0 bg-gradient-to-r from-[#8E1200]/85 via-[#8E1200]/65 to-transparent" />
       </div>
@@ -94,7 +105,14 @@ export default function Hero() {
         >
           <div className="relative w-full bg-white rounded-[2rem] p-4 shadow-2xl">
              <div className="relative w-full aspect-[4/3] rounded-[1.25rem] overflow-hidden">
-                <Image src="/images/hero_img_right.png" alt="Hero Right" fill sizes="(max-width: 768px) 100vw, 500px" className="object-cover" priority />
+                <Image
+                  src={heroShowcaseUrl}
+                  alt="Hero Right"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 500px"
+                  className="object-cover"
+                  priority
+                />
              </div>
              
              {/* Rotating Badge on Card */}

@@ -3,6 +3,7 @@ import Image from "next/image";
 import AnimatedSection, { FadeInSection } from "@/components/ui/AnimatedSection";
 import DualProcessTimeline from "@/components/how-we-work/DualProcessTimeline";
 import BookConsultationButton from "@/components/ui/BookConsultationButton";
+import { getPageBanner } from "@/lib/contentQueries";
 
 export const metadata: Metadata = {
   title: "How We Work | PM Properties",
@@ -10,13 +11,15 @@ export const metadata: Metadata = {
     "Our proven 5-step process makes buying or selling your property simple, transparent, and stress-free.",
 };
 
-export default function HowWeWorkPage() {
+export default async function HowWeWorkPage() {
+  const bannerUrl = await getPageBanner("how_we_work");
+
   return (
     <>
       <section className="relative min-h-[60vh] flex flex-col justify-center py-20 sm:py-32 overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image 
-            src="/images/hero-bg-new.png" 
+            src={bannerUrl} 
             alt="How We Work" 
             fill 
             sizes="100vw"

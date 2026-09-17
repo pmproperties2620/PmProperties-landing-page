@@ -7,23 +7,25 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 import { StaggerGrid, FadeInCard, ScaleInBadge } from "@/components/ui/AnimatedSection";
+import { FALLBACK_ABOUT_SHOWCASE } from "@/lib/contentQueries";
 
-const images = [
-  "/images/about1.png",
-  "/images/about2.png",
-  "/images/about3.png",
-  "/images/about4.png"
-];
+interface AboutSectionProps {
+  initialImages?: string[];
+}
 
-export default function AboutSection() {
+export default function AboutSection({ initialImages }: AboutSectionProps = {}) {
+  const showcaseImages =
+    initialImages && initialImages.length > 0 ? initialImages : FALLBACK_ABOUT_SHOWCASE;
+
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
+    if (showcaseImages.length <= 1) return;
     const timer = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % images.length);
+      setCurrentIndex((prev) => (prev + 1) % showcaseImages.length);
     }, 4000);
     return () => clearInterval(timer);
-  }, []);
+  }, [showcaseImages.length]);
 
   return (
     <section className="bg-black py-0 md:py-2 px-4 sm:px-6 lg:px-8">
@@ -103,7 +105,7 @@ export default function AboutSection() {
                 className="absolute inset-0"
               >
                 <Image 
-                  src={images[currentIndex]}
+                  src={showcaseImages[currentIndex] || FALLBACK_ABOUT_SHOWCASE[0]}
                   alt="Property Showcase"
                   fill
                   className="object-contain object-center bg-[#f8f9fc]"
