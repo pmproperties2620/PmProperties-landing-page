@@ -1,10 +1,10 @@
 // PM Properties Service Worker
 // Supports offline fallback, asset caching, push notifications, and app badging
 
-const CACHE_NAME = "pm-properties-v1";
+const CACHE_NAME = "pm-properties-admin-v1";
 const PRECACHE_ASSETS = [
   "/offline.html",
-  "/manifest.json",
+  "/admin-manifest.json",
   "/icons/icon-192x192.png",
   "/icons/icon-512x512.png",
   "/icons/badge-72x72.png",
