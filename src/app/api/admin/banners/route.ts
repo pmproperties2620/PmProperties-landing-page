@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { revalidatePath } from "next/cache";
 import { getSupabaseServerClient, isSupabaseConfigured } from "@/lib/supabaseServer";
 import { authenticateAdminRequest } from "@/lib/adminAuth";
 
@@ -126,6 +127,7 @@ export async function PUT(request: Request) {
         if (error) {
           return NextResponse.json({ success: false, error: error.message }, { status: 500 });
         }
+        revalidatePath("/");
         return NextResponse.json({ success: true, heroShowcase: data });
       } else {
         const { data, error } = await supabase
@@ -137,6 +139,7 @@ export async function PUT(request: Request) {
         if (error) {
           return NextResponse.json({ success: false, error: error.message }, { status: 500 });
         }
+        revalidatePath("/");
         return NextResponse.json({ success: true, heroShowcase: data });
       }
     }
@@ -169,6 +172,16 @@ export async function PUT(request: Request) {
     if (error) {
       return NextResponse.json({ success: false, error: error.message }, { status: 500 });
     }
+
+    const bannerRouteMap: Record<string, string> = {
+      home_hero: "/",
+      about: "/about",
+      how_we_work: "/how-we-work",
+      services: "/services",
+      contact: "/contact",
+    };
+    const targetRoute = bannerRouteMap[page_key] || "/";
+    revalidatePath(targetRoute);
 
     return NextResponse.json({
       success: true,

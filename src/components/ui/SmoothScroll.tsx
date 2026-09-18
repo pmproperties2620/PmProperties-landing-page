@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react";
 import Lenis from "lenis";
 import { usePathname } from "next/navigation";
+import { registerLenis } from "@/lib/scrollLock";
 
 export default function SmoothScroll() {
   const pathname = usePathname();
@@ -14,6 +15,7 @@ export default function SmoothScroll() {
       if (lenisRef.current) {
         lenisRef.current.destroy();
         lenisRef.current = null;
+        registerLenis(null);
       }
       return;
     }
@@ -31,6 +33,7 @@ export default function SmoothScroll() {
     });
 
     lenisRef.current = lenis;
+    registerLenis(lenis);
 
     let rafId: number;
 
@@ -56,6 +59,7 @@ export default function SmoothScroll() {
       cancelAnimationFrame(rafId);
       lenis.destroy();
       lenisRef.current = null;
+      registerLenis(null);
     };
   }, [pathname]);
 

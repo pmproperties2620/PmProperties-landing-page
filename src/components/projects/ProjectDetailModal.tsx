@@ -19,6 +19,7 @@ import {
 } from "lucide-react";
 import type { Project } from "@/data/projects";
 import { trackProjectClick, trackContactClick } from "@/lib/analytics";
+import { lockScroll, unlockScroll } from "@/lib/scrollLock";
 
 interface ProjectDetailModalProps {
   project: Project | null;
@@ -37,10 +38,10 @@ export default function ProjectDetailModal({
     setActiveImageIndex(0);
   }
 
-  // Lock body scroll when modal is open and track view
+  // Lock body scroll and pause Lenis when modal is open and track view
   useEffect(() => {
     if (project) {
-      document.body.style.overflow = "hidden";
+      lockScroll();
       trackProjectClick({
         projectId: project.id,
         projectTitle: project.title,
@@ -50,12 +51,10 @@ export default function ProjectDetailModal({
         price: project.priceDisplay,
         action: "modal_open",
       });
-    } else {
-      document.body.style.overflow = "unset";
+      return () => {
+        unlockScroll();
+      };
     }
-    return () => {
-      document.body.style.overflow = "unset";
-    };
   }, [project]);
 
   // Handle ESC key to close
@@ -76,7 +75,10 @@ export default function ProjectDetailModal({
 
   return (
     <AnimatePresence>
-      <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
+      <div
+        data-lenis-prevent
+        className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 overflow-hidden"
+      >
         {/* Backdrop */}
         <motion.div
           initial={{ opacity: 0 }}
@@ -88,11 +90,12 @@ export default function ProjectDetailModal({
 
         {/* Modal Dialog Container */}
         <motion.div
+          data-lenis-prevent
           initial={{ opacity: 0, scale: 0.96, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.96, y: 20 }}
           transition={{ duration: 0.25, ease: "easeOut" }}
-          className="relative w-full max-w-4xl bg-white rounded-3xl shadow-2xl overflow-hidden z-10 my-auto max-h-[90vh] flex flex-col border border-slate-200"
+          className="relative w-full max-w-4xl bg-white rounded-3xl shadow-2xl overflow-hidden z-10 my-auto max-h-[calc(100dvh-1.5rem)] sm:max-h-[90vh] flex flex-col border border-slate-200"
         >
           {/* Close Button Floating */}
           <button
@@ -104,7 +107,10 @@ export default function ProjectDetailModal({
           </button>
 
           {/* Modal Scrollable Content */}
-          <div className="overflow-y-auto overflow-x-hidden flex-1">
+          <div
+            data-lenis-prevent
+            className="overflow-y-auto overflow-x-hidden flex-1 min-h-0 overscroll-contain"
+          >
             {/* Visual Header / Image Carousel */}
             <div className="relative aspect-[16/9] sm:aspect-[21/9] w-full bg-slate-900 overflow-hidden">
               <Image

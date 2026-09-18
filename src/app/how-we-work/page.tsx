@@ -5,6 +5,8 @@ import DualProcessTimeline from "@/components/how-we-work/DualProcessTimeline";
 import BookConsultationButton from "@/components/ui/BookConsultationButton";
 import { getPageBanner } from "@/lib/contentQueries";
 
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   title: "How We Work | PM Properties",
   description:

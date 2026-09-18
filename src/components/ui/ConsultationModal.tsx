@@ -24,6 +24,7 @@ import {
   createConsultationWhatsAppUrl,
 } from "@/data/consultation";
 import { trackLeadSubmission, trackContactClick } from "@/lib/analytics";
+import { lockScroll, unlockScroll } from "@/lib/scrollLock";
 
 export default function ConsultationModal() {
   const { isOpen, closeModal, initialData } = useConsultationModal();
@@ -86,16 +87,14 @@ export default function ConsultationModal() {
     }
   }, [isOpen]);
 
-  // Lock body scroll
+  // Lock body scroll and pause Lenis
   useEffect(() => {
     if (isOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "unset";
+      lockScroll();
+      return () => {
+        unlockScroll();
+      };
     }
-    return () => {
-      document.body.style.overflow = "unset";
-    };
   }, [isOpen]);
 
   // Handle ESC key
@@ -215,7 +214,10 @@ export default function ConsultationModal() {
   return (
     <AnimatePresence>
       {isOpen && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center p-3 sm:p-4 md:p-6 overflow-y-auto no-scrollbar [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
+        <div
+          data-lenis-prevent
+          className="fixed inset-0 z-[100] flex items-center justify-center p-3 sm:p-4 md:p-6 overflow-y-auto overscroll-contain no-scrollbar [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+        >
           {/* Backdrop */}
           <motion.div
             initial={{ opacity: 0 }}
@@ -229,6 +231,7 @@ export default function ConsultationModal() {
 
           {/* Modal Container */}
           <motion.div
+            data-lenis-prevent
             initial={{ opacity: 0, scale: 0.96, y: 16 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.96, y: 16 }}

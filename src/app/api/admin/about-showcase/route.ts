@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { revalidatePath } from "next/cache";
 import { getSupabaseServerClient, isSupabaseConfigured } from "@/lib/supabaseServer";
 import { authenticateAdminRequest } from "@/lib/adminAuth";
 
@@ -98,6 +99,7 @@ export async function POST(request: Request) {
       );
     }
 
+    revalidatePath("/");
     return NextResponse.json({
       success: true,
       item: data,
@@ -157,6 +159,7 @@ export async function PUT(request: Request) {
       );
     }
 
+    revalidatePath("/");
     return NextResponse.json({
       success: true,
       item: data,
@@ -206,6 +209,7 @@ export async function DELETE(request: Request) {
       );
     }
 
+    revalidatePath("/");
     return NextResponse.json({
       success: true,
       deletedId: id,

@@ -18,6 +18,8 @@ import ServiceCardLink from "@/components/services/ServiceCardLink";
 import { FadeInSection, StaggerGrid, FadeInCard } from "@/components/ui/AnimatedSection";
 import { getPageBanner } from "@/lib/contentQueries";
 
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   title: "Our Services | PM Properties",
   description:

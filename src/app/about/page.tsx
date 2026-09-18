@@ -4,6 +4,8 @@ import AboutTimeline from "@/components/about/AboutTimeline";
 import CTASection from "@/components/home/CTASection";
 import { getPageBanner, getTimelineMilestones } from "@/lib/contentQueries";
 
+export const dynamic = "force-dynamic";
+
 export const metadata = {
   title: "About Us | PM Properties",
   description:

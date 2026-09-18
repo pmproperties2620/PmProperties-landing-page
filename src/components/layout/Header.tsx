@@ -16,6 +16,7 @@ import {
 } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useConsultationModal } from "@/context/ConsultationModalContext";
+import { lockScroll, unlockScroll } from "@/lib/scrollLock";
 import { trackCtaClick } from "@/lib/analytics";
 
 /* ─── Types ──────────────────────────────────── */
@@ -62,16 +63,14 @@ export default function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  /* Lock body scroll when mobile menu is open */
+  /* Lock body scroll and pause Lenis when mobile menu is open */
   useEffect(() => {
     if (mobileOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
+      lockScroll();
+      return () => {
+        unlockScroll();
+      };
     }
-    return () => {
-      document.body.style.overflow = "";
-    };
   }, [mobileOpen]);
 
   /* Escape key closes mobile menu */
@@ -231,13 +230,17 @@ export default function Header() {
               id="mobile-nav-menu"
               role="dialog"
               aria-label="Mobile navigation menu"
+              data-lenis-prevent
               initial={{ y: "100%", opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               exit={{ y: "100%", opacity: 0 }}
               transition={{ type: "spring", stiffness: 340, damping: 36 }}
               className="fixed bottom-0 left-0 right-0 z-50 md:hidden"
             >
-              <div className="mx-3 mb-3 rounded-3xl overflow-hidden bg-[#111]/96 backdrop-blur-2xl border border-white/[0.08] shadow-[0_-8px_32px_rgba(0,0,0,0.6)]">
+              <div
+                data-lenis-prevent
+                className="mx-3 mb-3 rounded-3xl overflow-hidden bg-[#111]/96 backdrop-blur-2xl border border-white/[0.08] shadow-[0_-8px_32px_rgba(0,0,0,0.6)]"
+              >
                 {/* Drag handle */}
                 <div className="flex justify-center pt-3 pb-1">
                   <div className="w-8 h-1 rounded-full bg-white/20" />
