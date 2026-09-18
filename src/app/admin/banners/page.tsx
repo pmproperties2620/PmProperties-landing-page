@@ -10,6 +10,8 @@ import {
   CheckCircle2,
   Sparkles,
   Image as ImageIcon,
+  ExternalLink,
+  RotateCcw,
 } from "lucide-react";
 import { useAdminAuth } from "../AdminAuthContext";
 import { compressImage } from "@/lib/compressImage";
@@ -282,55 +284,127 @@ export default function AdminBannersPage() {
       )}
 
       {/* SECTION 1: Homepage Hero Showcase Card */}
-      <div className="bg-white rounded-3xl border border-slate-200/80 p-6 shadow-xs space-y-4">
-        <div className="flex items-center gap-2.5 border-b border-slate-100 pb-4">
-          <div className="p-2 rounded-xl bg-amber-50 text-amber-600">
-            <Sparkles className="w-5 h-5" />
+      <div className="bg-white rounded-3xl border border-slate-200/80 p-6 shadow-xs space-y-6">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-100 pb-4">
+          <div className="flex items-center gap-3">
+            <div className="p-2.5 rounded-xl bg-amber-50 text-amber-600 shrink-0">
+              <Sparkles className="w-5 h-5" />
+            </div>
+            <div>
+              <div className="flex items-center gap-2">
+                <h2 className="font-heading font-bold text-base sm:text-lg text-slate-900">
+                  Homepage Hero Right Showcase Card
+                </h2>
+                <span className="hidden sm:inline-flex px-2 py-0.5 rounded-full text-[10px] font-heading font-semibold bg-brand-50 text-brand-700 border border-brand-200/50">
+                  Primary Fold
+                </span>
+              </div>
+              <p className="font-body text-xs text-slate-500 mt-0.5">
+                The flagship luxury property photograph featured prominently on the right-hand card of the homepage fold.
+              </p>
+            </div>
           </div>
-          <div>
-            <h2 className="font-heading font-bold text-base sm:text-lg text-slate-900">
-              Homepage Hero Right Showcase Card
-            </h2>
-            <p className="font-body text-xs text-slate-500">
-              The flagship luxury property photograph featured prominently on the right-hand card of the homepage fold.
-            </p>
-          </div>
+
+          <a
+            href="/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-heading font-semibold text-slate-600 hover:text-brand-600 bg-slate-50 hover:bg-brand-50/50 rounded-xl border border-slate-200 transition-colors self-start sm:self-auto shrink-0"
+          >
+            <span>Live View</span>
+            <ExternalLink className="w-3.5 h-3.5" />
+          </a>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
           {/* Card Preview Box */}
-          <div className="md:col-span-5 lg:col-span-4 w-full">
-            <div className="relative aspect-[4/3] w-full rounded-2xl overflow-hidden bg-slate-100 border border-slate-200 shadow-sm">
-              {heroShowcaseUrl ? (
-                <Image
-                  src={heroShowcaseUrl}
-                  alt="Hero Showcase Preview"
-                  fill
-                  sizes="(max-width: 768px) 100vw, 360px"
-                  className="object-cover"
-                />
-              ) : (
-                <div className="w-full h-full flex flex-col items-center justify-center text-slate-400 text-xs">
-                  <ImageIcon className="w-6 h-6 mb-1 text-slate-300" />
-                  <span>No Image Set</span>
+          <div className="lg:col-span-5 w-full">
+            <div className="bg-slate-50/80 p-3 rounded-2xl border border-slate-200/80">
+              <div className="flex items-center justify-between text-[11px] font-heading font-medium text-slate-500 mb-2 px-1">
+                <span>Card Visual Preview</span>
+                <span className="font-mono text-[10px] px-1.5 py-0.5 rounded bg-white border border-slate-200 text-slate-600">
+                  Aspect 4:3
+                </span>
+              </div>
+              
+              <div className="relative aspect-[4/3] w-full rounded-xl overflow-hidden bg-slate-200 border border-slate-200/90 shadow-inner group">
+                {heroShowcaseUrl ? (
+                  <Image
+                    src={heroShowcaseUrl}
+                    alt="Hero Showcase Preview"
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 420px"
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                ) : (
+                  <div className="w-full h-full flex flex-col items-center justify-center text-slate-400 text-xs">
+                    <ImageIcon className="w-8 h-8 mb-1.5 text-slate-300" />
+                    <span>No Image Set</span>
+                  </div>
+                )}
+                
+                {/* Floating pill badge */}
+                <div className="absolute top-2.5 left-2.5 px-2.5 py-1 rounded-full bg-black/65 backdrop-blur-md text-white text-[10px] font-heading font-semibold flex items-center gap-1.5 shadow-sm">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                  <span>Hero Showcase Card</span>
                 </div>
-              )}
+              </div>
+
+              <div className="mt-2.5 px-1 flex items-center justify-between text-[11px] text-slate-400 font-body">
+                <span>Recommended: 1200 × 900px</span>
+                <span>Optimized WebP</span>
+              </div>
             </div>
           </div>
 
           {/* Controls */}
-          <div className="md:col-span-7 lg:col-span-8 space-y-3.5 w-full min-w-0">
-            <div>
-              <label className="block text-xs font-heading font-semibold text-slate-700 mb-1.5">
-                Showcase Image URL
+          <div className="lg:col-span-7 space-y-4 w-full min-w-0">
+            {/* Direct Upload Zone */}
+            <div className="bg-slate-50/60 rounded-2xl p-4 border border-slate-200/80 space-y-3">
+              <div>
+                <h3 className="font-heading font-bold text-xs text-slate-800">
+                  Upload New Showcase Photograph
+                </h3>
+                <p className="font-body text-[11px] text-slate-500 mt-0.5">
+                  Automatically converted and compressed to high-speed WebP (~300KB)
+                </p>
+              </div>
+
+              <div className="flex flex-wrap items-center gap-3">
+                <label className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-brand-600 hover:bg-brand-700 text-white text-xs font-heading font-semibold cursor-pointer transition-all shadow-sm active:scale-[0.98]">
+                  <Upload className="w-4 h-4" />
+                  <span>
+                    {uploadingKey === "hero_showcase" ? "Compressing & Uploading..." : "Choose Image File"}
+                  </span>
+                  <input
+                    type="file"
+                    accept="image/jpeg,image/png,image/webp,image/avif"
+                    disabled={uploadingKey === "hero_showcase"}
+                    onChange={(e) => {
+                      const file = e.target.files?.[0];
+                      if (file) handleUploadBannerImage(file, "hero_showcase", "hero");
+                    }}
+                    className="hidden"
+                  />
+                </label>
+                <span className="text-[11px] text-slate-500 font-body">
+                  Supports JPG, PNG, WebP, AVIF
+                </span>
+              </div>
+            </div>
+
+            {/* Direct URL Input */}
+            <div className="space-y-1.5">
+              <label className="block text-xs font-heading font-semibold text-slate-700">
+                Or Enter Image URL Directly
               </label>
-              <div className="flex flex-col sm:flex-row gap-2">
+              <div className="flex gap-2 min-w-0">
                 <input
                   type="text"
                   value={heroShowcaseUrl}
                   onChange={(e) => setHeroShowcaseUrl(e.target.value)}
-                  placeholder="Paste URL or upload image below..."
-                  className="flex-1 min-w-0 px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs font-body focus:outline-none focus:border-brand-500"
+                  placeholder="Paste URL or upload image above..."
+                  className="flex-1 min-w-0 px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs font-body focus:outline-none focus:border-brand-500 bg-white"
                 />
                 <button
                   type="button"
@@ -343,25 +417,26 @@ export default function AdminBannersPage() {
               </div>
             </div>
 
-            <div className="flex flex-wrap items-center gap-3 pt-1">
-              <label className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-brand-600 hover:bg-brand-700 text-white text-xs font-heading font-semibold cursor-pointer transition-colors shadow-sm">
-                <Upload className="w-4 h-4" />
-                <span>
-                  {uploadingKey === "hero_showcase" ? "Compressing & Uploading..." : "Upload New Photo"}
-                </span>
-                <input
-                  type="file"
-                  accept="image/jpeg,image/png,image/webp,image/avif"
-                  disabled={uploadingKey === "hero_showcase"}
-                  onChange={(e) => {
-                    const file = e.target.files?.[0];
-                    if (file) handleUploadBannerImage(file, "hero_showcase", "hero");
-                  }}
-                  className="hidden"
-                />
-              </label>
+            {/* Quick Actions & Helper info */}
+            <div className="pt-2 flex flex-wrap items-center justify-between gap-3 text-xs border-t border-slate-100">
+              <div className="flex items-center gap-2">
+                {heroShowcaseUrl !== "/images/hero_img_right.png" && (
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setHeroShowcaseUrl("/images/hero_img_right.png");
+                      handleSaveHeroShowcase("/images/hero_img_right.png");
+                    }}
+                    className="inline-flex items-center gap-1.5 text-slate-500 hover:text-slate-800 font-heading text-xs font-medium cursor-pointer transition-colors"
+                  >
+                    <RotateCcw className="w-3.5 h-3.5" />
+                    <span>Reset to Default Image</span>
+                  </button>
+                )}
+              </div>
+
               <span className="text-[11px] text-slate-400 font-body">
-                Auto-optimized to WebP (~300KB)
+                Updates sync live on homepage hero fold
               </span>
             </div>
           </div>
@@ -411,7 +486,7 @@ export default function AdminBannersPage() {
                     />
                   </div>
 
-                  <div className="flex gap-2">
+                  <div className="flex gap-2 min-w-0">
                     <input
                       type="text"
                       value={slot.image_url}
@@ -424,13 +499,13 @@ export default function AdminBannersPage() {
                         );
                       }}
                       placeholder="Paste image URL..."
-                      className="flex-1 px-3 py-1.5 rounded-xl border border-slate-200 text-xs font-body bg-white focus:outline-none focus:border-brand-500"
+                      className="flex-1 min-w-0 px-3 py-1.5 rounded-xl border border-slate-200 text-xs font-body bg-white focus:outline-none focus:border-brand-500"
                     />
                     <button
                       type="button"
                       onClick={() => handleSaveBanner(slot.page_key)}
                       disabled={savingKey === slot.page_key}
-                      className="px-3 py-1.5 bg-slate-900 hover:bg-black text-white text-xs font-heading font-semibold rounded-xl cursor-pointer"
+                      className="shrink-0 px-3.5 py-1.5 bg-slate-900 hover:bg-black text-white text-xs font-heading font-semibold rounded-xl cursor-pointer transition-colors"
                     >
                       {savingKey === slot.page_key ? "Saving..." : "Save"}
                     </button>

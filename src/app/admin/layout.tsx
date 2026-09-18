@@ -33,10 +33,10 @@ export default function AdminLayout({
     <AdminAuthProvider>
       <PushNotificationProvider>
         <PwaRegister />
-        <div className="min-h-screen bg-slate-50 text-slate-900 font-body">
+        <div className="min-h-screen bg-slate-50 text-slate-900 font-body overflow-x-hidden">
           <AdminSidebar />
-          <main className="lg:pl-64 pt-16 lg:pt-0 min-h-screen flex flex-col">
-            <div className="flex-1 w-full max-w-7xl mx-auto p-4 sm:p-6 lg:p-8">
+          <main className="lg:pl-64 pt-16 lg:pt-0 min-h-screen flex flex-col min-w-0 overflow-x-hidden">
+            <div className="flex-1 w-full max-w-7xl mx-auto p-4 sm:p-6 lg:p-8 min-w-0">
               {children}
             </div>
           </main>
