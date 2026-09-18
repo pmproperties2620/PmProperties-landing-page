@@ -7,27 +7,13 @@ import type Lenis from "lenis";
 
 let lockCount = 0;
 let lenisInstance: Lenis | null = null;
-type ScrollCallback = (data: { scroll: number }) => void;
-const scrollCallbacks = new Set<ScrollCallback>();
 
 export function getLenis(): Lenis | null {
   return lenisInstance;
 }
 
-export function onLenisScroll(cb: ScrollCallback): () => void {
-  scrollCallbacks.add(cb);
-  return () => {
-    scrollCallbacks.delete(cb);
-  };
-}
-
 export function registerLenis(instance: Lenis | null) {
   lenisInstance = instance;
-  if (instance) {
-    instance.on("scroll", (e: { scroll: number }) => {
-      scrollCallbacks.forEach((cb) => cb(e));
-    });
-  }
   // If scroll was already locked when lenis registered, stop it immediately
   if (lockCount > 0 && lenisInstance) {
     lenisInstance.stop();

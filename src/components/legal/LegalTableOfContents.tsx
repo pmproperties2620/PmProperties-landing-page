@@ -3,7 +3,7 @@
 import React, { useEffect, useState, useRef, useCallback } from "react";
 import Link from "next/link";
 import { FileText, HelpCircle, ArrowRight } from "lucide-react";
-import { getLenis, onLenisScroll } from "@/lib/scrollLock";
+import { getLenis } from "@/lib/scrollLock";
 
 interface Section {
   id: string;
@@ -53,22 +53,28 @@ export default function LegalTableOfContents({
   }, [sections]);
 
   useEffect(() => {
+    let ticking = false;
+
+    const onScroll = () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          checkActive();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    // Initial check scheduled after DOM paint
     const rafId = requestAnimationFrame(() => {
       checkActive();
     });
 
-    // 1. Lenis scroll event
-    const unsubLenis = onLenisScroll(() => {
-      checkActive();
-    });
-
-    // 2. Native scroll listener
-    window.addEventListener("scroll", checkActive, { passive: true });
+    window.addEventListener("scroll", onScroll, { passive: true });
 
     return () => {
       cancelAnimationFrame(rafId);
-      unsubLenis();
-      window.removeEventListener("scroll", checkActive);
+      window.removeEventListener("scroll", onScroll);
     };
   }, [checkActive]);
 
@@ -127,7 +133,7 @@ export default function LegalTableOfContents({
         </div>
       </div>
 
-      {/* ── Desktop Sticky Left Sidebar (Exact Samarth Reference Design) ── */}
+      {/* ── Desktop Sticky Left Sidebar ── */}
       <aside className="hidden lg:block lg:col-span-4 sticky top-24 print:hidden space-y-6">
         {/* Card 1: Document Contents */}
         <div className="bg-white border border-slate-200/90 rounded-2xl p-5 shadow-[0_2px_12px_-4px_rgba(0,0,0,0.04)]">
