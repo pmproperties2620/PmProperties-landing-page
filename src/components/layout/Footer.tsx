@@ -90,9 +90,25 @@ export default function Footer() {
           <Link href="/contact" className="text-slate-700 hover:text-brand-600 transition-colors">Contact Us</Link>
         </div>
 
-        {/* Copyright */}
-        <div className="text-center font-body text-xs sm:text-sm text-slate-500 leading-[1.6]">
+        {/* Copyright & Legal Links */}
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-3 font-body text-xs sm:text-sm text-slate-500 leading-[1.6]">
           <p>&copy; {new Date().getFullYear()} PM Properties. All rights reserved.</p>
+          <span className="hidden sm:inline text-slate-300">&bull;</span>
+          <div className="flex items-center gap-3">
+            <Link
+              href="/privacy-policy"
+              className="text-slate-500 hover:text-brand-600 transition-colors"
+            >
+              Privacy Policy
+            </Link>
+            <span className="text-slate-300">&bull;</span>
+            <Link
+              href="/disclaimer"
+              className="text-slate-500 hover:text-brand-600 transition-colors"
+            >
+              Disclaimer
+            </Link>
+          </div>
         </div>
         
       </FadeInSection>
