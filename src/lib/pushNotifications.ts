@@ -25,7 +25,7 @@ const memorySubscriptions: Map<string, StoredPushSubscription> = new Map();
 function setupVapid(): boolean {
   const publicKey = process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY;
   const privateKey = process.env.VAPID_PRIVATE_KEY;
-  const subject = process.env.VAPID_SUBJECT || "mailto:admin@pmproperties.in";
+  const subject = process.env.VAPID_SUBJECT || "mailto:thepmproperties4u@gmail.com";
 
   if (!publicKey || !privateKey) {
     console.warn("⚠️ [PushNotifications]: Missing VAPID keys in environment variables.");

@@ -3,8 +3,32 @@ import {
   getSupabaseServerClient,
   isSupabaseConfigured,
   ProjectRow,
+  slugify,
 } from "@/lib/supabaseServer";
 import { authenticateAdminRequest } from "@/lib/adminAuth";
+import type { SupabaseClient } from "@supabase/supabase-js";
+
+async function getUniqueSlug(
+  supabase: SupabaseClient,
+  baseSlug: string,
+  currentId?: string
+): Promise<string> {
+  let candidate = baseSlug;
+  let counter = 1;
+
+  while (true) {
+    let query = supabase.from("projects").select("id").eq("slug", candidate);
+    if (currentId) {
+      query = query.neq("id", currentId);
+    }
+    const { data } = await query;
+    if (!data || data.length === 0) {
+      return candidate;
+    }
+    counter++;
+    candidate = `${baseSlug}-${counter}`;
+  }
+}
 
 export async function GET(request: Request) {
   try {
@@ -157,9 +181,13 @@ export async function POST(request: Request) {
     }
 
     const supabase = getSupabaseServerClient();
-    const insertPayload = {
+    const rawSlug = body.slug?.trim() ? slugify(body.slug) : slugify(project_name);
+    const uniqueSlug = await getUniqueSlug(supabase, rawSlug);
+
+    const insertPayload: Record<string, unknown> = {
       developer_name: developer_name.trim(),
       project_name: project_name.trim(),
+      slug: uniqueSlug,
       location: location.trim(),
       address: (address || location).trim(),
       category,
@@ -192,11 +220,23 @@ export async function POST(request: Request) {
       display_order: Number(display_order) || 0,
     };
 
-    const { data, error } = await supabase
+    let { data, error } = await supabase
       .from("projects")
       .insert(insertPayload)
       .select()
       .single();
+
+    if (error && (error.message?.includes("slug") || error.code === "42703" || error.code === "PGRST204")) {
+      const payloadWithoutSlug = { ...insertPayload };
+      delete payloadWithoutSlug.slug;
+      const fallback = await supabase
+        .from("projects")
+        .insert(payloadWithoutSlug)
+        .select()
+        .single();
+      data = fallback.data;
+      error = fallback.error;
+    }
 
     if (error) {
       console.error("❌ [API /api/admin/projects POST] Supabase insert error:", error);
@@ -259,6 +299,16 @@ export async function PUT(request: Request) {
     const sanitizedUpdates: Record<string, unknown> = {};
     if (updates.developer_name !== undefined) sanitizedUpdates.developer_name = updates.developer_name.trim();
     if (updates.project_name !== undefined) sanitizedUpdates.project_name = updates.project_name.trim();
+    if (updates.slug !== undefined || updates.project_name !== undefined) {
+      const raw = updates.slug?.trim()
+        ? slugify(updates.slug)
+        : updates.project_name
+        ? slugify(updates.project_name)
+        : undefined;
+      if (raw) {
+        sanitizedUpdates.slug = await getUniqueSlug(supabase, raw, id);
+      }
+    }
     if (updates.location !== undefined) sanitizedUpdates.location = updates.location.trim();
     if (updates.address !== undefined) sanitizedUpdates.address = updates.address.trim();
     if (updates.category !== undefined) sanitizedUpdates.category = updates.category;
@@ -288,12 +338,25 @@ export async function PUT(request: Request) {
     if (updates.is_published !== undefined) sanitizedUpdates.is_published = Boolean(updates.is_published);
     if (updates.display_order !== undefined) sanitizedUpdates.display_order = Number(updates.display_order) || 0;
 
-    const { data, error } = await supabase
+    let { data, error } = await supabase
       .from("projects")
       .update(sanitizedUpdates)
       .eq("id", id)
       .select()
       .single();
+
+    if (error && (error.message?.includes("slug") || error.code === "42703" || error.code === "PGRST204")) {
+      const updatesWithoutSlug = { ...sanitizedUpdates };
+      delete updatesWithoutSlug.slug;
+      const fallback = await supabase
+        .from("projects")
+        .update(updatesWithoutSlug)
+        .eq("id", id)
+        .select()
+        .single();
+      data = fallback.data;
+      error = fallback.error;
+    }
 
     if (error) {
       console.error("❌ [API /api/admin/projects PUT] Supabase error:", error);

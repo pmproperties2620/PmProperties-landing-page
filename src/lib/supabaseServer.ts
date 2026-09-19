@@ -79,6 +79,7 @@ export interface ProjectRow {
   id: string;
   developer_name: string;
   project_name: string;
+  slug?: string | null;
   location: string;
   address: string;
   category: ProjectDbCategory | string;
@@ -119,6 +120,14 @@ import type {
   ListingType,
   PossessionStatus,
 } from "@/data/projects";
+
+export function slugify(text: string): string {
+  return text
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
 
 function detectCity(
   address?: string,
@@ -184,7 +193,10 @@ export function mapProjectRowToClient(row: ProjectRow): Project {
     images.push("/images/modern_building.png");
   }
 
-  const slug = `${row.project_name.toLowerCase().replace(/[^a-z0-9]+/g, "-")}-${(row.location || "kalyan").toLowerCase().replace(/[^a-z0-9]+/g, "-")}`;
+  const slug =
+    row.slug && row.slug.trim()
+      ? row.slug.trim().toLowerCase()
+      : slugify(`${row.project_name} ${row.location || "kalyan"}`);
 
   return {
     id: row.id,
@@ -249,6 +261,52 @@ export async function getPublishedProjectsServer(): Promise<Project[]> {
   } catch (err) {
     console.error("❌ [getPublishedProjectsServer] Error:", err);
     return [];
+  }
+}
+
+export async function getProjectBySlugServer(slug: string): Promise<Project | null> {
+  try {
+    if (!isSupabaseConfigured() || !slug?.trim()) {
+      return null;
+    }
+    const cleanSlug = slug.trim().toLowerCase();
+    const supabase = getSupabaseServerClient();
+
+    // 1. Direct lookup by slug column
+    const { data, error } = await supabase
+      .from("projects")
+      .select("*")
+      .eq("slug", cleanSlug)
+      .eq("is_published", true)
+      .maybeSingle();
+
+    if (!error && data) {
+      return mapProjectRowToClient(data as ProjectRow);
+    }
+
+    // 2. Secondary lookup if slug column has not been backfilled yet in database
+    const { data: allProjects, error: listError } = await supabase
+      .from("projects")
+      .select("*")
+      .eq("is_published", true);
+
+    if (!listError && allProjects && allProjects.length > 0) {
+      const match = (allProjects as ProjectRow[]).find((row) => {
+        const rowSlug =
+          row.slug && row.slug.trim()
+            ? row.slug.trim().toLowerCase()
+            : slugify(`${row.project_name} ${row.location || "kalyan"}`);
+        return rowSlug === cleanSlug;
+      });
+      if (match) {
+        return mapProjectRowToClient(match);
+      }
+    }
+
+    return null;
+  } catch (err) {
+    console.error("❌ [getProjectBySlugServer] Error:", err);
+    return null;
   }
 }
 

@@ -56,6 +56,7 @@ const POPULAR_CONFIGS = [
 
 const DEFAULT_FORM_DATA = {
   project_name: "",
+  slug: "",
   developer_name: "",
   location: "",
   address: "",
@@ -204,6 +205,7 @@ export default function AdminProjectsPage() {
     setEditingId(project.id);
     setFormData({
       project_name: project.project_name || "",
+      slug: project.slug || "",
       developer_name: project.developer_name || "",
       location: project.location || "",
       address: project.address || "",
@@ -815,8 +817,18 @@ export default function AdminProjectsPage() {
                               </span>
                             )}
                           </div>
-                          <p className="text-xs text-slate-500 font-medium mt-0.5">
-                            {project.developer_name}
+                          <p className="text-xs text-slate-500 font-medium mt-0.5 flex items-center gap-1.5 flex-wrap">
+                            <span>{project.developer_name}</span>
+                            {project.slug && (
+                              <a
+                                href={`/projects/${project.slug}`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-[10px] text-brand-600 hover:underline font-mono"
+                              >
+                                /{project.slug}
+                              </a>
+                            )}
                           </p>
                         </div>
                       </div>
@@ -1008,12 +1020,45 @@ export default function AdminProjectsPage() {
                       type="text"
                       required
                       value={formData.project_name}
-                      onChange={(e) =>
-                        setFormData({ ...formData, project_name: e.target.value })
-                      }
+                      onChange={(e) => {
+                        const val = e.target.value;
+                        const autoSlug = val
+                          .toLowerCase()
+                          .trim()
+                          .replace(/[^a-z0-9]+/g, "-")
+                          .replace(/^-+|-+$/g, "");
+                        setFormData((prev) => ({
+                          ...prev,
+                          project_name: val,
+                          slug: !editingId || !prev.slug ? autoSlug : prev.slug,
+                        }));
+                      }}
                       placeholder="e.g. Regency Antilia"
                       className="w-full px-3.5 py-2 rounded-xl border border-slate-200 text-sm font-body text-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500"
                     />
+                  </div>
+
+                  <div>
+                    <label className="block text-xs font-heading font-semibold text-slate-700 mb-1">
+                      SEO URL Slug
+                    </label>
+                    <input
+                      type="text"
+                      value={formData.slug}
+                      onChange={(e) =>
+                        setFormData({
+                          ...formData,
+                          slug: e.target.value
+                            .toLowerCase()
+                            .replace(/[^a-z0-9-]+/g, "-"),
+                        })
+                      }
+                      placeholder="e.g. regency-antilia-kalyan"
+                      className="w-full px-3.5 py-2 rounded-xl border border-slate-200 text-sm font-mono text-slate-800 focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500"
+                    />
+                    <p className="text-[11px] font-mono text-slate-400 mt-1 truncate">
+                      URL: https://www.thepmproperties.in/projects/{formData.slug || "..."}
+                    </p>
                   </div>
 
                   <div>

@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import {
   MapPin,
   Ruler,
@@ -120,22 +121,28 @@ export default function ProjectCard({ project, onQuickView }: ProjectCardProps) 
         </div>
 
         {/* Project Title */}
-        <h3
-          onClick={() => {
-            trackProjectClick({
-              projectId: project.id,
-              projectTitle: project.title,
-              developer: project.developer,
-              locality: project.location.locality,
-              city: project.location.city,
-              price: project.priceDisplay,
-              action: "title_click",
-            });
-            onQuickView(project);
-          }}
-          className="font-heading font-bold text-lg sm:text-xl text-slate-900 mb-1 leading-[1.2] tracking-[-0.02em] group-hover:text-brand-600 transition-colors cursor-pointer"
-        >
-          {project.title}
+        <h3 className="font-heading font-bold text-lg sm:text-xl text-slate-900 mb-1 leading-[1.2] tracking-[-0.02em] group-hover:text-brand-600 transition-colors">
+          <Link
+            href={`/projects/${project.slug}`}
+            onClick={(e) => {
+              if (!e.ctrlKey && !e.metaKey && e.button === 0) {
+                e.preventDefault();
+                trackProjectClick({
+                  projectId: project.id,
+                  projectTitle: project.title,
+                  developer: project.developer,
+                  locality: project.location.locality,
+                  city: project.location.city,
+                  price: project.priceDisplay,
+                  action: "title_click",
+                });
+                onQuickView(project);
+              }
+            }}
+            className="hover:text-brand-600 transition-colors"
+          >
+            {project.title}
+          </Link>
         </h3>
 
         {/* Locality & Landmark */}

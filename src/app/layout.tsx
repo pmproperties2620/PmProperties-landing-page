@@ -36,6 +36,9 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL || "https://www.thepmproperties.in"
+  ),
   title: "PM Properties | Premium Real Estate Services",
   description:
     "Find your dream home with PM Properties. Expert real estate agents offering luxury listings, property tours, and personalized buying & selling guidance nationwide.",

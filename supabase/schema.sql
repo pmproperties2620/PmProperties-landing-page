@@ -186,6 +186,7 @@ CREATE TABLE IF NOT EXISTS public.projects (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     developer_name TEXT NOT NULL,
     project_name TEXT NOT NULL,
+    slug TEXT UNIQUE,
     location TEXT NOT NULL,
     address TEXT NOT NULL,
     category TEXT NOT NULL, -- 'buy_new' | 'verified_resale' | 'commercial' | 'industrial_rental'
@@ -218,6 +219,7 @@ CREATE TABLE IF NOT EXISTS public.projects (
     updated_at TIMESTAMPTZ NOT NULL DEFAULT timezone('utc'::text, now())
 );
 
+CREATE UNIQUE INDEX IF NOT EXISTS idx_projects_slug ON public.projects (slug);
 CREATE INDEX IF NOT EXISTS idx_projects_category ON public.projects (category);
 CREATE INDEX IF NOT EXISTS idx_projects_published_order ON public.projects (is_published, display_order);
 CREATE INDEX IF NOT EXISTS idx_projects_location ON public.projects (location);
@@ -438,5 +440,39 @@ INSERT INTO public.page_banners (page_key, label, image_url) VALUES
     ('services', 'Services Page Hero Banner', '/images/hero-bg-new.png'),
     ('contact', 'Contact Us Page Hero Banner', '/images/hero-bg-new.png')
 ON CONFLICT (page_key) DO NOTHING;
+
+-- ==============================================================================
+-- MIGRATION: Slug Support & Collision Deduplication for Projects
+-- (Run this block in Supabase SQL Editor if projects table already exists)
+-- ==============================================================================
+-- 1. Add slug column
+ALTER TABLE public.projects ADD COLUMN IF NOT EXISTS slug TEXT;
+
+-- 2. Initial slugification for existing rows
+UPDATE public.projects
+SET slug = LOWER(REGEXP_REPLACE(REGEXP_REPLACE(TRIM(project_name), '[^a-zA-Z0-9]+', '-', 'g'), '^-+|-+$', '', 'g'))
+WHERE slug IS NULL OR slug = '';
+
+-- 3. Fallback for any empty result
+UPDATE public.projects
+SET slug = 'project-' || SUBSTRING(id::TEXT FROM 1 FOR 8)
+WHERE slug IS NULL OR slug = '';
+
+-- 4. Deduplicate any collisions by appending numeric suffix (-2, -3, etc.)
+WITH numbered_slugs AS (
+    SELECT 
+        id,
+        slug,
+        ROW_NUMBER() OVER (PARTITION BY slug ORDER BY created_at ASC, id ASC) AS rn
+    FROM public.projects
+)
+UPDATE public.projects p
+SET slug = p.slug || '-' || ns.rn
+FROM numbered_slugs ns
+WHERE p.id = ns.id AND ns.rn > 1;
+
+-- 5. Create unique index for fast lookups & data integrity
+CREATE UNIQUE INDEX IF NOT EXISTS idx_projects_slug ON public.projects (slug);
+
 
 

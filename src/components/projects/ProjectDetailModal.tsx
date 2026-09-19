@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   X,
@@ -16,6 +17,7 @@ import {
   Building2,
   ChevronLeft,
   ChevronRight,
+  ExternalLink,
 } from "lucide-react";
 import type { Project } from "@/data/projects";
 import { trackProjectClick, trackContactClick } from "@/lib/analytics";
@@ -97,14 +99,25 @@ export default function ProjectDetailModal({
           transition={{ duration: 0.25, ease: "easeOut" }}
           className="relative w-full max-w-4xl bg-white rounded-3xl shadow-2xl overflow-hidden z-10 my-auto max-h-[calc(100dvh-1.5rem)] sm:max-h-[90vh] flex flex-col border border-slate-200"
         >
-          {/* Close Button Floating */}
-          <button
-            onClick={onClose}
-            aria-label="Close modal"
-            className="absolute top-4 right-4 z-30 p-2 rounded-full bg-slate-900/60 hover:bg-slate-900 text-white backdrop-blur-md transition-colors"
-          >
-            <X className="w-5 h-5" />
-          </button>
+          {/* Controls: View Full Details & Close */}
+          <div className="absolute top-4 right-4 z-30 flex items-center gap-2">
+            <Link
+              href={`/projects/${project.slug}`}
+              onClick={onClose}
+              title="Open dedicated full page"
+              className="inline-flex items-center gap-1.5 px-3 py-2 rounded-full bg-slate-900/75 hover:bg-slate-900 text-white backdrop-blur-md transition-colors text-xs font-heading font-semibold shadow-sm"
+            >
+              <ExternalLink className="w-3.5 h-3.5" />
+              <span className="hidden sm:inline">View Full Details</span>
+            </Link>
+            <button
+              onClick={onClose}
+              aria-label="Close modal"
+              className="p-2 rounded-full bg-slate-900/75 hover:bg-slate-900 text-white backdrop-blur-md transition-colors"
+            >
+              <X className="w-5 h-5" />
+            </button>
+          </div>
 
           {/* Modal Scrollable Content */}
           <div
@@ -326,7 +339,17 @@ export default function ProjectDetailModal({
               </span>
             </div>
 
-            <div className="flex items-center gap-2.5 w-full sm:w-auto">
+            <div className="flex items-center gap-2 w-full sm:w-auto">
+              <Link
+                href={`/projects/${project.slug}`}
+                onClick={onClose}
+                className="flex-1 sm:flex-none inline-flex items-center justify-center gap-1.5 px-3.5 py-3 rounded-xl border border-slate-300 bg-white hover:bg-slate-100 text-slate-800 font-heading font-semibold text-xs sm:text-sm leading-none transition-colors"
+                title="View full dedicated property page"
+              >
+                <ExternalLink className="w-3.5 h-3.5 text-slate-500" />
+                <span className="hidden sm:inline">Full Page</span>
+              </Link>
+
               <a
                 href="tel:+919029923246"
                 onClick={() => {
