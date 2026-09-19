@@ -144,8 +144,8 @@ export default function ProjectsView({ initialProjects }: ProjectsViewProps = {}
 
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
           {/* Tag Pill */}
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/10 font-heading font-semibold text-xs uppercase tracking-[0.05em] leading-none text-brand-400 mb-6">
-            <Sparkles className="w-3.5 h-3.5 text-brand-400" />
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white shadow-sm border border-white font-heading font-semibold text-xs uppercase tracking-[0.05em] leading-none text-brand-600 mb-6">
+            <Sparkles className="w-3.5 h-3.5 text-brand-600" />
             <span>Curated Real Estate Portfolio</span>
           </div>
 
@@ -281,19 +281,19 @@ export default function ProjectsView({ initialProjects }: ProjectsViewProps = {}
 
         {/* Sell / List Your Property CTA Banner */}
         <FadeInSection>
-          <div className="mt-16 sm:mt-24 rounded-3xl bg-gradient-to-br from-slate-900 via-slate-850 to-slate-900 border border-slate-800 p-8 sm:p-12 text-white relative overflow-hidden shadow-xl">
-            <div className="absolute top-0 right-0 w-96 h-96 bg-brand-500/10 rounded-full blur-3xl pointer-events-none" />
+          <div className="mt-16 sm:mt-24 rounded-3xl bg-white border border-slate-200/80 p-8 sm:p-12 text-slate-900 relative overflow-hidden shadow-xl shadow-slate-200/70">
+            <div className="absolute top-0 right-0 w-96 h-96 bg-brand-500/5 rounded-full blur-3xl pointer-events-none" />
 
             <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-8">
               <div className="max-w-2xl text-center lg:text-left">
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-500/20 text-brand-400 font-heading font-semibold text-xs uppercase tracking-[0.05em] leading-none mb-4">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-50 text-brand-600 border border-brand-100 font-heading font-semibold text-xs uppercase tracking-[0.05em] leading-none mb-4">
                   <Building2 className="w-3.5 h-3.5" />
                   <span>For Property Owners &amp; Developers</span>
                 </div>
-                <h3 className="font-heading font-bold text-2xl sm:text-3xl text-white mb-3 leading-[1.15] tracking-[-0.02em]">
+                <h3 className="font-heading font-bold text-2xl sm:text-3xl text-slate-900 mb-3 leading-[1.15] tracking-[-0.02em]">
                   Looking to Sell, Lease, or Partner with PM Properties?
                 </h3>
-                <p className="font-body font-normal text-xs sm:text-sm text-slate-300 leading-[1.6]">
+                <p className="font-body font-normal text-xs sm:text-sm text-slate-600 leading-[1.6]">
                   Get your property listed before 10,000+ verified active buyers
                   and investors. Benefit from professional staging, legal
                   verification, and swift closing without hassle.
@@ -303,16 +303,16 @@ export default function ProjectsView({ initialProjects }: ProjectsViewProps = {}
               <div className="flex flex-col sm:flex-row items-center gap-3 w-full lg:w-auto shrink-0">
                 <Link
                   href="/contact"
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-heading font-semibold text-sm leading-none transition-all shadow-lg hover:shadow-xl"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-heading font-semibold text-sm leading-none transition-all shadow-lg shadow-brand-600/20 hover:shadow-xl hover:shadow-brand-600/30"
                 >
                   <span>List Your Property</span>
                   <ArrowRight className="w-4 h-4" />
                 </Link>
                 <a
                   href="tel:+919029923246"
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl border border-slate-700 bg-slate-800/80 hover:bg-slate-800 text-white font-heading font-semibold text-sm leading-none transition-colors"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl border border-slate-200 bg-slate-50 hover:bg-slate-100 text-slate-800 font-heading font-semibold text-sm leading-none transition-colors"
                 >
-                  <PhoneCall className="w-4 h-4 text-brand-400" />
+                  <PhoneCall className="w-4 h-4 text-brand-600" />
                   <span>Call Advisor</span>
                 </a>
               </div>
