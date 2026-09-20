@@ -79,7 +79,7 @@ export default function ProjectCard({ project, onQuickView }: ProjectCardProps) 
             locality: project.location.locality,
             city: project.location.city,
             price: project.priceDisplay,
-            action: "card_click_keyboard",
+            action: "card_click",
           });
           onQuickView(project);
         }
