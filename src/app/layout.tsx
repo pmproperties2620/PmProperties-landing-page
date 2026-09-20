@@ -39,16 +39,52 @@ export const metadata: Metadata = {
   metadataBase: new URL(
     process.env.NEXT_PUBLIC_SITE_URL || "https://www.thepmproperties.in"
   ),
-  title: "PM Properties | Premium Real Estate Services",
+  title: "The PM Properties | Premium Real Estate Advisory & Services",
   description:
-    "Find your dream home with PM Properties. Expert real estate agents offering luxury listings, property tours, and personalized buying & selling guidance nationwide.",
-  keywords: ["real estate", "property", "homes for sale", "PM Properties", "real estate agent"],
+    "RERA-certified real estate consultancy in Dombivli & Kalyan by Pritesh Mhamunkar. Luxury residential & commercial properties, 0% brokerage on new projects, and expert property guidance.",
+  keywords: [
+    "real estate",
+    "property",
+    "homes for sale",
+    "PM Properties",
+    "The PM Properties",
+    "real estate agent",
+    "Dombivli",
+    "Kalyan",
+    "RERA registered",
+    "0% brokerage",
+  ],
   openGraph: {
-    title: "PM Properties | Premium Real Estate Services",
+    title: "The PM Properties | Premium Real Estate Advisory & Services",
     description:
-      "Find your dream home with PM Properties. Expert real estate agents offering luxury listings nationwide.",
+      "RERA-certified real estate consultancy in Dombivli & Kalyan. Luxury residential & commercial properties, 0% brokerage on new projects, and personalized buying guidance.",
+    url: "https://www.thepmproperties.in",
+    siteName: "The PM Properties",
+    locale: "en_IN",
     type: "website",
-    locale: "en_US",
+    images: [
+      {
+        url: "/og-image-square.jpg",
+        width: 600,
+        height: 600,
+        alt: "The PM Properties - Your Search Ends Here",
+        type: "image/jpeg",
+      },
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "The PM Properties - Premium Real Estate Advisory",
+        type: "image/jpeg",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "The PM Properties | Premium Real Estate Advisory & Services",
+    description:
+      "RERA-certified real estate consultancy in Dombivli & Kalyan. Luxury residential & commercial properties, 0% brokerage on new projects.",
+    images: ["/og-image.jpg"],
   },
 };
 
