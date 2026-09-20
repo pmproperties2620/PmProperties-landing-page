@@ -9,10 +9,9 @@ import {
   Sparkles,
   ShieldCheck,
   Eye,
-  MessageCircle,
 } from "lucide-react";
 import type { Project } from "@/data/projects";
-import { trackProjectClick, trackContactClick } from "@/lib/analytics";
+import { trackProjectClick } from "@/lib/analytics";
 
 interface ProjectCardProps {
   project: Project;
@@ -53,13 +52,40 @@ export default function ProjectCard({ project, onQuickView }: ProjectCardProps) 
 
   const statusBadge = getStatusBadge();
 
-  const getWhatsAppUrl = () => {
-    const message = `Hi PM Properties, I am interested in ${project.title} (${project.location.locality}, ${project.location.city}). Please share the latest brochure, pricing sheet, and arrange a site visit.`;
-    return `https://wa.me/919029923246?text=${encodeURIComponent(message)}`;
-  };
-
   return (
-    <div className="group bg-white rounded-2xl border border-slate-200 shadow-sm hover:shadow-xl hover:border-brand-200 transition-all duration-300 flex flex-col overflow-hidden">
+    <div
+      role="button"
+      tabIndex={0}
+      aria-label={`View details for ${project.title}`}
+      onClick={() => {
+        trackProjectClick({
+          projectId: project.id,
+          projectTitle: project.title,
+          developer: project.developer,
+          locality: project.location.locality,
+          city: project.location.city,
+          price: project.priceDisplay,
+          action: "card_click",
+        });
+        onQuickView(project);
+      }}
+      onKeyDown={(e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          trackProjectClick({
+            projectId: project.id,
+            projectTitle: project.title,
+            developer: project.developer,
+            locality: project.location.locality,
+            city: project.location.city,
+            price: project.priceDisplay,
+            action: "card_click_keyboard",
+          });
+          onQuickView(project);
+        }
+      }}
+      className="group bg-white rounded-2xl border border-slate-200 shadow-sm hover:shadow-xl hover:border-brand-200 hover:-translate-y-1 transition-all duration-300 flex flex-col overflow-hidden cursor-pointer select-none focus:outline-none focus:ring-2 focus:ring-brand-500/40 focus:ring-offset-2"
+    >
       {/* Image Gallery Showcase */}
       <div className="relative aspect-[16/10] overflow-hidden bg-slate-100">
         <Image
@@ -127,6 +153,7 @@ export default function ProjectCard({ project, onQuickView }: ProjectCardProps) 
             onClick={(e) => {
               if (!e.ctrlKey && !e.metaKey && e.button === 0) {
                 e.preventDefault();
+                e.stopPropagation();
                 trackProjectClick({
                   projectId: project.id,
                   projectTitle: project.title,
@@ -189,7 +216,7 @@ export default function ProjectCard({ project, onQuickView }: ProjectCardProps) 
           ))}
         </div>
 
-        {/* Price & Action Buttons */}
+        {/* Price & Action Button */}
         <div className="mt-auto pt-4 border-t border-slate-100 flex items-center justify-between gap-3">
           <div>
             <span className="block font-heading font-bold text-[10px] uppercase tracking-[0.05em] text-slate-400">
@@ -200,10 +227,11 @@ export default function ProjectCard({ project, onQuickView }: ProjectCardProps) 
             </div>
           </div>
 
-          <div className="flex items-center gap-2">
+          <div>
             <button
               type="button"
-              onClick={() => {
+              onClick={(e) => {
+                e.stopPropagation();
                 trackProjectClick({
                   projectId: project.id,
                   projectTitle: project.title,
@@ -215,40 +243,12 @@ export default function ProjectCard({ project, onQuickView }: ProjectCardProps) 
                 });
                 onQuickView(project);
               }}
-              className="inline-flex items-center justify-center gap-1.5 px-3 py-2 font-heading font-semibold text-xs leading-none text-slate-700 bg-slate-100 hover:bg-slate-200 rounded-xl transition-colors"
+              className="inline-flex items-center justify-center gap-1.5 px-3.5 py-2 font-heading font-semibold text-xs leading-none text-white bg-brand-600 hover:bg-brand-700 active:bg-brand-800 rounded-xl transition-all shadow-sm hover:shadow group-hover:bg-brand-700"
               title="Quick Details"
             >
               <Eye className="w-3.5 h-3.5" />
               <span>Details</span>
             </button>
-
-            <a
-              href={getWhatsAppUrl()}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={() => {
-                trackProjectClick({
-                  projectId: project.id,
-                  projectTitle: project.title,
-                  developer: project.developer,
-                  locality: project.location.locality,
-                  city: project.location.city,
-                  price: project.priceDisplay,
-                  action: "whatsapp_inquire",
-                });
-                trackContactClick({
-                  method: "whatsapp",
-                  location: "project_card",
-                  destination: getWhatsAppUrl(),
-                  label: project.title,
-                });
-              }}
-              className="inline-flex items-center justify-center gap-1.5 px-3 py-2 font-heading font-semibold text-xs leading-none text-white bg-brand-600 hover:bg-brand-700 rounded-xl transition-all shadow-sm hover:shadow"
-              title="Inquire via WhatsApp"
-            >
-              <MessageCircle className="w-3.5 h-3.5" />
-              <span>Inquire</span>
-            </a>
           </div>
         </div>
       </div>
