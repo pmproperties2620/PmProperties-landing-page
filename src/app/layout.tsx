@@ -43,10 +43,6 @@ export const metadata: Metadata = {
   description:
     "Find your dream home with PM Properties. Expert real estate agents offering luxury listings, property tours, and personalized buying & selling guidance nationwide.",
   keywords: ["real estate", "property", "homes for sale", "PM Properties", "real estate agent"],
-  icons: {
-    icon: "/images/logo.png",
-    apple: "/icons/icon-192x192.png",
-  },
   openGraph: {
     title: "PM Properties | Premium Real Estate Services",
     description:
