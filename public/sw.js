@@ -1,7 +1,7 @@
 // PM Properties Service Worker
 // Supports offline fallback, asset caching, push notifications, and app badging
 
-const CACHE_NAME = "pm-properties-admin-v1";
+const CACHE_NAME = "pm-properties-admin-v2";
 const PRECACHE_ASSETS = [
   "/offline.html",
   "/admin-manifest.json",
@@ -23,57 +23,66 @@ self.addEventListener("install", (event) => {
   self.skipWaiting();
 });
 
-// Activate: clean up old cache versions
+// Activate: clean up old cache versions immediately
 self.addEventListener("activate", (event) => {
   event.waitUntil(
     caches.keys().then((cacheNames) => {
+      const isDev =
+        self.location.hostname === "localhost" ||
+        self.location.hostname === "127.0.0.1";
+
       return Promise.all(
         cacheNames
-          .filter((name) => name !== CACHE_NAME)
+          .filter((name) => isDev || name !== CACHE_NAME)
           .map((name) => caches.delete(name))
       );
     }).then(() => self.clients.claim())
   );
 });
 
-// Fetch: Network-first for navigation, stale-while-revalidate for static assets
+// Fetch: Never intercept Next.js chunks or localhost dev requests
 self.addEventListener("fetch", (event) => {
   const { request } = event;
   const url = new URL(request.url);
 
-  // Skip non-GET requests and admin API requests
-  if (request.method !== "GET" || url.pathname.startsWith("/api/")) {
+  // In development, or for non-GET, Next.js internal files, or API requests: DO NOT INTERCEPT
+  if (
+    url.hostname === "localhost" ||
+    url.hostname === "127.0.0.1" ||
+    request.method !== "GET" ||
+    url.pathname.startsWith("/api/") ||
+    url.pathname.startsWith("/_next/")
+  ) {
     return;
   }
 
-  // Handle navigation requests (HTML pages)
+  // Handle navigation requests (HTML pages) only for admin
   if (request.mode === "navigate") {
-    event.respondWith(
-      fetch(request)
-        .then((response) => {
-          // Cache successful page navigations
-          if (response.status === 200) {
-            const copy = response.clone();
-            caches.open(CACHE_NAME).then((cache) => cache.put(request, copy));
-          }
-          return response;
-        })
-        .catch(async () => {
-          // Fallback to cache or offline.html
-          const cachedResponse = await caches.match(request);
-          if (cachedResponse) return cachedResponse;
-          const offlinePage = await caches.match("/offline.html");
-          return offlinePage || new Response("Offline", { status: 503, statusText: "Service Unavailable" });
-        })
-    );
+    if (url.pathname.startsWith("/admin")) {
+      event.respondWith(
+        fetch(request)
+          .then((response) => {
+            if (response.status === 200) {
+              const copy = response.clone();
+              caches.open(CACHE_NAME).then((cache) => cache.put(request, copy));
+            }
+            return response;
+          })
+          .catch(async () => {
+            const cachedResponse = await caches.match(request);
+            if (cachedResponse) return cachedResponse;
+            const offlinePage = await caches.match("/offline.html");
+            return offlinePage || new Response("Offline", { status: 503, statusText: "Service Unavailable" });
+          })
+      );
+    }
     return;
   }
 
-  // Handle static assets (images, icons, fonts, CSS/JS chunks)
+  // Handle static assets (only icons, fonts, and explicit images - NEVER /_next/static/)
   if (
     url.pathname.startsWith("/icons/") ||
     url.pathname.startsWith("/fonts/") ||
-    url.pathname.startsWith("/_next/static/") ||
     url.pathname.endsWith(".png") ||
     url.pathname.endsWith(".jpg") ||
     url.pathname.endsWith(".svg")

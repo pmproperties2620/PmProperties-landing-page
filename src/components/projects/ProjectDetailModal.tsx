@@ -23,6 +23,7 @@ import {
 import type { Project } from "@/data/projects";
 import { trackProjectClick, trackContactClick } from "@/lib/analytics";
 import { lockScroll, unlockScroll } from "@/lib/scrollLock";
+import ProjectBrochureSection from "./ProjectBrochureSection";
 
 interface ProjectDetailModalProps {
   project: Project | null;
@@ -104,8 +105,8 @@ export default function ProjectDetailModal({
     }
   };
 
-  const getWhatsAppMessage = (action: string) => {
-    const text = `Hi PM Properties, I would like to ${action} for ${project.title} (${project.location.locality}, ${project.location.city}). Please connect with me regarding details and site visit.`;
+  const getWhatsAppMessage = () => {
+    const text = `Hi PM Properties, I am interested in ${project.title} (${project.location.locality}, ${project.location.city}). Please share more details and pricing.`;
     return `https://wa.me/919029923246?text=${encodeURIComponent(text)}`;
   };
 
@@ -415,6 +416,9 @@ export default function ProjectDetailModal({
                   ))}
                 </div>
               </div>
+
+              {/* Dedicated Project Brochure Section */}
+              <ProjectBrochureSection project={project} variant="modal" />
             </div>
 
             {/* Pinned Bottom Sticky Action Footer */}
@@ -456,7 +460,7 @@ export default function ProjectDetailModal({
                 </a>
 
                 <a
-                  href={getWhatsAppMessage("request the official brochure")}
+                  href={getWhatsAppMessage()}
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={() => {
@@ -472,14 +476,15 @@ export default function ProjectDetailModal({
                     trackContactClick({
                       method: "whatsapp",
                       location: "project_modal",
-                      destination: getWhatsAppMessage("request the official brochure"),
-                      label: `${project.title} Brochure`,
+                      destination: getWhatsAppMessage(),
+                      label: `${project.title} Modal Inquiry`,
                     });
                   }}
                   className="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 px-4 sm:px-5 py-2.5 sm:py-2.5 rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-heading font-semibold text-xs sm:text-sm transition-all shadow-md hover:shadow-lg"
+                  title="Enquire via WhatsApp"
                 >
                   <MessageCircle className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
-                  <span>Get Brochure &amp; Visit</span>
+                  <span>Enquire Now</span>
                 </a>
               </div>
             </div>

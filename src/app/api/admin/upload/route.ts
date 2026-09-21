@@ -4,6 +4,7 @@ import { authenticateAdminRequest } from "@/lib/adminAuth";
 
 const ALLOWED_FOLDERS = [
   "projects",
+  "brochures",
   "testimonials",
   "partners",
   "about",
@@ -39,8 +40,10 @@ export async function POST(request: Request) {
       );
     }
 
+    const isPdf = file.type === "application/pdf" || file.name.toLowerCase().endsWith(".pdf");
+
     // Validate mime type
-    const validMimes = [
+    const validImageMimes = [
       "image/jpeg",
       "image/png",
       "image/webp",
@@ -48,9 +51,9 @@ export async function POST(request: Request) {
       "image/gif",
       "image/svg+xml",
     ];
-    if (!validMimes.includes(file.type)) {
+    if (!isPdf && !validImageMimes.includes(file.type)) {
       return NextResponse.json(
-        { success: false, error: "Only JPEG, PNG, WEBP, AVIF, GIF, and SVG images are allowed." },
+        { success: false, error: "Only PDF documents and JPEG, PNG, WEBP, AVIF, GIF, and SVG images are allowed." },
         { status: 400 }
       );
     }
@@ -58,6 +61,15 @@ export async function POST(request: Request) {
     // Limit to 10MB
     const MAX_SIZE = 10 * 1024 * 1024;
     if (file.size > MAX_SIZE) {
+      if (isPdf) {
+        return NextResponse.json(
+          {
+            success: false,
+            error: "Brochure must be under 10MB. Please compress the PDF first (try smallpdf.com or ilovepdf.com) and try again.",
+          },
+          { status: 400 }
+        );
+      }
       return NextResponse.json(
         { success: false, error: "Image file size exceeds 10MB limit." },
         { status: 400 }

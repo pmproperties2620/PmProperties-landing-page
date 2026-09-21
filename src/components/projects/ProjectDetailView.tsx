@@ -21,6 +21,7 @@ import {
 } from "lucide-react";
 import type { Project } from "@/data/projects";
 import { trackProjectClick, trackContactClick } from "@/lib/analytics";
+import ProjectBrochureSection from "./ProjectBrochureSection";
 
 interface ProjectDetailViewProps {
   project: Project;
@@ -30,8 +31,8 @@ export default function ProjectDetailView({ project }: ProjectDetailViewProps) {
   const [activeImageIndex, setActiveImageIndex] = useState(0);
   const [copied, setCopied] = useState(false);
 
-  const getWhatsAppMessage = (action: string) => {
-    const text = `Hi PM Properties, I would like to ${action} for ${project.title} (${project.location.locality}, ${project.location.city}). Please connect with me regarding details and site visit.`;
+  const getWhatsAppMessage = () => {
+    const text = `Hi PM Properties, I am interested in ${project.title} (${project.location.locality}, ${project.location.city}). Please share more details and connect with me regarding site visit and pricing.`;
     return `https://wa.me/919029923246?text=${encodeURIComponent(text)}`;
   };
 
@@ -314,6 +315,9 @@ export default function ProjectDetailView({ project }: ProjectDetailViewProps) {
                 </div>
               </div>
             )}
+
+            {/* Dedicated Project Brochure Section */}
+            <ProjectBrochureSection project={project} variant="page" />
           </div>
         </div>
       </div>
@@ -348,7 +352,7 @@ export default function ProjectDetailView({ project }: ProjectDetailViewProps) {
             </a>
 
             <a
-              href={getWhatsAppMessage("request the official brochure & schedule a site visit")}
+              href={getWhatsAppMessage()}
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => {
@@ -364,14 +368,15 @@ export default function ProjectDetailView({ project }: ProjectDetailViewProps) {
                 trackContactClick({
                   method: "whatsapp",
                   location: "project_page",
-                  destination: getWhatsAppMessage("request the official brochure"),
+                  destination: getWhatsAppMessage(),
                   label: `${project.title} Page Inquiry`,
                 });
               }}
               className="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-heading font-semibold text-sm leading-none transition-all shadow-md hover:shadow-lg"
+              title="Enquire via WhatsApp"
             >
               <MessageCircle className="w-4 h-4" />
-              <span>Get Brochure &amp; Site Visit</span>
+              <span>Enquire Now</span>
             </a>
           </div>
         </div>

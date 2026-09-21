@@ -29,6 +29,7 @@ export interface Project {
   highlights: string[];
   amenities: string[];
   description: string;
+  brochureUrl?: string;
   zeroBrokerage: boolean;
   featured?: boolean;
 }

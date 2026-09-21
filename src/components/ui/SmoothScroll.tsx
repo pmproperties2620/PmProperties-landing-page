@@ -9,6 +9,26 @@ export default function SmoothScroll() {
   const pathname = usePathname();
   const lenisRef = useRef<Lenis | null>(null);
 
+  // Clear any stale service workers and caches on localhost in development to prevent hydration mismatches
+  useEffect(() => {
+    if (
+      process.env.NODE_ENV === "development" &&
+      typeof window !== "undefined" &&
+      "serviceWorker" in navigator
+    ) {
+      navigator.serviceWorker.getRegistrations().then((registrations) => {
+        for (const reg of registrations) {
+          reg.unregister();
+        }
+      });
+      if ("caches" in window) {
+        caches.keys().then((keys) => {
+          keys.forEach((key) => caches.delete(key));
+        });
+      }
+    }
+  }, []);
+
   useEffect(() => {
     // Do not run smooth scrolling inside the admin portal so tables and forms maintain native desktop responsiveness
     if (pathname?.startsWith("/admin")) {

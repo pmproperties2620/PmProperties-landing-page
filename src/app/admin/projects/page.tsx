@@ -20,6 +20,9 @@ import {
   Tag,
   ShieldCheck,
   Sparkles,
+  FileText,
+  FileDown,
+  ExternalLink,
 } from "lucide-react";
 import { useAdminAuth } from "../AdminAuthContext";
 import { ProjectRow, ProjectDbCategory, ProjectDbStatus } from "@/lib/supabaseServer";
@@ -111,6 +114,8 @@ export default function AdminProjectsPage() {
   const [isSaving, setIsSaving] = useState(false);
   const [isUploadingCover, setIsUploadingCover] = useState(false);
   const [isUploadingGallery, setIsUploadingGallery] = useState(false);
+  const [isUploadingBrochure, setIsUploadingBrochure] = useState(false);
+  const [showManualBrochureInput, setShowManualBrochureInput] = useState(false);
 
   // Inline Tag Inputs
   const [newConfigInput, setNewConfigInput] = useState("");
@@ -245,6 +250,7 @@ export default function AdminProjectsPage() {
   const handleCloseModal = () => {
     setIsModalOpen(false);
     setEditingId(null);
+    setShowManualBrochureInput(false);
   };
 
   // Quick Toggle Publish
@@ -452,6 +458,52 @@ export default function AdminProjectsPage() {
     } finally {
       if (type === "cover") setIsUploadingCover(false);
       else setIsUploadingGallery(false);
+    }
+  };
+
+  // Brochure PDF Upload helper
+  const handleBrochureUpload = async (file: File) => {
+    // Client-side validation: must be PDF
+    const isPdf = file.type === "application/pdf" || file.name.toLowerCase().endsWith(".pdf");
+    if (!isPdf) {
+      showToast("error", "Only PDF files (.pdf) are allowed for project brochures.");
+      return;
+    }
+
+    // Client-side validation: max 10MB limit
+    const MAX_SIZE = 10 * 1024 * 1024;
+    if (file.size > MAX_SIZE) {
+      showToast(
+        "error",
+        "Brochure must be under 10MB. Please compress the PDF first (try smallpdf.com or ilovepdf.com) and try again."
+      );
+      return;
+    }
+
+    try {
+      setIsUploadingBrochure(true);
+      const uploadData = new FormData();
+      uploadData.append("file", file); // Raw PDF upload without image compression
+
+      const res = await fetch("/api/admin/projects/upload", {
+        method: "POST",
+        headers: {
+          "x-admin-passcode": passcode,
+        },
+        body: uploadData,
+      });
+
+      const data = await res.json();
+      if (res.ok && data.success && data.publicUrl) {
+        setFormData((prev) => ({ ...prev, brochure_url: data.publicUrl }));
+        showToast("success", "Brochure PDF uploaded successfully.");
+      } else {
+        showToast("error", data.error || "Failed to upload brochure.");
+      }
+    } catch {
+      showToast("error", "Network error during brochure upload.");
+    } finally {
+      setIsUploadingBrochure(false);
     }
   };
 
@@ -1523,18 +1575,131 @@ export default function AdminProjectsPage() {
                   </div>
                 </div>
 
-                {/* Brochure URL */}
-                <div>
-                  <label className="block text-xs font-heading font-semibold text-slate-700 mb-1">
-                    Brochure PDF Link (Optional)
-                  </label>
-                  <input
-                    type="text"
-                    value={formData.brochure_url}
-                    onChange={(e) => setFormData({ ...formData, brochure_url: e.target.value })}
-                    placeholder="e.g. https://... or /brochures/project.pdf"
-                    className="w-full px-3.5 py-2 rounded-xl border border-slate-200 text-sm font-body text-slate-900 focus:outline-none focus:border-brand-500"
-                  />
+                {/* Project Brochure Upload Control */}
+                <div className="space-y-2 pt-2 border-t border-slate-100">
+                  <div className="flex items-center justify-between">
+                    <label className="block text-xs font-heading font-semibold text-slate-700">
+                      Project Brochure (PDF)
+                    </label>
+                    <span className="text-[11px] text-slate-400 font-body">
+                      Max 10MB (.pdf only)
+                    </span>
+                  </div>
+
+                  {formData.brochure_url ? (
+                    /* Uploaded Brochure Status Card */
+                    <div className="p-3.5 rounded-xl border border-emerald-200/90 bg-emerald-50/40 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                      <div className="flex items-center gap-3 min-w-0">
+                        <div className="w-9 h-9 rounded-lg bg-emerald-100 border border-emerald-200 flex items-center justify-center shrink-0 text-emerald-700">
+                          <FileText className="w-4 h-4" />
+                        </div>
+                        <div className="min-w-0">
+                          <div className="flex items-center gap-2">
+                            <span className="font-heading font-bold text-xs text-slate-900 truncate max-w-[200px] sm:max-w-[320px]">
+                              {decodeURIComponent(formData.brochure_url.split("/").pop() || "brochure.pdf")}
+                            </span>
+                            <span className="inline-flex items-center gap-1 text-[10px] font-heading font-bold text-emerald-700 bg-emerald-100 px-2 py-0.5 rounded-full shrink-0">
+                              <CheckCircle2 className="w-2.5 h-2.5" /> Uploaded
+                            </span>
+                          </div>
+                          <a
+                            href={formData.brochure_url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-[11px] font-body text-brand-600 hover:underline inline-flex items-center gap-1 mt-0.5"
+                          >
+                            <span>Preview PDF in new tab</span>
+                            <ExternalLink className="w-2.5 h-2.5" />
+                          </a>
+                        </div>
+                      </div>
+
+                      {/* Actions: Replace and Remove */}
+                      <div className="flex items-center gap-2 shrink-0">
+                        <label className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white border border-slate-200 hover:bg-slate-50 text-slate-700 text-xs font-heading font-semibold cursor-pointer transition-colors shadow-2xs">
+                          <Upload className="w-3 h-3" />
+                          <span>{isUploadingBrochure ? "Uploading..." : "Replace"}</span>
+                          <input
+                            type="file"
+                            accept=".pdf,application/pdf"
+                            disabled={isUploadingBrochure}
+                            onChange={(e) => {
+                              const file = e.target.files?.[0];
+                              if (file) handleBrochureUpload(file);
+                            }}
+                            className="hidden"
+                          />
+                        </label>
+
+                        <button
+                          type="button"
+                          onClick={() => setFormData((prev) => ({ ...prev, brochure_url: "" }))}
+                          className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg text-rose-600 hover:bg-rose-50 text-xs font-heading font-semibold transition-colors cursor-pointer"
+                          title="Remove brochure"
+                        >
+                          <Trash2 className="w-3 h-3" />
+                          <span>Remove</span>
+                        </button>
+                      </div>
+                    </div>
+                  ) : (
+                    /* Empty State: Upload Button */
+                    <div className="p-4 rounded-xl border-2 border-dashed border-slate-200 hover:border-brand-400 bg-slate-50/60 hover:bg-brand-50/20 transition-all flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left">
+                      <div className="flex items-center gap-3">
+                        <div className="w-10 h-10 rounded-xl bg-slate-100 border border-slate-200 flex items-center justify-center shrink-0 text-slate-500">
+                          <FileDown className="w-5 h-5 text-slate-500" />
+                        </div>
+                        <div>
+                          <p className="font-heading font-semibold text-xs text-slate-800">
+                            Upload Official Project Brochure
+                          </p>
+                          <p className="font-body text-[11px] text-slate-500">
+                            PDF format only &bull; Under 10MB
+                          </p>
+                        </div>
+                      </div>
+
+                      <label className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-brand-600 hover:bg-brand-700 text-white text-xs font-heading font-semibold cursor-pointer transition-all shadow-xs hover:shadow-md shrink-0">
+                        <Upload className="w-3.5 h-3.5" />
+                        <span>{isUploadingBrochure ? "Uploading Brochure..." : "Upload Brochure (PDF)"}</span>
+                        <input
+                          type="file"
+                          accept=".pdf,application/pdf"
+                          disabled={isUploadingBrochure}
+                          onChange={(e) => {
+                            const file = e.target.files?.[0];
+                            if (file) handleBrochureUpload(file);
+                          }}
+                          className="hidden"
+                        />
+                      </label>
+                    </div>
+                  )}
+
+                  {/* Secondary Collapsed Fallback: Paste URL instead */}
+                  <div className="pt-1">
+                    <button
+                      type="button"
+                      onClick={() => setShowManualBrochureInput((prev) => !prev)}
+                      className="text-[11px] font-heading font-medium text-slate-500 hover:text-brand-600 inline-flex items-center gap-1 transition-colors cursor-pointer"
+                    >
+                      <span>{showManualBrochureInput ? "Hide manual URL input" : "or paste a brochure link instead"}</span>
+                    </button>
+
+                    {showManualBrochureInput && (
+                      <div className="mt-2">
+                        <input
+                          type="text"
+                          value={formData.brochure_url}
+                          onChange={(e) =>
+                            setFormData((prev) => ({ ...prev, brochure_url: e.target.value }))
+                          }
+                          placeholder="Paste direct PDF URL (e.g. https://... or /brochures/filename.pdf)"
+                          className="w-full px-3.5 py-2 rounded-xl border border-slate-200 text-xs font-body text-slate-900 focus:outline-none focus:border-brand-500"
+                        />
+                      </div>
+                    )}
+                  </div>
                 </div>
               </div>
 

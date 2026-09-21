@@ -232,6 +232,7 @@ export function mapProjectRowToClient(row: ProjectRow): Project {
     highlights: Array.isArray(row.highlights) ? row.highlights : [],
     amenities: Array.isArray(row.amenities) ? row.amenities : [],
     description: row.description || "",
+    brochureUrl: row.brochure_url?.trim() || undefined,
     zeroBrokerage: row.brokerage_label ? row.brokerage_label.includes("0%") : true,
     featured: Boolean(row.is_featured),
   };

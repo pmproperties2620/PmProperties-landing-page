@@ -29,10 +29,11 @@ export async function POST(request: Request) {
     }
 
     // Validate mime type
-    const validMimes = ["image/jpeg", "image/png", "image/webp", "image/avif", "image/gif"];
-    if (!validMimes.includes(file.type)) {
+    const isPdf = file.type === "application/pdf" || file.name.toLowerCase().endsWith(".pdf");
+    const validImageMimes = ["image/jpeg", "image/png", "image/webp", "image/avif", "image/gif"];
+    if (!isPdf && !validImageMimes.includes(file.type)) {
       return NextResponse.json(
-        { success: false, error: "Only JPEG, PNG, WEBP, and GIF images are allowed." },
+        { success: false, error: "Only PDF brochures and JPEG, PNG, WEBP, and GIF images are allowed." },
         { status: 400 }
       );
     }
@@ -40,6 +41,15 @@ export async function POST(request: Request) {
     // Limit to 10MB
     const MAX_SIZE = 10 * 1024 * 1024;
     if (file.size > MAX_SIZE) {
+      if (isPdf) {
+        return NextResponse.json(
+          {
+            success: false,
+            error: "Brochure must be under 10MB. Please compress the PDF first (try smallpdf.com or ilovepdf.com) and try again.",
+          },
+          { status: 400 }
+        );
+      }
       return NextResponse.json(
         { success: false, error: "Image file size exceeds 10MB limit." },
         { status: 400 }
@@ -48,10 +58,11 @@ export async function POST(request: Request) {
 
     const supabase = getSupabaseServerClient();
     const originalName = file.name.replace(/[^a-zA-Z0-9.-]/g, "_");
-    const ext = originalName.split(".").pop() || "jpg";
+    const ext = originalName.split(".").pop()?.toLowerCase() || (isPdf ? "pdf" : "jpg");
     const timestamp = Date.now();
     const random = Math.random().toString(36).substring(2, 8);
-    const storagePath = `projects/${timestamp}-${random}.${ext}`;
+    const folder = isPdf ? "brochures" : "projects";
+    const storagePath = `${folder}/${timestamp}-${random}.${ext}`;
 
     const arrayBuffer = await file.arrayBuffer();
     const fileBuffer = Buffer.from(arrayBuffer);

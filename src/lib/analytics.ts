@@ -181,7 +181,13 @@ export interface ProjectClickParams {
   locality?: string;
   city?: string;
   price?: string;
-  action: "card_click" | "title_click" | "details_button" | "whatsapp_inquire" | "modal_open";
+  action:
+    | "card_click"
+    | "title_click"
+    | "details_button"
+    | "whatsapp_inquire"
+    | "modal_open"
+    | "brochure_download";
 }
 
 export function trackProjectClick(params: ProjectClickParams): void {
@@ -238,7 +244,7 @@ export function trackServiceClick(params: ServiceClickParams): void {
  * 7. Track Direct Contact Actions (WhatsApp, Phone, Email)
  */
 export interface ContactClickParams {
-  method: "whatsapp" | "phone" | "email" | "instagram" | "youtube";
+  method: "whatsapp" | "phone" | "email" | "instagram" | "youtube" | "brochure_pdf";
   location:
     | "floating_widget"
     | "header"
