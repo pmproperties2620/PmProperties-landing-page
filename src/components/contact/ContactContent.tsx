@@ -647,7 +647,7 @@ export default function ContactContent({ bannerUrl }: ContactContentProps) {
                     <ShieldCheck className="w-5 h-5 text-emerald-400" />
                   </div>
                   <div>
-                    <h4 className="font-heading font-bold text-sm text-white mb-1 leading-[1.2]">MahaRERA &amp; KDRA Certified</h4>
+                    <p className="font-heading font-bold text-sm text-white mb-1 leading-[1.2]">MahaRERA &amp; KDRA Certified</p>
                     <p className="font-body font-normal text-xs text-zinc-400 leading-[1.6]">
                       Every property presented by PM Properties undergoes complete legal due diligence, title verification, and RERA registration checks.
                     </p>

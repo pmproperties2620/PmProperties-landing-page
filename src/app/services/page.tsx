@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 import {
   Search,
   DollarSign,
@@ -16,14 +17,31 @@ import {
 import BookConsultationButton from "@/components/ui/BookConsultationButton";
 import ServiceCardLink from "@/components/services/ServiceCardLink";
 import { FadeInSection, StaggerGrid, FadeInCard } from "@/components/ui/AnimatedSection";
+import { BreadcrumbJsonLd } from "@/components/seo/JsonLd";
 import { getPageBanner } from "@/lib/contentQueries";
 
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Our Services | PM Properties",
+  title: "Real Estate Services in Dombivli & Kalyan | PM Properties",
   description:
-    "Comprehensive residential, specialized, and commercial real estate solutions tailored to your unique property goals.",
+    "Expert property buying, selling, leasing & commercial real estate solutions in Dombivli, Kalyan & Thane with 0% brokerage on builder developments.",
+  alternates: {
+    canonical: "https://www.thepmproperties.in/services",
+  },
+  openGraph: {
+    title: "Real Estate Services in Dombivli & Kalyan | PM Properties",
+    description:
+      "Comprehensive residential, commercial, and interior advisory solutions tailored to your unique property goals in Dombivli & Kalyan.",
+    url: "https://www.thepmproperties.in/services",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Real Estate Services in Dombivli & Kalyan | PM Properties",
+    description:
+      "Comprehensive residential, commercial, and interior advisory solutions tailored to your unique property goals in Dombivli & Kalyan.",
+  },
 };
 
 interface ServiceSpec {
@@ -349,6 +367,12 @@ export default async function ServicesPage() {
 
   return (
     <>
+      <BreadcrumbJsonLd
+        items={[
+          { name: "Home", url: "https://www.thepmproperties.in" },
+          { name: "Our Services", url: "https://www.thepmproperties.in/services" },
+        ]}
+      />
       {/* ─── Hero Section (Kept Unchanged) ─────────────────────────── */}
       <section className="relative min-h-[60vh] flex flex-col justify-center py-20 sm:py-32 overflow-hidden">
         <div className="absolute inset-0 z-0">
@@ -398,7 +422,10 @@ export default async function ServicesPage() {
                 Residential Services
               </h2>
               <p className="font-body font-normal text-sm sm:text-base text-slate-600 leading-[1.6]">
-                Everything you need to buy, sell, or rent a home
+                Everything you need to buy, sell, or rent a home — or{" "}
+                <Link href="/projects" className="text-brand-600 font-semibold hover:underline">
+                  explore verified project inventory
+                </Link>
               </p>
             </FadeInSection>
 

@@ -25,9 +25,10 @@ import ProjectBrochureSection from "./ProjectBrochureSection";
 
 interface ProjectDetailViewProps {
   project: Project;
+  relatedProjects?: Project[];
 }
 
-export default function ProjectDetailView({ project }: ProjectDetailViewProps) {
+export default function ProjectDetailView({ project, relatedProjects }: ProjectDetailViewProps) {
   const [activeImageIndex, setActiveImageIndex] = useState(0);
   const [copied, setCopied] = useState(false);
 
@@ -105,7 +106,7 @@ export default function ProjectDetailView({ project }: ProjectDetailViewProps) {
           <div className="relative aspect-[16/9] sm:aspect-[21/9] w-full bg-slate-900 overflow-hidden">
             <Image
               src={images[activeImageIndex] || images[0]}
-              alt={project.title}
+              alt={`${project.title} - ${project.configurations.join(", ")} by ${project.developer} in ${project.location.locality}, ${project.location.city}`}
               fill
               priority
               sizes="(max-width: 1200px) 100vw, 1200px"
@@ -320,6 +321,71 @@ export default function ProjectDetailView({ project }: ProjectDetailViewProps) {
             <ProjectBrochureSection project={project} variant="page" />
           </div>
         </div>
+
+        {/* Similar Projects Section for Internal Linking & User Discovery */}
+        {relatedProjects && relatedProjects.length > 0 && (
+          <div className="pt-2">
+            <div className="flex items-center justify-between mb-4">
+              <div>
+                <h2 className="font-heading font-bold text-lg sm:text-xl text-slate-900 leading-[1.2] tracking-[-0.02em]">
+                  Similar Properties in {project.location.city}
+                </h2>
+                <p className="font-body font-normal text-xs text-slate-500 mt-0.5">
+                  Verified residential developments with 0% brokerage on direct builder bookings.
+                </p>
+              </div>
+              <Link
+                href="/projects"
+                className="font-heading font-semibold text-xs text-brand-600 hover:text-brand-700 transition-colors inline-flex items-center gap-1"
+              >
+                <span>View All</span> &rarr;
+              </Link>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+              {relatedProjects.map((relProject) => (
+                <Link
+                  key={relProject.id}
+                  href={`/projects/${relProject.slug}`}
+                  className="group bg-white rounded-2xl border border-slate-200 shadow-sm hover:shadow-md hover:border-brand-300 transition-all overflow-hidden flex flex-col"
+                >
+                  <div className="relative aspect-[16/10] overflow-hidden bg-slate-100">
+                    <Image
+                      src={relProject.images[0] || "/images/modern_building.png"}
+                      alt={`${relProject.title} - ${relProject.configurations.join(", ")} by ${relProject.developer} in ${relProject.location.locality}`}
+                      fill
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                    <div className="absolute top-2.5 left-2.5">
+                      <span className="px-2.5 py-0.5 rounded-full font-heading font-bold text-[10px] bg-brand-600 text-white">
+                        0% Brokerage
+                      </span>
+                    </div>
+                  </div>
+                  <div className="p-4 flex flex-col flex-1">
+                    <span className="font-heading font-bold text-[10px] uppercase tracking-wider text-brand-600">
+                      {relProject.developer}
+                    </span>
+                    <h3 className="font-heading font-bold text-base text-slate-900 mt-0.5 group-hover:text-brand-600 transition-colors line-clamp-1">
+                      {relProject.title}
+                    </h3>
+                    <p className="font-body text-xs text-slate-500 line-clamp-1 mt-0.5 mb-3">
+                      {relProject.location.locality}, {relProject.location.city}
+                    </p>
+                    <div className="mt-auto pt-2.5 border-t border-slate-100 flex items-center justify-between text-xs">
+                      <span className="font-heading font-bold text-slate-900">
+                        {relProject.priceDisplay}
+                      </span>
+                      <span className="font-heading font-semibold text-brand-600 text-[11px]">
+                        Details &rarr;
+                      </span>
+                    </div>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
 
       {/* ── Fixed Floating Action Footer ── */}

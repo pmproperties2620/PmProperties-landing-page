@@ -1,15 +1,33 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import AnimatedSection from "@/components/ui/AnimatedSection";
 import AboutTimeline from "@/components/about/AboutTimeline";
 import CTASection from "@/components/home/CTASection";
+import { BreadcrumbJsonLd } from "@/components/seo/JsonLd";
 import { getPageBanner, getTimelineMilestones } from "@/lib/contentQueries";
 
 export const dynamic = "force-dynamic";
 
-export const metadata = {
-  title: "About Us | PM Properties",
+export const metadata: Metadata = {
+  title: "About PM Properties | Real Estate Advisory Dombivli",
   description:
-    "A boutique real estate agency built on trust, market expertise, and a genuine passion for helping people find their perfect place.",
+    "Founded by Pritesh Mhamunkar, PM Properties is a KDRA-member consultancy in Dombivli & Kalyan, helping 500+ families secure verified dream properties.",
+  alternates: {
+    canonical: "https://www.thepmproperties.in/about",
+  },
+  openGraph: {
+    title: "About PM Properties | Real Estate Advisory Dombivli",
+    description:
+      "Founded by Pritesh Pravin Mhamunkar, PM Properties is a KDRA-member real estate consultancy with over 5 years of trusted advisory in Dombivli & Kalyan.",
+    url: "https://www.thepmproperties.in/about",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "About PM Properties | Real Estate Advisory Dombivli",
+    description:
+      "Founded by Pritesh Pravin Mhamunkar, PM Properties is a KDRA-member real estate consultancy with over 5 years of trusted advisory in Dombivli & Kalyan.",
+  },
 };
 
 export default async function AboutPage() {
@@ -20,6 +38,12 @@ export default async function AboutPage() {
 
   return (
     <>
+      <BreadcrumbJsonLd
+        items={[
+          { name: "Home", url: "https://www.thepmproperties.in" },
+          { name: "About Us", url: "https://www.thepmproperties.in/about" },
+        ]}
+      />
       <section className="relative min-h-[60vh] flex flex-col justify-center py-20 sm:py-32 overflow-hidden bg-slate-900">
         <div className="absolute inset-0 z-0">
           <Image 

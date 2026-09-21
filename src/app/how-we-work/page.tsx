@@ -3,14 +3,31 @@ import Image from "next/image";
 import AnimatedSection, { FadeInSection } from "@/components/ui/AnimatedSection";
 import DualProcessTimeline from "@/components/how-we-work/DualProcessTimeline";
 import BookConsultationButton from "@/components/ui/BookConsultationButton";
+import { BreadcrumbJsonLd } from "@/components/seo/JsonLd";
 import { getPageBanner } from "@/lib/contentQueries";
 
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "How We Work | PM Properties",
+  title: "5-Step Real Estate Advisory Process | PM Properties",
   description:
-    "Our proven 5-step process makes buying or selling your property simple, transparent, and stress-free.",
+    "Our transparent 5-step property process makes buying or selling residential & commercial real estate in Dombivli & Kalyan predictable and stress-free.",
+  alternates: {
+    canonical: "https://www.thepmproperties.in/how-we-work",
+  },
+  openGraph: {
+    title: "5-Step Real Estate Advisory Process | PM Properties",
+    description:
+      "A transparent, proven process designed to make your real estate journey smooth, predictable, and successful across Dombivli & Kalyan.",
+    url: "https://www.thepmproperties.in/how-we-work",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "5-Step Real Estate Advisory Process | PM Properties",
+    description:
+      "A transparent, proven process designed to make your real estate journey smooth, predictable, and successful across Dombivli & Kalyan.",
+  },
 };
 
 export default async function HowWeWorkPage() {
@@ -18,6 +35,12 @@ export default async function HowWeWorkPage() {
 
   return (
     <>
+      <BreadcrumbJsonLd
+        items={[
+          { name: "Home", url: "https://www.thepmproperties.in" },
+          { name: "How We Work", url: "https://www.thepmproperties.in/how-we-work" },
+        ]}
+      />
       <section className="relative min-h-[60vh] flex flex-col justify-center py-20 sm:py-32 overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image 

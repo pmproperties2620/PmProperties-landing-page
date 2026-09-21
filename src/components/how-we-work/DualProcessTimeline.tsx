@@ -137,7 +137,7 @@ import { StaggerGrid, FadeInCard } from "@/components/ui/AnimatedSection";
 function ProcessColumn({ title, steps }: { title: string; steps: Step[] }) {
   return (
     <div className="flex flex-col h-fit bg-white rounded-3xl p-6 sm:p-10 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-slate-100">
-      <h3 className="font-heading font-bold text-2xl sm:text-3xl text-center mb-10 text-[#0a1128] leading-[1.15] tracking-[-0.02em]">{title}</h3>
+      <h2 className="font-heading font-bold text-2xl sm:text-3xl text-center mb-10 text-[#0a1128] leading-[1.15] tracking-[-0.02em]">{title}</h2>
       <div className="flex-1">
         <TracingBeam className="pl-6">
           <div className="flex flex-col gap-12 relative z-10 w-full pt-4 pb-8">
@@ -150,7 +150,7 @@ function ProcessColumn({ title, steps }: { title: string; steps: Step[] }) {
                       <div className="w-10 h-10 rounded-full bg-brand-50 flex items-center justify-center border border-brand-100 shrink-0">
                         <Icon className="w-5 h-5 text-brand-600" />
                       </div>
-                      <h4 className="font-heading font-bold text-lg sm:text-xl text-slate-900 leading-[1.2] tracking-[-0.02em]">{s.title}</h4>
+                      <h3 className="font-heading font-bold text-lg sm:text-xl text-slate-900 leading-[1.2] tracking-[-0.02em]">{s.title}</h3>
                     </div>
                     
                     <p className="font-body font-normal text-xs sm:text-sm text-slate-600 leading-[1.6] mb-4">{s.description}</p>

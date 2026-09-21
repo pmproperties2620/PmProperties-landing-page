@@ -74,9 +74,9 @@ export default function Hero({
             
             <div className="inline-flex items-center gap-3 bg-white/10 backdrop-blur-md py-2 px-4 rounded-full shadow-lg border border-white/20">
               <div className="flex -space-x-3">
-                <Image width={40} height={40} className="w-10 h-10 rounded-full border-2 border-[#8E1200] bg-slate-200" src="https://i.pravatar.cc/100?img=11" alt="Avatar 1" unoptimized />
-                <Image width={40} height={40} className="w-10 h-10 rounded-full border-2 border-[#8E1200] bg-slate-200" src="https://i.pravatar.cc/100?img=12" alt="Avatar 2" unoptimized />
-                <Image width={40} height={40} className="w-10 h-10 rounded-full border-2 border-[#8E1200] bg-slate-200" src="https://i.pravatar.cc/100?img=13" alt="Avatar 3" unoptimized />
+                <Image width={40} height={40} className="w-10 h-10 rounded-full border-2 border-[#8E1200] bg-slate-200" src="https://i.pravatar.cc/100?img=11" alt="Satisfied homebuyer assisted by PM Properties" unoptimized />
+                <Image width={40} height={40} className="w-10 h-10 rounded-full border-2 border-[#8E1200] bg-slate-200" src="https://i.pravatar.cc/100?img=12" alt="Property investor guided by PM Properties Dombivli" unoptimized />
+                <Image width={40} height={40} className="w-10 h-10 rounded-full border-2 border-[#8E1200] bg-slate-200" src="https://i.pravatar.cc/100?img=13" alt="Happy family finding dream home in Kalyan Dombivli" unoptimized />
                 <div className="w-10 h-10 rounded-full border-2 border-[#8E1200] bg-black flex items-center justify-center text-white text-sm font-bold leading-none">+</div>
               </div>
               <div className="flex flex-col items-start ml-1">
@@ -107,7 +107,7 @@ export default function Hero({
              <div className="relative w-full aspect-[4/3] rounded-[1.25rem] overflow-hidden">
                 <Image
                   src={heroShowcaseUrl}
-                  alt="Hero Right"
+                  alt="Premium residential developments and verified apartments in Dombivli & Kalyan by PM Properties"
                   fill
                   sizes="(max-width: 768px) 100vw, 500px"
                   className="object-cover"

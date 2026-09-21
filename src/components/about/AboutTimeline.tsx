@@ -78,12 +78,12 @@ export default function AboutTimeline({ initialMilestones }: AboutTimelineProps 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <AnimatedSection>
           <div className="text-center mb-12">
-            <h2 className="font-heading font-semibold text-xs sm:text-sm uppercase tracking-[0.05em] leading-none text-[#0a1128] mb-2">
+            <p className="font-heading font-semibold text-xs sm:text-sm uppercase tracking-[0.05em] leading-none text-[#0a1128] mb-2">
               Our Journey
-            </h2>
-            <h3 className="font-heading font-bold text-2xl sm:text-4xl text-slate-900 mb-4 leading-[1.15] tracking-[-0.02em]">
+            </p>
+            <h2 className="font-heading font-bold text-2xl sm:text-4xl text-slate-900 mb-4 leading-[1.15] tracking-[-0.02em]">
               The Story of PM Properties
-            </h3>
+            </h2>
             <p className="font-body font-normal text-sm sm:text-base text-slate-600 max-w-2xl mx-auto leading-[1.6]">
               A journey of determination, honesty, and a commitment to helping people find their
               rightful homes.
@@ -132,7 +132,7 @@ export default function AboutTimeline({ initialMilestones }: AboutTimelineProps 
                     <span className="inline-block py-1 px-3 rounded-full bg-[#0a1128]/5 text-[#0a1128] font-heading font-semibold text-xs mb-3">
                       {year}
                     </span>
-                    <h4 className="font-heading font-bold text-lg sm:text-xl text-slate-900 mb-3 leading-[1.2] tracking-[-0.02em]">{item.title}</h4>
+                    <h3 className="font-heading font-bold text-lg sm:text-xl text-slate-900 mb-3 leading-[1.2] tracking-[-0.02em]">{item.title}</h3>
                     <p className="font-body font-normal text-xs sm:text-sm text-slate-600 leading-[1.6]">{item.description}</p>
                   </div>
                 </div>

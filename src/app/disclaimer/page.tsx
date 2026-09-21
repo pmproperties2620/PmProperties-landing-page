@@ -18,12 +18,17 @@ import AnimatedSection from "@/components/ui/AnimatedSection";
 import LegalTableOfContents from "@/components/legal/LegalTableOfContents";
 import { getPageBanner } from "@/lib/contentQueries";
 
+import { BreadcrumbJsonLd } from "@/components/seo/JsonLd";
+
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Disclaimer & Legal Disclosures | PM Properties",
   description:
-    "Important regulatory disclosures regarding MahaRERA registration, real estate intermediary status, property pricing, project details, and zero brokerage terms.",
+    "Review regulatory disclosures, MahaRERA intermediary status, project pricing disclaimers, and 0% brokerage terms for PM Properties in Dombivli & Kalyan.",
+  alternates: {
+    canonical: "https://www.thepmproperties.in/disclaimer",
+  },
 };
 
 const sections = [
@@ -45,6 +50,12 @@ export default async function DisclaimerPage() {
 
   return (
     <div className="bg-[#FAFBFD] min-h-screen text-slate-900 font-sans antialiased">
+      <BreadcrumbJsonLd
+        items={[
+          { name: "Home", url: "https://www.thepmproperties.in" },
+          { name: "Disclaimer", url: "https://www.thepmproperties.in/disclaimer" },
+        ]}
+      />
       {/* ── Hero Page Banner ── */}
       <section className="relative min-h-[38vh] sm:min-h-[44vh] flex flex-col justify-center py-16 sm:py-22 overflow-hidden bg-slate-900">
         <div className="absolute inset-0 z-0">
@@ -394,9 +405,9 @@ export default async function DisclaimerPage() {
                   <Building2 className="w-3.5 h-3.5 text-brand-600" />
                   <span>Regulatory Advisory Desk</span>
                 </div>
-                <h3 className="font-heading font-black text-2xl sm:text-3xl text-slate-950 tracking-tight">
+                <h2 className="font-heading font-black text-2xl sm:text-3xl text-slate-950 tracking-tight">
                   The PM Properties
-                </h3>
+                </h2>
                 <p className="text-sm text-slate-600 mt-1 font-body">
                   Principal Real Estate Consultant: <strong className="text-slate-950 font-semibold">Pritesh Pravin Mhamunkar</strong>
                 </p>

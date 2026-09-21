@@ -90,6 +90,15 @@ export default function Footer() {
           <Link href="/contact" className="text-slate-700 hover:text-brand-600 transition-colors">Contact Us</Link>
         </div>
 
+        {/* Office Location & MahaRERA NAP Line */}
+        <p className="text-center font-body text-xs text-slate-500 leading-relaxed max-w-4xl mx-auto mb-4">
+          Shop No. 6, Gangeshwar Maya CHS, Opp KDMC H Ward Office, Phule Road, Dombivli West 421202 &bull; Phone:{" "}
+          <a href="tel:+919029923246" className="text-slate-600 hover:text-brand-600 transition-colors">
+            +91 90299 23246
+          </a>{" "}
+          &bull; MahaRERA Agent Reg. No: <span className="text-slate-600 font-medium">A51700019203</span> (KDRA Member)
+        </p>
+
         {/* Copyright & Legal Links */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-3 font-body text-xs sm:text-sm text-slate-500 leading-[1.6]">
           <p>&copy; {new Date().getFullYear()} PM Properties. All rights reserved.</p>

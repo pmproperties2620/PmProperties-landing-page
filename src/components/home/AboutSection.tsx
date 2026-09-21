@@ -36,7 +36,7 @@ export default function AboutSection({ initialImages }: AboutSectionProps = {}) 
           
           {/* Top Content */}
           <div className="p-4 md:p-5 pb-0 md:pb-0 flex-grow flex flex-col">
-            <h3 className="font-body font-normal text-xs sm:text-sm leading-snug text-gray-500 mb-2">Families Helped Find Their Dream Home</h3>
+            <p className="font-body font-normal text-xs sm:text-sm leading-snug text-gray-500 mb-2">Families Helped Find Their Dream Home</p>
             <ScaleInBadge>
               <p className="font-heading text-3xl md:text-4xl font-black leading-tight tracking-[-0.02em] text-[#0a1128] mb-2 md:mb-3">500+</p>
             </ScaleInBadge>
@@ -64,7 +64,7 @@ export default function AboutSection({ initialImages }: AboutSectionProps = {}) 
           {/* Bottom Content */}
           <div className="p-4 md:p-5 pt-0 md:pt-0 flex-grow flex flex-col items-start justify-end">
             <div className="mb-3 md:mb-4 mt-1 md:mt-2">
-              <h3 className="font-heading text-xs sm:text-sm font-semibold uppercase tracking-[0.05em] leading-none text-gray-800 mb-2 md:mb-3">Introduction</h3>
+              <p className="font-heading text-xs sm:text-sm font-semibold uppercase tracking-[0.05em] leading-none text-gray-800 mb-2 md:mb-3">Introduction</p>
               <h2 className="font-heading text-2xl md:text-4xl font-bold leading-[1.15] tracking-[-0.02em] text-[#0a1128] mb-2">
                 A Journey Built on Trust.
               </h2>
@@ -82,7 +82,6 @@ export default function AboutSection({ initialImages }: AboutSectionProps = {}) 
               Learn More
             </Link>
           </div>
-
         </FadeInCard>
 
         {/* Right Column */}
@@ -106,7 +105,7 @@ export default function AboutSection({ initialImages }: AboutSectionProps = {}) 
               >
                 <Image 
                   src={showcaseImages[currentIndex] || FALLBACK_ABOUT_SHOWCASE[0]}
-                  alt="Property Showcase"
+                  alt="PM Properties - Verified Residential and Commercial Real Estate Portfolio in Dombivli and Kalyan"
                   fill
                   className="object-contain object-center bg-[#f8f9fc]"
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 66vw, 50vw"

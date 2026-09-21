@@ -1,14 +1,15 @@
 import type { Metadata } from "next";
 import ProjectsView from "@/components/projects/ProjectsView";
+import { BreadcrumbJsonLd } from "@/components/seo/JsonLd";
 import { getPublishedProjectsServer } from "@/lib/supabaseServer";
 import { projectsData } from "@/data/projects";
 
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Real Estate Projects & Properties | PM Properties",
+  title: "New Projects in Dombivli, Kalyan & Thane | PM Properties",
   description:
-    "Explore verified new residential projects, luxury apartments, verified resale properties, and commercial hubs in Kalyan, Dombivli, Thane & Badlapur. 100% RERA registered with 0% brokerage on direct builder bookings.",
+    "Explore verified 1, 2 & 3 BHK flats and commercial hubs in Dombivli, Kalyan & Thane. 100% MahaRERA registered with 0% brokerage on builder bookings.",
   keywords: [
     "PM Properties",
     "Real Estate Kalyan",
@@ -20,11 +21,21 @@ export const metadata: Metadata = {
     "Commercial Property Kalyan",
     "0% Brokerage Flats",
   ],
+  alternates: {
+    canonical: "https://www.thepmproperties.in/projects",
+  },
   openGraph: {
-    title: "Real Estate Projects & Properties | PM Properties",
+    title: "New Projects in Dombivli, Kalyan & Thane | PM Properties",
     description:
-      "Curated residential and commercial properties across Kalyan, Dombivli, Thane & beyond with 0% brokerage on new builder projects.",
+      "Explore verified 1, 2 & 3 BHK flats and commercial hubs in Dombivli, Kalyan & Thane with 0% brokerage on direct builder bookings.",
+    url: "https://www.thepmproperties.in/projects",
     type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "New Projects in Dombivli, Kalyan & Thane | PM Properties",
+    description:
+      "Explore verified 1, 2 & 3 BHK flats and commercial hubs in Dombivli, Kalyan & Thane with 0% brokerage on direct builder bookings.",
   },
 };
 
@@ -32,6 +43,16 @@ export default async function ProjectsPage() {
   const dbProjects = await getPublishedProjectsServer();
   const initialProjects = dbProjects.length > 0 ? dbProjects : projectsData;
 
-  return <ProjectsView initialProjects={initialProjects} />;
+  return (
+    <>
+      <BreadcrumbJsonLd
+        items={[
+          { name: "Home", url: "https://www.thepmproperties.in" },
+          { name: "Projects", url: "https://www.thepmproperties.in/projects" },
+        ]}
+      />
+      <ProjectsView initialProjects={initialProjects} />
+    </>
+  );
 }
 

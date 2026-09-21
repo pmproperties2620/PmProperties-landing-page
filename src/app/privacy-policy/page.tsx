@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import AnimatedSection from "@/components/ui/AnimatedSection";
 import LegalTableOfContents from "@/components/legal/LegalTableOfContents";
+import { BreadcrumbJsonLd } from "@/components/seo/JsonLd";
 import { getPageBanner } from "@/lib/contentQueries";
 
 export const dynamic = "force-dynamic";
@@ -21,7 +22,23 @@ export const dynamic = "force-dynamic";
 export const metadata: Metadata = {
   title: "Privacy Policy | PM Properties",
   description:
-    "Learn how PM Properties collects, protects, and handles your property inquiry and consultation information in full compliance with applicable Indian data protection laws.",
+    "Read how PM Properties protects client inquiry details in full compliance with the Digital Personal Data Protection (DPDP) Act and MahaRERA mandates.",
+  alternates: {
+    canonical: "https://www.thepmproperties.in/privacy-policy",
+  },
+  openGraph: {
+    title: "Privacy Policy | PM Properties",
+    description:
+      "Information governance, data privacy, and compliance guidelines governing property inquiries and advisory interactions at PM Properties.",
+    url: "https://www.thepmproperties.in/privacy-policy",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Privacy Policy | PM Properties",
+    description:
+      "Information governance, data privacy, and compliance guidelines governing property inquiries and advisory interactions at PM Properties.",
+  },
 };
 
 const sections = [
@@ -44,6 +61,12 @@ export default async function PrivacyPolicyPage() {
 
   return (
     <div className="bg-[#FAFBFD] min-h-screen text-slate-900 font-sans antialiased">
+      <BreadcrumbJsonLd
+        items={[
+          { name: "Home", url: "https://www.thepmproperties.in" },
+          { name: "Privacy Policy", url: "https://www.thepmproperties.in/privacy-policy" },
+        ]}
+      />
       {/* ── Hero Page Banner ── */}
       <section className="relative min-h-[38vh] sm:min-h-[44vh] flex flex-col justify-center py-16 sm:py-22 overflow-hidden bg-slate-900">
         <div className="absolute inset-0 z-0">
@@ -465,9 +488,9 @@ export default async function PrivacyPolicyPage() {
                   <Building2 className="w-3.5 h-3.5 text-brand-600" />
                   <span>Real Estate Consultancy</span>
                 </div>
-                <h3 className="font-heading font-black text-2xl sm:text-3xl text-slate-950 tracking-tight">
+                <h2 className="font-heading font-black text-2xl sm:text-3xl text-slate-950 tracking-tight">
                   The PM Properties
-                </h3>
+                </h2>
                 <p className="text-sm text-slate-600 mt-1 font-body">
                   Founder &amp; Principal Broker: <strong className="text-slate-950 font-semibold">Pritesh Pravin Mhamunkar</strong>
                 </p>

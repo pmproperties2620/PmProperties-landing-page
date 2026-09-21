@@ -90,7 +90,7 @@ export default function ProjectCard({ project, onQuickView }: ProjectCardProps) 
       <div className="relative aspect-[16/10] overflow-hidden bg-slate-100">
         <Image
           src={project.images[0] || "/images/modern_building.png"}
-          alt={project.title}
+          alt={`${project.title} - ${project.configurations.join(", ")} by ${project.developer} in ${project.location.locality}, ${project.location.city}`}
           fill
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
           className="object-cover transition-transform duration-700 group-hover:scale-105"

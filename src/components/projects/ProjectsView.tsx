@@ -224,6 +224,7 @@ export default function ProjectsView({ initialProjects }: ProjectsViewProps = {}
         />
 
         {/* Projects Grid */}
+        <h2 className="sr-only">Available Properties &amp; Developments</h2>
         {filteredProjects.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             <AnimatePresence>
@@ -250,9 +251,9 @@ export default function ProjectsView({ initialProjects }: ProjectsViewProps = {}
             <div className="w-16 h-16 rounded-2xl bg-slate-100 flex items-center justify-center mx-auto mb-4 text-slate-400">
               <HelpCircle className="w-8 h-8" />
             </div>
-            <h3 className="font-heading font-bold text-lg sm:text-xl text-slate-900 mb-2 leading-[1.2] tracking-[-0.02em]">
+            <h2 className="font-heading font-bold text-lg sm:text-xl text-slate-900 mb-2 leading-[1.2] tracking-[-0.02em]">
               No matching properties found
-            </h3>
+            </h2>
             <p className="font-body font-normal text-xs sm:text-sm text-slate-500 mb-6 leading-[1.6]">
               We couldn&apos;t find any properties matching your exact criteria. Try
               loosening your budget or location filters, or contact our team for
@@ -290,9 +291,9 @@ export default function ProjectsView({ initialProjects }: ProjectsViewProps = {}
                   <Building2 className="w-3.5 h-3.5" />
                   <span>For Property Owners &amp; Developers</span>
                 </div>
-                <h3 className="font-heading font-bold text-2xl sm:text-3xl text-slate-900 mb-3 leading-[1.15] tracking-[-0.02em]">
+                <h2 className="font-heading font-bold text-2xl sm:text-3xl text-slate-900 mb-3 leading-[1.15] tracking-[-0.02em]">
                   Looking to Sell, Lease, or Partner with PM Properties?
-                </h3>
+                </h2>
                 <p className="font-body font-normal text-xs sm:text-sm text-slate-600 leading-[1.6]">
                   Get your property listed before 10,000+ verified active buyers
                   and investors. Benefit from professional staging, legal
