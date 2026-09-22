@@ -78,7 +78,7 @@ const residentialServices: ServiceItem[] = [
     icon: Search,
     title: "Property Buying",
     description:
-      "From curated luxury listings to rigorous price negotiations, we guide you to your ideal home with total confidence.",
+      "PM Properties helps buyers secure verified residences in Dombivli and Kalyan with 0% brokerage.",
     specs: {
       scope: "Luxury Villas, Apartments & Plots",
       timeline: "15 to 45 Days Average",
@@ -94,7 +94,7 @@ const residentialServices: ServiceItem[] = [
     icon: DollarSign,
     title: "Property Selling",
     description:
-      "Maximize property valuation through strategic staging, drone media, and targeted high-net-worth buyer outreach.",
+      "PM Properties' team handles end-to-end property resale and closing for sellers in Dombivli.",
     specs: {
       scope: "Premium Residential Assets",
       timeline: "Fast-Track Buyer Sourcing",
@@ -110,7 +110,7 @@ const residentialServices: ServiceItem[] = [
     icon: Key,
     title: "Property Renting",
     description:
-      "Discover prime rental residences or secure reliable, vetted corporate tenants for consistent investment returns.",
+      "Through PM Properties, tenants and owners in Dombivli and Kalyan secure verified home rentals.",
     specs: {
       scope: "High-End Rentals & Penthouse Suites",
       timeline: "7 to 14 Days Placement",
@@ -126,7 +126,7 @@ const residentialServices: ServiceItem[] = [
     icon: Handshake,
     title: "Property Consultation",
     description:
-      "Strategic portfolio advisory, market cycle intelligence, and yield forecasting from seasoned industry specialists.",
+      "Consult with PM Properties for 1-on-1 investment planning and title checks in Dombivli and Kalyan.",
     specs: {
       scope: "Portfolio & Capital Allocation",
       timeline: "Dedicated 1-on-1 Sessions",
@@ -145,7 +145,7 @@ const specializedServices: ServiceItem[] = [
     icon: Paintbrush,
     title: "Interior Design",
     description:
-      "Bespoke architectural concepts, customized modular carpentry, and complete end-to-end turnkey execution.",
+      "PM Properties delivers turnkey modular interiors in Dombivli and Kalyan.",
     specs: {
       scope: "Bespoke Residential & Offices",
       timeline: "45 to 60 Days Handover",
@@ -161,7 +161,7 @@ const specializedServices: ServiceItem[] = [
     icon: ShieldCheck,
     title: "Invisible Grills",
     description:
-      "Grade-316 stainless steel safety cable systems safeguarding balconies and windows without compromising views.",
+      "PM Properties installs Grade-316 safety grills in Dombivli and Kalyan.",
     specs: {
       scope: "Balconies, French Windows, Terraces",
       timeline: "24 to 48 Hour Installation",
@@ -177,7 +177,7 @@ const specializedServices: ServiceItem[] = [
     icon: Building2,
     title: "Commercial Property (Buy/Sell)",
     description:
-      "High-grade corporate offices, retail showrooms, and institutional plots engineered for optimal rental yields.",
+      "For commercial clients, PM Properties brokers offices in Dombivli and Kalyan.",
     specs: {
       scope: "Grade-A Offices & Retail Strips",
       timeline: "Bespoke Mandate Cycle",
@@ -193,7 +193,7 @@ const specializedServices: ServiceItem[] = [
     icon: Warehouse,
     title: "Commercial & Industrial Rental",
     description:
-      "Expansive Grade-A logistics warehouses, manufacturing plants, and corporate leasing spaces built for scale.",
+      "Through PM Properties, businesses lease industrial sheds across Kalyan.",
     specs: {
       scope: "Warehouses, Logistics & Sheds",
       timeline: "Rapid Site Match",
