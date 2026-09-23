@@ -119,7 +119,25 @@ export default function Footer() {
             </Link>
           </div>
         </div>
-        
+
+        {/* Creator Credit */}
+        <div className="mt-4 flex items-center justify-center">
+          <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-slate-100/90 hover:bg-slate-100 border border-slate-200/80 text-[11px] sm:text-xs text-slate-500 font-body shadow-2xs transition-all hover:border-slate-300">
+            <span>Crafted with</span>
+            <span className="text-rose-500 inline-block animate-pulse text-[13px] leading-none" role="img" aria-label="love">
+              ❤️
+            </span>
+            <span>by</span>
+            <a
+              href="https://omkar-potphode-portfolio-phi.vercel.app/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-heading font-semibold text-slate-800 hover:text-brand-600 transition-colors underline-offset-4 hover:underline"
+            >
+              Omkar Potphode
+            </a>
+          </div>
+        </div>
       </FadeInSection>
     </footer>
   );

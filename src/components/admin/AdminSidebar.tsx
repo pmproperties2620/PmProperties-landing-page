@@ -17,6 +17,7 @@ import {
   Handshake,
   FileText,
   Layers,
+  Award,
 } from "lucide-react";
 import { useAdminAuth } from "@/app/admin/AdminAuthContext";
 import { usePushNotifications } from "@/context/PushNotificationContext";
@@ -65,6 +66,11 @@ const CONTENT_NAV_ITEMS: NavItem[] = [
     label: "Page Banners",
     href: "/admin/banners",
     icon: Layers,
+  },
+  {
+    label: "Industry Presence",
+    href: "/admin/industry-presence",
+    icon: Award,
   },
 ];
 

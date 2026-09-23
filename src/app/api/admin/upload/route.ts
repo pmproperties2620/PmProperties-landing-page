@@ -10,6 +10,7 @@ const ALLOWED_FOLDERS = [
   "about",
   "banners",
   "hero",
+  "industry-presence",
   "general",
 ];
 

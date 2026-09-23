@@ -474,5 +474,37 @@ WHERE p.id = ns.id AND ns.rn > 1;
 -- 5. Create unique index for fast lookups & data integrity
 CREATE UNIQUE INDEX IF NOT EXISTS idx_projects_slug ON public.projects (slug);
 
+-- ==============================================================================
+-- Industry Presence Table (Events, Expos, Award Ceremonies)
+-- ==============================================================================
+CREATE TABLE IF NOT EXISTS public.industry_presence (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    caption TEXT,
+    image_url TEXT NOT NULL,
+    is_published BOOLEAN DEFAULT true,
+    display_order INTEGER DEFAULT 0,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT timezone('utc'::text, now())
+);
+
+CREATE INDEX IF NOT EXISTS idx_industry_presence_published_order 
+    ON public.industry_presence (is_published, display_order);
+
+ALTER TABLE public.industry_presence ENABLE ROW LEVEL SECURITY;
+
+CREATE POLICY "Public can view published industry_presence"
+    ON public.industry_presence
+    FOR SELECT
+    TO anon, authenticated
+    USING (is_published = true);
+
+CREATE POLICY "Service role full access industry_presence"
+    ON public.industry_presence
+    FOR ALL
+    TO service_role
+    USING (true)
+    WITH CHECK (true);
+
+COMMENT ON TABLE public.industry_presence IS 'Event, expo, and award ceremony photos showcasing PM Properties industry engagement, shown on Home (teaser) and About (full gallery).';
+
 
 

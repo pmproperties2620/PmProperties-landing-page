@@ -8,6 +8,7 @@ import FAQSection from "@/components/home/FAQSection";
 import AboutSection from "@/components/home/AboutSection";
 import HowWeWorkSection from "@/components/home/HowWeWorkSection";
 import CredentialsSection from "@/components/home/CredentialsSection";
+import IndustryPresenceTeaser from "@/components/home/IndustryPresenceTeaser";
 import { RealEstateAgentJsonLd, FAQPageJsonLd } from "@/components/seo/JsonLd";
 import {
   getTestimonials,
@@ -15,6 +16,7 @@ import {
   getAboutShowcase,
   getPageBanner,
   getHeroShowcase,
+  getIndustryPresence,
 } from "@/lib/contentQueries";
 
 export const dynamic = "force-dynamic";
@@ -49,12 +51,14 @@ export default async function Home() {
     aboutShowcase,
     heroBannerUrl,
     heroShowcaseUrl,
+    industryPresence,
   ] = await Promise.all([
     getTestimonials(),
     getTrustedPartners(),
     getAboutShowcase(),
     getPageBanner("home_hero"),
     getHeroShowcase(),
+    getIndustryPresence(3),
   ]);
 
   return (
@@ -65,6 +69,7 @@ export default async function Home() {
       <LogoMarquee initialLogos={trustedPartners} />
       <AboutSection initialImages={aboutShowcase} />
       <CredentialsSection />
+      <IndustryPresenceTeaser initialItems={industryPresence} />
       <Services />
       <HowWeWorkSection />
       <Testimonials initialTestimonials={testimonials} />

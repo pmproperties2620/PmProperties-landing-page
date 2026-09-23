@@ -43,6 +43,15 @@ export interface PageBannerItem {
   image_url: string;
 }
 
+export interface IndustryPresenceItem {
+  id: string;
+  caption?: string | null;
+  image_url: string;
+  is_published?: boolean;
+  display_order?: number;
+  created_at?: string;
+}
+
 // ==============================================================================
 // Default Fallbacks (Guaranteeing 100% Zero Downtime / Missing DB Safety)
 // ==============================================================================
@@ -138,6 +147,45 @@ export const FALLBACK_TIMELINE: TimelineMilestoneItem[] = [
 
 export const FALLBACK_HERO_SHOWCASE = "/images/hero_img_right.png";
 export const FALLBACK_BANNER = "/images/hero-bg-new.png";
+
+export const FALLBACK_INDUSTRY_PRESENCE: IndustryPresenceItem[] = [
+  {
+    id: "fallback-ip-1",
+    caption: "KDRA Association Annual Summit & Developer Connect",
+    image_url: "/images/timeline_4_1.jpeg",
+    display_order: 1,
+  },
+  {
+    id: "fallback-ip-2",
+    caption: "Excellence in Real Estate Advisory Award Ceremony",
+    image_url: "/images/pm.jpeg",
+    display_order: 2,
+  },
+  {
+    id: "fallback-ip-3",
+    caption: "Strategic Developer Partners Meet & Keynote",
+    image_url: "/images/timeline_4_2.jpeg",
+    display_order: 3,
+  },
+  {
+    id: "fallback-ip-4",
+    caption: "Kalyan-Dombivli Property Expo & Showcase",
+    image_url: "/images/pm1.jpeg",
+    display_order: 4,
+  },
+  {
+    id: "fallback-ip-5",
+    caption: "Real Estate Leadership & Channel Partner Forum",
+    image_url: "/images/timeline_4_3.jpeg",
+    display_order: 5,
+  },
+  {
+    id: "fallback-ip-6",
+    caption: "PM Properties Milestone Celebration & Honor",
+    image_url: "/images/pm2.jpeg",
+    display_order: 6,
+  },
+];
 
 // ==============================================================================
 // Server Fetch Functions
@@ -262,5 +310,34 @@ export async function getHeroShowcase(): Promise<string> {
     return data.image_url;
   } catch {
     return FALLBACK_HERO_SHOWCASE;
+  }
+}
+
+export async function getIndustryPresence(limit?: number): Promise<IndustryPresenceItem[]> {
+  if (!isSupabaseConfigured()) {
+    return limit ? FALLBACK_INDUSTRY_PRESENCE.slice(0, limit) : FALLBACK_INDUSTRY_PRESENCE;
+  }
+  try {
+    const supabase = getSupabaseServerClient();
+    let query = supabase
+      .from("industry_presence")
+      .select("id, caption, image_url, display_order, created_at")
+      .eq("is_published", true)
+      .order("display_order", { ascending: true })
+      .order("created_at", { ascending: false });
+
+    if (limit && limit > 0) {
+      query = query.limit(limit);
+    }
+
+    const { data, error } = await query;
+
+    if (error || !data || data.length === 0) {
+      return limit ? FALLBACK_INDUSTRY_PRESENCE.slice(0, limit) : FALLBACK_INDUSTRY_PRESENCE;
+    }
+    return data;
+  } catch (err) {
+    console.error("Failed to load industry presence items:", err);
+    return limit ? FALLBACK_INDUSTRY_PRESENCE.slice(0, limit) : FALLBACK_INDUSTRY_PRESENCE;
   }
 }

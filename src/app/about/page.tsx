@@ -2,9 +2,10 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import AnimatedSection from "@/components/ui/AnimatedSection";
 import AboutTimeline from "@/components/about/AboutTimeline";
+import IndustryPresenceGallery from "@/components/about/IndustryPresenceGallery";
 import CTASection from "@/components/home/CTASection";
 import { BreadcrumbJsonLd } from "@/components/seo/JsonLd";
-import { getPageBanner, getTimelineMilestones } from "@/lib/contentQueries";
+import { getPageBanner, getTimelineMilestones, getIndustryPresence } from "@/lib/contentQueries";
 
 export const dynamic = "force-dynamic";
 
@@ -31,9 +32,10 @@ export const metadata: Metadata = {
 };
 
 export default async function AboutPage() {
-  const [bannerUrl, milestones] = await Promise.all([
+  const [bannerUrl, milestones, industryPresence] = await Promise.all([
     getPageBanner("about"),
     getTimelineMilestones(),
+    getIndustryPresence(),
   ]);
 
   return (
@@ -71,6 +73,8 @@ export default async function AboutPage() {
       </section>
 
       <AboutTimeline initialMilestones={milestones} />
+
+      <IndustryPresenceGallery initialItems={industryPresence} />
 
       <CTASection />
     </>
