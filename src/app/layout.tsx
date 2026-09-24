@@ -1,6 +1,5 @@
 import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
-import { Inter } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
@@ -21,9 +20,13 @@ const satoshi = localFont({
   display: "swap",
 });
 
-const inter = Inter({
-  subsets: ["latin"],
-  weight: ["400", "500"],
+const inter = localFont({
+  src: [
+    {
+      path: "../../public/fonts/inter/Inter-Variable.woff2",
+      style: "normal",
+    },
+  ],
   variable: "--font-inter",
   display: "swap",
 });
