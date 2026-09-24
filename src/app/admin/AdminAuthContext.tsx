@@ -159,7 +159,7 @@ export function AdminAuthProvider({ children }: { children: React.ReactNode }) {
                 <div className="w-20 h-20 rounded-2xl bg-white/95 p-2 shadow-xl ring-1 ring-white/20 flex items-center justify-center group-hover:scale-105 group-hover:shadow-2xl group-hover:shadow-brand-500/20 transition-all duration-300">
                   <Image
                     src="/images/logo.png"
-                    alt="PM Properties"
+                    alt="The PM Properties"
                     width={64}
                     height={64}
                     className="object-contain"
@@ -175,7 +175,7 @@ export function AdminAuthProvider({ children }: { children: React.ReactNode }) {
               </div>
 
               <h1 className="font-heading text-2xl sm:text-3xl font-extrabold text-white tracking-[-0.02em]">
-                PM Properties Admin
+                The PM Properties Admin
               </h1>
               <p className="font-body text-xs sm:text-sm text-slate-400 mt-1.5 max-w-xs leading-relaxed">
                 Enter your authorized passcode to access analytics & leads.

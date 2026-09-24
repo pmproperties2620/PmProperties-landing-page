@@ -23,9 +23,9 @@ import { BreadcrumbJsonLd } from "@/components/seo/JsonLd";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Disclaimer & Legal Disclosures | PM Properties",
+  title: "Disclaimer & Legal Disclosures | The PM Properties",
   description:
-    "Review regulatory disclosures, MahaRERA intermediary status, project pricing disclaimers, and 0% brokerage terms for PM Properties in Dombivli & Kalyan.",
+    "Review regulatory disclosures, MahaRERA intermediary status, project pricing disclaimers, and 0% brokerage terms for The PM Properties in Dombivli & Kalyan.",
   alternates: {
     canonical: "https://www.thepmproperties.in/disclaimer",
   },
@@ -61,7 +61,7 @@ export default async function DisclaimerPage() {
         <div className="absolute inset-0 z-0">
           <Image
             src={bannerUrl}
-            alt="Disclaimer - PM Properties"
+            alt="Disclaimer - The PM Properties"
             fill
             sizes="100vw"
             className="object-cover"
@@ -115,7 +115,7 @@ export default async function DisclaimerPage() {
                 <strong className="font-heading font-bold block text-sm text-amber-900 mb-1">
                   Important Public Notice for Property Buyers &amp; Investors
                 </strong>
-                The information provided on this website is for general informational, educational, and lead-facilitation purposes only. It does not constitute an offer, contractual solicitation, or guarantee by PM Properties. All real estate transactions are subject to market conditions and developer contractual terms.
+                The information provided on this website is for general informational, educational, and lead-facilitation purposes only. It does not constitute an offer, contractual solicitation, or guarantee by The PM Properties. All real estate transactions are subject to market conditions and developer contractual terms.
               </div>
             </div>
 
@@ -134,7 +134,7 @@ export default async function DisclaimerPage() {
               </div>
               <div className="font-body text-sm sm:text-[15px] text-slate-700 leading-relaxed space-y-3.5">
                 <p>
-                  <strong>The PM Properties</strong> (&ldquo;PM Properties&rdquo;) operates strictly in the capacity of an independent <strong>Real Estate Broker, Channel Partner, and Advisory Consultancy</strong>.
+                  <strong>The PM Properties</strong> operates strictly in the capacity of an independent <strong>Real Estate Broker, Channel Partner, and Advisory Consultancy</strong>.
                 </p>
                 <div className="bg-slate-50/90 rounded-xl p-4 border border-slate-200/80 space-y-2">
                   <p>
@@ -210,7 +210,7 @@ export default async function DisclaimerPage() {
               </div>
               <div className="font-body text-sm sm:text-[15px] text-slate-700 leading-relaxed space-y-3.5">
                 <p>
-                  While PM Properties exercises reasonable diligence to source current and authentic data from developers and authorized property owners:
+                  While The PM Properties exercises reasonable diligence to source current and authentic data from developers and authorized property owners:
                 </p>
                 <ul className="space-y-2.5 my-3">
                   <li className="flex items-start gap-2.5">
@@ -253,7 +253,7 @@ export default async function DisclaimerPage() {
                 </p>
                 <div className="bg-emerald-50/70 border border-emerald-200/80 rounded-xl p-4 text-emerald-950 space-y-2 leading-relaxed">
                   <p>
-                    <strong>Direct Builder Bookings:</strong> The zero-brokerage benefit applies strictly to prospective buyers purchasing <strong>fresh inventory directly from partner real estate developers</strong> in projects where PM Properties acts as an authorized channel partner remunerated directly by the promoter.
+                    <strong>Direct Builder Bookings:</strong> The zero-brokerage benefit applies strictly to prospective buyers purchasing <strong>fresh inventory directly from partner real estate developers</strong> in projects where The PM Properties acts as an authorized channel partner remunerated directly by the promoter.
                   </p>
                   <p>
                     <strong>Resale, Lease &amp; Bespoke Mandates:</strong> Secondary market transactions (resale flats, existing homeowner sales), tenancy leases, and custom mandates are subject to customary advisory commissions agreed upon in writing prior to closure.
@@ -305,7 +305,7 @@ export default async function DisclaimerPage() {
                   All developer trademarks, corporate logos (including Regency Group, Lodha Group, Runwal Group, Godrej Properties, Kalpataru, Hiranandani Communities, etc.), project names, elevations, 3D artist renderings, and project brochures belong to their respective copyright and trademark owners.
                 </p>
                 <p>
-                  Their display on this platform is solely for informational identification of properties where PM Properties provides channel partner advisory and does not imply endorsement or ownership of those proprietary assets.
+                  Their display on this platform is solely for informational identification of properties where The PM Properties provides channel partner advisory and does not imply endorsement or ownership of those proprietary assets.
                 </p>
               </div>
             </section>
@@ -345,7 +345,7 @@ export default async function DisclaimerPage() {
               </div>
               <div className="font-body text-sm sm:text-[15px] text-slate-700 leading-relaxed space-y-3.5">
                 <p>
-                  Photographs and testimonials displayed under our &ldquo;Client Love&rdquo; and &ldquo;Our Journey&rdquo; sections depict real families assisted by PM Properties. These testimonials represent individual experiences. Past closing timelines, negotiated discounts, or market outcomes achieved for one client do not guarantee identical results for future transactions, as real estate transactions vary based on personal parameters.
+                  Photographs and testimonials displayed under our &ldquo;Client Love&rdquo; and &ldquo;Our Journey&rdquo; sections depict real families assisted by The PM Properties. These testimonials represent individual experiences. Past closing timelines, negotiated discounts, or market outcomes achieved for one client do not guarantee identical results for future transactions, as real estate transactions vary based on personal parameters.
                 </p>
               </div>
             </section>

@@ -1,5 +1,5 @@
 // ==============================================================================
-// PM Properties - Enterprise Google Analytics 4 (GA4) Tracking Client
+// The PM Properties - Enterprise Google Analytics 4 (GA4) Tracking Client
 // Measurement ID: G-ZC4KVNR69F
 // ==============================================================================
 

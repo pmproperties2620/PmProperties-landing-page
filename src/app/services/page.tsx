@@ -23,14 +23,14 @@ import { getPageBanner } from "@/lib/contentQueries";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Real Estate Services in Dombivli & Kalyan | PM Properties",
+  title: "Real Estate Services in Dombivli & Kalyan | The PM Properties",
   description:
     "Expert property buying, selling, leasing & commercial real estate solutions in Dombivli, Kalyan & Thane with 0% brokerage on builder developments.",
   alternates: {
     canonical: "https://www.thepmproperties.in/services",
   },
   openGraph: {
-    title: "Real Estate Services in Dombivli & Kalyan | PM Properties",
+    title: "Real Estate Services in Dombivli & Kalyan | The PM Properties",
     description:
       "Comprehensive residential, commercial, and interior advisory solutions tailored to your unique property goals in Dombivli & Kalyan.",
     url: "https://www.thepmproperties.in/services",
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Real Estate Services in Dombivli & Kalyan | PM Properties",
+    title: "Real Estate Services in Dombivli & Kalyan | The PM Properties",
     description:
       "Comprehensive residential, commercial, and interior advisory solutions tailored to your unique property goals in Dombivli & Kalyan.",
   },
@@ -78,14 +78,14 @@ const residentialServices: ServiceItem[] = [
     icon: Search,
     title: "Property Buying",
     description:
-      "PM Properties helps buyers secure verified residences in Dombivli and Kalyan with 0% brokerage.",
+      "The PM Properties helps buyers secure verified residences in Dombivli and Kalyan with 0% brokerage.",
     specs: {
       scope: "Luxury Villas, Apartments & Plots",
       timeline: "15 to 45 Days Average",
       deliverable: "Title Clearance & Deal Closing",
     },
     schematicType: "floorplan",
-    inquiryMessage: "Hi PM Properties, I would like to enquire about Property Buying services.",
+    inquiryMessage: "Hi The PM Properties, I would like to enquire about Property Buying services.",
   },
   {
     id: "selling",
@@ -94,14 +94,14 @@ const residentialServices: ServiceItem[] = [
     icon: DollarSign,
     title: "Property Selling",
     description:
-      "PM Properties' team handles end-to-end property resale and closing for sellers in Dombivli.",
+      "The PM Properties' team handles end-to-end property resale and closing for sellers in Dombivli.",
     specs: {
       scope: "Premium Residential Assets",
       timeline: "Fast-Track Buyer Sourcing",
       deliverable: "Max Valuation & Closing Support",
     },
     schematicType: "elevation",
-    inquiryMessage: "Hi PM Properties, I would like to enquire about Property Selling services.",
+    inquiryMessage: "Hi The PM Properties, I would like to enquire about Property Selling services.",
   },
   {
     id: "renting",
@@ -110,14 +110,14 @@ const residentialServices: ServiceItem[] = [
     icon: Key,
     title: "Property Renting",
     description:
-      "Through PM Properties, tenants and owners in Dombivli and Kalyan secure verified home rentals.",
+      "Through The PM Properties, tenants and owners in Dombivli and Kalyan secure verified home rentals.",
     specs: {
       scope: "High-End Rentals & Penthouse Suites",
       timeline: "7 to 14 Days Placement",
       deliverable: "Vetted Tenants & Registered Lease",
     },
     schematicType: "lease",
-    inquiryMessage: "Hi PM Properties, I would like to enquire about Property Renting services.",
+    inquiryMessage: "Hi The PM Properties, I would like to enquire about Property Renting services.",
   },
   {
     id: "consultation",
@@ -126,14 +126,14 @@ const residentialServices: ServiceItem[] = [
     icon: Handshake,
     title: "Property Consultation",
     description:
-      "Consult with PM Properties for 1-on-1 investment planning and title checks in Dombivli and Kalyan.",
+      "Consult with The PM Properties for 1-on-1 investment planning and title checks in Dombivli and Kalyan.",
     specs: {
       scope: "Portfolio & Capital Allocation",
       timeline: "Dedicated 1-on-1 Sessions",
       deliverable: "Custom Market & ROI Roadmap",
     },
     schematicType: "strategy",
-    inquiryMessage: "Hi PM Properties, I would like to enquire about Property Consultation services.",
+    inquiryMessage: "Hi The PM Properties, I would like to enquire about Property Consultation services.",
   },
 ];
 
@@ -145,14 +145,14 @@ const specializedServices: ServiceItem[] = [
     icon: Paintbrush,
     title: "Interior Design",
     description:
-      "PM Properties delivers turnkey modular interiors in Dombivli and Kalyan.",
+      "The PM Properties delivers turnkey modular interiors in Dombivli and Kalyan.",
     specs: {
       scope: "Bespoke Residential & Offices",
       timeline: "45 to 60 Days Handover",
       deliverable: "3D Visuals & Turnkey Finish",
     },
     schematicType: "interior",
-    inquiryMessage: "Hi PM Properties, I would like to enquire about Interior Design services.",
+    inquiryMessage: "Hi The PM Properties, I would like to enquire about Interior Design services.",
   },
   {
     id: "invisible-grills",
@@ -161,14 +161,14 @@ const specializedServices: ServiceItem[] = [
     icon: ShieldCheck,
     title: "Invisible Grills",
     description:
-      "PM Properties installs Grade-316 safety grills in Dombivli and Kalyan.",
+      "The PM Properties installs Grade-316 safety grills in Dombivli and Kalyan.",
     specs: {
       scope: "Balconies, French Windows, Terraces",
       timeline: "24 to 48 Hour Installation",
       deliverable: "Grade-316 Steel Warranty",
     },
     schematicType: "grill",
-    inquiryMessage: "Hi PM Properties, I would like to enquire about Invisible Grills installation.",
+    inquiryMessage: "Hi The PM Properties, I would like to enquire about Invisible Grills installation.",
   },
   {
     id: "commercial-buy-sell",
@@ -177,14 +177,14 @@ const specializedServices: ServiceItem[] = [
     icon: Building2,
     title: "Commercial Property (Buy/Sell)",
     description:
-      "For commercial clients, PM Properties brokers offices in Dombivli and Kalyan.",
+      "For commercial clients, The PM Properties brokers offices in Dombivli and Kalyan.",
     specs: {
       scope: "Grade-A Offices & Retail Strips",
       timeline: "Bespoke Mandate Cycle",
       deliverable: "Institutional Yield Advisory",
     },
     schematicType: "commercial",
-    inquiryMessage: "Hi PM Properties, I would like to enquire about Commercial Property (Buy/Sell) services.",
+    inquiryMessage: "Hi The PM Properties, I would like to enquire about Commercial Property (Buy/Sell) services.",
   },
   {
     id: "commercial-industrial-rental",
@@ -193,14 +193,14 @@ const specializedServices: ServiceItem[] = [
     icon: Warehouse,
     title: "Commercial & Industrial Rental",
     description:
-      "Through PM Properties, businesses lease industrial sheds across Kalyan.",
+      "Through The PM Properties, businesses lease industrial sheds across Kalyan.",
     specs: {
       scope: "Warehouses, Logistics & Sheds",
       timeline: "Rapid Site Match",
       deliverable: "Compliant Long-Term Leases",
     },
     schematicType: "warehouse",
-    inquiryMessage: "Hi PM Properties, I would like to enquire about Commercial & Industrial Rental spaces.",
+    inquiryMessage: "Hi The PM Properties, I would like to enquire about Commercial & Industrial Rental spaces.",
   },
 ];
 

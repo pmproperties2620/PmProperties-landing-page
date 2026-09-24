@@ -19,13 +19,13 @@ export async function generateMetadata({
 
   if (!project) {
     return {
-      title: "Property Not Found | PM Properties",
+      title: "Property Not Found | The PM Properties",
       description: "The requested real estate property could not be found.",
     };
   }
 
-  const fullTitle = `${project.title} in ${project.location.locality} | PM Properties`;
-  const title = fullTitle.length <= 60 ? fullTitle : `${project.title} | PM Properties`;
+  const fullTitle = `${project.title} in ${project.location.locality} | The PM Properties`;
+  const title = fullTitle.length <= 60 ? fullTitle : `${project.title} | The PM Properties`;
   const description = `${project.title} in ${project.location.locality}, ${project.location.city}. ${project.configurations.join("/")} from ${project.priceDisplay}. 0% brokerage, MahaRERA: ${project.reraId}.`.slice(0, 155);
   const pageUrl = `https://www.thepmproperties.in/projects/${project.slug}`;
   const coverImage =
@@ -42,6 +42,7 @@ export async function generateMetadata({
       project.location.locality,
       project.location.city,
       ...project.configurations,
+      "The PM Properties",
       "PM Properties",
       "RERA Registered",
       "0% Brokerage",

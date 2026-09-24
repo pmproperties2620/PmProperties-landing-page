@@ -10,24 +10,24 @@ import { getPageBanner, getTimelineMilestones, getIndustryPresence } from "@/lib
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "About PM Properties | Real Estate Advisory Dombivli",
+  title: "About The PM Properties | Real Estate Advisory Dombivli",
   description:
-    "Founded by Pritesh Mhamunkar, PM Properties is a KDRA-member consultancy in Dombivli & Kalyan, helping 500+ families secure verified dream properties.",
+    "Founded by Pritesh Mhamunkar, The PM Properties is a KDRA-member consultancy in Dombivli & Kalyan, helping 500+ families secure verified dream properties.",
   alternates: {
     canonical: "https://www.thepmproperties.in/about",
   },
   openGraph: {
-    title: "About PM Properties | Real Estate Advisory Dombivli",
+    title: "About The PM Properties | Real Estate Advisory Dombivli",
     description:
-      "Founded by Pritesh Pravin Mhamunkar, PM Properties is a KDRA-member real estate consultancy with over 5 years of trusted advisory in Dombivli & Kalyan.",
+      "Founded by Pritesh Pravin Mhamunkar, The PM Properties is a KDRA-member real estate consultancy with over 5 years of trusted advisory in Dombivli & Kalyan.",
     url: "https://www.thepmproperties.in/about",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "About PM Properties | Real Estate Advisory Dombivli",
+    title: "About The PM Properties | Real Estate Advisory Dombivli",
     description:
-      "Founded by Pritesh Pravin Mhamunkar, PM Properties is a KDRA-member real estate consultancy with over 5 years of trusted advisory in Dombivli & Kalyan.",
+      "Founded by Pritesh Pravin Mhamunkar, The PM Properties is a KDRA-member real estate consultancy with over 5 years of trusted advisory in Dombivli & Kalyan.",
   },
 };
 
@@ -50,7 +50,7 @@ export default async function AboutPage() {
         <div className="absolute inset-0 z-0">
           <Image 
             src={bannerUrl} 
-            alt="About PM Properties" 
+            alt="About The PM Properties" 
             fill 
             sizes="100vw"
             className="object-cover"
@@ -62,7 +62,7 @@ export default async function AboutPage() {
         <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center w-full">
           <AnimatedSection>
             <h1 className="font-heading font-black text-3xl sm:text-6xl text-white mb-4 leading-[1.15] tracking-[-0.02em]">
-              About PM Properties
+              About The PM Properties
             </h1>
             <p className="font-body font-normal text-sm sm:text-base text-slate-300 max-w-2xl mx-auto leading-[1.6]">
               A boutique real estate agency built on trust, market expertise, and a genuine passion

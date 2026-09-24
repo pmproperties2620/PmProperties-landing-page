@@ -59,7 +59,7 @@ export function createConsultationWhatsAppUrl({
   const priceObj = PRICE_RANGES.find((p) => p.id === selectedPrice);
   const stageObj = PROPERTY_STAGES.find((s) => s.id === selectedStage);
 
-  const message = `*PM Properties Consultation Booking* (${source})
+  const message = `*The PM Properties Consultation Booking* (${source})
 👤 Name: ${fullName}
 📞 Phone: ${phone}
 🏠 Requirement: ${reqObj ? reqObj.label : "Not specified"}

@@ -16,7 +16,7 @@ export default function ProjectBrochureSection({
   const hasDirectBrochure = Boolean(project.brochureUrl && project.brochureUrl.trim());
 
   const getWhatsAppBrochureUrl = () => {
-    const message = `Hi PM Properties, I would like to request the official brochure for ${project.title} (${project.location.locality}, ${project.location.city}). Please share the PDF brochure, floor plans, and pricing sheet.`;
+    const message = `Hi The PM Properties, I would like to request the official brochure for ${project.title} (${project.location.locality}, ${project.location.city}). Please share the PDF brochure, floor plans, and pricing sheet.`;
     return `https://wa.me/919029923246?text=${encodeURIComponent(message)}`;
   };
 

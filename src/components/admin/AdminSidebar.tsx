@@ -68,8 +68,8 @@ const CONTENT_NAV_ITEMS: NavItem[] = [
     icon: Layers,
   },
   {
-    label: "Industry Presence",
-    href: "/admin/industry-presence",
+    label: "Achievements",
+    href: "/admin/achievements",
     icon: Award,
   },
 ];
@@ -109,7 +109,7 @@ function NavContent({ pathname, unreadCount, onLogout, onItemClick }: NavContent
             >
               <Image
                 src="/images/logo.png"
-                alt="PM Properties"
+                alt="The PM Properties"
                 fill
                 sizes="128px"
                 className="object-contain object-left"
@@ -120,7 +120,7 @@ function NavContent({ pathname, unreadCount, onLogout, onItemClick }: NavContent
           <div className="mt-3.5 flex items-center justify-between">
             <div>
               <h2 className="font-heading font-bold text-sm tracking-tight text-slate-900 leading-tight">
-                PM Properties
+                The PM Properties
               </h2>
               <p className="font-body text-xs text-slate-400 font-medium tracking-wide">
                 Admin Console
@@ -279,7 +279,7 @@ export default function AdminSidebar() {
         <Link href="/" className="relative h-9 w-28 block">
           <Image
             src="/images/logo.png"
-            alt="PM Properties"
+            alt="The PM Properties"
             fill
             sizes="112px"
             className="object-contain"

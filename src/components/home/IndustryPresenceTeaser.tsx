@@ -70,7 +70,7 @@ export default function IndustryPresenceTeaser({ initialItems }: IndustryPresenc
                       {item.caption || "Real Estate Leadership & Industry Summit"}
                     </p>
                     <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between">
-                      <span className="text-[11px] font-body text-slate-400">PM Properties Journey</span>
+                      <span className="text-[11px] font-body text-slate-400">The PM Properties Journey</span>
                       <span className="text-xs font-heading font-medium text-brand-600 opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-1">
                         View <ArrowRight className="w-3 h-3" />
                       </span>
@@ -86,10 +86,10 @@ export default function IndustryPresenceTeaser({ initialItems }: IndustryPresenc
         <AnimatedSection>
           <div className="mt-12 text-center">
             <Link
-              href="/about#industry-presence"
+              href="/achievements"
               className="inline-flex items-center justify-center gap-2.5 px-8 py-3.5 rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-heading font-semibold text-sm leading-none transition-all duration-300 shadow-lg shadow-brand-600/25 hover:shadow-xl hover:shadow-brand-600/35 hover:-translate-y-0.5 cursor-pointer group"
             >
-              <span>Explore Our Industry Journey</span>
+              <span>Explore Our Achievements</span>
               <ArrowRight className="w-4 h-4 text-white transition-transform duration-300 group-hover:translate-x-1" />
             </Link>
           </div>

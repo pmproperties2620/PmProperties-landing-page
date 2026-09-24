@@ -1057,7 +1057,7 @@ function LeadsManagementContent() {
 
                 <a
                   href={`https://wa.me/91${selectedLead.phone}?text=${encodeURIComponent(
-                    `Hello ${selectedLead.full_name}, thank you for reaching out to PM Properties regarding ${selectedLead.requirement}. I am contacting you to discuss your property requirements.`
+                    `Hello ${selectedLead.full_name}, thank you for reaching out to The PM Properties regarding ${selectedLead.requirement}. I am contacting you to discuss your property requirements.`
                   )}`}
                   target="_blank"
                   rel="noopener noreferrer"

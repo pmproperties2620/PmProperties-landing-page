@@ -267,7 +267,7 @@ export const testimonials = [
     name: "Michael & Lisa Thompson",
     location: "Malibu, CA",
     content:
-      "PM Properties made our dream of owning a waterfront home a reality. Sarah guided us through every step and negotiated a deal we didn't think was possible. We're customers for life.",
+      "The PM Properties made our dream of owning a waterfront home a reality. Sarah guided us through every step and negotiated a deal we didn't think was possible. We're customers for life.",
     rating: 5,
   },
   {
@@ -291,7 +291,7 @@ export const testimonials = [
     name: "Robert & Karen Mills",
     location: "Portland, OR",
     content:
-      "We've bought and sold several properties over the years, and PM Properties is by far the best agency we've worked with. Their market knowledge and negotiation skills are unmatched.",
+      "We've bought and sold several properties over the years, and The PM Properties is by far the best agency we've worked with. Their market knowledge and negotiation skills are unmatched.",
     rating: 5,
   },
 ];

@@ -181,7 +181,7 @@ export const FALLBACK_INDUSTRY_PRESENCE: IndustryPresenceItem[] = [
   },
   {
     id: "fallback-ip-6",
-    caption: "PM Properties Milestone Celebration & Honor",
+    caption: "The PM Properties Milestone Celebration & Honor",
     image_url: "/images/pm2.jpeg",
     display_order: 6,
   },
@@ -279,10 +279,12 @@ export async function getPageBanner(pageKey: string): Promise<string> {
   if (!isSupabaseConfigured()) return FALLBACK_BANNER;
   try {
     const supabase = getSupabaseServerClient();
+    const keys = pageKey === "achievements" ? ["achievements", "events"] : [pageKey];
     const { data, error } = await supabase
       .from("page_banners")
       .select("image_url")
-      .eq("page_key", pageKey)
+      .in("page_key", keys)
+      .limit(1)
       .maybeSingle();
 
     if (error || !data || !data.image_url) {

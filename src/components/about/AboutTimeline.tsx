@@ -82,7 +82,7 @@ export default function AboutTimeline({ initialMilestones }: AboutTimelineProps 
               Our Journey
             </p>
             <h2 className="font-heading font-bold text-2xl sm:text-4xl text-slate-900 mb-4 leading-[1.15] tracking-[-0.02em]">
-              The Story of PM Properties
+              The Story of The PM Properties
             </h2>
             <p className="font-body font-normal text-sm sm:text-base text-slate-600 max-w-2xl mx-auto leading-[1.6]">
               A journey of determination, honesty, and a commitment to helping people find their
@@ -152,7 +152,7 @@ export default function AboutTimeline({ initialMilestones }: AboutTimelineProps 
                       />
                     ) : (
                       <div className="w-full h-full bg-slate-100 flex items-center justify-center text-slate-400 text-xs font-heading">
-                        PM Properties
+                        The PM Properties
                       </div>
                     )}
                     <div className="absolute inset-0 bg-slate-900/10 group-hover:bg-transparent transition-colors duration-500 z-20 pointer-events-none" />
@@ -174,7 +174,7 @@ export default function AboutTimeline({ initialMilestones }: AboutTimelineProps 
                 <div className="flex flex-col items-center justify-center">
                   <p className="font-heading font-semibold text-xs uppercase tracking-[0.05em] text-slate-500 mb-1">Yours sincerely,</p>
                   <p className="font-heading font-bold text-lg sm:text-xl text-[#0a1128]">Mr. Pritesh Pravin Mhamunkar</p>
-                  <p className="font-body font-normal text-xs sm:text-sm text-slate-600 mt-1">Founder, PM Properties</p>
+                  <p className="font-body font-normal text-xs sm:text-sm text-slate-600 mt-1">Founder, The PM Properties</p>
                 </div>
               </div>
             </div>

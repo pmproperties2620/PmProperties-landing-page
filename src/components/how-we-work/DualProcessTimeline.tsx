@@ -119,7 +119,7 @@ const sellingSteps = [
     icon: Key,
     title: "Closing & Beyond",
     description:
-      "We coordinate inspections, appraisals, and closing details. After you hand over the keys, you're still part of the PM Properties family.",
+      "We coordinate inspections, appraisals, and closing details. After you hand over the keys, you're still part of The PM Properties family.",
   },
 ];
 

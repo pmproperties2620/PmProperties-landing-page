@@ -1,4 +1,4 @@
-// PM Properties Service Worker
+// The PM Properties Service Worker
 // Supports offline fallback, asset caching, push notifications, and app badging
 
 const CACHE_NAME = "pm-properties-admin-v2";
@@ -111,13 +111,13 @@ self.addEventListener("push", (event) => {
     payload = event.data ? event.data.json() : {};
   } catch {
     try {
-      payload = { title: "PM Properties Alert", body: event.data.text() };
+      payload = { title: "The PM Properties Alert", body: event.data.text() };
     } catch {
-      payload = { title: "PM Properties Alert", body: "New lead received." };
+      payload = { title: "The PM Properties Alert", body: "New lead received." };
     }
   }
 
-  const title = payload.title || "PM Properties: New Lead";
+  const title = payload.title || "The PM Properties: New Lead";
   const options = {
     body: payload.body || "A new consultation inquiry has been submitted.",
     icon: payload.icon || "/icons/icon-192x192.png",

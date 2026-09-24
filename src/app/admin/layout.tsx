@@ -6,7 +6,7 @@ import AdminSidebar from "@/components/admin/AdminSidebar";
 import PwaRegister from "@/components/pwa/PwaRegister";
 
 export const metadata: Metadata = {
-  title: "PM Admin Portal | PM Properties",
+  title: "PM Admin Portal | The PM Properties",
   description: "Executive analytics dashboard, leads management pipeline, and real estate CMS.",
   manifest: "/admin-manifest.json",
   appleWebApp: {

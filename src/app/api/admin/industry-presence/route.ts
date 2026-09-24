@@ -102,6 +102,7 @@ export async function POST(request: Request) {
 
     revalidatePath("/");
     revalidatePath("/about");
+    revalidatePath("/achievements");
 
     return NextResponse.json({
       success: true,
@@ -165,6 +166,7 @@ export async function PUT(request: Request) {
 
     revalidatePath("/");
     revalidatePath("/about");
+    revalidatePath("/achievements");
 
     return NextResponse.json({
       success: true,
@@ -217,6 +219,7 @@ export async function DELETE(request: Request) {
 
     revalidatePath("/");
     revalidatePath("/about");
+    revalidatePath("/achievements");
 
     return NextResponse.json({
       success: true,

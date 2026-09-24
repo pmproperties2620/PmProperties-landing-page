@@ -14,7 +14,7 @@ export default function WhatsAppWidget() {
   if (pathname?.startsWith("/admin")) {
     return null;
   }
-  const phoneNumber = "919029923246"; // The PM properties number
+  const phoneNumber = "919029923246"; // The PM Properties number
   const whatsappUrl = `https://wa.me/${phoneNumber}?text=Hi!%20I'm%20interested%20in%20learning%20more%20about%20your%20properties.`;
 
   return (
@@ -37,7 +37,7 @@ export default function WhatsAppWidget() {
                     {/* Using the provided whatsapp avatar image */}
                     <Image
                       src="/images/whatsapp-avatar.jpeg"
-                      alt="PM Properties"
+                      alt="The PM Properties"
                       width={48}
                       height={48}
                       className="object-cover w-full h-full"
@@ -46,7 +46,7 @@ export default function WhatsAppWidget() {
                   <div className="absolute bottom-0 right-0 w-3.5 h-3.5 bg-[#25D366] border-2 border-[#075E54] rounded-full"></div>
                 </div>
                 <div>
-                  <h3 className="text-white font-heading font-semibold text-base sm:text-lg leading-tight">PM Properties</h3>
+                  <h3 className="text-white font-heading font-semibold text-base sm:text-lg leading-tight">The PM Properties</h3>
                   <p className="text-white/80 font-body font-normal text-xs leading-[1.6]">Typically replies within an hour</p>
                 </div>
               </div>
@@ -70,7 +70,7 @@ export default function WhatsAppWidget() {
                  transition={{ delay: 0.2 }}
                  className="relative bg-white p-3 rounded-lg rounded-tl-none shadow-sm max-w-[85%] text-slate-800 z-10"
                >
-                 <div className="text-slate-400 font-heading text-xs font-semibold uppercase tracking-[0.05em] mb-1">PM Properties</div>
+                 <div className="text-slate-400 font-heading text-xs font-semibold uppercase tracking-[0.05em] mb-1">The PM Properties</div>
                  <p className="font-body font-normal text-xs sm:text-sm leading-[1.6]">Hi there 👋</p>
                  <p className="font-body font-normal text-xs sm:text-sm leading-[1.6] mt-1">How can I help you?</p>
                  <div className="text-right font-body text-[10px] text-slate-400 mt-1">17:03</div>

@@ -341,7 +341,7 @@ export default function ConsultationModal() {
                       </div>
                       <div>
                         <div className="font-heading text-xs uppercase tracking-[0.05em] leading-none text-zinc-400 font-semibold mb-1">
-                          PM Properties
+                          The PM Properties
                         </div>
                         <div className="font-heading text-sm font-medium leading-none text-white">Private Advisory</div>
                       </div>

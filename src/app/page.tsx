@@ -8,7 +8,6 @@ import FAQSection from "@/components/home/FAQSection";
 import AboutSection from "@/components/home/AboutSection";
 import HowWeWorkSection from "@/components/home/HowWeWorkSection";
 import CredentialsSection from "@/components/home/CredentialsSection";
-import IndustryPresenceTeaser from "@/components/home/IndustryPresenceTeaser";
 import { RealEstateAgentJsonLd, FAQPageJsonLd } from "@/components/seo/JsonLd";
 import {
   getTestimonials,
@@ -16,20 +15,19 @@ import {
   getAboutShowcase,
   getPageBanner,
   getHeroShowcase,
-  getIndustryPresence,
 } from "@/lib/contentQueries";
 
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "PM Properties | Real Estate Consultant in Dombivli & Kalyan",
+  title: "The PM Properties | Real Estate Consultant in Dombivli & Kalyan",
   description:
     "RERA-certified real estate consultancy in Dombivli & Kalyan by Pritesh Mhamunkar. Luxury homes, commercial spaces & 0% brokerage on new builder projects.",
   alternates: {
     canonical: "https://www.thepmproperties.in",
   },
   openGraph: {
-    title: "PM Properties | Real Estate Consultant in Dombivli & Kalyan",
+    title: "The PM Properties | Real Estate Consultant in Dombivli & Kalyan",
     description:
       "RERA-certified real estate consultancy in Dombivli & Kalyan by Pritesh Mhamunkar. Luxury homes, commercial spaces & 0% brokerage on new builder projects.",
     url: "https://www.thepmproperties.in",
@@ -38,7 +36,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "PM Properties | Real Estate Consultant in Dombivli & Kalyan",
+    title: "The PM Properties | Real Estate Consultant in Dombivli & Kalyan",
     description:
       "RERA-certified real estate consultancy in Dombivli & Kalyan by Pritesh Mhamunkar. Luxury homes, commercial spaces & 0% brokerage on new builder projects.",
   },
@@ -51,14 +49,12 @@ export default async function Home() {
     aboutShowcase,
     heroBannerUrl,
     heroShowcaseUrl,
-    industryPresence,
   ] = await Promise.all([
     getTestimonials(),
     getTrustedPartners(),
     getAboutShowcase(),
     getPageBanner("home_hero"),
     getHeroShowcase(),
-    getIndustryPresence(3),
   ]);
 
   return (
@@ -69,7 +65,6 @@ export default async function Home() {
       <LogoMarquee initialLogos={trustedPartners} />
       <AboutSection initialImages={aboutShowcase} />
       <CredentialsSection />
-      <IndustryPresenceTeaser initialItems={industryPresence} />
       <Services />
       <HowWeWorkSection />
       <Testimonials initialTestimonials={testimonials} />
@@ -78,3 +73,4 @@ export default async function Home() {
     </>
   );
 }
+

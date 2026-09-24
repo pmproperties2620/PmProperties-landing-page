@@ -190,6 +190,7 @@ async function seed() {
   const pageBanners = [
     { page_key: "home_hero", label: "Homepage Hero Banner Backdrop", image_url: "/images/hero-bg-new.png" },
     { page_key: "about", label: "About Us Page Hero Banner", image_url: "/images/hero-bg-new.png" },
+    { page_key: "events", label: "Events & Achievements Page Hero Banner", image_url: "/images/hero-bg-new.png" },
     { page_key: "how_we_work", label: "How We Work Page Hero Banner", image_url: "/images/hero-bg-new.png" },
     { page_key: "services", label: "Services Page Hero Banner", image_url: "/images/hero-bg-new.png" },
     { page_key: "contact", label: "Contact Us Page Hero Banner", image_url: "/images/hero-bg-new.png" },
@@ -201,7 +202,28 @@ async function seed() {
       .upsert(banner, { onConflict: "page_key" });
     if (bErr) console.error(`Error upserting banner ${banner.page_key}:`, bErr.message);
   }
-  console.log("Upserted 5 page banners.");
+  console.log("Upserted 6 page banners.");
+
+  // 7. Industry Presence / Events & Achievements
+  const industryPresence = [
+    { caption: "KDRA Association Annual Summit & Developer Connect", image_url: "/images/timeline_4_1.jpeg", display_order: 1, is_published: true },
+    { caption: "Excellence in Real Estate Advisory Award Ceremony", image_url: "/images/timeline_4_2.jpeg", display_order: 2, is_published: true },
+    { caption: "Premier Builder Partner Conclave & Project Launch", image_url: "/images/timeline_4_4.jpeg", display_order: 3, is_published: true },
+    { caption: "Kalyan-Dombivli Property Expo & Showcase", image_url: "/images/pm1.jpeg", display_order: 4, is_published: true },
+    { caption: "Real Estate Leadership & Channel Partner Forum", image_url: "/images/timeline_4_3.jpeg", display_order: 5, is_published: true },
+    { caption: "The PM Properties Milestone Celebration & Honor", image_url: "/images/pm2.jpeg", display_order: 6, is_published: true },
+  ];
+
+  const { count: ipCount, error: ipErr } = await supabase.from("industry_presence").select("*", { count: "exact", head: true });
+  if (ipErr) {
+    console.error("Error checking industry_presence:", ipErr.message);
+  } else if (ipCount === 0) {
+    const { error: insErr } = await supabase.from("industry_presence").insert(industryPresence);
+    if (insErr) console.error("Error inserting industry_presence:", insErr.message);
+    else console.log(`Inserted ${industryPresence.length} events & achievements photos.`);
+  } else {
+    console.log(`Industry presence already has ${ipCount} rows.`);
+  }
 
   console.log("ALL CURRENT IMAGES POPULATED SUCCESSFULLY INTO SUPABASE!");
 }

@@ -322,7 +322,7 @@ export default function ContactContent({ bannerUrl }: ContactContentProps) {
                             <Building2 className="w-4 h-4 text-white" />
                           </div>
                           <span className="font-heading font-semibold text-xs uppercase tracking-[0.05em] text-zinc-400">
-                            PM Properties &bull; Private Advisory
+                            The PM Properties &bull; Private Advisory
                           </span>
                         </div>
                         <h2 className="font-heading font-bold text-2xl sm:text-3xl text-white leading-[1.15] tracking-[-0.02em]">
@@ -649,7 +649,7 @@ export default function ContactContent({ bannerUrl }: ContactContentProps) {
                   <div>
                     <p className="font-heading font-bold text-sm text-white mb-1 leading-[1.2]">MahaRERA &amp; KDRA Certified</p>
                     <p className="font-body font-normal text-xs text-zinc-400 leading-[1.6]">
-                      Every property presented by PM Properties undergoes complete legal due diligence, title verification, and RERA registration checks.
+                      Every property presented by The PM Properties undergoes complete legal due diligence, title verification, and RERA registration checks.
                     </p>
                   </div>
                 </div>

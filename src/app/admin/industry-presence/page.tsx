@@ -313,10 +313,10 @@ export default function AdminIndustryPresencePage() {
           </div>
           <div>
             <h1 className="font-heading font-bold text-xl sm:text-2xl text-slate-900 tracking-tight">
-              Industry Presence
+              Achievements
             </h1>
             <p className="font-body text-xs sm:text-sm text-slate-500">
-              Manage event, expo, and award ceremony photos showcased on the Homepage teaser and About page carousel.
+              Manage event, expo, and award ceremony photos showcased on the Achievements page and About page.
             </p>
           </div>
         </div>

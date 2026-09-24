@@ -1,5 +1,5 @@
 -- ==============================================================================
--- PM Properties - Production Supabase Schema for Leads Management
+-- The PM Properties - Production Supabase Schema for Leads Management
 -- ==============================================================================
 -- Run this SQL in your Supabase Project:
 -- SQL Editor -> New Query -> Paste -> Run
@@ -268,7 +268,7 @@ CREATE POLICY "Service role full access to project images"
     WITH CHECK (bucket_id = 'project-images');
 
 -- ==============================================================================
--- PM Properties - Content CMS Schema (Testimonials, Partners, About, Banners)
+-- The PM Properties - Content CMS Schema (Testimonials, Partners, About, Banners)
 -- ==============================================================================
 
 -- 1. Testimonials Table
@@ -504,7 +504,20 @@ CREATE POLICY "Service role full access industry_presence"
     USING (true)
     WITH CHECK (true);
 
-COMMENT ON TABLE public.industry_presence IS 'Event, expo, and award ceremony photos showcasing PM Properties industry engagement, shown on Home (teaser) and About (full gallery).';
+COMMENT ON TABLE public.industry_presence IS 'Event, expo, and award ceremony photos showcasing The PM Properties industry engagement, shown on Events & Achievements page and About page.';
 
+-- Initial Seed Data for Events & Achievements / Industry Presence
+INSERT INTO public.industry_presence (caption, image_url, display_order, is_published)
+VALUES
+  ('KDRA Association Annual Summit & Developer Connect', '/images/timeline_4_1.jpeg', 1, true),
+  ('Excellence in Real Estate Advisory Award Ceremony', '/images/timeline_4_2.jpeg', 2, true),
+  ('Premier Builder Partner Conclave & Project Launch', '/images/timeline_4_4.jpeg', 3, true),
+  ('Kalyan-Dombivli Property Expo & Showcase', '/images/pm1.jpeg', 4, true),
+  ('Real Estate Leadership & Channel Partner Forum', '/images/timeline_4_3.jpeg', 5, true),
+  ('The PM Properties Milestone Celebration & Honor', '/images/pm2.jpeg', 6, true);
 
-
+-- Seed default Events & Achievements Hero Banner slot in page_banners
+INSERT INTO public.page_banners (page_key, label, image_url)
+VALUES ('events', 'Events & Achievements Page Hero Banner', '/images/hero-bg-new.png')
+ON CONFLICT (page_key) DO UPDATE
+SET label = EXCLUDED.label;

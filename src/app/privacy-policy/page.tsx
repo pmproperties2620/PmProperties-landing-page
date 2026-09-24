@@ -20,24 +20,24 @@ import { getPageBanner } from "@/lib/contentQueries";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy | PM Properties",
+  title: "Privacy Policy | The PM Properties",
   description:
-    "Read how PM Properties protects client inquiry details in full compliance with the Digital Personal Data Protection (DPDP) Act and MahaRERA mandates.",
+    "Read how The PM Properties protects client inquiry details in full compliance with the Digital Personal Data Protection (DPDP) Act and MahaRERA mandates.",
   alternates: {
     canonical: "https://www.thepmproperties.in/privacy-policy",
   },
   openGraph: {
-    title: "Privacy Policy | PM Properties",
+    title: "Privacy Policy | The PM Properties",
     description:
-      "Information governance, data privacy, and compliance guidelines governing property inquiries and advisory interactions at PM Properties.",
+      "Information governance, data privacy, and compliance guidelines governing property inquiries and advisory interactions at The PM Properties.",
     url: "https://www.thepmproperties.in/privacy-policy",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Privacy Policy | PM Properties",
+    title: "Privacy Policy | The PM Properties",
     description:
-      "Information governance, data privacy, and compliance guidelines governing property inquiries and advisory interactions at PM Properties.",
+      "Information governance, data privacy, and compliance guidelines governing property inquiries and advisory interactions at The PM Properties.",
   },
 };
 
@@ -72,7 +72,7 @@ export default async function PrivacyPolicyPage() {
         <div className="absolute inset-0 z-0">
           <Image
             src={bannerUrl}
-            alt="Privacy Policy - PM Properties"
+            alt="Privacy Policy - The PM Properties"
             fill
             sizes="100vw"
             className="object-cover"
@@ -159,7 +159,7 @@ export default async function PrivacyPolicyPage() {
               </div>
               <div className="font-body text-sm sm:text-[15px] text-slate-700 leading-relaxed space-y-3.5">
                 <p>
-                  <strong>The PM Properties</strong> (&ldquo;PM Properties,&rdquo; &ldquo;we,&rdquo; &ldquo;us,&rdquo; or &ldquo;our&rdquo;), founded by Pritesh Pravin Mhamunkar and headquartered in Dombivli West, Maharashtra, is committed to safeguarding your privacy and personal information.
+                  <strong>The PM Properties</strong> (&ldquo;The PM Properties,&rdquo; &ldquo;we,&rdquo; &ldquo;us,&rdquo; or &ldquo;our&rdquo;), founded by Pritesh Pravin Mhamunkar and headquartered in Dombivli West, Maharashtra, is committed to safeguarding your privacy and personal information.
                 </p>
                 <p>
                   This Privacy Policy articulates our transparent practices regarding how personal details are collected, processed, and safeguarded when you visit our website, submit property inquiries, schedule site visits, or connect with our advisory team via telephone or messaging channels.
@@ -311,7 +311,7 @@ export default async function PrivacyPolicyPage() {
                   Inquiry data submitted through our web forms is transmitted over encrypted Transport Layer Security (TLS/HTTPS) and stored in an enterprise PostgreSQL database managed by <strong>Supabase Inc.</strong>
                 </p>
                 <p>
-                  We implement PostgreSQL <strong>Row Level Security (RLS)</strong> policies. The public cannot read, enumerate, or access submitted lead entries. Access to inquiries is strictly restricted to authenticated PM Properties advisory personnel via secure administrative credentials.
+                  We implement PostgreSQL <strong>Row Level Security (RLS)</strong> policies. The public cannot read, enumerate, or access submitted lead entries. Access to inquiries is strictly restricted to authenticated The PM Properties advisory personnel via secure administrative credentials.
                 </p>
               </div>
             </section>

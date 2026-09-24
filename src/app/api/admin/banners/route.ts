@@ -6,6 +6,7 @@ import { authenticateAdminRequest } from "@/lib/adminAuth";
 const DEFAULT_BANNERS = [
   { page_key: "home_hero", label: "Homepage Hero Banner Backdrop", image_url: "/images/hero-bg-new.png" },
   { page_key: "about", label: "About Us Page Hero Banner", image_url: "/images/hero-bg-new.png" },
+  { page_key: "achievements", label: "Achievements Page Hero Banner", image_url: "/images/hero-bg-new.png" },
   { page_key: "how_we_work", label: "How We Work Page Hero Banner", image_url: "/images/hero-bg-new.png" },
   { page_key: "services", label: "Services Page Hero Banner", image_url: "/images/hero-bg-new.png" },
   { page_key: "contact", label: "Contact Us Page Hero Banner", image_url: "/images/hero-bg-new.png" },
@@ -176,6 +177,7 @@ export async function PUT(request: Request) {
     const bannerRouteMap: Record<string, string> = {
       home_hero: "/",
       about: "/about",
+      achievements: "/achievements",
       how_we_work: "/how-we-work",
       services: "/services",
       contact: "/contact",

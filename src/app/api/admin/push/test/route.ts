@@ -14,7 +14,7 @@ export async function POST(request: Request) {
     const unreadCount = await getUnreadLeadsCount();
 
     const result = await sendPushToAllSubscribers({
-      title: "PM Properties: Test Notification",
+      title: "The PM Properties: Test Notification",
       body: "Push notification system is working! You will receive live alerts for new leads.",
       url: "/admin/leads",
       unreadCount,

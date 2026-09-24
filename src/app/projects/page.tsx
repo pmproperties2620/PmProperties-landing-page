@@ -7,10 +7,11 @@ import { projectsData } from "@/data/projects";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "New Projects in Dombivli, Kalyan & Thane | PM Properties",
+  title: "New Projects in Dombivli, Kalyan & Thane | The PM Properties",
   description:
     "Explore verified 1, 2 & 3 BHK flats and commercial hubs in Dombivli, Kalyan & Thane. 100% MahaRERA registered with 0% brokerage on builder bookings.",
   keywords: [
+    "The PM Properties",
     "PM Properties",
     "Real Estate Kalyan",
     "Flats in Dombivli",
@@ -25,7 +26,7 @@ export const metadata: Metadata = {
     canonical: "https://www.thepmproperties.in/projects",
   },
   openGraph: {
-    title: "New Projects in Dombivli, Kalyan & Thane | PM Properties",
+    title: "New Projects in Dombivli, Kalyan & Thane | The PM Properties",
     description:
       "Explore verified 1, 2 & 3 BHK flats and commercial hubs in Dombivli, Kalyan & Thane with 0% brokerage on direct builder bookings.",
     url: "https://www.thepmproperties.in/projects",
@@ -33,7 +34,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "New Projects in Dombivli, Kalyan & Thane | PM Properties",
+    title: "New Projects in Dombivli, Kalyan & Thane | The PM Properties",
     description:
       "Explore verified 1, 2 & 3 BHK flats and commercial hubs in Dombivli, Kalyan & Thane with 0% brokerage on direct builder bookings.",
   },

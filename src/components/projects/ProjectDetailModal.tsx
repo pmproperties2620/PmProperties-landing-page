@@ -106,7 +106,7 @@ export default function ProjectDetailModal({
   };
 
   const getWhatsAppMessage = () => {
-    const text = `Hi PM Properties, I am interested in ${project.title} (${project.location.locality}, ${project.location.city}). Please share more details and pricing.`;
+    const text = `Hi The PM Properties, I am interested in ${project.title} (${project.location.locality}, ${project.location.city}). Please share more details and pricing.`;
     return `https://wa.me/919029923246?text=${encodeURIComponent(text)}`;
   };
 
@@ -367,7 +367,7 @@ export default function ProjectDetailModal({
                 <ShieldCheck className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
                 <div className="leading-snug">
                   <span className="font-heading font-bold">MahaRERA Verified:</span>{" "}
-                  <span className="font-mono font-medium">{project.reraId}</span> &bull; Legally vetted by PM Properties advisory team.
+                  <span className="font-mono font-medium">{project.reraId}</span> &bull; Legally vetted by The PM Properties advisory team.
                 </div>
               </div>
 
@@ -428,7 +428,7 @@ export default function ProjectDetailModal({
                   Questions about pricing or floor plans?
                 </span>
                 <span className="font-heading font-bold text-xs text-slate-800">
-                  Direct PM Properties Consultation
+                  Direct The PM Properties Consultation
                 </span>
               </div>
 

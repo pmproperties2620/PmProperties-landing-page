@@ -19,7 +19,7 @@ export default function Footer() {
         <Link href="/" className="block relative h-20 w-56 sm:h-32 sm:w-[22rem] lg:h-48 lg:w-[32rem] mb-8 max-w-[90vw]">
           <Image
             src="/images/logo.png"
-            alt="PM Properties"
+            alt="The PM Properties"
             fill
             sizes="(max-width: 640px) 224px, (max-width: 1024px) 352px, 512px"
             className="object-contain opacity-90 hover:opacity-100 transition-opacity"
@@ -87,6 +87,8 @@ export default function Footer() {
           <div className="w-px h-4 bg-slate-300 hidden md:block"></div>
           <Link href="/about" className="text-slate-700 hover:text-brand-600 transition-colors">About Us</Link>
           <div className="w-px h-4 bg-slate-300 hidden md:block"></div>
+          <Link href="/achievements" className="text-slate-700 hover:text-brand-600 transition-colors">Achievements</Link>
+          <div className="w-px h-4 bg-slate-300 hidden md:block"></div>
           <Link href="/contact" className="text-slate-700 hover:text-brand-600 transition-colors">Contact Us</Link>
         </div>
 
@@ -101,7 +103,7 @@ export default function Footer() {
 
         {/* Copyright & Legal Links */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-3 font-body text-xs sm:text-sm text-slate-500 leading-[1.6]">
-          <p>&copy; {new Date().getFullYear()} PM Properties. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} The PM Properties. All rights reserved.</p>
           <span className="hidden sm:inline text-slate-300">&bull;</span>
           <div className="flex items-center gap-3">
             <Link

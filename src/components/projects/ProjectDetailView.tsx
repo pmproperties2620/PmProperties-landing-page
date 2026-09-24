@@ -33,7 +33,7 @@ export default function ProjectDetailView({ project, relatedProjects }: ProjectD
   const [copied, setCopied] = useState(false);
 
   const getWhatsAppMessage = () => {
-    const text = `Hi PM Properties, I am interested in ${project.title} (${project.location.locality}, ${project.location.city}). Please share more details and connect with me regarding site visit and pricing.`;
+    const text = `Hi The PM Properties, I am interested in ${project.title} (${project.location.locality}, ${project.location.city}). Please share more details and connect with me regarding site visit and pricing.`;
     return `https://wa.me/919029923246?text=${encodeURIComponent(text)}`;
   };
 
@@ -42,7 +42,7 @@ export default function ProjectDetailView({ project, relatedProjects }: ProjectD
     if (typeof navigator !== "undefined" && navigator.share) {
       try {
         await navigator.share({
-          title: `${project.title} | PM Properties`,
+          title: `${project.title} | The PM Properties`,
           text: `Explore ${project.title} by ${project.developer} in ${project.location.locality}, ${project.location.city}.`,
           url: shareUrl,
         });
@@ -261,7 +261,7 @@ export default function ProjectDetailView({ project, relatedProjects }: ProjectD
               <div>
                 <span className="font-heading font-bold">MahaRERA Verified:</span>{" "}
                 <span className="font-mono font-semibold">{project.reraId}</span> &bull;{" "}
-                Clear marketable title, 100% legally vetted by PM Properties advisory team.
+                Clear marketable title, 100% legally vetted by The PM Properties advisory team.
               </div>
             </div>
 
@@ -396,7 +396,7 @@ export default function ProjectDetailView({ project, relatedProjects }: ProjectD
               Interested in {project.title}? Direct builder booking with 0% brokerage.
             </span>
             <span className="font-heading font-bold text-sm text-slate-900">
-              Speak with a PM Properties Property Specialist
+              Speak with The PM Properties Property Specialist
             </span>
           </div>
 

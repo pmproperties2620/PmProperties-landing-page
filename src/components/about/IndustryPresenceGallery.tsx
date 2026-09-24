@@ -186,7 +186,7 @@ export default function IndustryPresenceGallery({ initialItems }: IndustryPresen
                         {item.caption || "Real Estate Summit & Industry Recognition"}
                       </p>
                       <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between">
-                        <span className="text-xs font-body text-slate-400">PM Properties Presence</span>
+                        <span className="text-xs font-body text-slate-400">The PM Properties Presence</span>
                         <span className="text-[11px] font-mono text-slate-400">#{item.display_order || idx + 1}</span>
                       </div>
                     </div>

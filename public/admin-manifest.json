@@ -1,7 +1,7 @@
 {
-  "name": "PM Properties Admin",
+  "name": "The PM Properties Admin",
   "short_name": "PM Admin",
-  "description": "Executive dashboard, leads management pipeline, and real estate CMS for PM Properties.",
+  "description": "Executive dashboard, leads management pipeline, and real estate CMS for The PM Properties.",
   "start_url": "/admin",
   "scope": "/admin",
   "display": "standalone",

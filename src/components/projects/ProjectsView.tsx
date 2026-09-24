@@ -292,7 +292,7 @@ export default function ProjectsView({ initialProjects }: ProjectsViewProps = {}
                   <span>For Property Owners &amp; Developers</span>
                 </div>
                 <h2 className="font-heading font-bold text-2xl sm:text-3xl text-slate-900 mb-3 leading-[1.15] tracking-[-0.02em]">
-                  Looking to Sell, Lease, or Partner with PM Properties?
+                  Looking to Sell, Lease, or Partner with The PM Properties?
                 </h2>
                 <p className="font-body font-normal text-xs sm:text-sm text-slate-600 leading-[1.6]">
                   Get your property listed before 10,000+ verified active buyers

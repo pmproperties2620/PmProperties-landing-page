@@ -6,14 +6,14 @@ import { getPageBanner } from "@/lib/contentQueries";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Contact PM Properties | Real Estate Office Dombivli",
+  title: "Contact The PM Properties | Real Estate Office Dombivli",
   description:
-    "Connect with PM Properties in Dombivli West. Book a free consultation for residential & commercial property investments across Dombivli, Kalyan & Thane.",
+    "Connect with The PM Properties in Dombivli West. Book a free consultation for residential & commercial property investments across Dombivli, Kalyan & Thane.",
   alternates: {
     canonical: "https://www.thepmproperties.in/contact",
   },
   openGraph: {
-    title: "Contact PM Properties | Real Estate Office Dombivli",
+    title: "Contact The PM Properties | Real Estate Office Dombivli",
     description:
       "Schedule a consultation or reach our senior property advisors directly at our Dombivli West office.",
     url: "https://www.thepmproperties.in/contact",
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Contact PM Properties | Real Estate Office Dombivli",
+    title: "Contact The PM Properties | Real Estate Office Dombivli",
     description:
       "Schedule a consultation or reach our senior property advisors directly at our Dombivli West office.",
   },

@@ -439,7 +439,7 @@ export default function AdminDashboardPage() {
               Recent Leads
             </h2>
             <p className="font-body text-xs text-slate-500 mt-0.5">
-              Latest inquiries submitted across PM Properties touchpoints.
+              Latest inquiries submitted across The PM Properties touchpoints.
             </p>
           </div>
           <Link

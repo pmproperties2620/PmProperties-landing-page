@@ -89,7 +89,7 @@ export default function AboutSection({ initialImages }: AboutSectionProps = {}) 
           <div className="px-2 md:px-0 flex flex-col items-start mb-4">
              <SectionDecoration className="mb-4" />
              <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black leading-[1.1] tracking-[-0.02em] text-[#0a1128]">
-              About PM Properties
+              About The PM Properties
             </h2>
           </div>
          
@@ -105,7 +105,7 @@ export default function AboutSection({ initialImages }: AboutSectionProps = {}) 
               >
                 <Image 
                   src={showcaseImages[currentIndex] || FALLBACK_ABOUT_SHOWCASE[0]}
-                  alt="PM Properties - Verified Residential and Commercial Real Estate Portfolio in Dombivli and Kalyan"
+                  alt="The PM Properties - Verified Residential and Commercial Real Estate Portfolio in Dombivli and Kalyan"
                   fill
                   className="object-contain object-center bg-[#f8f9fc]"
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 66vw, 50vw"
